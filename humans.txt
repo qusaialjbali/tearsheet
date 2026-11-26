@@ -1,0 +1,20 @@
+/* TEAM */
+  Made by: Qusai Aljbali
+  GitHub: https://github.com/qusaialjbali
+  The terminal: https://github.com/qusaialjbali/qusaialjbali
+
+/* THANKS */
+  Everyone who files an issue, sends a fix, or copies a part without telling anyone.
+  That last one is the whole point.
+
+/* SITE */
+  Name: Tearsheet
+  What: free interface parts, printed as a risograph zine, in HTML, React, Vue and Svelte
+  Licence: MIT-0 (take anything, credit nobody)
+  Language: English (every part is also tested right-to-left with Arabic sample text)
+  Standards: HTML, CSS custom properties, plain JavaScript, WCAG 2.1 AA
+  Built with: no framework, no build step for the site, no dependencies at runtime
+  Checked with: axe-core in Chromium on every push, plus Tearsheet's own audit
+  Fonts: Bricolage Grotesque and JetBrains Mono (SIL Open Font License)
+  Printed with: two inks, fluoro pink and blue, on paper that only exists in CSS
+  Source: https://github.com/qusaialjbali/tearsheet

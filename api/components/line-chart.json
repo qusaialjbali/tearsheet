@@ -1,0 +1,90 @@
+{
+  "id": "line-chart",
+  "name": "Line chart",
+  "page": "p.39",
+  "collection": "Data",
+  "experimental": false,
+  "description": "A lightweight SVG line chart with gridlines, axis labels and a highlighted latest point.",
+  "notes": "The SVG has a title and a description that state the trend in words, and the data is offered as a table for anyone who needs exact values.",
+  "usesJavaScript": false,
+  "sizeKb": 2.7,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#line-chart",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/line-chart.json",
+  "version": "f5563d6b",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 18
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 18
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "text: Show data"
+    ],
+    "tree": "- figure \"Weekly sign-ups\":\n  - text: Weekly sign-ups\n  - img \"Weekly sign-ups, 8 weeks Sign-ups rose from 120 in week 1 to 310 in week 8, with a dip in week 5.\": 300 200 100 0 W1 W4 W8\n  - group: Show data",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet line-chart vf5563d6b · https://qusaialjbali.github.io/tearsheet/zine/parts/line-chart.html -->\n<figure class=\"line\">\n  <figcaption>Weekly sign-ups</figcaption>\n  <svg class=\"line-svg\" viewBox=\"0 0 400 200\" role=\"img\" aria-labelledby=\"line-t line-d\">\n    <title id=\"line-t\">Weekly sign-ups, 8 weeks</title>\n    <desc id=\"line-d\">Sign-ups rose from 120 in week 1 to 310 in week 8, with a dip in week 5.</desc>\n    <g class=\"line-grid\"><path d=\"M40 20H390M40 70H390M40 120H390M40 170H390\"/></g>\n    <g class=\"line-y\"><text x=\"32\" y=\"24\">300</text><text x=\"32\" y=\"74\">200</text><text x=\"32\" y=\"124\">100</text><text x=\"32\" y=\"174\">0</text></g>\n    <path class=\"line-area\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34V170H40Z\"/>\n    <path class=\"line-path\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34\"/>\n    <circle class=\"line-dot\" cx=\"390\" cy=\"34\" r=\"5\"/>\n    <g class=\"line-x\"><text x=\"40\" y=\"192\">W1</text><text x=\"190\" y=\"192\">W4</text><text x=\"390\" y=\"192\">W8</text></g>\n  </svg>\n  <details class=\"line-data\">\n    <summary>Show data</summary>\n    <div class=\"line-table\" tabindex=\"0\" role=\"region\" aria-label=\"Weekly sign-ups as a table\"><table><tbody><tr><th scope=\"row\">Week</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th scope=\"row\">Sign-ups</th><td>120</td><td>144</td><td>168</td><td>196</td><td>156</td><td>220</td><td>252</td><td>310</td></tr></tbody></table></div>\n  </details>\n</figure>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet line-chart vf5563d6b · https://qusaialjbali.github.io/tearsheet/zine/parts/line-chart.html */\n.line { width: 100%; max-width: 480px; margin: 0; }\n.line figcaption { margin-bottom: 8px; font-size: 15px; font-weight: 700; }\n.line-svg { display: block; width: 100%; height: auto; overflow: visible; }\n.line-grid path { stroke: var(--ui-border); stroke-width: 1; }\n.line-y text, .line-x text { font-size: 12px; fill: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.line-y text { text-anchor: end; }\n.line-x text { text-anchor: middle; }\n.line-area { fill: var(--ui-accent); opacity: 0.12; }\n.line-path { fill: none; stroke: var(--ui-accent); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 600; animation: line-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }\n.line-dot { fill: var(--ui-surface); stroke: var(--ui-accent); stroke-width: 3; }\n@keyframes line-draw { from { stroke-dashoffset: 600; } }\n.line-data { margin-top: 8px; font-size: 13px; }\n.line-data summary { cursor: pointer; color: var(--ui-accent); font-weight: 600; }\n.line-table { max-width: 100%; margin-top: 8px; overflow-x: auto; }\n.line-table:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.line-data table { border-collapse: collapse; font-variant-numeric: tabular-nums; }\n.line-data th, .line-data td { padding: 4px 8px; border: 1px solid var(--ui-border); }\n@media (prefers-reduced-motion: reduce) { .line-path { animation: none; } }"
+      }
+    ],
+    "react": [
+      {
+        "name": "LineChart.jsx",
+        "code": "/* tearsheet line-chart vf5563d6b · https://qusaialjbali.github.io/tearsheet/zine/parts/line-chart.html */\nimport './LineChart.css';\n\nexport function LineChart() {\n  return (\n    <figure className=\"line\">\n      <figcaption>Weekly sign-ups</figcaption>\n      <svg className=\"line-svg\" viewBox=\"0 0 400 200\" role=\"img\" aria-labelledby=\"line-t line-d\">\n        <title id=\"line-t\">Weekly sign-ups, 8 weeks</title>\n        <desc id=\"line-d\">Sign-ups rose from 120 in week 1 to 310 in week 8, with a dip in week 5.</desc>\n        <g className=\"line-grid\"><path d=\"M40 20H390M40 70H390M40 120H390M40 170H390\"/></g>\n        <g className=\"line-y\"><text x=\"32\" y=\"24\">300</text><text x=\"32\" y=\"74\">200</text><text x=\"32\" y=\"124\">100</text><text x=\"32\" y=\"174\">0</text></g>\n        <path className=\"line-area\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34V170H40Z\"/>\n        <path className=\"line-path\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34\"/>\n        <circle className=\"line-dot\" cx=\"390\" cy=\"34\" r=\"5\"/>\n        <g className=\"line-x\"><text x=\"40\" y=\"192\">W1</text><text x=\"190\" y=\"192\">W4</text><text x=\"390\" y=\"192\">W8</text></g>\n      </svg>\n      <details className=\"line-data\">\n        <summary>Show data</summary>\n        <div className=\"line-table\" tabIndex={0} role=\"region\" aria-label=\"Weekly sign-ups as a table\"><table><tbody><tr><th scope=\"row\">Week</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th scope=\"row\">Sign-ups</th><td>120</td><td>144</td><td>168</td><td>196</td><td>156</td><td>220</td><td>252</td><td>310</td></tr></tbody></table></div>\n      </details>\n    </figure>\n  );\n}"
+      },
+      {
+        "name": "LineChart.css",
+        "code": "/* tearsheet line-chart vf5563d6b · https://qusaialjbali.github.io/tearsheet/zine/parts/line-chart.html */\n.line { width: 100%; max-width: 480px; margin: 0; }\n.line figcaption { margin-bottom: 8px; font-size: 15px; font-weight: 700; }\n.line-svg { display: block; width: 100%; height: auto; overflow: visible; }\n.line-grid path { stroke: var(--ui-border); stroke-width: 1; }\n.line-y text, .line-x text { font-size: 12px; fill: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.line-y text { text-anchor: end; }\n.line-x text { text-anchor: middle; }\n.line-area { fill: var(--ui-accent); opacity: 0.12; }\n.line-path { fill: none; stroke: var(--ui-accent); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 600; animation: line-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }\n.line-dot { fill: var(--ui-surface); stroke: var(--ui-accent); stroke-width: 3; }\n@keyframes line-draw { from { stroke-dashoffset: 600; } }\n.line-data { margin-top: 8px; font-size: 13px; }\n.line-data summary { cursor: pointer; color: var(--ui-accent); font-weight: 600; }\n.line-table { max-width: 100%; margin-top: 8px; overflow-x: auto; }\n.line-table:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.line-data table { border-collapse: collapse; font-variant-numeric: tabular-nums; }\n.line-data th, .line-data td { padding: 4px 8px; border: 1px solid var(--ui-border); }\n@media (prefers-reduced-motion: reduce) { .line-path { animation: none; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "LineChart.vue",
+        "code": "<!-- tearsheet line-chart vf5563d6b · https://qusaialjbali.github.io/tearsheet/zine/parts/line-chart.html -->\n<template>\n  <figure class=\"line\">\n    <figcaption>Weekly sign-ups</figcaption>\n    <svg class=\"line-svg\" viewBox=\"0 0 400 200\" role=\"img\" aria-labelledby=\"line-t line-d\">\n      <title id=\"line-t\">Weekly sign-ups, 8 weeks</title>\n      <desc id=\"line-d\">Sign-ups rose from 120 in week 1 to 310 in week 8, with a dip in week 5.</desc>\n      <g class=\"line-grid\"><path d=\"M40 20H390M40 70H390M40 120H390M40 170H390\"/></g>\n      <g class=\"line-y\"><text x=\"32\" y=\"24\">300</text><text x=\"32\" y=\"74\">200</text><text x=\"32\" y=\"124\">100</text><text x=\"32\" y=\"174\">0</text></g>\n      <path class=\"line-area\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34V170H40Z\"/>\n      <path class=\"line-path\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34\"/>\n      <circle class=\"line-dot\" cx=\"390\" cy=\"34\" r=\"5\"/>\n      <g class=\"line-x\"><text x=\"40\" y=\"192\">W1</text><text x=\"190\" y=\"192\">W4</text><text x=\"390\" y=\"192\">W8</text></g>\n    </svg>\n    <details class=\"line-data\">\n      <summary>Show data</summary>\n      <div class=\"line-table\" tabindex=\"0\" role=\"region\" aria-label=\"Weekly sign-ups as a table\"><table><tbody><tr><th scope=\"row\">Week</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th scope=\"row\">Sign-ups</th><td>120</td><td>144</td><td>168</td><td>196</td><td>156</td><td>220</td><td>252</td><td>310</td></tr></tbody></table></div>\n    </details>\n  </figure>\n</template>\n\n<style scoped>\n.line { width: 100%; max-width: 480px; margin: 0; }\n.line figcaption { margin-bottom: 8px; font-size: 15px; font-weight: 700; }\n.line-svg { display: block; width: 100%; height: auto; overflow: visible; }\n.line-grid path { stroke: var(--ui-border); stroke-width: 1; }\n.line-y text, .line-x text { font-size: 12px; fill: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.line-y text { text-anchor: end; }\n.line-x text { text-anchor: middle; }\n.line-area { fill: var(--ui-accent); opacity: 0.12; }\n.line-path { fill: none; stroke: var(--ui-accent); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 600; animation: line-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }\n.line-dot { fill: var(--ui-surface); stroke: var(--ui-accent); stroke-width: 3; }\n@keyframes line-draw { from { stroke-dashoffset: 600; } }\n.line-data { margin-top: 8px; font-size: 13px; }\n.line-data summary { cursor: pointer; color: var(--ui-accent); font-weight: 600; }\n.line-table { max-width: 100%; margin-top: 8px; overflow-x: auto; }\n.line-table:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.line-data table { border-collapse: collapse; font-variant-numeric: tabular-nums; }\n.line-data th, .line-data td { padding: 4px 8px; border: 1px solid var(--ui-border); }\n@media (prefers-reduced-motion: reduce) { .line-path { animation: none; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "LineChart.svelte",
+        "code": "<!-- tearsheet line-chart vf5563d6b · https://qusaialjbali.github.io/tearsheet/zine/parts/line-chart.html -->\n<figure class=\"line\">\n  <figcaption>Weekly sign-ups</figcaption>\n  <svg class=\"line-svg\" viewBox=\"0 0 400 200\" role=\"img\" aria-labelledby=\"line-t line-d\">\n    <title id=\"line-t\">Weekly sign-ups, 8 weeks</title>\n    <desc id=\"line-d\">Sign-ups rose from 120 in week 1 to 310 in week 8, with a dip in week 5.</desc>\n    <g class=\"line-grid\"><path d=\"M40 20H390M40 70H390M40 120H390M40 170H390\"/></g>\n    <g class=\"line-y\"><text x=\"32\" y=\"24\">300</text><text x=\"32\" y=\"74\">200</text><text x=\"32\" y=\"124\">100</text><text x=\"32\" y=\"174\">0</text></g>\n    <path class=\"line-area\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34V170H40Z\"/>\n    <path class=\"line-path\" d=\"M40 110L90 98L140 86L190 72L240 92L290 60L340 44L390 34\"/>\n    <circle class=\"line-dot\" cx=\"390\" cy=\"34\" r=\"5\"/>\n    <g class=\"line-x\"><text x=\"40\" y=\"192\">W1</text><text x=\"190\" y=\"192\">W4</text><text x=\"390\" y=\"192\">W8</text></g>\n  </svg>\n  <details class=\"line-data\">\n    <summary>Show data</summary>\n    <div class=\"line-table\" tabindex=\"0\" role=\"region\" aria-label=\"Weekly sign-ups as a table\"><table><tbody><tr><th scope=\"row\">Week</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th scope=\"row\">Sign-ups</th><td>120</td><td>144</td><td>168</td><td>196</td><td>156</td><td>220</td><td>252</td><td>310</td></tr></tbody></table></div>\n  </details>\n</figure>\n\n<style>\n.line { width: 100%; max-width: 480px; margin: 0; }\n.line figcaption { margin-bottom: 8px; font-size: 15px; font-weight: 700; }\n.line-svg { display: block; width: 100%; height: auto; overflow: visible; }\n.line-grid path { stroke: var(--ui-border); stroke-width: 1; }\n.line-y text, .line-x text { font-size: 12px; fill: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.line-y text { text-anchor: end; }\n.line-x text { text-anchor: middle; }\n.line-area { fill: var(--ui-accent); opacity: 0.12; }\n.line-path { fill: none; stroke: var(--ui-accent); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 600; animation: line-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }\n.line-dot { fill: var(--ui-surface); stroke: var(--ui-accent); stroke-width: 3; }\n@keyframes line-draw { from { stroke-dashoffset: 600; } }\n.line-data { margin-top: 8px; font-size: 13px; }\n.line-data summary { cursor: pointer; color: var(--ui-accent); font-weight: 600; }\n.line-table { max-width: 100%; margin-top: 8px; overflow-x: auto; }\n.line-table:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.line-data table { border-collapse: collapse; font-variant-numeric: tabular-nums; }\n.line-data th, .line-data td { padding: 4px 8px; border: 1px solid var(--ui-border); }\n@media (prefers-reduced-motion: reduce) { .line-path { animation: none; } }\n</style>"
+      }
+    ]
+  }
+}

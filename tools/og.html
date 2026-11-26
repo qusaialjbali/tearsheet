@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- Source of og.png, the social card. Rebuild: node tools/og.js -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Bricolage; src: url("../shared/fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2"); font-weight: 200 800; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { position: relative; font-family: Bricolage, system-ui, sans-serif; color: #1b1b20; background: #f6f6f2; }
+  .dots { position: absolute; border-radius: 50%; mix-blend-mode: multiply; }
+  .dots.pink { right: -120px; top: -140px; width: 620px; height: 620px; background: radial-gradient(#ff48b0 38%, transparent 40%) 0 0 / 14px 14px; mask: radial-gradient(closest-side, #000 30%, transparent); }
+  .dots.blue { left: -160px; bottom: -220px; width: 560px; height: 560px; background: radial-gradient(#0078bf 36%, transparent 38%) 0 0 / 12px 12px; mask: radial-gradient(closest-side, #000 25%, transparent); }
+  .title { position: absolute; left: 64px; top: 70px; margin: 0; font-size: 210px; font-weight: 800; line-height: 0.82; letter-spacing: -0.05em; }
+  .title span { display: block; }
+  .ink { position: relative; display: inline-block; }
+  .ink .a { color: #ff48b0; }
+  .ink .b { position: absolute; left: 0; top: 0; color: #0078bf; mix-blend-mode: multiply; transform: translate(-7px, 6px); }
+  .tag { position: absolute; left: 70px; bottom: 120px; margin: 0; font-size: 42px; font-weight: 700; letter-spacing: -0.02em; }
+  .meta { position: absolute; left: 70px; bottom: 58px; display: flex; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  .meta li { padding: 8px 18px; font-size: 24px; font-weight: 700; border: 3px solid #1b1b20; border-radius: 999px; }
+  .meta li:first-child { background: #ff48b0; }
+  .sticker { position: absolute; right: 90px; top: 250px; display: grid; place-content: center; justify-items: center; width: 210px; height: 210px; text-align: center; background: #0078bf; color: #fff; border: 3px solid #1b1b20; border-radius: 50%; rotate: 10deg; }
+  .sticker b { font-size: 46px; line-height: 1; letter-spacing: -0.03em; }
+  .sticker span { font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+</style>
+</head>
+<body>
+  <div class="dots pink"></div>
+  <div class="dots blue"></div>
+  <h1 class="title">
+    <span class="ink"><span class="a">TEAR</span><span class="b">TEAR</span></span>
+    <span class="ink"><span class="a">SHEET</span><span class="b">SHEET</span></span>
+  </h1>
+  <div class="sticker"><span>Free</span><b>forever</b><span>MIT-0</span></div>
+  <p class="tag">Interface parts you can tear out and keep.</p>
+  <ul class="meta"><li>HTML</li><li>React</li><li>Vue</li><li>Svelte</li></ul>
+</body>
+</html>

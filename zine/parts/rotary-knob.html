@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rotary knob · Weird component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="An amp-style dial you twist by dragging around it, scrolling, or with the arrow keys. It goes to eleven.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Rotary knob · Weird component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="An amp-style dial you twist by dragging around it, scrolling, or with the arrow keys. It goes to eleven.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Rotary knob","description":"An amp-style dial you twist by dragging around it, scrolling, or with the arrow keys. It goes to eleven.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#rotary-knob">Issue 01</a> · Weird · p.87</p>
+    <h1><span class="a">Rotary knob</span><span class="b" aria-hidden="true">Rotary knob</span></h1>
+    <p class="lede">An amp-style dial you twist by dragging around it, scrolling, or with the arrow keys. It goes to eleven.</p>
+    <p class="why"><b>Why it works:</b> It is an ARIA slider: arrows, Home, End and Page keys all work, and the value is announced. Dragging follows the angle of your pointer around the centre.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Rotary knob preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.knob-wrap { display: grid; justify-items: center; gap: 10px; }
+.knob {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+}
+.knob-tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 12px;
+  margin: -6px 0 0 -1.5px;
+  border-radius: 2px;
+  background: var(--ui-border-strong);
+  transform: rotate(var(--a)) translateY(-80px);
+  transition: background-color 0.15s;
+}
+.knob-tick.is-on { background: var(--ui-accent); }
+.knob-dial {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a52, #19191c 70%);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 0.35), inset 0 2px 1px rgb(255 255 255 / 0.15);
+  transition: transform 0.15s ease-out;
+}
+.knob-mark {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 4px;
+  height: 26px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #f5c518;
+}
+.knob:focus-visible { outline: none; }
+.knob:focus-visible .knob-dial { box-shadow: var(--ui-focus), 0 12px 24px rgb(0 0 0 / 0.35); }
+.knob:active { cursor: grabbing; }
+.knob-readout { margin: 0; font-size: 15px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.knob-num { font-size: 26px; font-weight: 800; color: var(--ui-text); }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;knob-wrap&quot;>
+  &lt;div class=&quot;knob&quot; role=&quot;slider&quot; tabindex=&quot;0&quot; aria-label=&quot;Volume&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;11&quot; aria-valuenow=&quot;5&quot;>
+    &lt;div class=&quot;knob-dial&quot;>&lt;span class=&quot;knob-mark&quot;>&lt;/span>&lt;/div>
+  &lt;/div>
+  &lt;p class=&quot;knob-readout&quot;>&lt;span class=&quot;knob-num&quot;>5&lt;/span> / 11&lt;/p>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const knob = root.querySelector('.knob');
+  const dial = root.querySelector('.knob-dial');
+  const num = root.querySelector('.knob-num');
+  const MAX = Number(knob.getAttribute('aria-valuemax'));
+  let value = Number(knob.getAttribute('aria-valuenow'));
+  let dragging = false;
+
+  const ticks = Array.from({ length: MAX + 1 }, (_, i) => {
+    const t = document.createElement('span');
+    t.className = 'knob-tick';
+    t.setAttribute('aria-hidden', 'true');
+    t.style.setProperty('--a', -135 + (i / MAX) * 270 + 'deg');
+    knob.prepend(t);
+    return t;
+  });
+
+  const set = (v) => {
+    value = Math.min(MAX, Math.max(0, Math.round(v)));
+    ticks.forEach((t, i) => t.classList.toggle('is-on', i &lt;= value));
+    dial.style.transform = 'rotate(' + (-135 + (value / MAX) * 270) + 'deg)';
+    knob.setAttribute('aria-valuenow', value);
+    knob.setAttribute('aria-valuetext', value === MAX ? value + ', this one goes to eleven' : String(value));
+    num.textContent = value;
+  };
+  const fromPointer = (e) => {
+    const r = knob.getBoundingClientRect();
+    let angle = (Math.atan2(e.clientX - (r.left + r.width / 2), -(e.clientY - (r.top + r.height / 2))) * 180) / Math.PI;
+    angle = Math.max(-135, Math.min(135, angle));
+    set(((angle + 135) / 270) * MAX);
+  };
+  const onDown = (e) => {
+    dragging = true;
+    knob.setPointerCapture(e.pointerId);
+    fromPointer(e);
+  };
+  const onMove = (e) => dragging &amp;&amp; fromPointer(e);
+  const onUp = () => (dragging = false);
+  const onWheel = (e) => {
+    e.preventDefault();
+    set(value + (e.deltaY &lt; 0 ? 1 : -1));
+  };
+  const onKey = (e) => {
+    const map = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1, PageUp: 3, PageDown: -3 };
+    if (e.key in map) set(value + map[e.key]);
+    else if (e.key === 'Home') set(0);
+    else if (e.key === 'End') set(MAX);
+    else return;
+    e.preventDefault();
+  };
+
+  knob.addEventListener('pointerdown', onDown);
+  knob.addEventListener('pointermove', onMove);
+  knob.addEventListener('pointerup', onUp);
+  knob.addEventListener('wheel', onWheel, { passive: false });
+  knob.addEventListener('keydown', onKey);
+  set(value);
+  return () => {
+    knob.removeEventListener('pointerdown', onDown);
+    knob.removeEventListener('pointermove', onMove);
+    knob.removeEventListener('pointerup', onUp);
+    knob.removeEventListener('wheel', onWheel);
+    knob.removeEventListener('keydown', onKey);
+  };
+}
+
+document.querySelectorAll(&quot;.knob-wrap&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.7:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (17 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.7:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Only short hover and focus transitions (under 300ms).</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>slider &quot;Volume&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- slider &quot;Volume&quot;
+- paragraph: 5 / 11</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#rotary-knob">See it in the zine</a> <code>npx -y tearsheet add rotary-knob</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html -->
+&lt;div class=&quot;knob-wrap&quot;>
+  &lt;div class=&quot;knob&quot; role=&quot;slider&quot; tabindex=&quot;0&quot; aria-label=&quot;Volume&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;11&quot; aria-valuenow=&quot;5&quot;>
+    &lt;div class=&quot;knob-dial&quot;>&lt;span class=&quot;knob-mark&quot;>&lt;/span>&lt;/div>
+  &lt;/div>
+  &lt;p class=&quot;knob-readout&quot;>&lt;span class=&quot;knob-num&quot;>5&lt;/span> / 11&lt;/p>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html */
+.knob-wrap { display: grid; justify-items: center; gap: 10px; }
+.knob {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+}
+.knob-tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 12px;
+  margin: -6px 0 0 -1.5px;
+  border-radius: 2px;
+  background: var(--ui-border-strong);
+  transform: rotate(var(--a)) translateY(-80px);
+  transition: background-color 0.15s;
+}
+.knob-tick.is-on { background: var(--ui-accent); }
+.knob-dial {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a52, #19191c 70%);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 0.35), inset 0 2px 1px rgb(255 255 255 / 0.15);
+  transition: transform 0.15s ease-out;
+}
+.knob-mark {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 4px;
+  height: 26px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #f5c518;
+}
+.knob:focus-visible { outline: none; }
+.knob:focus-visible .knob-dial { box-shadow: var(--ui-focus), 0 12px 24px rgb(0 0 0 / 0.35); }
+.knob:active { cursor: grabbing; }
+.knob-readout { margin: 0; font-size: 15px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.knob-num { font-size: 26px; font-weight: 800; color: var(--ui-text); }</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html */
+function setup(root) {
+  const knob = root.querySelector('.knob');
+  const dial = root.querySelector('.knob-dial');
+  const num = root.querySelector('.knob-num');
+  const MAX = Number(knob.getAttribute('aria-valuemax'));
+  let value = Number(knob.getAttribute('aria-valuenow'));
+  let dragging = false;
+
+  const ticks = Array.from({ length: MAX + 1 }, (_, i) => {
+    const t = document.createElement('span');
+    t.className = 'knob-tick';
+    t.setAttribute('aria-hidden', 'true');
+    t.style.setProperty('--a', -135 + (i / MAX) * 270 + 'deg');
+    knob.prepend(t);
+    return t;
+  });
+
+  const set = (v) => {
+    value = Math.min(MAX, Math.max(0, Math.round(v)));
+    ticks.forEach((t, i) => t.classList.toggle('is-on', i &lt;= value));
+    dial.style.transform = 'rotate(' + (-135 + (value / MAX) * 270) + 'deg)';
+    knob.setAttribute('aria-valuenow', value);
+    knob.setAttribute('aria-valuetext', value === MAX ? value + ', this one goes to eleven' : String(value));
+    num.textContent = value;
+  };
+  const fromPointer = (e) => {
+    const r = knob.getBoundingClientRect();
+    let angle = (Math.atan2(e.clientX - (r.left + r.width / 2), -(e.clientY - (r.top + r.height / 2))) * 180) / Math.PI;
+    angle = Math.max(-135, Math.min(135, angle));
+    set(((angle + 135) / 270) * MAX);
+  };
+  const onDown = (e) => {
+    dragging = true;
+    knob.setPointerCapture(e.pointerId);
+    fromPointer(e);
+  };
+  const onMove = (e) => dragging &amp;&amp; fromPointer(e);
+  const onUp = () => (dragging = false);
+  const onWheel = (e) => {
+    e.preventDefault();
+    set(value + (e.deltaY &lt; 0 ? 1 : -1));
+  };
+  const onKey = (e) => {
+    const map = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1, PageUp: 3, PageDown: -3 };
+    if (e.key in map) set(value + map[e.key]);
+    else if (e.key === 'Home') set(0);
+    else if (e.key === 'End') set(MAX);
+    else return;
+    e.preventDefault();
+  };
+
+  knob.addEventListener('pointerdown', onDown);
+  knob.addEventListener('pointermove', onMove);
+  knob.addEventListener('pointerup', onUp);
+  knob.addEventListener('wheel', onWheel, { passive: false });
+  knob.addEventListener('keydown', onKey);
+  set(value);
+  return () => {
+    knob.removeEventListener('pointerdown', onDown);
+    knob.removeEventListener('pointermove', onMove);
+    knob.removeEventListener('pointerup', onUp);
+    knob.removeEventListener('wheel', onWheel);
+    knob.removeEventListener('keydown', onKey);
+  };
+}
+
+document.querySelectorAll(&quot;.knob-wrap&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>RotaryKnob.jsx</span></div><pre tabindex="0"><code>/* tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html */
+import { useEffect, useRef } from 'react';
+import './RotaryKnob.css';
+
+function setup(root) {
+  const knob = root.querySelector('.knob');
+  const dial = root.querySelector('.knob-dial');
+  const num = root.querySelector('.knob-num');
+  const MAX = Number(knob.getAttribute('aria-valuemax'));
+  let value = Number(knob.getAttribute('aria-valuenow'));
+  let dragging = false;
+
+  const ticks = Array.from({ length: MAX + 1 }, (_, i) => {
+    const t = document.createElement('span');
+    t.className = 'knob-tick';
+    t.setAttribute('aria-hidden', 'true');
+    t.style.setProperty('--a', -135 + (i / MAX) * 270 + 'deg');
+    knob.prepend(t);
+    return t;
+  });
+
+  const set = (v) => {
+    value = Math.min(MAX, Math.max(0, Math.round(v)));
+    ticks.forEach((t, i) => t.classList.toggle('is-on', i &lt;= value));
+    dial.style.transform = 'rotate(' + (-135 + (value / MAX) * 270) + 'deg)';
+    knob.setAttribute('aria-valuenow', value);
+    knob.setAttribute('aria-valuetext', value === MAX ? value + ', this one goes to eleven' : String(value));
+    num.textContent = value;
+  };
+  const fromPointer = (e) => {
+    const r = knob.getBoundingClientRect();
+    let angle = (Math.atan2(e.clientX - (r.left + r.width / 2), -(e.clientY - (r.top + r.height / 2))) * 180) / Math.PI;
+    angle = Math.max(-135, Math.min(135, angle));
+    set(((angle + 135) / 270) * MAX);
+  };
+  const onDown = (e) => {
+    dragging = true;
+    knob.setPointerCapture(e.pointerId);
+    fromPointer(e);
+  };
+  const onMove = (e) => dragging &amp;&amp; fromPointer(e);
+  const onUp = () => (dragging = false);
+  const onWheel = (e) => {
+    e.preventDefault();
+    set(value + (e.deltaY &lt; 0 ? 1 : -1));
+  };
+  const onKey = (e) => {
+    const map = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1, PageUp: 3, PageDown: -3 };
+    if (e.key in map) set(value + map[e.key]);
+    else if (e.key === 'Home') set(0);
+    else if (e.key === 'End') set(MAX);
+    else return;
+    e.preventDefault();
+  };
+
+  knob.addEventListener('pointerdown', onDown);
+  knob.addEventListener('pointermove', onMove);
+  knob.addEventListener('pointerup', onUp);
+  knob.addEventListener('wheel', onWheel, { passive: false });
+  knob.addEventListener('keydown', onKey);
+  set(value);
+  return () => {
+    knob.removeEventListener('pointerdown', onDown);
+    knob.removeEventListener('pointermove', onMove);
+    knob.removeEventListener('pointerup', onUp);
+    knob.removeEventListener('wheel', onWheel);
+    knob.removeEventListener('keydown', onKey);
+  };
+}
+
+export function RotaryKnob() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;div ref={ref} className=&quot;knob-wrap&quot;>
+      &lt;div className=&quot;knob&quot; role=&quot;slider&quot; tabIndex={0} aria-label=&quot;Volume&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;11&quot; aria-valuenow=&quot;5&quot;>
+        &lt;div className=&quot;knob-dial&quot;>&lt;span className=&quot;knob-mark&quot;>&lt;/span>&lt;/div>
+      &lt;/div>
+      &lt;p className=&quot;knob-readout&quot;>&lt;span className=&quot;knob-num&quot;>5&lt;/span> / 11&lt;/p>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>RotaryKnob.css</span></div><pre tabindex="0"><code>/* tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html */
+.knob-wrap { display: grid; justify-items: center; gap: 10px; }
+.knob {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+}
+.knob-tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 12px;
+  margin: -6px 0 0 -1.5px;
+  border-radius: 2px;
+  background: var(--ui-border-strong);
+  transform: rotate(var(--a)) translateY(-80px);
+  transition: background-color 0.15s;
+}
+.knob-tick.is-on { background: var(--ui-accent); }
+.knob-dial {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a52, #19191c 70%);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 0.35), inset 0 2px 1px rgb(255 255 255 / 0.15);
+  transition: transform 0.15s ease-out;
+}
+.knob-mark {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 4px;
+  height: 26px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #f5c518;
+}
+.knob:focus-visible { outline: none; }
+.knob:focus-visible .knob-dial { box-shadow: var(--ui-focus), 0 12px 24px rgb(0 0 0 / 0.35); }
+.knob:active { cursor: grabbing; }
+.knob-readout { margin: 0; font-size: 15px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.knob-num { font-size: 26px; font-weight: 800; color: var(--ui-text); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>RotaryKnob.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const knob = root.querySelector('.knob');
+  const dial = root.querySelector('.knob-dial');
+  const num = root.querySelector('.knob-num');
+  const MAX = Number(knob.getAttribute('aria-valuemax'));
+  let value = Number(knob.getAttribute('aria-valuenow'));
+  let dragging = false;
+
+  const ticks = Array.from({ length: MAX + 1 }, (_, i) => {
+    const t = document.createElement('span');
+    t.className = 'knob-tick';
+    t.setAttribute('aria-hidden', 'true');
+    t.style.setProperty('--a', -135 + (i / MAX) * 270 + 'deg');
+    knob.prepend(t);
+    return t;
+  });
+
+  const set = (v) => {
+    value = Math.min(MAX, Math.max(0, Math.round(v)));
+    ticks.forEach((t, i) => t.classList.toggle('is-on', i &lt;= value));
+    dial.style.transform = 'rotate(' + (-135 + (value / MAX) * 270) + 'deg)';
+    knob.setAttribute('aria-valuenow', value);
+    knob.setAttribute('aria-valuetext', value === MAX ? value + ', this one goes to eleven' : String(value));
+    num.textContent = value;
+  };
+  const fromPointer = (e) => {
+    const r = knob.getBoundingClientRect();
+    let angle = (Math.atan2(e.clientX - (r.left + r.width / 2), -(e.clientY - (r.top + r.height / 2))) * 180) / Math.PI;
+    angle = Math.max(-135, Math.min(135, angle));
+    set(((angle + 135) / 270) * MAX);
+  };
+  const onDown = (e) => {
+    dragging = true;
+    knob.setPointerCapture(e.pointerId);
+    fromPointer(e);
+  };
+  const onMove = (e) => dragging &amp;&amp; fromPointer(e);
+  const onUp = () => (dragging = false);
+  const onWheel = (e) => {
+    e.preventDefault();
+    set(value + (e.deltaY &lt; 0 ? 1 : -1));
+  };
+  const onKey = (e) => {
+    const map = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1, PageUp: 3, PageDown: -3 };
+    if (e.key in map) set(value + map[e.key]);
+    else if (e.key === 'Home') set(0);
+    else if (e.key === 'End') set(MAX);
+    else return;
+    e.preventDefault();
+  };
+
+  knob.addEventListener('pointerdown', onDown);
+  knob.addEventListener('pointermove', onMove);
+  knob.addEventListener('pointerup', onUp);
+  knob.addEventListener('wheel', onWheel, { passive: false });
+  knob.addEventListener('keydown', onKey);
+  set(value);
+  return () => {
+    knob.removeEventListener('pointerdown', onDown);
+    knob.removeEventListener('pointermove', onMove);
+    knob.removeEventListener('pointerup', onUp);
+    knob.removeEventListener('wheel', onWheel);
+    knob.removeEventListener('keydown', onKey);
+  };
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;div ref=&quot;el&quot; class=&quot;knob-wrap&quot;>
+    &lt;div class=&quot;knob&quot; role=&quot;slider&quot; tabindex=&quot;0&quot; aria-label=&quot;Volume&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;11&quot; aria-valuenow=&quot;5&quot;>
+      &lt;div class=&quot;knob-dial&quot;>&lt;span class=&quot;knob-mark&quot;>&lt;/span>&lt;/div>
+    &lt;/div>
+    &lt;p class=&quot;knob-readout&quot;>&lt;span class=&quot;knob-num&quot;>5&lt;/span> / 11&lt;/p>
+  &lt;/div>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.knob-wrap { display: grid; justify-items: center; gap: 10px; }
+.knob {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+}
+.knob-tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 12px;
+  margin: -6px 0 0 -1.5px;
+  border-radius: 2px;
+  background: var(--ui-border-strong);
+  transform: rotate(var(--a)) translateY(-80px);
+  transition: background-color 0.15s;
+}
+.knob-tick.is-on { background: var(--ui-accent); }
+.knob-dial {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a52, #19191c 70%);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 0.35), inset 0 2px 1px rgb(255 255 255 / 0.15);
+  transition: transform 0.15s ease-out;
+}
+.knob-mark {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 4px;
+  height: 26px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #f5c518;
+}
+.knob:focus-visible { outline: none; }
+.knob:focus-visible .knob-dial { box-shadow: var(--ui-focus), 0 12px 24px rgb(0 0 0 / 0.35); }
+.knob:active { cursor: grabbing; }
+.knob-readout { margin: 0; font-size: 15px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.knob-num { font-size: 26px; font-weight: 800; color: var(--ui-text); }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>RotaryKnob.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './RotaryKnob.css';
+
+  let node;
+
+  function setup(root) {
+    const knob = root.querySelector('.knob');
+    const dial = root.querySelector('.knob-dial');
+    const num = root.querySelector('.knob-num');
+    const MAX = Number(knob.getAttribute('aria-valuemax'));
+    let value = Number(knob.getAttribute('aria-valuenow'));
+    let dragging = false;
+
+    const ticks = Array.from({ length: MAX + 1 }, (_, i) => {
+      const t = document.createElement('span');
+      t.className = 'knob-tick';
+      t.setAttribute('aria-hidden', 'true');
+      t.style.setProperty('--a', -135 + (i / MAX) * 270 + 'deg');
+      knob.prepend(t);
+      return t;
+    });
+
+    const set = (v) => {
+      value = Math.min(MAX, Math.max(0, Math.round(v)));
+      ticks.forEach((t, i) => t.classList.toggle('is-on', i &lt;= value));
+      dial.style.transform = 'rotate(' + (-135 + (value / MAX) * 270) + 'deg)';
+      knob.setAttribute('aria-valuenow', value);
+      knob.setAttribute('aria-valuetext', value === MAX ? value + ', this one goes to eleven' : String(value));
+      num.textContent = value;
+    };
+    const fromPointer = (e) => {
+      const r = knob.getBoundingClientRect();
+      let angle = (Math.atan2(e.clientX - (r.left + r.width / 2), -(e.clientY - (r.top + r.height / 2))) * 180) / Math.PI;
+      angle = Math.max(-135, Math.min(135, angle));
+      set(((angle + 135) / 270) * MAX);
+    };
+    const onDown = (e) => {
+      dragging = true;
+      knob.setPointerCapture(e.pointerId);
+      fromPointer(e);
+    };
+    const onMove = (e) => dragging &amp;&amp; fromPointer(e);
+    const onUp = () => (dragging = false);
+    const onWheel = (e) => {
+      e.preventDefault();
+      set(value + (e.deltaY &lt; 0 ? 1 : -1));
+    };
+    const onKey = (e) => {
+      const map = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1, PageUp: 3, PageDown: -3 };
+      if (e.key in map) set(value + map[e.key]);
+      else if (e.key === 'Home') set(0);
+      else if (e.key === 'End') set(MAX);
+      else return;
+      e.preventDefault();
+    };
+
+    knob.addEventListener('pointerdown', onDown);
+    knob.addEventListener('pointermove', onMove);
+    knob.addEventListener('pointerup', onUp);
+    knob.addEventListener('wheel', onWheel, { passive: false });
+    knob.addEventListener('keydown', onKey);
+    set(value);
+    return () => {
+      knob.removeEventListener('pointerdown', onDown);
+      knob.removeEventListener('pointermove', onMove);
+      knob.removeEventListener('pointerup', onUp);
+      knob.removeEventListener('wheel', onWheel);
+      knob.removeEventListener('keydown', onKey);
+    };
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;div bind:this={node} class=&quot;knob-wrap&quot;>
+  &lt;div class=&quot;knob&quot; role=&quot;slider&quot; tabindex=&quot;0&quot; aria-label=&quot;Volume&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;11&quot; aria-valuenow=&quot;5&quot;>
+    &lt;div class=&quot;knob-dial&quot;>&lt;span class=&quot;knob-mark&quot;>&lt;/span>&lt;/div>
+  &lt;/div>
+  &lt;p class=&quot;knob-readout&quot;>&lt;span class=&quot;knob-num&quot;>5&lt;/span> / 11&lt;/p>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>RotaryKnob.css</span></div><pre tabindex="0"><code>/* tearsheet rotary-knob ve00e28c9 · https://qusaialjbali.github.io/tearsheet/zine/parts/rotary-knob.html */
+.knob-wrap { display: grid; justify-items: center; gap: 10px; }
+.knob {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+}
+.knob-tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 12px;
+  margin: -6px 0 0 -1.5px;
+  border-radius: 2px;
+  background: var(--ui-border-strong);
+  transform: rotate(var(--a)) translateY(-80px);
+  transition: background-color 0.15s;
+}
+.knob-tick.is-on { background: var(--ui-accent); }
+.knob-dial {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a52, #19191c 70%);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 0.35), inset 0 2px 1px rgb(255 255 255 / 0.15);
+  transition: transform 0.15s ease-out;
+}
+.knob-mark {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 4px;
+  height: 26px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #f5c518;
+}
+.knob:focus-visible { outline: none; }
+.knob:focus-visible .knob-dial { box-shadow: var(--ui-focus), 0 12px 24px rgb(0 0 0 / 0.35); }
+.knob:active { cursor: grabbing; }
+.knob-readout { margin: 0; font-size: 15px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.knob-num { font-size: 26px; font-weight: 800; color: var(--ui-text); }</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="liquid-progress.html">← Liquid progress</a>
+      <a rel="next" href="password-creature.html">Password creature →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

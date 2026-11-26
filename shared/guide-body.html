@@ -1,0 +1,509 @@
+<div class="guide-body">
+
+        <!-- 1 -->
+        <section class="guide-section" id="principles">
+          <h2><span class="num">01</span>Principles</h2>
+          <p>Before pixels: know what the page is for. Every screen should answer three questions in about five seconds: what is this, what can I do here, and why should I care?</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Give each screen one primary action and make it visually obvious.</p></div>
+              <div class="dont"><b>Don’t</b><p>Give five buttons equal weight and make people work out which one matters.</p></div>
+            </div>
+            <p class="why">When everything is emphasized, nothing is. Hierarchy is how a design tells people where to look.</p>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use conventions people already know: logo top-left links home, search looks like search, links look like links.</p></div>
+              <div class="dont"><b>Don’t</b><p>Reinvent scrolling, navigation or form controls for novelty.</p></div>
+            </div>
+            <p class="why">People spend most of their time on other sites (Jakob’s Law). Familiar patterns cost them nothing to learn.</p>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Remove things until the page breaks, then put the last one back.</p></div>
+              <div class="dont"><b>Don’t</b><p>Fill space because it’s empty. Whitespace is a feature, not waste.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Be consistent: the same thing should look and behave the same everywhere.</p></div>
+              <div class="dont"><b>Don’t</b><p>Use three button styles, four greys and two date formats for the same job.</p></div>
+            </div>
+            <p class="why">A design system (even a small one, like our tokens file) is how you stay consistent without thinking about it.</p>
+          </div>
+        </section>
+
+        <!-- 2 -->
+        <section class="guide-section" id="layout">
+          <h2><span class="num">02</span>Layout &amp; spacing</h2>
+          <p>Spacing is the quietest design tool and the one that most separates amateur from professional work. Pick a scale and stick to it.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use a spacing scale based on 4 or 8: 4, 8, 12, 16, 24, 32, 48, 64, 96.</p>
+                <div class="example scale" aria-hidden="true">
+                  <div><span class="bar" style="width:8px"></span>8</div>
+                  <div><span class="bar" style="width:16px"></span>16</div>
+                  <div><span class="bar" style="width:24px"></span>24</div>
+                  <div><span class="bar" style="width:32px"></span>32</div>
+                  <div><span class="bar" style="width:48px"></span>48</div>
+                  <div><span class="bar" style="width:64px"></span>64</div>
+                </div>
+              </div>
+              <div class="dont"><b>Don’t</b><p>Pick values by eye: 13px here, 17px there, 22px somewhere else. It reads as messy even when nobody can say why.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Put related things close together and unrelated things further apart. A label sits closer to its field than to the field above.</p></div>
+              <div class="dont"><b>Don’t</b><p>Space everything evenly. Equal gaps erase the grouping people use to read a page.</p></div>
+            </div>
+            <p class="why">This is the law of proximity: distance is how the eye decides what belongs together.</p>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Keep body text between 45 and 75 characters per line. <code class="inline">max-width: 65ch</code> does it in one line of CSS.</p></div>
+              <div class="dont"><b>Don’t</b><p>Let paragraphs stretch the full width of a 1440px screen. Long lines make readers lose their place.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Align to a grid and left-align body text (right-align in right-to-left languages).</p></div>
+              <div class="dont"><b>Don’t</b><p>Center-align long paragraphs. Every line starts in a different place, so reading is slower.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3 -->
+        <section class="guide-section" id="typography">
+          <h2><span class="num">03</span>Typography</h2>
+          <p>Most of the web is text. Get type right and a plain design looks considered; get it wrong and no amount of decoration helps.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use at least 16px for body text with a line height of 1.5 to 1.7.</p></div>
+              <div class="dont"><b>Don’t</b><p>Set body text at 12–13px in light grey. It looks elegant in a mockup and is unreadable on a phone in sunlight.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use a type scale with a fixed ratio (for example 1.25: 16, 20, 25, 31, 39, 49) and at most two typefaces.</p></div>
+              <div class="dont"><b>Don’t</b><p>Use five fonts and a dozen sizes picked one at a time.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Build hierarchy with size, weight and color, and use each sparingly. Headings should be clearly bigger than text, not 2px bigger.</p></div>
+              <div class="dont"><b>Don’t</b><p>Bold whole paragraphs or write sentences in ALL CAPS. Emphasis everywhere is emphasis nowhere.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use one <code class="inline">&lt;h1&gt;</code> per page and keep heading levels in order (h2 then h3, never skipping).</p></div>
+              <div class="dont"><b>Don’t</b><p>Pick heading tags for their default size. Style with CSS; choose the tag for meaning.</p></div>
+            </div>
+            <p class="why">Screen-reader users jump between headings to navigate. Search engines use them to understand the page.</p>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Load web fonts carefully: two or three weights, <code class="inline">font-display: swap</code>, WOFF2, self-hosted where you can. System fonts are a perfectly good choice.</p></div>
+              <div class="dont"><b>Don’t</b><p>Load a font family in nine weights to use two of them.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4 -->
+        <section class="guide-section" id="color">
+          <h2><span class="num">04</span>Color &amp; contrast</h2>
+          <p>Color carries meaning and mood, but its first job is legibility. Contrast is measurable, so measure it.</p>
+
+          <div class="ref-wrap">
+            <table class="ref">
+              <thead><tr><th scope="col">What</th><th scope="col">Minimum contrast (WCAG AA)</th></tr></thead>
+              <tbody>
+                <tr><td>Body text</td><td>4.5 : 1</td></tr>
+                <tr><td>Large text (24px, or 18.5px bold)</td><td>3 : 1</td></tr>
+                <tr><td>Icons, input borders, focus rings and other UI parts</td><td>3 : 1</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Check every text and background pair against those numbers.</p>
+                <div class="example">
+                  <div class="ex-swatch" style="background:#fff;color:#52525b;border:1px solid #e4e4e7">#52525b on white <span>7.8 : 1</span></div>
+                </div>
+              </div>
+              <div class="dont"><b>Don’t</b><p>Use pale grey text on white to look “minimal”.</p>
+                <div class="example">
+                  <div class="ex-swatch" style="background:#fff;color:#b4b4bb;border:1px solid #e4e4e7">#b4b4bb on white <span>2.0 : 1</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Keep a small palette: neutrals, one accent, and semantic colors for success, warning and danger.</p></div>
+              <div class="dont"><b>Don’t</b><p>Use your accent color for decoration and for clickable things. If blue means “click”, only clickable things are blue.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Pair color with a second cue: an icon, a label, an underline, a pattern.</p></div>
+              <div class="dont"><b>Don’t</b><p>Show status with a red or green dot alone. About 1 in 12 men can’t reliably tell them apart.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Design dark mode on purpose: dark grey backgrounds (not pure black), slightly softer text, and lighter, less saturated accents.</p></div>
+              <div class="dont"><b>Don’t</b><p>Invert your light theme and call it done. Shadows vanish, colors vibrate and white text on pure black glares.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5 -->
+        <section class="guide-section" id="buttons">
+          <h2><span class="num">05</span>Buttons &amp; links</h2>
+          <p>A button does something. A link goes somewhere. Keeping that distinction clear fixes a surprising number of usability and accessibility problems.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Show a clear hierarchy: one primary, then secondary, then text links.</p>
+                <div class="example ex-light"><div class="ex-row"><span class="ex-btn ex-primary">Create account</span><span class="ex-btn ex-secondary">Compare plans</span><span class="ex-btn ex-link">Sign in</span></div></div>
+              </div>
+              <div class="dont"><b>Don’t</b><p>Make every option a loud, filled button.</p>
+                <div class="example ex-light"><div class="ex-row"><span class="ex-btn ex-primary">Create account</span><span class="ex-btn ex-primary" style="background:#dc2626">Compare plans</span><span class="ex-btn ex-primary" style="background:#16a34a">Sign in</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Start labels with a verb that says what happens: “Save changes”, “Download invoice”, “Delete project”.</p></div>
+              <div class="dont"><b>Don’t</b><p>Write “Submit”, “OK”, “Yes” or “Click here”. Out of context (and screen readers often list links out of context) they mean nothing.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use <code class="inline">&lt;button&gt;</code> for actions and <code class="inline">&lt;a href&gt;</code> for navigation.</p></div>
+              <div class="dont"><b>Don’t</b><p>Put a click handler on a <code class="inline">&lt;div&gt;</code>. It can’t be focused, doesn’t respond to Enter or Space, and isn’t announced as a button.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Make touch targets at least 44 × 44px, with space between them. (WCAG 2.2 sets an absolute floor of 24 × 24.)</p></div>
+              <div class="dont"><b>Don’t</b><p>Cram tiny icon buttons together so people tap the wrong one.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Show a loading state on click and block double submits. For destructive actions, confirm with a specific label or, better, offer Undo.</p></div>
+              <div class="dont"><b>Don’t</b><p>Leave a button looking idle while a request runs, so people click it three more times.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6 -->
+        <section class="guide-section" id="forms">
+          <h2><span class="num">06</span>Forms</h2>
+          <p>Forms are where users give you something: money, data, trust. Every extra field and every unclear error costs you completions.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Put a visible label above every field.</p>
+                <div class="example ex-light"><div class="ex-field"><label>Email</label><input value="ada@example.com" aria-label="Example field with label" tabindex="-1" readonly></div></div>
+              </div>
+              <div class="dont"><b>Don’t</b><p>Use the placeholder as the label. It disappears the moment someone starts typing.</p>
+                <div class="example ex-light"><div class="ex-field"><input value="ada@exam" aria-label="Example field without label" tabindex="-1" readonly><span style="font-size:13px;color:#71717a">…was this email, or username?</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Show errors next to the field, in words that say how to fix it.</p>
+                <div class="example ex-light"><div class="ex-field"><label>Password</label><input value="abc12" aria-label="Example password" tabindex="-1" readonly style="border-color:#b91c1c"><span class="err"><svg viewBox="0 0 20 20" width="13" height="13" aria-hidden="true" style="vertical-align:-2px"><path d="M10 2.8 18 17H2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 8v4M10 14.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Use at least 8 characters.</span></div></div>
+              </div>
+              <div class="dont"><b>Don’t</b><p>Show “Invalid input” in a banner at the top, or clear the form when something is wrong.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use the right input types and autocomplete values (<code class="inline">type="email"</code>, <code class="inline">autocomplete="one-time-code"</code>) so phones show the right keyboard and browsers can fill things in.</p></div>
+              <div class="dont"><b>Don’t</b><p>Ask for things you don’t need. Every optional field is a reason to leave.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Lay forms out in a single column, and validate when a field loses focus or on submit.</p></div>
+              <div class="dont"><b>Don’t</b><p>Shout an error after the first keystroke, before the person has had a chance to finish.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Accept input in the forms people use: spaces in card numbers, dashes in phone numbers, any capitalization in email addresses.</p></div>
+              <div class="dont"><b>Don’t</b><p>Disable paste in password or email fields. It punishes password managers and makes accounts less secure.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7 -->
+        <section class="guide-section" id="navigation">
+          <h2><span class="num">07</span>Navigation</h2>
+          <p>Navigation answers “where am I, and where can I go?” If people have to think about it, it isn’t working.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Keep top-level navigation to about five to seven items with plain names (“Pricing”, “Docs”, “Contact”).</p></div>
+              <div class="dont"><b>Don’t</b><p>Use clever labels like “Discover”, “Solutions” or “Our world” that could mean anything.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Show where people are: highlight the current section and set <code class="inline">aria-current="page"</code>. Add breadcrumbs on deep sites.</p></div>
+              <div class="dont"><b>Don’t</b><p>Hide navigation behind a hamburger icon on desktop when there’s room to show it.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Make links look like links (underlines in body text are good), and keep URLs readable and shareable.</p></div>
+              <div class="dont"><b>Don’t</b><p>Open links in new tabs by default. Let people choose; the back button is the most-used control on the web.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8 -->
+        <section class="guide-section" id="accessibility">
+          <h2><span class="num">08</span>Accessibility</h2>
+          <p>About one in six people has a disability, and everyone is temporarily impaired sometimes: a broken arm, bright sunlight, a slow connection. Accessible design is simply design that works.</p>
+
+          <div class="callout"><strong>The first rule:</strong> use the right HTML element. A real <code class="inline">&lt;button&gt;</code>, <code class="inline">&lt;nav&gt;</code>, <code class="inline">&lt;label&gt;</code> or <code class="inline">&lt;dialog&gt;</code> gives you keyboard support and screen-reader meaning for free. No ARIA is better than wrong ARIA.</div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Make everything work with a keyboard alone, in a logical tab order, with a clearly visible focus state (<code class="inline">:focus-visible</code>).</p></div>
+              <div class="dont"><b>Don’t</b><p>Write <code class="inline">outline: none</code> without a replacement, or use positive <code class="inline">tabindex</code> values.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Write alt text that says what an image is for (“Chart: sign-ups doubled in March”). Use <code class="inline">alt=""</code> for purely decorative images.</p></div>
+              <div class="dont"><b>Don’t</b><p>Write “image of…”, repeat the file name, or leave alt off entirely (screen readers then read the file name aloud).</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Support 200% zoom and a 320px-wide viewport without sideways scrolling. Set <code class="inline">lang</code> on <code class="inline">&lt;html&gt;</code> and a unique <code class="inline">&lt;title&gt;</code> per page.</p></div>
+              <div class="dont"><b>Don’t</b><p>Disable pinch zoom with <code class="inline">maximum-scale=1</code> or <code class="inline">user-scalable=no</code>.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Add a “Skip to content” link, use landmarks (<code class="inline">header</code>, <code class="inline">nav</code>, <code class="inline">main</code>, <code class="inline">footer</code>) and announce dynamic updates with live regions.</p></div>
+              <div class="dont"><b>Don’t</b><p>Rely on hover alone, or on time limits people can’t extend.</p></div>
+            </div>
+            <p class="why">Test it: unplug your mouse for five minutes, then try your page with a screen reader (VoiceOver on Mac/iOS, NVDA on Windows, TalkBack on Android).</p>
+          </div>
+        </section>
+
+        <!-- 9 -->
+        <section class="guide-section" id="states">
+          <h2><span class="num">09</span>Feedback &amp; states</h2>
+          <p>Mockups show the happy path. Real products spend a lot of time in the other states. Design all of them.</p>
+
+          <div class="ref-wrap">
+            <table class="ref">
+              <thead><tr><th scope="col">State</th><th scope="col">What to show</th></tr></thead>
+              <tbody>
+                <tr><td>Empty</td><td>What will appear here and one clear way to start.</td></tr>
+                <tr><td>Loading</td><td>Under 1s: nothing. 1–3s: spinner. Content loads: skeleton. Long tasks: progress bar with an estimate.</td></tr>
+                <tr><td>Error</td><td>What happened, why (if known), and what to do next. Keep the person’s input.</td></tr>
+                <tr><td>Partial</td><td>A list with one item looks different from one with 1,000. Check both.</td></tr>
+                <tr><td>Success</td><td>Confirm it worked, then get out of the way.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Respond to every action within about 100ms, even if only by showing that the click registered.</p></div>
+              <div class="dont"><b>Don’t</b><p>Let a click do nothing visible while the network catches up.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Write errors like a helpful person: “That card was declined. Try another card or contact your bank.”</p></div>
+              <div class="dont"><b>Don’t</b><p>Show “Error 0x80004005” or “Something went wrong” with no way forward.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10 -->
+        <section class="guide-section" id="motion">
+          <h2><span class="num">10</span>Motion</h2>
+          <p>Good motion explains: where something came from, where it went, what changed. Bad motion performs.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Keep UI transitions between 150 and 300ms. Use ease-out for things entering and ease-in for things leaving.</p></div>
+              <div class="dont"><b>Don’t</b><p>Make people wait for a 1-second animation before they can click.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Animate <code class="inline">transform</code> and <code class="inline">opacity</code>, which the browser can animate smoothly.</p></div>
+              <div class="dont"><b>Don’t</b><p>Animate <code class="inline">width</code>, <code class="inline">height</code>, <code class="inline">top</code> or <code class="inline">left</code>, which force layout on every frame and stutter on slower phones.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Honor <code class="inline">prefers-reduced-motion</code>: replace slides and parallax with simple fades or nothing.</p></div>
+              <div class="dont"><b>Don’t</b><p>Autoplay carousels or background video with no pause control. They distract, and for some people cause nausea.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11 -->
+        <section class="guide-section" id="responsive">
+          <h2><span class="num">11</span>Responsive design</h2>
+          <p>Most visits come from phones. Design for the small screen first and let the layout grow, rather than squeezing a desktop page down.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Set breakpoints where your content breaks, and use fluid sizing like <code class="inline">clamp(2rem, 5vw, 4rem)</code> for headings.</p></div>
+              <div class="dont"><b>Don’t</b><p>Design for specific devices (“iPhone 15 width”). Next year’s devices will be different.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Keep key actions within thumb reach on phones and test on a real device, not just a resized browser.</p></div>
+              <div class="dont"><b>Don’t</b><p>Hide important content or features on mobile. People on phones want the same things.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Use relative units (<code class="inline">rem</code>, <code class="inline">%</code>, <code class="inline">ch</code>) and modern layout (flexbox, grid, container queries).</p></div>
+              <div class="dont"><b>Don’t</b><p>Fix heights on text containers. Translations, zoom and real content will overflow them.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12 -->
+        <section class="guide-section" id="performance">
+          <h2><span class="num">12</span>Performance</h2>
+          <p>Speed is a design feature. A beautiful page that takes six seconds to load is, for most visitors, a blank page.</p>
+
+          <div class="ref-wrap">
+            <table class="ref">
+              <thead><tr><th scope="col">Core Web Vital</th><th scope="col">Measures</th><th scope="col">Good</th></tr></thead>
+              <tbody>
+                <tr><td>LCP — Largest Contentful Paint</td><td>How fast the main content appears</td><td>≤ 2.5 s</td></tr>
+                <tr><td>INP — Interaction to Next Paint</td><td>How fast the page reacts to input</td><td>≤ 200 ms</td></tr>
+                <tr><td>CLS — Cumulative Layout Shift</td><td>How much things jump around</td><td>≤ 0.1</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Serve images in AVIF or WebP at the size they’re shown, with <code class="inline">width</code> and <code class="inline">height</code> set and <code class="inline">loading="lazy"</code> below the fold.</p></div>
+              <div class="dont"><b>Don’t</b><p>Ship a 4MB PNG hero image, or images without dimensions that shove the text down as they load.</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Ship less JavaScript. Reach for HTML and CSS first; many components here need no JS at all.</p></div>
+              <div class="dont"><b>Don’t</b><p>Add a library for something the platform already does (<code class="inline">&lt;dialog&gt;</code>, <code class="inline">&lt;details&gt;</code>, form validation, smooth scrolling).</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 13 -->
+        <section class="guide-section" id="content">
+          <h2><span class="num">13</span>Content &amp; ethics</h2>
+          <p>Words are interface. And trust, once spent on a trick, doesn’t come back.</p>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Write like a person. Put the important words first, keep sentences short, and use headings and lists so pages can be scanned.</p></div>
+              <div class="dont"><b>Don’t</b><p>Write walls of text full of jargon (“Leverage our synergistic platform”).</p></div>
+            </div>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Make cancelling as easy as signing up, show the full price up front, and make the privacy-friendly choice the default.</p></div>
+              <div class="dont"><b>Don’t</b><p>Use dark patterns: pre-ticked opt-ins, hidden fees, fake countdown timers, or confirmshaming (“No thanks, I don’t like saving money”).</p></div>
+            </div>
+            <p class="why">Beyond being wrong, many of these are now illegal in the EU, UK and parts of the US.</p>
+          </div>
+
+          <div class="rule">
+            <div class="rule-pair">
+              <div class="do"><b>Do</b><p>Ask for permissions (notifications, location) at the moment they’re needed and say why.</p></div>
+              <div class="dont"><b>Don’t</b><p>Fire a cookie banner, a newsletter pop-up and a notification prompt in the first three seconds.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Checklist -->
+        <section class="guide-section" id="checklist">
+          <h2><span class="num"><svg viewBox="0 0 20 20" width="0.9em" height="0.9em" aria-hidden="true"><path d="m4 10.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Pre-launch checklist</h2>
+          <p>Run through this before you ship. Your progress is saved in this browser.</p>
+
+          <div class="checklist-bar">
+            <span data-checklist-count aria-live="polite"></span>
+            <button class="text-btn" type="button" data-checklist-reset>Reset</button>
+          </div>
+          <ul class="checklist" data-checklist>
+            <li><label><input type="checkbox" id="ck-purpose"><span>Each page has one clear purpose and one primary action.</span></label></li>
+            <li><label><input type="checkbox" id="ck-contrast"><span>All text passes 4.5:1 contrast (3:1 for large text and UI parts).</span></label></li>
+            <li><label><input type="checkbox" id="ck-keyboard"><span>Everything works with a keyboard, and focus is always visible.</span></label></li>
+            <li><label><input type="checkbox" id="ck-headings"><span>One h1 per page; headings are in order.</span></label></li>
+            <li><label><input type="checkbox" id="ck-alt"><span>Every meaningful image has alt text; decorative ones have alt="".</span></label></li>
+            <li><label><input type="checkbox" id="ck-labels"><span>Every form field has a visible label and helpful error messages.</span></label></li>
+            <li><label><input type="checkbox" id="ck-mobile"><span>Tested on a real phone, at 320px wide and at 200% zoom.</span></label></li>
+            <li><label><input type="checkbox" id="ck-targets"><span>Touch targets are at least 44 × 44px.</span></label></li>
+            <li><label><input type="checkbox" id="ck-states"><span>Empty, loading, error and success states are designed.</span></label></li>
+            <li><label><input type="checkbox" id="ck-motion"><span>Animations respect prefers-reduced-motion.</span></label></li>
+            <li><label><input type="checkbox" id="ck-images"><span>Images are compressed, sized, and have width/height set.</span></label></li>
+            <li><label><input type="checkbox" id="ck-vitals"><span>Lighthouse / PageSpeed shows good Core Web Vitals.</span></label></li>
+            <li><label><input type="checkbox" id="ck-meta"><span>Every page has a unique title, meta description and lang attribute.</span></label></li>
+            <li><label><input type="checkbox" id="ck-links"><span>No broken links; the 404 page helps people find their way.</span></label></li>
+            <li><label><input type="checkbox" id="ck-copy"><span>Buttons say what they do; copy has been read aloud once.</span></label></li>
+            <li><label><input type="checkbox" id="ck-dark"><span>No dark patterns: pricing is clear, opting out is easy.</span></label></li>
+          </ul>
+        </section>
+      </div>

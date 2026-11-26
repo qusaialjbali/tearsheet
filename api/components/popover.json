@@ -1,0 +1,90 @@
+{
+  "id": "popover",
+  "name": "Popover",
+  "page": "p.59",
+  "collection": "Overlays",
+  "experimental": false,
+  "description": "A small anchored card for extra detail, using the native popover attribute: no JavaScript.",
+  "notes": "The browser handles opening, light-dismiss (click outside) and Esc. Unlike a tooltip it can hold links and buttons, so it is fine on touch screens.",
+  "usesJavaScript": false,
+  "sizeKb": 1.6,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#popover",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/popover.json",
+  "version": "73e97584",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Who can see this?\""
+    ],
+    "tree": "- button \"Who can see this?\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html -->\n<div class=\"pop-demo\">\n  <button class=\"pop-trigger\" type=\"button\" popovertarget=\"pop-share\">Who can see this?</button>\n  <div class=\"pop\" id=\"pop-share\" popover>\n    <p class=\"pop-title\">Visible to your team</p>\n    <p class=\"pop-text\">Everyone in “Design” can view and comment. Only editors can make changes.</p>\n    <button class=\"pop-close\" type=\"button\" popovertarget=\"pop-share\" popovertargetaction=\"hide\">Got it</button>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html */\n.pop-demo { position: relative; }\n.pop-trigger {\n  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);\n  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;\n}\n.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.pop {\n  width: 280px; margin: auto; padding: 16px;\n  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.pop:popover-open { animation: pop-in 0.18s ease-out; }\n@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }\n@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }\n.pop-title { margin: 0 0 4px; font-weight: 700; }\n.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }\n.pop-close {\n  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;\n  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;\n}\n.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "Popover.jsx",
+        "code": "/* tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html */\nimport './Popover.css';\n\nexport function Popover() {\n  return (\n    <div className=\"pop-demo\">\n      <button className=\"pop-trigger\" type=\"button\" popoverTarget=\"pop-share\">Who can see this?</button>\n      <div className=\"pop\" id=\"pop-share\" popover>\n        <p className=\"pop-title\">Visible to your team</p>\n        <p className=\"pop-text\">Everyone in “Design” can view and comment. Only editors can make changes.</p>\n        <button className=\"pop-close\" type=\"button\" popoverTarget=\"pop-share\" popoverTargetAction=\"hide\">Got it</button>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Popover.css",
+        "code": "/* tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html */\n.pop-demo { position: relative; }\n.pop-trigger {\n  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);\n  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;\n}\n.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.pop {\n  width: 280px; margin: auto; padding: 16px;\n  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.pop:popover-open { animation: pop-in 0.18s ease-out; }\n@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }\n@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }\n.pop-title { margin: 0 0 4px; font-weight: 700; }\n.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }\n.pop-close {\n  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;\n  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;\n}\n.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Popover.vue",
+        "code": "<!-- tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html -->\n<template>\n  <div class=\"pop-demo\">\n    <button class=\"pop-trigger\" type=\"button\" popovertarget=\"pop-share\">Who can see this?</button>\n    <div class=\"pop\" id=\"pop-share\" popover>\n      <p class=\"pop-title\">Visible to your team</p>\n      <p class=\"pop-text\">Everyone in “Design” can view and comment. Only editors can make changes.</p>\n      <button class=\"pop-close\" type=\"button\" popovertarget=\"pop-share\" popovertargetaction=\"hide\">Got it</button>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.pop-demo { position: relative; }\n.pop-trigger {\n  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);\n  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;\n}\n.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.pop {\n  width: 280px; margin: auto; padding: 16px;\n  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.pop:popover-open { animation: pop-in 0.18s ease-out; }\n@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }\n@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }\n.pop-title { margin: 0 0 4px; font-weight: 700; }\n.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }\n.pop-close {\n  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;\n  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;\n}\n.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Popover.svelte",
+        "code": "<!-- tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html -->\n<div class=\"pop-demo\">\n  <button class=\"pop-trigger\" type=\"button\" popovertarget=\"pop-share\">Who can see this?</button>\n  <div class=\"pop\" id=\"pop-share\" popover>\n    <p class=\"pop-title\">Visible to your team</p>\n    <p class=\"pop-text\">Everyone in “Design” can view and comment. Only editors can make changes.</p>\n    <button class=\"pop-close\" type=\"button\" popovertarget=\"pop-share\" popovertargetaction=\"hide\">Got it</button>\n  </div>\n</div>\n\n<style>\n.pop-demo { position: relative; }\n.pop-trigger {\n  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);\n  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;\n}\n.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.pop {\n  width: 280px; margin: auto; padding: 16px;\n  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.pop:popover-open { animation: pop-in 0.18s ease-out; }\n@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }\n@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }\n.pop-title { margin: 0 0 4px; font-weight: 700; }\n.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }\n.pop-close {\n  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;\n  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;\n}\n.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ]
+  }
+}

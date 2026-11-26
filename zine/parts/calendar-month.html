@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Month calendar · Data component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A month grid with today marked, event dots, and arrow-key navigation between days.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Month calendar · Data component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A month grid with today marked, event dots, and arrow-key navigation between days.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Month calendar","description":"A month grid with today marked, event dots, and arrow-key navigation between days.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#calendar-month">Issue 01</a> · Data · p.42</p>
+    <h1><span class="a">Month calendar</span><span class="b" aria-hidden="true">Month calendar</span></h1>
+    <p class="lede">A month grid with today marked, event dots, and arrow-key navigation between days.</p>
+    <p class="why"><b>Why it works:</b> It uses the ARIA grid pattern: one day is tabbable, arrow keys move by day and week, Enter selects. Each day button reads its full date and how many events it has.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Month calendar preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.cal { width: 100%; max-width: 340px; padding: 16px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.cal-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.cal-title { margin: 0; font-size: 16px; }
+.cal-picked { margin: 0; font-size: 13px; color: var(--ui-muted); }
+.cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cal-grid th { padding-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--ui-muted); }
+.cal-grid td { padding: 2px; text-align: center; }
+.cal-day {
+  position: relative; width: 100%; aspect-ratio: 1; max-width: 40px;
+  font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--ui-text);
+  background: none; border: 0; border-radius: 50%; cursor: pointer;
+}
+.cal-day:hover { background: var(--ui-surface-2); }
+.cal-day:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.cal-day.is-today { font-weight: 800; color: var(--ui-accent); box-shadow: inset 0 0 0 1.5px var(--ui-accent); }
+.cal-day[aria-pressed=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.cal-day.has-event::after { content: &quot;&quot;; position: absolute; left: 50%; bottom: 4px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;cal&quot;>
+  &lt;div class=&quot;cal-head&quot;>
+    &lt;h3 class=&quot;cal-title&quot; aria-live=&quot;polite&quot;>December 2026&lt;/h3>
+    &lt;p class=&quot;cal-picked&quot;>Pick a day&lt;/p>
+  &lt;/div>
+  &lt;table class=&quot;cal-grid&quot; role=&quot;grid&quot; aria-label=&quot;December 2026&quot;>
+    &lt;thead>&lt;tr>&lt;th scope=&quot;col&quot; abbr=&quot;Monday&quot;>Mo&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Tuesday&quot;>Tu&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Wednesday&quot;>We&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Thursday&quot;>Th&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Friday&quot;>Fr&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Saturday&quot;>Sa&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Sunday&quot;>Su&lt;/th>&lt;/tr>&lt;/thead>
+    &lt;tbody>&lt;/tbody>
+  &lt;/table>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const YEAR = 2026, MONTH = 11; // December (0-based)
+  const TODAY = 9;
+  const EVENTS = { 3: 1, 9: 2, 14: 1, 22: 3, 31: 1 };
+  const tbody = root.querySelector('tbody');
+  const picked = root.querySelector('.cal-picked');
+  const days = new Date(YEAR, MONTH + 1, 0).getDate();
+  const offset = (new Date(YEAR, MONTH, 1).getDay() + 6) % 7; // Monday first
+  const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  const buttons = [];
+  let row;
+  for (let i = 0; i &lt; offset + days; i++) {
+    if (i % 7 === 0) { row = tbody.insertRow(); }
+    const cell = row.insertCell();
+    if (i &lt; offset) continue;
+    const d = i - offset + 1;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cal-day' + (d === TODAY ? ' is-today' : '') + (EVENTS[d] ? ' has-event' : '');
+    b.textContent = d;
+    b.tabIndex = d === TODAY ? 0 : -1;
+    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('aria-label', fmt.format(new Date(YEAR, MONTH, d)) + (d === TODAY ? ', today' : '') + (EVENTS[d] ? ', ' + EVENTS[d] + (EVENTS[d] > 1 ? ' events' : ' event') : ''));
+    cell.append(b);
+    buttons.push(b);
+  }
+  const focusDay = (d) => {
+    const i = Math.max(0, Math.min(days - 1, d - 1));
+    buttons.forEach((b, n) => (b.tabIndex = n === i ? 0 : -1));
+    buttons[i].focus();
+  };
+  const select = (b) => {
+    buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    picked.textContent = b.getAttribute('aria-label').split(',')[0];
+  };
+  const onKey = (e) => {
+    const i = buttons.indexOf(document.activeElement);
+    if (i &lt; 0) return;
+    const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 }[e.key];
+    if (step) { e.preventDefault(); focusDay(i + 1 + step); }
+    else if (e.key === 'Home') { e.preventDefault(); focusDay(i + 1 - ((i + offset) % 7)); }
+    else if (e.key === 'End') { e.preventDefault(); focusDay(i + 1 + (6 - ((i + offset) % 7))); }
+  };
+  const onClick = (e) => { const b = e.target.closest('.cal-day'); if (b) { select(b); focusDay(buttons.indexOf(b) + 1); } };
+  tbody.addEventListener('keydown', onKey);
+  tbody.addEventListener('click', onClick);
+  return () => { tbody.removeEventListener('keydown', onKey); tbody.removeEventListener('click', onClick); };
+}
+
+document.querySelectorAll(&quot;.cal&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 5.93:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (20 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 5.93:1, where 4.5:1 is needed (dark).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> No motion.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>button &quot;Wednesday 9 December, today, 2 events&quot;: &quot;9&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- heading &quot;December 2026&quot; [level=3]
+- paragraph: Pick a day
+- grid &quot;December 2026&quot;:
+  - rowgroup:
+    - row &quot;Mo Tu We Th Fr Sa Su&quot;:
+      - columnheader &quot;Mo&quot;
+      - columnheader &quot;Tu&quot;
+      - columnheader &quot;We&quot;
+      - columnheader &quot;Th&quot;
+      - columnheader &quot;Fr&quot;
+      - columnheader &quot;Sa&quot;
+      - columnheader &quot;Su&quot;
+  - rowgroup:
+    - row &quot;Tuesday 1 December Wednesday 2 December Thursday 3 December, 1 event Friday 4 December Saturday 5 December Sunday 6 December&quot;:
+      - gridcell
+      - gridcell &quot;Tuesday 1 December&quot;:
+        - button &quot;Tuesday 1 December&quot;: &quot;1&quot;
+      - gridcell &quot;Wednesday 2 December&quot;:
+        - button &quot;Wednesday 2 December&quot;: &quot;2&quot;
+      - gridcell &quot;Thursday 3 December, 1 event&quot;:
+        - button &quot;Thursday 3 December, 1 event&quot;: &quot;3&quot;
+      - gridcell &quot;Friday 4 December&quot;:
+        - button &quot;Friday 4 December&quot;: &quot;4&quot;
+      - gridcell &quot;Saturday 5 December&quot;:
+        - button &quot;Saturday 5 December&quot;: &quot;5&quot;
+      - gridcell &quot;Sunday 6 December&quot;:
+        - button &quot;Sunday 6 December&quot;: &quot;6&quot;
+    - row &quot;Monday 7 December Tuesday 8 December Wednesday 9 December, today, 2 events Thursday 10 December Friday 11 December Saturday 12 December Sunday 13 December&quot;:
+      - gridcell &quot;Monday 7 December&quot;:
+        - button &quot;Monday 7 December&quot;: &quot;7&quot;
+      - gridcell &quot;Tuesday 8 December&quot;:
+        - button &quot;Tuesday 8 December&quot;: &quot;8&quot;
+      - gridcell &quot;Wednesday 9 December, today, 2 events&quot;:
+        - button &quot;Wednesday 9 December, today, 2 events&quot;: &quot;9&quot;
+      - gridcell &quot;Thursday 10 December&quot;:
+        - button &quot;Thursday 10 December&quot;: &quot;10&quot;
+      - gridcell &quot;Friday 11 December&quot;:
+        - button &quot;Friday 11 December&quot;: &quot;11&quot;
+      - gridcell &quot;Saturday 12 December&quot;:
+        - button &quot;Saturday 12 December&quot;: &quot;12&quot;
+- …</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#calendar-month">See it in the zine</a> <code>npx -y tearsheet add calendar-month</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html -->
+&lt;div class=&quot;cal&quot;>
+  &lt;div class=&quot;cal-head&quot;>
+    &lt;h3 class=&quot;cal-title&quot; aria-live=&quot;polite&quot;>December 2026&lt;/h3>
+    &lt;p class=&quot;cal-picked&quot;>Pick a day&lt;/p>
+  &lt;/div>
+  &lt;table class=&quot;cal-grid&quot; role=&quot;grid&quot; aria-label=&quot;December 2026&quot;>
+    &lt;thead>&lt;tr>&lt;th scope=&quot;col&quot; abbr=&quot;Monday&quot;>Mo&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Tuesday&quot;>Tu&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Wednesday&quot;>We&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Thursday&quot;>Th&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Friday&quot;>Fr&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Saturday&quot;>Sa&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Sunday&quot;>Su&lt;/th>&lt;/tr>&lt;/thead>
+    &lt;tbody>&lt;/tbody>
+  &lt;/table>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html */
+.cal { width: 100%; max-width: 340px; padding: 16px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.cal-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.cal-title { margin: 0; font-size: 16px; }
+.cal-picked { margin: 0; font-size: 13px; color: var(--ui-muted); }
+.cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cal-grid th { padding-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--ui-muted); }
+.cal-grid td { padding: 2px; text-align: center; }
+.cal-day {
+  position: relative; width: 100%; aspect-ratio: 1; max-width: 40px;
+  font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--ui-text);
+  background: none; border: 0; border-radius: 50%; cursor: pointer;
+}
+.cal-day:hover { background: var(--ui-surface-2); }
+.cal-day:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.cal-day.is-today { font-weight: 800; color: var(--ui-accent); box-shadow: inset 0 0 0 1.5px var(--ui-accent); }
+.cal-day[aria-pressed=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.cal-day.has-event::after { content: &quot;&quot;; position: absolute; left: 50%; bottom: 4px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html */
+function setup(root) {
+  const YEAR = 2026, MONTH = 11; // December (0-based)
+  const TODAY = 9;
+  const EVENTS = { 3: 1, 9: 2, 14: 1, 22: 3, 31: 1 };
+  const tbody = root.querySelector('tbody');
+  const picked = root.querySelector('.cal-picked');
+  const days = new Date(YEAR, MONTH + 1, 0).getDate();
+  const offset = (new Date(YEAR, MONTH, 1).getDay() + 6) % 7; // Monday first
+  const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  const buttons = [];
+  let row;
+  for (let i = 0; i &lt; offset + days; i++) {
+    if (i % 7 === 0) { row = tbody.insertRow(); }
+    const cell = row.insertCell();
+    if (i &lt; offset) continue;
+    const d = i - offset + 1;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cal-day' + (d === TODAY ? ' is-today' : '') + (EVENTS[d] ? ' has-event' : '');
+    b.textContent = d;
+    b.tabIndex = d === TODAY ? 0 : -1;
+    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('aria-label', fmt.format(new Date(YEAR, MONTH, d)) + (d === TODAY ? ', today' : '') + (EVENTS[d] ? ', ' + EVENTS[d] + (EVENTS[d] > 1 ? ' events' : ' event') : ''));
+    cell.append(b);
+    buttons.push(b);
+  }
+  const focusDay = (d) => {
+    const i = Math.max(0, Math.min(days - 1, d - 1));
+    buttons.forEach((b, n) => (b.tabIndex = n === i ? 0 : -1));
+    buttons[i].focus();
+  };
+  const select = (b) => {
+    buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    picked.textContent = b.getAttribute('aria-label').split(',')[0];
+  };
+  const onKey = (e) => {
+    const i = buttons.indexOf(document.activeElement);
+    if (i &lt; 0) return;
+    const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 }[e.key];
+    if (step) { e.preventDefault(); focusDay(i + 1 + step); }
+    else if (e.key === 'Home') { e.preventDefault(); focusDay(i + 1 - ((i + offset) % 7)); }
+    else if (e.key === 'End') { e.preventDefault(); focusDay(i + 1 + (6 - ((i + offset) % 7))); }
+  };
+  const onClick = (e) => { const b = e.target.closest('.cal-day'); if (b) { select(b); focusDay(buttons.indexOf(b) + 1); } };
+  tbody.addEventListener('keydown', onKey);
+  tbody.addEventListener('click', onClick);
+  return () => { tbody.removeEventListener('keydown', onKey); tbody.removeEventListener('click', onClick); };
+}
+
+document.querySelectorAll(&quot;.cal&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>CalendarMonth.jsx</span></div><pre tabindex="0"><code>/* tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html */
+import { useEffect, useRef } from 'react';
+import './CalendarMonth.css';
+
+function setup(root) {
+  const YEAR = 2026, MONTH = 11; // December (0-based)
+  const TODAY = 9;
+  const EVENTS = { 3: 1, 9: 2, 14: 1, 22: 3, 31: 1 };
+  const tbody = root.querySelector('tbody');
+  const picked = root.querySelector('.cal-picked');
+  const days = new Date(YEAR, MONTH + 1, 0).getDate();
+  const offset = (new Date(YEAR, MONTH, 1).getDay() + 6) % 7; // Monday first
+  const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  const buttons = [];
+  let row;
+  for (let i = 0; i &lt; offset + days; i++) {
+    if (i % 7 === 0) { row = tbody.insertRow(); }
+    const cell = row.insertCell();
+    if (i &lt; offset) continue;
+    const d = i - offset + 1;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cal-day' + (d === TODAY ? ' is-today' : '') + (EVENTS[d] ? ' has-event' : '');
+    b.textContent = d;
+    b.tabIndex = d === TODAY ? 0 : -1;
+    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('aria-label', fmt.format(new Date(YEAR, MONTH, d)) + (d === TODAY ? ', today' : '') + (EVENTS[d] ? ', ' + EVENTS[d] + (EVENTS[d] > 1 ? ' events' : ' event') : ''));
+    cell.append(b);
+    buttons.push(b);
+  }
+  const focusDay = (d) => {
+    const i = Math.max(0, Math.min(days - 1, d - 1));
+    buttons.forEach((b, n) => (b.tabIndex = n === i ? 0 : -1));
+    buttons[i].focus();
+  };
+  const select = (b) => {
+    buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    picked.textContent = b.getAttribute('aria-label').split(',')[0];
+  };
+  const onKey = (e) => {
+    const i = buttons.indexOf(document.activeElement);
+    if (i &lt; 0) return;
+    const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 }[e.key];
+    if (step) { e.preventDefault(); focusDay(i + 1 + step); }
+    else if (e.key === 'Home') { e.preventDefault(); focusDay(i + 1 - ((i + offset) % 7)); }
+    else if (e.key === 'End') { e.preventDefault(); focusDay(i + 1 + (6 - ((i + offset) % 7))); }
+  };
+  const onClick = (e) => { const b = e.target.closest('.cal-day'); if (b) { select(b); focusDay(buttons.indexOf(b) + 1); } };
+  tbody.addEventListener('keydown', onKey);
+  tbody.addEventListener('click', onClick);
+  return () => { tbody.removeEventListener('keydown', onKey); tbody.removeEventListener('click', onClick); };
+}
+
+export function CalendarMonth() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;div ref={ref} className=&quot;cal&quot;>
+      &lt;div className=&quot;cal-head&quot;>
+        &lt;h3 className=&quot;cal-title&quot; aria-live=&quot;polite&quot;>December 2026&lt;/h3>
+        &lt;p className=&quot;cal-picked&quot;>Pick a day&lt;/p>
+      &lt;/div>
+      &lt;table className=&quot;cal-grid&quot; role=&quot;grid&quot; aria-label=&quot;December 2026&quot;>
+        &lt;thead>&lt;tr>&lt;th scope=&quot;col&quot; abbr=&quot;Monday&quot;>Mo&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Tuesday&quot;>Tu&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Wednesday&quot;>We&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Thursday&quot;>Th&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Friday&quot;>Fr&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Saturday&quot;>Sa&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Sunday&quot;>Su&lt;/th>&lt;/tr>&lt;/thead>
+        &lt;tbody>&lt;/tbody>
+      &lt;/table>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>CalendarMonth.css</span></div><pre tabindex="0"><code>/* tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html */
+.cal { width: 100%; max-width: 340px; padding: 16px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.cal-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.cal-title { margin: 0; font-size: 16px; }
+.cal-picked { margin: 0; font-size: 13px; color: var(--ui-muted); }
+.cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cal-grid th { padding-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--ui-muted); }
+.cal-grid td { padding: 2px; text-align: center; }
+.cal-day {
+  position: relative; width: 100%; aspect-ratio: 1; max-width: 40px;
+  font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--ui-text);
+  background: none; border: 0; border-radius: 50%; cursor: pointer;
+}
+.cal-day:hover { background: var(--ui-surface-2); }
+.cal-day:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.cal-day.is-today { font-weight: 800; color: var(--ui-accent); box-shadow: inset 0 0 0 1.5px var(--ui-accent); }
+.cal-day[aria-pressed=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.cal-day.has-event::after { content: &quot;&quot;; position: absolute; left: 50%; bottom: 4px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>CalendarMonth.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const YEAR = 2026, MONTH = 11; // December (0-based)
+  const TODAY = 9;
+  const EVENTS = { 3: 1, 9: 2, 14: 1, 22: 3, 31: 1 };
+  const tbody = root.querySelector('tbody');
+  const picked = root.querySelector('.cal-picked');
+  const days = new Date(YEAR, MONTH + 1, 0).getDate();
+  const offset = (new Date(YEAR, MONTH, 1).getDay() + 6) % 7; // Monday first
+  const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  const buttons = [];
+  let row;
+  for (let i = 0; i &lt; offset + days; i++) {
+    if (i % 7 === 0) { row = tbody.insertRow(); }
+    const cell = row.insertCell();
+    if (i &lt; offset) continue;
+    const d = i - offset + 1;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cal-day' + (d === TODAY ? ' is-today' : '') + (EVENTS[d] ? ' has-event' : '');
+    b.textContent = d;
+    b.tabIndex = d === TODAY ? 0 : -1;
+    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('aria-label', fmt.format(new Date(YEAR, MONTH, d)) + (d === TODAY ? ', today' : '') + (EVENTS[d] ? ', ' + EVENTS[d] + (EVENTS[d] > 1 ? ' events' : ' event') : ''));
+    cell.append(b);
+    buttons.push(b);
+  }
+  const focusDay = (d) => {
+    const i = Math.max(0, Math.min(days - 1, d - 1));
+    buttons.forEach((b, n) => (b.tabIndex = n === i ? 0 : -1));
+    buttons[i].focus();
+  };
+  const select = (b) => {
+    buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    picked.textContent = b.getAttribute('aria-label').split(',')[0];
+  };
+  const onKey = (e) => {
+    const i = buttons.indexOf(document.activeElement);
+    if (i &lt; 0) return;
+    const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 }[e.key];
+    if (step) { e.preventDefault(); focusDay(i + 1 + step); }
+    else if (e.key === 'Home') { e.preventDefault(); focusDay(i + 1 - ((i + offset) % 7)); }
+    else if (e.key === 'End') { e.preventDefault(); focusDay(i + 1 + (6 - ((i + offset) % 7))); }
+  };
+  const onClick = (e) => { const b = e.target.closest('.cal-day'); if (b) { select(b); focusDay(buttons.indexOf(b) + 1); } };
+  tbody.addEventListener('keydown', onKey);
+  tbody.addEventListener('click', onClick);
+  return () => { tbody.removeEventListener('keydown', onKey); tbody.removeEventListener('click', onClick); };
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;div ref=&quot;el&quot; class=&quot;cal&quot;>
+    &lt;div class=&quot;cal-head&quot;>
+      &lt;h3 class=&quot;cal-title&quot; aria-live=&quot;polite&quot;>December 2026&lt;/h3>
+      &lt;p class=&quot;cal-picked&quot;>Pick a day&lt;/p>
+    &lt;/div>
+    &lt;table class=&quot;cal-grid&quot; role=&quot;grid&quot; aria-label=&quot;December 2026&quot;>
+      &lt;thead>&lt;tr>&lt;th scope=&quot;col&quot; abbr=&quot;Monday&quot;>Mo&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Tuesday&quot;>Tu&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Wednesday&quot;>We&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Thursday&quot;>Th&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Friday&quot;>Fr&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Saturday&quot;>Sa&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Sunday&quot;>Su&lt;/th>&lt;/tr>&lt;/thead>
+      &lt;tbody>&lt;/tbody>
+    &lt;/table>
+  &lt;/div>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.cal { width: 100%; max-width: 340px; padding: 16px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.cal-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.cal-title { margin: 0; font-size: 16px; }
+.cal-picked { margin: 0; font-size: 13px; color: var(--ui-muted); }
+.cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cal-grid th { padding-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--ui-muted); }
+.cal-grid td { padding: 2px; text-align: center; }
+.cal-day {
+  position: relative; width: 100%; aspect-ratio: 1; max-width: 40px;
+  font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--ui-text);
+  background: none; border: 0; border-radius: 50%; cursor: pointer;
+}
+.cal-day:hover { background: var(--ui-surface-2); }
+.cal-day:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.cal-day.is-today { font-weight: 800; color: var(--ui-accent); box-shadow: inset 0 0 0 1.5px var(--ui-accent); }
+.cal-day[aria-pressed=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.cal-day.has-event::after { content: &quot;&quot;; position: absolute; left: 50%; bottom: 4px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>CalendarMonth.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './CalendarMonth.css';
+
+  let node;
+
+  function setup(root) {
+    const YEAR = 2026, MONTH = 11; // December (0-based)
+    const TODAY = 9;
+    const EVENTS = { 3: 1, 9: 2, 14: 1, 22: 3, 31: 1 };
+    const tbody = root.querySelector('tbody');
+    const picked = root.querySelector('.cal-picked');
+    const days = new Date(YEAR, MONTH + 1, 0).getDate();
+    const offset = (new Date(YEAR, MONTH, 1).getDay() + 6) % 7; // Monday first
+    const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    const buttons = [];
+    let row;
+    for (let i = 0; i &lt; offset + days; i++) {
+      if (i % 7 === 0) { row = tbody.insertRow(); }
+      const cell = row.insertCell();
+      if (i &lt; offset) continue;
+      const d = i - offset + 1;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cal-day' + (d === TODAY ? ' is-today' : '') + (EVENTS[d] ? ' has-event' : '');
+      b.textContent = d;
+      b.tabIndex = d === TODAY ? 0 : -1;
+      b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', fmt.format(new Date(YEAR, MONTH, d)) + (d === TODAY ? ', today' : '') + (EVENTS[d] ? ', ' + EVENTS[d] + (EVENTS[d] > 1 ? ' events' : ' event') : ''));
+      cell.append(b);
+      buttons.push(b);
+    }
+    const focusDay = (d) => {
+      const i = Math.max(0, Math.min(days - 1, d - 1));
+      buttons.forEach((b, n) => (b.tabIndex = n === i ? 0 : -1));
+      buttons[i].focus();
+    };
+    const select = (b) => {
+      buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      picked.textContent = b.getAttribute('aria-label').split(',')[0];
+    };
+    const onKey = (e) => {
+      const i = buttons.indexOf(document.activeElement);
+      if (i &lt; 0) return;
+      const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 }[e.key];
+      if (step) { e.preventDefault(); focusDay(i + 1 + step); }
+      else if (e.key === 'Home') { e.preventDefault(); focusDay(i + 1 - ((i + offset) % 7)); }
+      else if (e.key === 'End') { e.preventDefault(); focusDay(i + 1 + (6 - ((i + offset) % 7))); }
+    };
+    const onClick = (e) => { const b = e.target.closest('.cal-day'); if (b) { select(b); focusDay(buttons.indexOf(b) + 1); } };
+    tbody.addEventListener('keydown', onKey);
+    tbody.addEventListener('click', onClick);
+    return () => { tbody.removeEventListener('keydown', onKey); tbody.removeEventListener('click', onClick); };
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;div bind:this={node} class=&quot;cal&quot;>
+  &lt;div class=&quot;cal-head&quot;>
+    &lt;h3 class=&quot;cal-title&quot; aria-live=&quot;polite&quot;>December 2026&lt;/h3>
+    &lt;p class=&quot;cal-picked&quot;>Pick a day&lt;/p>
+  &lt;/div>
+  &lt;table class=&quot;cal-grid&quot; role=&quot;grid&quot; aria-label=&quot;December 2026&quot;>
+    &lt;thead>&lt;tr>&lt;th scope=&quot;col&quot; abbr=&quot;Monday&quot;>Mo&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Tuesday&quot;>Tu&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Wednesday&quot;>We&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Thursday&quot;>Th&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Friday&quot;>Fr&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Saturday&quot;>Sa&lt;/th>&lt;th scope=&quot;col&quot; abbr=&quot;Sunday&quot;>Su&lt;/th>&lt;/tr>&lt;/thead>
+    &lt;tbody>&lt;/tbody>
+  &lt;/table>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>CalendarMonth.css</span></div><pre tabindex="0"><code>/* tearsheet calendar-month vf2b6f548 · https://qusaialjbali.github.io/tearsheet/zine/parts/calendar-month.html */
+.cal { width: 100%; max-width: 340px; padding: 16px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.cal-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.cal-title { margin: 0; font-size: 16px; }
+.cal-picked { margin: 0; font-size: 13px; color: var(--ui-muted); }
+.cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cal-grid th { padding-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--ui-muted); }
+.cal-grid td { padding: 2px; text-align: center; }
+.cal-day {
+  position: relative; width: 100%; aspect-ratio: 1; max-width: 40px;
+  font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--ui-text);
+  background: none; border: 0; border-radius: 50%; cursor: pointer;
+}
+.cal-day:hover { background: var(--ui-surface-2); }
+.cal-day:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.cal-day.is-today { font-weight: 800; color: var(--ui-accent); box-shadow: inset 0 0 0 1.5px var(--ui-accent); }
+.cal-day[aria-pressed=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.cal-day.has-event::after { content: &quot;&quot;; position: absolute; left: 50%; bottom: 4px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; }</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="sparkline-stats.html">← Sparkline stats</a>
+      <a rel="next" href="file-tree.html">File tree →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+# Tearsheet
+
+> Free, accessible UI components in HTML + CSS, React, Vue and Svelte, with notes on why they work, plus a web design guide. 98 components, free forever, licensed MIT-0 (no attribution). No install and no dependencies: copy the files into a project.
+
+How to use this library as an agent:
+
+1. Find a component in the list below (or fetch https://qusaialjbali.github.io/tearsheet/api/components.json).
+2. Fetch https://qusaialjbali.github.io/tearsheet/api/components/<id>.md (or .json) and use the files for the project's framework: html, react, vue or svelte.
+3. Make sure https://qusaialjbali.github.io/tearsheet/api/tokens.css is included once, globally. Components read colours, radii and focus styles from it; change --ui-accent and friends to match the project's brand.
+4. Keep the accessibility details the component ships with (labels, ARIA, keyboard handling, reduced motion). The notes explain each one.
+
+## Tools
+
+- [Command-line tool](https://qusaialjbali.github.io/tearsheet/zine/index.html#agents): `npx -y tearsheet add <id> --format react` writes a component into the current project. Also `list`, `search`, `show`, `tokens` (`--accent <hex>` fits them to a brand colour with contrast checks), `guide`, `audit <path>` (checks UI code against the design guide) and `diff` (compares copied parts with the latest versions).
+- [MCP server](https://qusaialjbali.github.io/tearsheet/zine/index.html#agents): run `npx -y tearsheet mcp` as a stdio MCP server to get search_components, get_component, get_design_tokens (optionally fitted to a brand colour), get_design_rules and review_ui (checks the UI code you write against the guide).
+- [Receipts (JSON)](https://qusaialjbali.github.io/tearsheet/api/receipts.json): per component evidence from CI: axe results in light and dark, tightest contrast, tab order, accessibility tree, reduced-motion behaviour, and whether it fits a phone right-to-left with Arabic text and with 40% longer text.
+- [Brand fitter](https://qusaialjbali.github.io/tearsheet/zine/fitter.html): one brand colour in, contrast-safe light and dark tokens out.
+
+## Reference
+
+- [Component index (JSON)](https://qusaialjbali.github.io/tearsheet/api/components.json): every component with id, collection, description and notes
+- [Design tokens (CSS)](https://qusaialjbali.github.io/tearsheet/api/tokens.css): the CSS custom properties every component uses, light and dark
+- [Design guide (JSON)](https://qusaialjbali.github.io/tearsheet/api/guide.json): web design dos and don'ts by chapter, plus a pre-launch checklist
+- [Design guide (page)](https://qusaialjbali.github.io/tearsheet/zine/guide.html): the same guide for people
+
+## Components: Actions
+
+- [Buttons](https://qusaialjbali.github.io/tearsheet/api/components/buttons.md): `buttons`. Primary, secondary, ghost and destructive buttons with hover, focus and disabled states.
+- [Toggle button group](https://qusaialjbali.github.io/tearsheet/api/components/button-group.md): `button-group`. A formatting toolbar of joined icon buttons that each switch on and off.
+- [Split button](https://qusaialjbali.github.io/tearsheet/api/components/split-button.md): `split-button`. A main action with a small menu of related alternatives attached to its side.
+- [Icon buttons](https://qusaialjbali.github.io/tearsheet/api/components/icon-buttons.md): `icon-buttons`. Round and square icon-only buttons in three sizes, plus a favourite toggle.
+- [Loading button](https://qusaialjbali.github.io/tearsheet/api/components/loading-button.md): `loading-button`. A button that shows its work: idle, saving with a spinner, then a short confirmation.
+
+## Components: Forms
+
+- [Text field](https://qusaialjbali.github.io/tearsheet/api/components/text-field.md): `text-field`. Labelled input with helper text and an error state wired up with aria-describedby.
+- [Checkbox & switch](https://qusaialjbali.github.io/tearsheet/api/components/checkbox-switch.md): `checkbox-switch`. Custom-styled native checkboxes and a toggle switch. Keyboard and screen-reader support stays native.
+- [Select](https://qusaialjbali.github.io/tearsheet/api/components/select.md): `select`. A native select restyled to match the text field, with a drawn chevron.
+- [Radio cards](https://qusaialjbali.github.io/tearsheet/api/components/radio-cards.md): `radio-cards`. Big, scannable choice cards built on native radio buttons.
+- [Segmented control](https://qusaialjbali.github.io/tearsheet/api/components/segmented-control.md): `segmented-control`. Switch between two to four views. Radios underneath, so it works without JavaScript.
+- [Range slider](https://qusaialjbali.github.io/tearsheet/api/components/range-slider.md): `range-slider`. Native range input with a filled track and a live value readout.
+- [Number stepper](https://qusaialjbali.github.io/tearsheet/api/components/number-stepper.md): `number-stepper`. Minus and plus buttons around a number field, clamped to a range.
+- [File dropzone](https://qusaialjbali.github.io/tearsheet/api/components/file-dropzone.md): `file-dropzone`. Drag files in or click to browse. A real file input underneath keeps it keyboard accessible.
+- [Star rating](https://qusaialjbali.github.io/tearsheet/api/components/star-rating.md): `star-rating`. Five-star rating with hover preview, made of radio buttons and zero JavaScript.
+- [One-time code](https://qusaialjbali.github.io/tearsheet/api/components/otp-input.md): `otp-input`. Six-box verification code that auto-advances, handles backspace and accepts a pasted or autofilled code.
+- [Copy field](https://qusaialjbali.github.io/tearsheet/api/components/copy-field.md): `copy-field`. Read-only value with a copy button that confirms in place and announces it.
+- [Autocomplete](https://qusaialjbali.github.io/tearsheet/api/components/combobox.md): `combobox`. A text field that suggests matching options as you type, with full keyboard control.
+- [Tag input](https://qusaialjbali.github.io/tearsheet/api/components/tag-input.md): `tag-input`. Type a word and press Enter or comma to turn it into a removable tag.
+- [Date range](https://qusaialjbali.github.io/tearsheet/api/components/date-range.md): `date-range`. Start and end dates using the native date input, styled to match, with the end kept after the start.
+- [Multi-step form](https://qusaialjbali.github.io/tearsheet/api/components/multi-step-form.md): `multi-step-form`. A short sign-up split into three steps with progress, back and next, and focus moved to each new step.
+- [Textarea with counter](https://qusaialjbali.github.io/tearsheet/api/components/textarea-counter.md): `textarea-counter`. A comment box that grows with its text and counts down the characters left.
+
+## Components: Content
+
+- [Card](https://qusaialjbali.github.io/tearsheet/api/components/card.md): `card`. Content card with media, eyebrow, title, summary and a link footer.
+- [Badges](https://qusaialjbali.github.io/tearsheet/api/components/badges.md): `badges`. Compact status labels in neutral, accent and semantic tones.
+- [Accordion](https://qusaialjbali.github.io/tearsheet/api/components/accordion.md): `accordion`. Zero-JavaScript FAQ accordion built on <details> and <summary>.
+- [Avatar group](https://qusaialjbali.github.io/tearsheet/api/components/avatars.md): `avatars`. Overlapping initials avatars with an overflow count.
+- [Data table](https://qusaialjbali.github.io/tearsheet/api/components/data-table.md): `data-table`. Readable table with a caption, scoped headers, right-aligned numbers and status badges. Scrolls sideways on small screens.
+- [Stat group](https://qusaialjbali.github.io/tearsheet/api/components/stat-group.md): `stat-group`. A row of key numbers with labelled change, built as a description list.
+- [Settings list](https://qusaialjbali.github.io/tearsheet/api/components/settings-list.md): `settings-list`. Rows of settings mixing toggles, links to sub-pages and a destructive action.
+- [Keyboard shortcuts](https://qusaialjbali.github.io/tearsheet/api/components/keyboard-shortcuts.md): `keyboard-shortcuts`. A shortcut cheat sheet with properly styled <kbd> keys.
+- [Activity timeline](https://qusaialjbali.github.io/tearsheet/api/components/activity-timeline.md): `activity-timeline`. A vertical feed of events with machine-readable times.
+- [Chat thread](https://qusaialjbali.github.io/tearsheet/api/components/chat-thread.md): `chat-thread`. Message bubbles with grouping, timestamps, a typing indicator and a composer that sends.
+- [Comment thread](https://qusaialjbali.github.io/tearsheet/api/components/comment-thread.md): `comment-thread`. A discussion with one level of replies, author badges, relative times and quiet actions.
+- [Code block](https://qusaialjbali.github.io/tearsheet/api/components/code-block.md): `code-block`. A file-tabbed code snippet with line numbers, a highlighted line and a copy button.
+- [Kanban column](https://qusaialjbali.github.io/tearsheet/api/components/kanban-column.md): `kanban-column`. A board column of task cards with labels, assignees, due dates and a quick add.
+- [Carousel](https://qusaialjbali.github.io/tearsheet/api/components/carousel.md): `carousel`. A swipeable row of slides with previous/next buttons and a slide counter. It never auto-advances.
+- [Lightbox gallery](https://qusaialjbali.github.io/tearsheet/api/components/lightbox.md): `lightbox`. A thumbnail grid that opens each picture large in a dialog, with arrow keys to flip through.
+
+## Components: Data
+
+- [Sortable table](https://qusaialjbali.github.io/tearsheet/api/components/sortable-table.md): `sortable-table`. Click a column header to sort; click again to reverse. Row checkboxes select, with a select-all.
+- [Bar chart](https://qusaialjbali.github.io/tearsheet/api/components/bar-chart.md): `bar-chart`. Horizontal bars drawn with plain HTML and CSS, every value printed next to its bar.
+- [Line chart](https://qusaialjbali.github.io/tearsheet/api/components/line-chart.md): `line-chart`. A lightweight SVG line chart with gridlines, axis labels and a highlighted latest point.
+- [Donut chart](https://qusaialjbali.github.io/tearsheet/api/components/donut-chart.md): `donut-chart`. A CSS conic-gradient donut with a total in the middle and a legend that carries the real numbers.
+- [Sparkline stats](https://qusaialjbali.github.io/tearsheet/api/components/sparkline-stats.md): `sparkline-stats`. Compact metric tiles, each with a tiny trend line and its change spelled out.
+- [Month calendar](https://qusaialjbali.github.io/tearsheet/api/components/calendar-month.md): `calendar-month`. A month grid with today marked, event dots, and arrow-key navigation between days.
+- [File tree](https://qusaialjbali.github.io/tearsheet/api/components/file-tree.md): `file-tree`. A nested folder tree built from <details>, with file and folder icons and no JavaScript.
+- [Details list](https://qusaialjbali.github.io/tearsheet/api/components/description-list.md): `description-list`. Label-and-value pairs for an order or a profile, with one value you can edit in place.
+
+## Components: Feedback
+
+- [Alerts](https://qusaialjbali.github.io/tearsheet/api/components/alerts.md): `alerts`. Info, success, warning and error banners. Each pairs color with an icon and text, so meaning never relies on color alone.
+- [Toast notification](https://qusaialjbali.github.io/tearsheet/api/components/toast.md): `toast`. Non-blocking confirmation that appears briefly in a live region and can be dismissed.
+- [Progress & spinner](https://qusaialjbali.github.io/tearsheet/api/components/progress.md): `progress`. Determinate progress bar and an indeterminate spinner, both announced to assistive tech.
+- [Skeleton loader](https://qusaialjbali.github.io/tearsheet/api/components/skeleton.md): `skeleton`. Shimmering placeholder that mirrors the shape of the content it stands in for.
+- [Empty state](https://qusaialjbali.github.io/tearsheet/api/components/empty-state.md): `empty-state`. Explains why a view is empty and offers the next step.
+
+## Components: Navigation
+
+- [Tabs](https://qusaialjbali.github.io/tearsheet/api/components/tabs.md): `tabs`. Accessible tabs following the WAI-ARIA pattern, with arrow-key navigation and roving tabindex.
+- [Navigation bar](https://qusaialjbali.github.io/tearsheet/api/components/navbar.md): `navbar`. Responsive site header with brand, links, actions and a no-JS mobile menu.
+- [Breadcrumb](https://qusaialjbali.github.io/tearsheet/api/components/breadcrumb.md): `breadcrumb`. Shows where the page sits in the site hierarchy, using an ordered list.
+- [Pagination](https://qusaialjbali.github.io/tearsheet/api/components/pagination.md): `pagination`. Page links with previous/next, a current page and a gap for skipped pages.
+- [Steps indicator](https://qusaialjbali.github.io/tearsheet/api/components/steps-indicator.md): `steps-indicator`. Checkout-style progress through a fixed sequence, with done, current and upcoming steps.
+
+## Components: Overlays
+
+- [Modal dialog](https://qusaialjbali.github.io/tearsheet/api/components/modal.md): `modal`. Confirmation dialog built on the native <dialog> element: focus trapping, Esc to close and a backdrop come built in.
+- [Tooltip](https://qusaialjbali.github.io/tearsheet/api/components/tooltip.md): `tooltip`. CSS-only tooltip that shows on hover and on keyboard focus.
+- [Dropdown menu](https://qusaialjbali.github.io/tearsheet/api/components/dropdown-menu.md): `dropdown-menu`. An actions menu built on <details>, with icons and a separated destructive item.
+- [Side drawer](https://qusaialjbali.github.io/tearsheet/api/components/drawer.md): `drawer`. A panel that slides in from the edge for filters or secondary tasks, built on <dialog>.
+- [Popover](https://qusaialjbali.github.io/tearsheet/api/components/popover.md): `popover`. A small anchored card for extra detail, using the native popover attribute: no JavaScript.
+- [Context menu](https://qusaialjbali.github.io/tearsheet/api/components/context-menu.md): `context-menu`. Right-click (or long-press, or the Menu key) on the card to get a menu of actions at the pointer.
+- [Honest cookie banner](https://qusaialjbali.github.io/tearsheet/api/components/cookie-banner.md): `cookie-banner`. A consent banner where saying no is exactly as easy as saying yes.
+- [Command palette](https://qusaialjbali.github.io/tearsheet/api/components/command-palette.md): `command-palette`. A searchable list of actions on Ctrl/⌘ K, driven entirely by the keyboard.
+
+## Components: Sections
+
+- [Pricing card](https://qusaialjbali.github.io/tearsheet/api/components/pricing-card.md): `pricing-card`. Plan card with price, feature list and a single call to action.
+- [Hero, centred](https://qusaialjbali.github.io/tearsheet/api/components/hero-centered.md): `hero-centered`. An opening section with one clear promise, a short explanation and one main action.
+- [Hero with signup](https://qusaialjbali.github.io/tearsheet/api/components/hero-signup.md): `hero-signup`. A hero whose main action is a working email field, with an honest product preview beside it.
+- [Feature grid](https://qusaialjbali.github.io/tearsheet/api/components/feature-grid.md): `feature-grid`. Six features as short, scannable blocks, each leading with what it does for the reader.
+- [Testimonial](https://qusaialjbali.github.io/tearsheet/api/components/testimonial.md): `testimonial`. One large, specific quote with the person’s name, role and a photo slot.
+- [Logo strip](https://qusaialjbali.github.io/tearsheet/api/components/logo-strip.md): `logo-strip`. A quiet row of customer logos under a plain label, greyed so it never competes with the content.
+- [FAQ section](https://qusaialjbali.github.io/tearsheet/api/components/faq-section.md): `faq-section`. Questions people actually ask, in two columns: a heading and contact route on one side, answers on the other.
+- [Call-to-action band](https://qusaialjbali.github.io/tearsheet/api/components/cta-band.md): `cta-band`. A closing band in the accent colour that repeats the main action once more.
+- [Newsletter signup](https://qusaialjbali.github.io/tearsheet/api/components/newsletter.md): `newsletter`. An email signup that says exactly what you will get and how often, with inline validation.
+- [Plan comparison](https://qusaialjbali.github.io/tearsheet/api/components/comparison-table.md): `comparison-table`. Plans side by side with yes/no marks that read as words to screen readers, and the recommended plan marked.
+- [Changelog](https://qusaialjbali.github.io/tearsheet/api/components/changelog.md): `changelog`. Release notes grouped by date, each change tagged New, Improved or Fixed.
+- [Site footer](https://qusaialjbali.github.io/tearsheet/api/components/site-footer.md): `site-footer`. A footer with the brand line, grouped links, a language picker and the legal row.
+- [404 page](https://qusaialjbali.github.io/tearsheet/api/components/not-found.md): `not-found`. A not-found page that admits the mistake, offers a search and the three most likely destinations.
+- [Pricing tiers](https://qusaialjbali.github.io/tearsheet/api/components/pricing-tiers.md): `pricing-tiers`. Three plans side by side with a monthly/yearly switch that updates every price.
+
+## Components: Weird
+
+- [Magnetic button](https://qusaialjbali.github.io/tearsheet/api/components/magnetic-button.md): `magnetic-button`. The button leans toward your cursor before you reach it, and its label lags behind for depth.
+- [Split-flap board](https://qusaialjbali.github.io/tearsheet/api/components/split-flap.md): `split-flap`. An airport departures board: every letter clatters through the alphabet until it lands.
+- [Odometer counter](https://qusaialjbali.github.io/tearsheet/api/components/odometer.md): `odometer`. A mechanical counter whose digit wheels roll into place, each a beat after the last.
+- [Holographic card](https://qusaialjbali.github.io/tearsheet/api/components/holo-card.md): `holo-card`. A foil membership card that tilts in 3D and throws a moving rainbow sheen as you move across it.
+- [Decoder text](https://qusaialjbali.github.io/tearsheet/api/components/scramble-text.md): `scramble-text`. A headline that decrypts itself from noise, one letter locking in at a time.
+- [Hold to confirm](https://qusaialjbali.github.io/tearsheet/api/components/hold-to-confirm.md): `hold-to-confirm`. A destructive button you have to press and hold, so a stray click can never delete anything.
+- [Elastic string slider](https://qusaialjbali.github.io/tearsheet/api/components/string-slider.md): `string-slider`. A slider drawn as a guitar string: drag the thumb up or down and it bends, let go and it twangs back.
+- [Orbit menu](https://qusaialjbali.github.io/tearsheet/api/components/orbit-menu.md): `orbit-menu`. A floating action button that bursts six actions into orbit around itself.
+- [Scratch card](https://qusaialjbali.github.io/tearsheet/api/components/scratch-card.md): `scratch-card`. Scratch off a foil layer with your cursor or finger to reveal a hidden code.
+- [Liquid progress](https://qusaialjbali.github.io/tearsheet/api/components/liquid-progress.md): `liquid-progress`. A round tank that fills with a rolling wave as progress changes.
+- [Rotary knob](https://qusaialjbali.github.io/tearsheet/api/components/rotary-knob.md): `rotary-knob`. An amp-style dial you twist by dragging around it, scrolling, or with the arrow keys. It goes to eleven.
+- [Password creature](https://qusaialjbali.github.io/tearsheet/api/components/password-creature.md): `password-creature`. A little creature that covers its eyes while you type a password, peeks when you show it, and grins as it gets stronger.
+- [Throwable tags](https://qusaialjbali.github.io/tearsheet/api/components/physics-tags.md): `physics-tags`. Tags fall into a box under gravity. Grab one, fling it, and watch the pile settle.
+- [Gooey switch](https://qusaialjbali.github.io/tearsheet/api/components/gooey-toggle.md): `gooey-toggle`. A switch whose knob stretches like liquid as it slides, made with an SVG goo filter and zero JavaScript.
+- [Idea slot machine](https://qusaialjbali.github.io/tearsheet/api/components/slot-machine.md): `slot-machine`. Three reels spin and land one by one on a random brief: a mood, a colour and a component to build.
+- [Typewriter terminal](https://qusaialjbali.github.io/tearsheet/api/components/typewriter-terminal.md): `typewriter-terminal`. A terminal window that types out a short session line by line, with a blinking caret and a replay.
+- [Vinyl player](https://qusaialjbali.github.io/tearsheet/api/components/vinyl-player.md): `vinyl-player`. A record player UI: press play and the record spins, the tonearm drops and the track time runs.
+- [Ink bleed menu](https://qusaialjbali.github.io/tearsheet/api/components/ink-bleed.md): `ink-bleed`. Menu items flood with ink from exactly where your pointer enters, like a drop on blotting paper.
+- [VHS glitch heading](https://qusaialjbali.github.io/tearsheet/api/components/glitch-text.md): `glitch-text`. A heading that tears into red and cyan slices like a worn tape when you hover or press the button.
+- [Ink trail pad](https://qusaialjbali.github.io/tearsheet/api/components/ink-trail.md): `ink-trail`. Move across the pad and leave a trail of ink dots that spread and fade like wet riso ink.
+- [Jelly button](https://qusaialjbali.github.io/tearsheet/api/components/jelly-button.md): `jelly-button`. A button that squashes and wobbles like jelly when you press it, then settles.
+- [Cube tabs](https://qusaialjbali.github.io/tearsheet/api/components/cube-tabs.md): `cube-tabs`. Tabs where every panel is a face of a 3D cube that turns to show the one you pick.

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liquid progress · Weird component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A round tank that fills with a rolling wave as progress changes.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Liquid progress · Weird component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A round tank that fills with a rolling wave as progress changes.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Liquid progress","description":"A round tank that fills with a rolling wave as progress changes.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#liquid-progress">Issue 01</a> · Weird · p.86</p>
+    <h1><span class="a">Liquid progress</span><span class="b" aria-hidden="true">Liquid progress</span></h1>
+    <p class="lede">A round tank that fills with a rolling wave as progress changes.</p>
+    <p class="why"><b>Why it works:</b> It is still a role=&quot;progressbar&quot; with a value, so the meaning never depends on the animation. The number changes colour exactly at the waterline so it stays readable. The wave stops for reduced motion.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Liquid progress preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.liquid { display: grid; justify-items: center; gap: 14px; }
+.liquid-tank {
+  --level: 45%;
+  position: relative;
+  width: 168px;
+  height: 168px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ui-surface-2);
+  border: 4px solid var(--ui-surface);
+  box-shadow: 0 0 0 2px var(--ui-accent), inset 0 6px 14px rgb(0 0 0 / 0.08);
+}
+.liquid-value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--ui-text);
+  font-variant-numeric: tabular-nums;
+}
+.liquid-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ui-accent);
+  clip-path: inset(calc(100% - var(--level)) 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.liquid-fill .liquid-value { color: var(--ui-accent-text); }
+.liquid-wave {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--level) - 1px);
+  width: 200%;
+  height: 12px;
+  fill: var(--ui-accent);
+  transition: bottom 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: liquid-roll 2.4s linear infinite;
+}
+@keyframes liquid-roll { to { transform: translateX(-50%); } }
+.liquid-actions { display: flex; gap: 8px; }
+.liquid-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.liquid-btn svg { width: 18px; height: 18px; }
+.liquid-btn:hover { background: var(--ui-surface-2); }
+.liquid-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) {
+  .liquid-wave { animation: none; }
+  .liquid-fill, .liquid-wave { transition: none; }
+}&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;liquid&quot;>
+  &lt;div class=&quot;liquid-tank&quot; role=&quot;progressbar&quot; aria-label=&quot;Daily water goal&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-valuenow=&quot;45&quot;>
+    &lt;span class=&quot;liquid-value&quot; aria-hidden=&quot;true&quot;>45%&lt;/span>
+    &lt;svg class=&quot;liquid-wave&quot; viewBox=&quot;0 0 200 20&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0Z&quot;/>&lt;/svg>
+    &lt;div class=&quot;liquid-fill&quot; aria-hidden=&quot;true&quot;>&lt;span class=&quot;liquid-value&quot;>45%&lt;/span>&lt;/div>
+  &lt;/div>
+  &lt;div class=&quot;liquid-actions&quot;>
+    &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;-15&quot; aria-label=&quot;Remove 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+    &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;15&quot; aria-label=&quot;Add 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 5v10M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+  &lt;/div>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const tank = root.querySelector('.liquid-tank');
+  const labels = root.querySelectorAll('.liquid-value');
+  const buttons = root.querySelectorAll('.liquid-btn');
+  let level = Number(tank.getAttribute('aria-valuenow'));
+
+  const render = () => {
+    tank.style.setProperty('--level', level + '%');
+    tank.setAttribute('aria-valuenow', level);
+    labels.forEach((l) => (l.textContent = level + '%'));
+  };
+  const onAdd = (e) => {
+    level = Math.min(100, Math.max(0, level + Number(e.currentTarget.dataset.add)));
+    render();
+  };
+
+  buttons.forEach((b) => b.addEventListener('click', onAdd));
+  render();
+  return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));
+}
+
+document.querySelectorAll(&quot;.liquid&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast n/a · 2 tab stops · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (18 rules passed).</li>
+        <li><b class="r-ok">PASS</b> No text to measure for contrast.</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Movement stops or calms down with reduced motion on.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>button &quot;Remove 15 percent&quot;</li><li>button &quot;Add 15 percent&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- progressbar &quot;Daily water goal&quot;
+- button &quot;Remove 15 percent&quot;
+- button &quot;Add 15 percent&quot;</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#liquid-progress">See it in the zine</a> <code>npx -y tearsheet add liquid-progress</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html -->
+&lt;div class=&quot;liquid&quot;>
+  &lt;div class=&quot;liquid-tank&quot; role=&quot;progressbar&quot; aria-label=&quot;Daily water goal&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-valuenow=&quot;45&quot;>
+    &lt;span class=&quot;liquid-value&quot; aria-hidden=&quot;true&quot;>45%&lt;/span>
+    &lt;svg class=&quot;liquid-wave&quot; viewBox=&quot;0 0 200 20&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0Z&quot;/>&lt;/svg>
+    &lt;div class=&quot;liquid-fill&quot; aria-hidden=&quot;true&quot;>&lt;span class=&quot;liquid-value&quot;>45%&lt;/span>&lt;/div>
+  &lt;/div>
+  &lt;div class=&quot;liquid-actions&quot;>
+    &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;-15&quot; aria-label=&quot;Remove 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+    &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;15&quot; aria-label=&quot;Add 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 5v10M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+  &lt;/div>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html */
+.liquid { display: grid; justify-items: center; gap: 14px; }
+.liquid-tank {
+  --level: 45%;
+  position: relative;
+  width: 168px;
+  height: 168px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ui-surface-2);
+  border: 4px solid var(--ui-surface);
+  box-shadow: 0 0 0 2px var(--ui-accent), inset 0 6px 14px rgb(0 0 0 / 0.08);
+}
+.liquid-value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--ui-text);
+  font-variant-numeric: tabular-nums;
+}
+.liquid-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ui-accent);
+  clip-path: inset(calc(100% - var(--level)) 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.liquid-fill .liquid-value { color: var(--ui-accent-text); }
+.liquid-wave {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--level) - 1px);
+  width: 200%;
+  height: 12px;
+  fill: var(--ui-accent);
+  transition: bottom 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: liquid-roll 2.4s linear infinite;
+}
+@keyframes liquid-roll { to { transform: translateX(-50%); } }
+.liquid-actions { display: flex; gap: 8px; }
+.liquid-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.liquid-btn svg { width: 18px; height: 18px; }
+.liquid-btn:hover { background: var(--ui-surface-2); }
+.liquid-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) {
+  .liquid-wave { animation: none; }
+  .liquid-fill, .liquid-wave { transition: none; }
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html */
+function setup(root) {
+  const tank = root.querySelector('.liquid-tank');
+  const labels = root.querySelectorAll('.liquid-value');
+  const buttons = root.querySelectorAll('.liquid-btn');
+  let level = Number(tank.getAttribute('aria-valuenow'));
+
+  const render = () => {
+    tank.style.setProperty('--level', level + '%');
+    tank.setAttribute('aria-valuenow', level);
+    labels.forEach((l) => (l.textContent = level + '%'));
+  };
+  const onAdd = (e) => {
+    level = Math.min(100, Math.max(0, level + Number(e.currentTarget.dataset.add)));
+    render();
+  };
+
+  buttons.forEach((b) => b.addEventListener('click', onAdd));
+  render();
+  return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));
+}
+
+document.querySelectorAll(&quot;.liquid&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>LiquidProgress.jsx</span></div><pre tabindex="0"><code>/* tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html */
+import { useEffect, useRef } from 'react';
+import './LiquidProgress.css';
+
+function setup(root) {
+  const tank = root.querySelector('.liquid-tank');
+  const labels = root.querySelectorAll('.liquid-value');
+  const buttons = root.querySelectorAll('.liquid-btn');
+  let level = Number(tank.getAttribute('aria-valuenow'));
+
+  const render = () => {
+    tank.style.setProperty('--level', level + '%');
+    tank.setAttribute('aria-valuenow', level);
+    labels.forEach((l) => (l.textContent = level + '%'));
+  };
+  const onAdd = (e) => {
+    level = Math.min(100, Math.max(0, level + Number(e.currentTarget.dataset.add)));
+    render();
+  };
+
+  buttons.forEach((b) => b.addEventListener('click', onAdd));
+  render();
+  return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));
+}
+
+export function LiquidProgress() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;div ref={ref} className=&quot;liquid&quot;>
+      &lt;div className=&quot;liquid-tank&quot; role=&quot;progressbar&quot; aria-label=&quot;Daily water goal&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-valuenow=&quot;45&quot;>
+        &lt;span className=&quot;liquid-value&quot; aria-hidden=&quot;true&quot;>45%&lt;/span>
+        &lt;svg className=&quot;liquid-wave&quot; viewBox=&quot;0 0 200 20&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0Z&quot;/>&lt;/svg>
+        &lt;div className=&quot;liquid-fill&quot; aria-hidden=&quot;true&quot;>&lt;span className=&quot;liquid-value&quot;>45%&lt;/span>&lt;/div>
+      &lt;/div>
+      &lt;div className=&quot;liquid-actions&quot;>
+        &lt;button className=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;-15&quot; aria-label=&quot;Remove 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 10h10&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+        &lt;button className=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;15&quot; aria-label=&quot;Add 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 5v10M5 10h10&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+      &lt;/div>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>LiquidProgress.css</span></div><pre tabindex="0"><code>/* tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html */
+.liquid { display: grid; justify-items: center; gap: 14px; }
+.liquid-tank {
+  --level: 45%;
+  position: relative;
+  width: 168px;
+  height: 168px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ui-surface-2);
+  border: 4px solid var(--ui-surface);
+  box-shadow: 0 0 0 2px var(--ui-accent), inset 0 6px 14px rgb(0 0 0 / 0.08);
+}
+.liquid-value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--ui-text);
+  font-variant-numeric: tabular-nums;
+}
+.liquid-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ui-accent);
+  clip-path: inset(calc(100% - var(--level)) 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.liquid-fill .liquid-value { color: var(--ui-accent-text); }
+.liquid-wave {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--level) - 1px);
+  width: 200%;
+  height: 12px;
+  fill: var(--ui-accent);
+  transition: bottom 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: liquid-roll 2.4s linear infinite;
+}
+@keyframes liquid-roll { to { transform: translateX(-50%); } }
+.liquid-actions { display: flex; gap: 8px; }
+.liquid-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.liquid-btn svg { width: 18px; height: 18px; }
+.liquid-btn:hover { background: var(--ui-surface-2); }
+.liquid-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) {
+  .liquid-wave { animation: none; }
+  .liquid-fill, .liquid-wave { transition: none; }
+}</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>LiquidProgress.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const tank = root.querySelector('.liquid-tank');
+  const labels = root.querySelectorAll('.liquid-value');
+  const buttons = root.querySelectorAll('.liquid-btn');
+  let level = Number(tank.getAttribute('aria-valuenow'));
+
+  const render = () => {
+    tank.style.setProperty('--level', level + '%');
+    tank.setAttribute('aria-valuenow', level);
+    labels.forEach((l) => (l.textContent = level + '%'));
+  };
+  const onAdd = (e) => {
+    level = Math.min(100, Math.max(0, level + Number(e.currentTarget.dataset.add)));
+    render();
+  };
+
+  buttons.forEach((b) => b.addEventListener('click', onAdd));
+  render();
+  return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;div ref=&quot;el&quot; class=&quot;liquid&quot;>
+    &lt;div class=&quot;liquid-tank&quot; role=&quot;progressbar&quot; aria-label=&quot;Daily water goal&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-valuenow=&quot;45&quot;>
+      &lt;span class=&quot;liquid-value&quot; aria-hidden=&quot;true&quot;>45%&lt;/span>
+      &lt;svg class=&quot;liquid-wave&quot; viewBox=&quot;0 0 200 20&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0Z&quot;/>&lt;/svg>
+      &lt;div class=&quot;liquid-fill&quot; aria-hidden=&quot;true&quot;>&lt;span class=&quot;liquid-value&quot;>45%&lt;/span>&lt;/div>
+    &lt;/div>
+    &lt;div class=&quot;liquid-actions&quot;>
+      &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;-15&quot; aria-label=&quot;Remove 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+      &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;15&quot; aria-label=&quot;Add 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 5v10M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+    &lt;/div>
+  &lt;/div>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.liquid { display: grid; justify-items: center; gap: 14px; }
+.liquid-tank {
+  --level: 45%;
+  position: relative;
+  width: 168px;
+  height: 168px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ui-surface-2);
+  border: 4px solid var(--ui-surface);
+  box-shadow: 0 0 0 2px var(--ui-accent), inset 0 6px 14px rgb(0 0 0 / 0.08);
+}
+.liquid-value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--ui-text);
+  font-variant-numeric: tabular-nums;
+}
+.liquid-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ui-accent);
+  clip-path: inset(calc(100% - var(--level)) 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.liquid-fill .liquid-value { color: var(--ui-accent-text); }
+.liquid-wave {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--level) - 1px);
+  width: 200%;
+  height: 12px;
+  fill: var(--ui-accent);
+  transition: bottom 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: liquid-roll 2.4s linear infinite;
+}
+@keyframes liquid-roll { to { transform: translateX(-50%); } }
+.liquid-actions { display: flex; gap: 8px; }
+.liquid-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.liquid-btn svg { width: 18px; height: 18px; }
+.liquid-btn:hover { background: var(--ui-surface-2); }
+.liquid-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) {
+  .liquid-wave { animation: none; }
+  .liquid-fill, .liquid-wave { transition: none; }
+}
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>LiquidProgress.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './LiquidProgress.css';
+
+  let node;
+
+  function setup(root) {
+    const tank = root.querySelector('.liquid-tank');
+    const labels = root.querySelectorAll('.liquid-value');
+    const buttons = root.querySelectorAll('.liquid-btn');
+    let level = Number(tank.getAttribute('aria-valuenow'));
+
+    const render = () => {
+      tank.style.setProperty('--level', level + '%');
+      tank.setAttribute('aria-valuenow', level);
+      labels.forEach((l) => (l.textContent = level + '%'));
+    };
+    const onAdd = (e) => {
+      level = Math.min(100, Math.max(0, level + Number(e.currentTarget.dataset.add)));
+      render();
+    };
+
+    buttons.forEach((b) => b.addEventListener('click', onAdd));
+    render();
+    return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;div bind:this={node} class=&quot;liquid&quot;>
+  &lt;div class=&quot;liquid-tank&quot; role=&quot;progressbar&quot; aria-label=&quot;Daily water goal&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-valuenow=&quot;45&quot;>
+    &lt;span class=&quot;liquid-value&quot; aria-hidden=&quot;true&quot;>45%&lt;/span>
+    &lt;svg class=&quot;liquid-wave&quot; viewBox=&quot;0 0 200 20&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M0 10 Q25 0 50 10 T100 10 T150 10 T200 10 V20 H0Z&quot;/>&lt;/svg>
+    &lt;div class=&quot;liquid-fill&quot; aria-hidden=&quot;true&quot;>&lt;span class=&quot;liquid-value&quot;>45%&lt;/span>&lt;/div>
+  &lt;/div>
+  &lt;div class=&quot;liquid-actions&quot;>
+    &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;-15&quot; aria-label=&quot;Remove 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+    &lt;button class=&quot;liquid-btn&quot; type=&quot;button&quot; data-add=&quot;15&quot; aria-label=&quot;Add 15 percent&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 5v10M5 10h10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>&lt;/button>
+  &lt;/div>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>LiquidProgress.css</span></div><pre tabindex="0"><code>/* tearsheet liquid-progress vde1df5d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/liquid-progress.html */
+.liquid { display: grid; justify-items: center; gap: 14px; }
+.liquid-tank {
+  --level: 45%;
+  position: relative;
+  width: 168px;
+  height: 168px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ui-surface-2);
+  border: 4px solid var(--ui-surface);
+  box-shadow: 0 0 0 2px var(--ui-accent), inset 0 6px 14px rgb(0 0 0 / 0.08);
+}
+.liquid-value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--ui-text);
+  font-variant-numeric: tabular-nums;
+}
+.liquid-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ui-accent);
+  clip-path: inset(calc(100% - var(--level)) 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.liquid-fill .liquid-value { color: var(--ui-accent-text); }
+.liquid-wave {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--level) - 1px);
+  width: 200%;
+  height: 12px;
+  fill: var(--ui-accent);
+  transition: bottom 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: liquid-roll 2.4s linear infinite;
+}
+@keyframes liquid-roll { to { transform: translateX(-50%); } }
+.liquid-actions { display: flex; gap: 8px; }
+.liquid-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.liquid-btn svg { width: 18px; height: 18px; }
+.liquid-btn:hover { background: var(--ui-surface-2); }
+.liquid-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) {
+  .liquid-wave { animation: none; }
+  .liquid-fill, .liquid-wave { transition: none; }
+}</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="scratch-card.html">← Scratch card</a>
+      <a rel="next" href="rotary-knob.html">Rotary knob →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

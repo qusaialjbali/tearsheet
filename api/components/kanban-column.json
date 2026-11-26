@@ -1,0 +1,90 @@
+{
+  "id": "kanban-column",
+  "name": "Kanban column",
+  "page": "p.34",
+  "collection": "Content",
+  "experimental": false,
+  "description": "A board column of task cards with labels, assignees, due dates and a quick add.",
+  "notes": "Drag and drop should never be the only way to move a card: give each card a menu or a “Move to” control as the keyboard path.",
+  "usesJavaScript": false,
+  "sizeKb": 3.2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#kanban-column",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/kanban-column.json",
+  "version": "c514d992",
+  "checked": "axe clean in light and dark; tightest text contrast 5.02:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 17
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 17
+      }
+    },
+    "contrast": {
+      "ratio": 5.02,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Add a card\""
+    ],
+    "tree": "- region \"In progress\":\n  - heading \"In progress\" [level=3]\n  - text: \"3\"\n  - list:\n    - listitem:\n      - paragraph: Design\n      - paragraph: Dark mode for the settings page\n      - paragraph:\n        - time: Due 2 Dec\n        - text: A\n    - listitem:\n      - paragraph: Bug Forms\n      - paragraph: Date picker loses focus after closing\n      - paragraph:\n        - time: Due tomorrow\n        - text: B\n    - listitem:\n      - paragraph: Docs\n      - paragraph: Write the toast usage notes\n      - paragraph: No due date C\n  - button \"Add a card\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet kanban-column vc514d992 · https://qusaialjbali.github.io/tearsheet/zine/parts/kanban-column.html -->\n<section class=\"kanban\" aria-labelledby=\"kb-title\">\n  <header class=\"kb-head\"><h3 id=\"kb-title\">In progress</h3><span class=\"kb-count\">3</span></header>\n  <ul class=\"kb-cards\">\n    <li class=\"kb-card\">\n      <p class=\"kb-tags\"><span class=\"kb-tag design\">Design</span></p>\n      <p class=\"kb-name\">Dark mode for the settings page</p>\n      <p class=\"kb-meta\"><time datetime=\"2026-12-02\">Due 2 Dec</time><span class=\"kb-av\" title=\"Amara\">A</span></p>\n    </li>\n    <li class=\"kb-card\">\n      <p class=\"kb-tags\"><span class=\"kb-tag bug\">Bug</span><span class=\"kb-tag\">Forms</span></p>\n      <p class=\"kb-name\">Date picker loses focus after closing</p>\n      <p class=\"kb-meta\"><time datetime=\"2026-11-28\" class=\"kb-late\">Due tomorrow</time><span class=\"kb-av alt\" title=\"Bo\">B</span></p>\n    </li>\n    <li class=\"kb-card\">\n      <p class=\"kb-tags\"><span class=\"kb-tag\">Docs</span></p>\n      <p class=\"kb-name\">Write the toast usage notes</p>\n      <p class=\"kb-meta\"><span>No due date</span><span class=\"kb-av\" title=\"Chiara\">C</span></p>\n    </li>\n  </ul>\n  <button class=\"kb-add\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 4v12M4 10h12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> Add a card</button>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet kanban-column vc514d992 · https://qusaialjbali.github.io/tearsheet/zine/parts/kanban-column.html */\n.kanban { width: 100%; max-width: 300px; padding: 12px; background: var(--ui-surface-2); border-radius: var(--ui-radius); }\n.kb-head { display: flex; align-items: center; gap: 8px; padding: 2px 4px 10px; }\n.kb-head h3 { margin: 0; font-size: 14px; }\n.kb-count { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface); border-radius: 999px; }\n.kb-cards { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.kb-card { padding: 12px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius-sm); box-shadow: 0 1px 2px rgb(0 0 0 / 0.06); }\n.kb-card p { margin: 0; }\n.kb-tags { display: flex; gap: 4px; margin-bottom: 6px !important; }\n.kb-tag { padding: 1px 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface-2); border-radius: 4px; }\n.kb-tag.design { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.kb-tag.bug { color: var(--ui-danger); background: var(--ui-danger-soft); }\n.kb-name { font-size: 14px; font-weight: 600; line-height: 1.35; }\n.kb-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 10px !important; font-size: 12px; color: var(--ui-muted); }\n.kb-late { color: var(--ui-warning); font-weight: 700; }\n.kb-av { display: grid; place-items: center; width: 22px; height: 22px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.kb-av.alt { background: #0f766e; }\n.kb-add { display: flex; align-items: center; gap: 6px; width: 100%; margin-top: 8px; padding: 8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }\n.kb-add svg { width: 16px; height: 16px; }\n.kb-add:hover { color: var(--ui-text); background: var(--ui-surface); }\n.kb-add:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "KanbanColumn.jsx",
+        "code": "/* tearsheet kanban-column vc514d992 · https://qusaialjbali.github.io/tearsheet/zine/parts/kanban-column.html */\nimport './KanbanColumn.css';\n\nexport function KanbanColumn() {\n  return (\n    <section className=\"kanban\" aria-labelledby=\"kb-title\">\n      <header className=\"kb-head\"><h3 id=\"kb-title\">In progress</h3><span className=\"kb-count\">3</span></header>\n      <ul className=\"kb-cards\">\n        <li className=\"kb-card\">\n          <p className=\"kb-tags\"><span className=\"kb-tag design\">Design</span></p>\n          <p className=\"kb-name\">Dark mode for the settings page</p>\n          <p className=\"kb-meta\"><time dateTime=\"2026-12-02\">Due 2 Dec</time><span className=\"kb-av\" title=\"Amara\">A</span></p>\n        </li>\n        <li className=\"kb-card\">\n          <p className=\"kb-tags\"><span className=\"kb-tag bug\">Bug</span><span className=\"kb-tag\">Forms</span></p>\n          <p className=\"kb-name\">Date picker loses focus after closing</p>\n          <p className=\"kb-meta\"><time dateTime=\"2026-11-28\" className=\"kb-late\">Due tomorrow</time><span className=\"kb-av alt\" title=\"Bo\">B</span></p>\n        </li>\n        <li className=\"kb-card\">\n          <p className=\"kb-tags\"><span className=\"kb-tag\">Docs</span></p>\n          <p className=\"kb-name\">Write the toast usage notes</p>\n          <p className=\"kb-meta\"><span>No due date</span><span className=\"kb-av\" title=\"Chiara\">C</span></p>\n        </li>\n      </ul>\n      <button className=\"kb-add\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 4v12M4 10h12\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg> Add a card</button>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "KanbanColumn.css",
+        "code": "/* tearsheet kanban-column vc514d992 · https://qusaialjbali.github.io/tearsheet/zine/parts/kanban-column.html */\n.kanban { width: 100%; max-width: 300px; padding: 12px; background: var(--ui-surface-2); border-radius: var(--ui-radius); }\n.kb-head { display: flex; align-items: center; gap: 8px; padding: 2px 4px 10px; }\n.kb-head h3 { margin: 0; font-size: 14px; }\n.kb-count { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface); border-radius: 999px; }\n.kb-cards { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.kb-card { padding: 12px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius-sm); box-shadow: 0 1px 2px rgb(0 0 0 / 0.06); }\n.kb-card p { margin: 0; }\n.kb-tags { display: flex; gap: 4px; margin-bottom: 6px !important; }\n.kb-tag { padding: 1px 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface-2); border-radius: 4px; }\n.kb-tag.design { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.kb-tag.bug { color: var(--ui-danger); background: var(--ui-danger-soft); }\n.kb-name { font-size: 14px; font-weight: 600; line-height: 1.35; }\n.kb-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 10px !important; font-size: 12px; color: var(--ui-muted); }\n.kb-late { color: var(--ui-warning); font-weight: 700; }\n.kb-av { display: grid; place-items: center; width: 22px; height: 22px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.kb-av.alt { background: #0f766e; }\n.kb-add { display: flex; align-items: center; gap: 6px; width: 100%; margin-top: 8px; padding: 8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }\n.kb-add svg { width: 16px; height: 16px; }\n.kb-add:hover { color: var(--ui-text); background: var(--ui-surface); }\n.kb-add:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "KanbanColumn.vue",
+        "code": "<!-- tearsheet kanban-column vc514d992 · https://qusaialjbali.github.io/tearsheet/zine/parts/kanban-column.html -->\n<template>\n  <section class=\"kanban\" aria-labelledby=\"kb-title\">\n    <header class=\"kb-head\"><h3 id=\"kb-title\">In progress</h3><span class=\"kb-count\">3</span></header>\n    <ul class=\"kb-cards\">\n      <li class=\"kb-card\">\n        <p class=\"kb-tags\"><span class=\"kb-tag design\">Design</span></p>\n        <p class=\"kb-name\">Dark mode for the settings page</p>\n        <p class=\"kb-meta\"><time datetime=\"2026-12-02\">Due 2 Dec</time><span class=\"kb-av\" title=\"Amara\">A</span></p>\n      </li>\n      <li class=\"kb-card\">\n        <p class=\"kb-tags\"><span class=\"kb-tag bug\">Bug</span><span class=\"kb-tag\">Forms</span></p>\n        <p class=\"kb-name\">Date picker loses focus after closing</p>\n        <p class=\"kb-meta\"><time datetime=\"2026-11-28\" class=\"kb-late\">Due tomorrow</time><span class=\"kb-av alt\" title=\"Bo\">B</span></p>\n      </li>\n      <li class=\"kb-card\">\n        <p class=\"kb-tags\"><span class=\"kb-tag\">Docs</span></p>\n        <p class=\"kb-name\">Write the toast usage notes</p>\n        <p class=\"kb-meta\"><span>No due date</span><span class=\"kb-av\" title=\"Chiara\">C</span></p>\n      </li>\n    </ul>\n    <button class=\"kb-add\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 4v12M4 10h12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> Add a card</button>\n  </section>\n</template>\n\n<style scoped>\n.kanban { width: 100%; max-width: 300px; padding: 12px; background: var(--ui-surface-2); border-radius: var(--ui-radius); }\n.kb-head { display: flex; align-items: center; gap: 8px; padding: 2px 4px 10px; }\n.kb-head h3 { margin: 0; font-size: 14px; }\n.kb-count { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface); border-radius: 999px; }\n.kb-cards { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.kb-card { padding: 12px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius-sm); box-shadow: 0 1px 2px rgb(0 0 0 / 0.06); }\n.kb-card p { margin: 0; }\n.kb-tags { display: flex; gap: 4px; margin-bottom: 6px !important; }\n.kb-tag { padding: 1px 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface-2); border-radius: 4px; }\n.kb-tag.design { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.kb-tag.bug { color: var(--ui-danger); background: var(--ui-danger-soft); }\n.kb-name { font-size: 14px; font-weight: 600; line-height: 1.35; }\n.kb-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 10px !important; font-size: 12px; color: var(--ui-muted); }\n.kb-late { color: var(--ui-warning); font-weight: 700; }\n.kb-av { display: grid; place-items: center; width: 22px; height: 22px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.kb-av.alt { background: #0f766e; }\n.kb-add { display: flex; align-items: center; gap: 6px; width: 100%; margin-top: 8px; padding: 8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }\n.kb-add svg { width: 16px; height: 16px; }\n.kb-add:hover { color: var(--ui-text); background: var(--ui-surface); }\n.kb-add:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "KanbanColumn.svelte",
+        "code": "<!-- tearsheet kanban-column vc514d992 · https://qusaialjbali.github.io/tearsheet/zine/parts/kanban-column.html -->\n<section class=\"kanban\" aria-labelledby=\"kb-title\">\n  <header class=\"kb-head\"><h3 id=\"kb-title\">In progress</h3><span class=\"kb-count\">3</span></header>\n  <ul class=\"kb-cards\">\n    <li class=\"kb-card\">\n      <p class=\"kb-tags\"><span class=\"kb-tag design\">Design</span></p>\n      <p class=\"kb-name\">Dark mode for the settings page</p>\n      <p class=\"kb-meta\"><time datetime=\"2026-12-02\">Due 2 Dec</time><span class=\"kb-av\" title=\"Amara\">A</span></p>\n    </li>\n    <li class=\"kb-card\">\n      <p class=\"kb-tags\"><span class=\"kb-tag bug\">Bug</span><span class=\"kb-tag\">Forms</span></p>\n      <p class=\"kb-name\">Date picker loses focus after closing</p>\n      <p class=\"kb-meta\"><time datetime=\"2026-11-28\" class=\"kb-late\">Due tomorrow</time><span class=\"kb-av alt\" title=\"Bo\">B</span></p>\n    </li>\n    <li class=\"kb-card\">\n      <p class=\"kb-tags\"><span class=\"kb-tag\">Docs</span></p>\n      <p class=\"kb-name\">Write the toast usage notes</p>\n      <p class=\"kb-meta\"><span>No due date</span><span class=\"kb-av\" title=\"Chiara\">C</span></p>\n    </li>\n  </ul>\n  <button class=\"kb-add\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 4v12M4 10h12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> Add a card</button>\n</section>\n\n<style>\n.kanban { width: 100%; max-width: 300px; padding: 12px; background: var(--ui-surface-2); border-radius: var(--ui-radius); }\n.kb-head { display: flex; align-items: center; gap: 8px; padding: 2px 4px 10px; }\n.kb-head h3 { margin: 0; font-size: 14px; }\n.kb-count { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface); border-radius: 999px; }\n.kb-cards { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.kb-card { padding: 12px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius-sm); box-shadow: 0 1px 2px rgb(0 0 0 / 0.06); }\n.kb-card p { margin: 0; }\n.kb-tags { display: flex; gap: 4px; margin-bottom: 6px !important; }\n.kb-tag { padding: 1px 8px; font-size: 12px; font-weight: 700; color: var(--ui-muted); background: var(--ui-surface-2); border-radius: 4px; }\n.kb-tag.design { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.kb-tag.bug { color: var(--ui-danger); background: var(--ui-danger-soft); }\n.kb-name { font-size: 14px; font-weight: 600; line-height: 1.35; }\n.kb-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 10px !important; font-size: 12px; color: var(--ui-muted); }\n.kb-late { color: var(--ui-warning); font-weight: 700; }\n.kb-av { display: grid; place-items: center; width: 22px; height: 22px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.kb-av.alt { background: #0f766e; }\n.kb-add { display: flex; align-items: center; gap: 6px; width: 100%; margin-top: 8px; padding: 8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }\n.kb-add svg { width: 16px; height: 16px; }\n.kb-add:hover { color: var(--ui-text); background: var(--ui-surface); }\n.kb-add:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ]
+  }
+}

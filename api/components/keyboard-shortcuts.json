@@ -1,0 +1,88 @@
+{
+  "id": "keyboard-shortcuts",
+  "name": "Keyboard shortcuts",
+  "page": "p.29",
+  "collection": "Content",
+  "experimental": false,
+  "description": "A shortcut cheat sheet with properly styled <kbd> keys.",
+  "notes": "Use the <kbd> element for keys. Show the platform-correct modifier (Ctrl on Windows, ⌘ on Mac) when you can detect it.",
+  "usesJavaScript": false,
+  "sizeKb": 1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#keyboard-shortcuts",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/keyboard-shortcuts.json",
+  "version": "fffc5f7b",
+  "checked": "axe clean in light and dark; tightest text contrast 16.1:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 16.1,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- term: Search everything\n- definition: Ctrl K\n- term: Copy component\n- definition: Ctrl Shift C\n- term: Switch theme\n- definition: Shift D\n- term: Close dialog\n- definition: Esc",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet keyboard-shortcuts vfffc5f7b · https://qusaialjbali.github.io/tearsheet/zine/parts/keyboard-shortcuts.html -->\n<dl class=\"shortcuts\">\n  <div class=\"shortcut\"><dt>Search everything</dt><dd><kbd>Ctrl</kbd><kbd>K</kbd></dd></div>\n  <div class=\"shortcut\"><dt>Copy component</dt><dd><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>C</kbd></dd></div>\n  <div class=\"shortcut\"><dt>Switch theme</dt><dd><kbd>Shift</kbd><kbd>D</kbd></dd></div>\n  <div class=\"shortcut\"><dt>Close dialog</dt><dd><kbd>Esc</kbd></dd></div>\n</dl>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet keyboard-shortcuts vfffc5f7b · https://qusaialjbali.github.io/tearsheet/zine/parts/keyboard-shortcuts.html */\n.shortcuts { width: 100%; max-width: 380px; margin: 0; }\n.shortcut { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }\n.shortcut + .shortcut { border-top: 1px solid var(--ui-border); }\n.shortcut dt { font-size: 15px; color: var(--ui-text); }\n.shortcut dd { display: flex; gap: 4px; margin: 0; }\nkbd {\n  min-width: 26px;\n  padding: 3px 7px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 12px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-bottom-width: 3px;\n  border-radius: 6px;\n}"
+      }
+    ],
+    "react": [
+      {
+        "name": "KeyboardShortcuts.jsx",
+        "code": "/* tearsheet keyboard-shortcuts vfffc5f7b · https://qusaialjbali.github.io/tearsheet/zine/parts/keyboard-shortcuts.html */\nimport './KeyboardShortcuts.css';\n\nexport function KeyboardShortcuts() {\n  return (\n    <dl className=\"shortcuts\">\n      <div className=\"shortcut\"><dt>Search everything</dt><dd><kbd>Ctrl</kbd><kbd>K</kbd></dd></div>\n      <div className=\"shortcut\"><dt>Copy component</dt><dd><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>C</kbd></dd></div>\n      <div className=\"shortcut\"><dt>Switch theme</dt><dd><kbd>Shift</kbd><kbd>D</kbd></dd></div>\n      <div className=\"shortcut\"><dt>Close dialog</dt><dd><kbd>Esc</kbd></dd></div>\n    </dl>\n  );\n}"
+      },
+      {
+        "name": "KeyboardShortcuts.css",
+        "code": "/* tearsheet keyboard-shortcuts vfffc5f7b · https://qusaialjbali.github.io/tearsheet/zine/parts/keyboard-shortcuts.html */\n.shortcuts { width: 100%; max-width: 380px; margin: 0; }\n.shortcut { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }\n.shortcut + .shortcut { border-top: 1px solid var(--ui-border); }\n.shortcut dt { font-size: 15px; color: var(--ui-text); }\n.shortcut dd { display: flex; gap: 4px; margin: 0; }\nkbd {\n  min-width: 26px;\n  padding: 3px 7px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 12px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-bottom-width: 3px;\n  border-radius: 6px;\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "KeyboardShortcuts.vue",
+        "code": "<!-- tearsheet keyboard-shortcuts vfffc5f7b · https://qusaialjbali.github.io/tearsheet/zine/parts/keyboard-shortcuts.html -->\n<template>\n  <dl class=\"shortcuts\">\n    <div class=\"shortcut\"><dt>Search everything</dt><dd><kbd>Ctrl</kbd><kbd>K</kbd></dd></div>\n    <div class=\"shortcut\"><dt>Copy component</dt><dd><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>C</kbd></dd></div>\n    <div class=\"shortcut\"><dt>Switch theme</dt><dd><kbd>Shift</kbd><kbd>D</kbd></dd></div>\n    <div class=\"shortcut\"><dt>Close dialog</dt><dd><kbd>Esc</kbd></dd></div>\n  </dl>\n</template>\n\n<style scoped>\n.shortcuts { width: 100%; max-width: 380px; margin: 0; }\n.shortcut { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }\n.shortcut + .shortcut { border-top: 1px solid var(--ui-border); }\n.shortcut dt { font-size: 15px; color: var(--ui-text); }\n.shortcut dd { display: flex; gap: 4px; margin: 0; }\nkbd {\n  min-width: 26px;\n  padding: 3px 7px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 12px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-bottom-width: 3px;\n  border-radius: 6px;\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "KeyboardShortcuts.svelte",
+        "code": "<!-- tearsheet keyboard-shortcuts vfffc5f7b · https://qusaialjbali.github.io/tearsheet/zine/parts/keyboard-shortcuts.html -->\n<dl class=\"shortcuts\">\n  <div class=\"shortcut\"><dt>Search everything</dt><dd><kbd>Ctrl</kbd><kbd>K</kbd></dd></div>\n  <div class=\"shortcut\"><dt>Copy component</dt><dd><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>C</kbd></dd></div>\n  <div class=\"shortcut\"><dt>Switch theme</dt><dd><kbd>Shift</kbd><kbd>D</kbd></dd></div>\n  <div class=\"shortcut\"><dt>Close dialog</dt><dd><kbd>Esc</kbd></dd></div>\n</dl>\n\n<style>\n.shortcuts { width: 100%; max-width: 380px; margin: 0; }\n.shortcut { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }\n.shortcut + .shortcut { border-top: 1px solid var(--ui-border); }\n.shortcut dt { font-size: 15px; color: var(--ui-text); }\n.shortcut dd { display: flex; gap: 4px; margin: 0; }\nkbd {\n  min-width: 26px;\n  padding: 3px 7px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 12px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-bottom-width: 3px;\n  border-radius: 6px;\n}\n</style>"
+      }
+    ]
+  }
+}

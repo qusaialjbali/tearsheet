@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brand fitter: contrast-safe design tokens from one colour | Tearsheet</title>
+  <meta name="description" content="Paste a brand colour and get Tearsheet design tokens that pass WCAG AA in light and dark mode, with every contrast check shown and a live preview of the parts in your brand.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/fitter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Brand fitter | Tearsheet">
+  <meta property="og:description" content="One brand colour in, contrast-safe light and dark tokens out.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/fitter.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="part.css?v=5">
+  <style>
+    .fit-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 16px 24px; margin: 8px 0 22px; padding: 18px; border: 2px solid var(--rule); border-radius: 4px; background: var(--sheet); }
+    .fit-field { display: grid; gap: 6px; font-size: 15px; font-weight: 700; }
+    .fit-color { display: flex; align-items: center; gap: 8px; }
+    .fit-color input[type="color"] { width: 48px; height: 44px; padding: 2px; border: 2px solid var(--rule); border-radius: 4px; background: var(--stock); cursor: pointer; }
+    .fit-field input[type="text"], .fit-field select { min-height: 44px; padding: 0 12px; font: inherit; font-weight: 600; color: var(--ink); background: var(--stock); border: 2px solid var(--rule); border-radius: 4px; }
+    .fit-field input[type="text"] { width: 9ch; font-family: ui-monospace, Consolas, monospace; }
+    .fit-field input[type="range"] { width: 160px; accent-color: var(--pink); }
+    .fit-seg { display: inline-flex; border: 2px solid var(--rule); border-radius: 999px; overflow: hidden; }
+    .fit-seg button { min-height: 40px; padding: 0 16px; font: inherit; font-weight: 700; color: var(--ink); background: none; border: 0; cursor: pointer; }
+    .fit-seg button[aria-pressed="true"] { color: #1b1b20; background: var(--pink); }
+    .fit-notes { margin: 0 0 10px; font-size: 16px; }
+    .fit-checks { width: 100%; max-width: 640px; margin: 0 0 26px; border-collapse: collapse; font-size: 15px; }
+    .fit-checks th, .fit-checks td { padding: 7px 10px; text-align: left; border-bottom: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+    .fit-checks td:nth-child(2) { font-variant-numeric: tabular-nums; }
+    .fit-swatch { display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; border: 1px solid var(--rule); border-radius: 3px; }
+    .fit-pass { font-weight: 800; color: #15803d; }
+    [data-theme="dark"] .fit-pass { color: #4ade80; }
+    .fit-fail { font-weight: 800; color: #c81e1e; }
+    .fit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); align-items: start; gap: 14px; margin: 0 0 28px; }
+    .fit-grid figure { margin: 0; border: 2px solid var(--rule); border-radius: 4px; overflow: hidden; background: var(--sheet); }
+    .fit-grid figcaption { padding: 6px 10px; font-size: 13px; font-weight: 700; border-bottom: 2px solid var(--rule); }
+    .fit-grid iframe { display: block; width: 100%; height: 200px; border: 0; }
+    .fit-export { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 12px; }
+    .fit-export button, .fit-export a { min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; font: inherit; font-weight: 800; text-decoration: none; color: var(--ink); background: none; border: 2px solid var(--rule); border-radius: 999px; cursor: pointer; }
+    .fit-export .primary { color: #1b1b20; background: var(--pink); border-color: var(--pink); }
+    .fit-status { min-height: 1.4em; margin: 0; font-size: 14px; color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="parts/index.html">Every part</a><a href="guide.html">Guide</a><a href="fitter.html" aria-current="page">Brand fitter</a></nav>
+  </header>
+
+  <main class="part">
+    <p class="crumbs">Tools · tokens</p>
+    <h1><span class="a">Brand fitter</span><span class="b" aria-hidden="true">Brand fitter</span></h1>
+    <p class="lede">Give it one brand colour. It fits the design tokens to it, moving the colour only as far as WCAG AA contrast needs, in light and dark, and shows you every check.</p>
+
+    <form class="fit-controls" id="fit-form" onsubmit="return false">
+      <div class="fit-field">
+        <label for="fit-hex">Brand colour</label>
+        <div class="fit-color">
+          <input type="color" id="fit-picker" value="#e11d48" aria-label="Pick a brand colour">
+          <input type="text" id="fit-hex" value="#e11d48" spellcheck="false" autocomplete="off" inputmode="text" aria-describedby="fit-hex-hint">
+        </div>
+        <span id="fit-hex-hint" class="fit-status">Hex, like #e11d48</span>
+      </div>
+      <div class="fit-field">
+        <label for="fit-radius">Corner radius: <output id="fit-radius-out" for="fit-radius">12px</output></label>
+        <input type="range" id="fit-radius" min="0" max="24" value="12">
+      </div>
+      <div class="fit-field">
+        <label for="fit-font">Typeface</label>
+        <select id="fit-font">
+          <option value="">System sans (default)</option>
+          <option value='ui-rounded, "SF Pro Rounded", Nunito, system-ui, sans-serif'>Rounded</option>
+          <option value='Georgia, "Times New Roman", serif'>Serif</option>
+          <option value='ui-monospace, "SF Mono", Consolas, monospace'>Monospace</option>
+        </select>
+      </div>
+      <div class="fit-field">
+        <span id="fit-mode-label">Preview in</span>
+        <div class="fit-seg" role="group" aria-labelledby="fit-mode-label">
+          <button type="button" data-mode="light" aria-pressed="true">Light</button>
+          <button type="button" data-mode="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+    </form>
+
+    <h2>What changed</h2>
+    <div id="fit-notes" aria-live="polite"></div>
+    <table class="fit-checks">
+      <caption class="fit-status" style="caption-side: bottom; text-align: left; padding-top: 6px">WCAG AA asks for 4.5:1 for text. Every pair is checked in both themes.</caption>
+      <thead><tr><th scope="col">Pair</th><th scope="col">Contrast</th><th scope="col">Result</th></tr></thead>
+      <tbody id="fit-checks"></tbody>
+    </table>
+
+    <h2>Your brand on the parts</h2>
+    <div class="fit-grid" id="fit-grid"></div>
+
+    <h2>Take it</h2>
+    <div class="fit-export">
+      <button type="button" class="primary" id="fit-copy">Copy tokens.css</button>
+      <a id="fit-download" download="tokens.css" href="#">Download tokens.css</a>
+      <button type="button" id="fit-copy-cli">Copy the command</button>
+    </div>
+    <p class="fit-status"><code id="fit-cli"></code></p>
+    <p class="fit-status" id="fit-status" role="status"></p>
+  </main>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+
+  <script src="../shared/components.js?v=3"></script>
+  <script src="../shared/components-basics.js?v=3"></script>
+  <script src="../shared/components-everyday.js?v=3"></script>
+  <script src="../shared/components-data.js?v=3"></script>
+  <script src="../shared/components-sections.js?v=3"></script>
+  <script src="../shared/codegen.js?v=7"></script>
+  <script src="../shared/fitter.js?v=1"></script>
+  <script src="fitter.js?v=2"></script>
+</body>
+</html>

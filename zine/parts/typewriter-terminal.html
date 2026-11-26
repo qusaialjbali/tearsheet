@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Typewriter terminal · Weird component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A terminal window that types out a short session line by line, with a blinking caret and a replay.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Typewriter terminal · Weird component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A terminal window that types out a short session line by line, with a blinking caret and a replay.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Typewriter terminal","description":"A terminal window that types out a short session line by line, with a blinking caret and a replay.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#typewriter-terminal">Issue 01</a> · Weird · p.92</p>
+    <h1><span class="a">Typewriter terminal</span><span class="b" aria-hidden="true">Typewriter terminal</span></h1>
+    <p class="lede">A terminal window that types out a short session line by line, with a blinking caret and a replay.</p>
+    <p class="why"><b>Why it works:</b> The full transcript is real text for screen readers from the start; only the visual copy is typed. Reduced motion shows it all at once.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Typewriter terminal preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }
+.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.term-bar i:nth-child(2) { background: #febc2e; }
+.term-bar i:nth-child(3) { background: #28c840; }
+.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }
+.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }
+.term-screen .cmd { color: #86efac; }
+.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }
+.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }
+@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;figure class=&quot;term&quot;>
+  &lt;div class=&quot;term-bar&quot; aria-hidden=&quot;true&quot;>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;span>zsh&lt;/span>&lt;/div>
+  &lt;pre class=&quot;term-sr&quot;>$ npx tearsheet add modal
+Fetched modal (HTML, React, Vue, Svelte)
+$ open Modal.jsx
+Done. No install needed, honestly.&lt;/pre>
+  &lt;pre class=&quot;term-screen&quot; aria-hidden=&quot;true&quot;>&lt;/pre>
+  &lt;button class=&quot;term-replay&quot; type=&quot;button&quot;>Replay&lt;/button>
+&lt;/figure>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lines = root.querySelector('.term-sr').textContent.split('\n');
+  const screen = root.querySelector('.term-screen');
+  const replay = root.querySelector('.term-replay');
+  let timer;
+  const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };
+  const render = (upTo) => {
+    screen.replaceChildren();
+    let left = upTo;
+    for (const line of lines) {
+      if (left &lt;= 0) break;
+      const shown = line.slice(0, left);
+      left -= line.length + 1;
+      const span = document.createElement('span');
+      if (line.startsWith('$')) span.className = 'cmd';
+      span.textContent = shown;
+      screen.append(span, left > 0 ? '\n' : '');
+    }
+    screen.append(caret());
+  };
+  const total = lines.join('\n').length;
+  const play = () => {
+    clearTimeout(timer);
+    if (reduce) return render(total);
+    let i = 0;
+    const tick = () => {
+      render(++i);
+      if (i &lt; total) timer = setTimeout(tick, lines.join('\n')[i - 1] === '\n' ? 380 : 28 + Math.random() * 40);
+    };
+    tick();
+  };
+  replay.addEventListener('click', play);
+  play();
+  return () => { clearTimeout(timer); replay.removeEventListener('click', play); };
+}
+
+document.querySelectorAll(&quot;.term&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.56:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (9 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.56:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Movement stops or calms down with reduced motion on.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>button &quot;Replay&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- figure:
+  - text: $ npx tearsheet add modal Fetched modal (HTML, React, Vue, Svelte) $ open Modal.jsx Done. No install needed, honestly.
+  - button &quot;Replay&quot;</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#typewriter-terminal">See it in the zine</a> <code>npx -y tearsheet add typewriter-terminal</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html -->
+&lt;figure class=&quot;term&quot;>
+  &lt;div class=&quot;term-bar&quot; aria-hidden=&quot;true&quot;>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;span>zsh&lt;/span>&lt;/div>
+  &lt;pre class=&quot;term-sr&quot;>$ npx tearsheet add modal
+Fetched modal (HTML, React, Vue, Svelte)
+$ open Modal.jsx
+Done. No install needed, honestly.&lt;/pre>
+  &lt;pre class=&quot;term-screen&quot; aria-hidden=&quot;true&quot;>&lt;/pre>
+  &lt;button class=&quot;term-replay&quot; type=&quot;button&quot;>Replay&lt;/button>
+&lt;/figure></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */
+.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }
+.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.term-bar i:nth-child(2) { background: #febc2e; }
+.term-bar i:nth-child(3) { background: #28c840; }
+.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }
+.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }
+.term-screen .cmd { color: #86efac; }
+.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }
+.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }
+@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */
+function setup(root) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lines = root.querySelector('.term-sr').textContent.split('\n');
+  const screen = root.querySelector('.term-screen');
+  const replay = root.querySelector('.term-replay');
+  let timer;
+  const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };
+  const render = (upTo) => {
+    screen.replaceChildren();
+    let left = upTo;
+    for (const line of lines) {
+      if (left &lt;= 0) break;
+      const shown = line.slice(0, left);
+      left -= line.length + 1;
+      const span = document.createElement('span');
+      if (line.startsWith('$')) span.className = 'cmd';
+      span.textContent = shown;
+      screen.append(span, left > 0 ? '\n' : '');
+    }
+    screen.append(caret());
+  };
+  const total = lines.join('\n').length;
+  const play = () => {
+    clearTimeout(timer);
+    if (reduce) return render(total);
+    let i = 0;
+    const tick = () => {
+      render(++i);
+      if (i &lt; total) timer = setTimeout(tick, lines.join('\n')[i - 1] === '\n' ? 380 : 28 + Math.random() * 40);
+    };
+    tick();
+  };
+  replay.addEventListener('click', play);
+  play();
+  return () => { clearTimeout(timer); replay.removeEventListener('click', play); };
+}
+
+document.querySelectorAll(&quot;.term&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>TypewriterTerminal.jsx</span></div><pre tabindex="0"><code>/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */
+import { useEffect, useRef } from 'react';
+import './TypewriterTerminal.css';
+
+function setup(root) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lines = root.querySelector('.term-sr').textContent.split('\n');
+  const screen = root.querySelector('.term-screen');
+  const replay = root.querySelector('.term-replay');
+  let timer;
+  const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };
+  const render = (upTo) => {
+    screen.replaceChildren();
+    let left = upTo;
+    for (const line of lines) {
+      if (left &lt;= 0) break;
+      const shown = line.slice(0, left);
+      left -= line.length + 1;
+      const span = document.createElement('span');
+      if (line.startsWith('$')) span.className = 'cmd';
+      span.textContent = shown;
+      screen.append(span, left > 0 ? '\n' : '');
+    }
+    screen.append(caret());
+  };
+  const total = lines.join('\n').length;
+  const play = () => {
+    clearTimeout(timer);
+    if (reduce) return render(total);
+    let i = 0;
+    const tick = () => {
+      render(++i);
+      if (i &lt; total) timer = setTimeout(tick, lines.join('\n')[i - 1] === '\n' ? 380 : 28 + Math.random() * 40);
+    };
+    tick();
+  };
+  replay.addEventListener('click', play);
+  play();
+  return () => { clearTimeout(timer); replay.removeEventListener('click', play); };
+}
+
+export function TypewriterTerminal() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;figure ref={ref} className=&quot;term&quot;>
+      &lt;div className=&quot;term-bar&quot; aria-hidden=&quot;true&quot;>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;span>zsh&lt;/span>&lt;/div>
+      &lt;pre className=&quot;term-sr&quot;>$ npx tearsheet add modal
+    Fetched modal (HTML, React, Vue, Svelte)
+    $ open Modal.jsx
+    Done. No install needed, honestly.&lt;/pre>
+      &lt;pre className=&quot;term-screen&quot; aria-hidden=&quot;true&quot;>&lt;/pre>
+      &lt;button className=&quot;term-replay&quot; type=&quot;button&quot;>Replay&lt;/button>
+    &lt;/figure>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>TypewriterTerminal.css</span></div><pre tabindex="0"><code>/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */
+.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }
+.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.term-bar i:nth-child(2) { background: #febc2e; }
+.term-bar i:nth-child(3) { background: #28c840; }
+.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }
+.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }
+.term-screen .cmd { color: #86efac; }
+.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }
+.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }
+@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>TypewriterTerminal.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lines = root.querySelector('.term-sr').textContent.split('\n');
+  const screen = root.querySelector('.term-screen');
+  const replay = root.querySelector('.term-replay');
+  let timer;
+  const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };
+  const render = (upTo) => {
+    screen.replaceChildren();
+    let left = upTo;
+    for (const line of lines) {
+      if (left &lt;= 0) break;
+      const shown = line.slice(0, left);
+      left -= line.length + 1;
+      const span = document.createElement('span');
+      if (line.startsWith('$')) span.className = 'cmd';
+      span.textContent = shown;
+      screen.append(span, left > 0 ? '\n' : '');
+    }
+    screen.append(caret());
+  };
+  const total = lines.join('\n').length;
+  const play = () => {
+    clearTimeout(timer);
+    if (reduce) return render(total);
+    let i = 0;
+    const tick = () => {
+      render(++i);
+      if (i &lt; total) timer = setTimeout(tick, lines.join('\n')[i - 1] === '\n' ? 380 : 28 + Math.random() * 40);
+    };
+    tick();
+  };
+  replay.addEventListener('click', play);
+  play();
+  return () => { clearTimeout(timer); replay.removeEventListener('click', play); };
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;figure ref=&quot;el&quot; class=&quot;term&quot;>
+    &lt;div class=&quot;term-bar&quot; aria-hidden=&quot;true&quot;>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;span>zsh&lt;/span>&lt;/div>
+    &lt;pre class=&quot;term-sr&quot;>$ npx tearsheet add modal
+  Fetched modal (HTML, React, Vue, Svelte)
+  $ open Modal.jsx
+  Done. No install needed, honestly.&lt;/pre>
+    &lt;pre class=&quot;term-screen&quot; aria-hidden=&quot;true&quot;>&lt;/pre>
+    &lt;button class=&quot;term-replay&quot; type=&quot;button&quot;>Replay&lt;/button>
+  &lt;/figure>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }
+.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.term-bar i:nth-child(2) { background: #febc2e; }
+.term-bar i:nth-child(3) { background: #28c840; }
+.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }
+.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }
+.term-screen .cmd { color: #86efac; }
+.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }
+.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }
+@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>TypewriterTerminal.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './TypewriterTerminal.css';
+
+  let node;
+
+  function setup(root) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lines = root.querySelector('.term-sr').textContent.split('\n');
+    const screen = root.querySelector('.term-screen');
+    const replay = root.querySelector('.term-replay');
+    let timer;
+    const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };
+    const render = (upTo) => {
+      screen.replaceChildren();
+      let left = upTo;
+      for (const line of lines) {
+        if (left &lt;= 0) break;
+        const shown = line.slice(0, left);
+        left -= line.length + 1;
+        const span = document.createElement('span');
+        if (line.startsWith('$')) span.className = 'cmd';
+        span.textContent = shown;
+        screen.append(span, left > 0 ? '\n' : '');
+      }
+      screen.append(caret());
+    };
+    const total = lines.join('\n').length;
+    const play = () => {
+      clearTimeout(timer);
+      if (reduce) return render(total);
+      let i = 0;
+      const tick = () => {
+        render(++i);
+        if (i &lt; total) timer = setTimeout(tick, lines.join('\n')[i - 1] === '\n' ? 380 : 28 + Math.random() * 40);
+      };
+      tick();
+    };
+    replay.addEventListener('click', play);
+    play();
+    return () => { clearTimeout(timer); replay.removeEventListener('click', play); };
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;figure bind:this={node} class=&quot;term&quot;>
+  &lt;div class=&quot;term-bar&quot; aria-hidden=&quot;true&quot;>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;i>&lt;/i>&lt;span>zsh&lt;/span>&lt;/div>
+  &lt;pre class=&quot;term-sr&quot;>$ npx tearsheet add modal
+Fetched modal (HTML, React, Vue, Svelte)
+$ open Modal.jsx
+Done. No install needed, honestly.&lt;/pre>
+  &lt;pre class=&quot;term-screen&quot; aria-hidden=&quot;true&quot;>&lt;/pre>
+  &lt;button class=&quot;term-replay&quot; type=&quot;button&quot;>Replay&lt;/button>
+&lt;/figure></code></pre></div>
+      <div class="file"><div class="file-head"><span>TypewriterTerminal.css</span></div><pre tabindex="0"><code>/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */
+.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }
+.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.term-bar i:nth-child(2) { background: #febc2e; }
+.term-bar i:nth-child(3) { background: #28c840; }
+.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }
+.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }
+.term-screen .cmd { color: #86efac; }
+.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }
+.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }
+@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="slot-machine.html">← Idea slot machine</a>
+      <a rel="next" href="vinyl-player.html">Vinyl player →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

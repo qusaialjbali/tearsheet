@@ -1,0 +1,88 @@
+{
+  "id": "stat-group",
+  "name": "Stat group",
+  "page": "p.27",
+  "collection": "Content",
+  "experimental": false,
+  "description": "A row of key numbers with labelled change, built as a description list.",
+  "notes": "Say whether a change is good or bad in words; an up arrow is not always good news. Use tabular figures so digits line up.",
+  "usesJavaScript": false,
+  "sizeKb": 1.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#stat-group",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/stat-group.json",
+  "version": "aec28dcb",
+  "checked": "axe clean in light and dark; tightest text contrast 5.01:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 5.01,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- term: Visitors\n- definition: 48,210\n- definition: Up 12.4% on last week\n- term: Sign-ups\n- definition: 1,284\n- definition: Up 3.1% on last week\n- term: Average order\n- definition: $62.40\n- definition: Down 4.8% on last week",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet stat-group vaec28dcb · https://qusaialjbali.github.io/tearsheet/zine/parts/stat-group.html -->\n<dl class=\"stats\">\n  <div class=\"stat\">\n    <dt>Visitors</dt>\n    <dd class=\"stat-value\">48,210</dd>\n    <dd class=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Up 12.4% on last week</dd>\n  </div>\n  <div class=\"stat\">\n    <dt>Sign-ups</dt>\n    <dd class=\"stat-value\">1,284</dd>\n    <dd class=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Up 3.1% on last week</dd>\n  </div>\n  <div class=\"stat\">\n    <dt>Average order</dt>\n    <dd class=\"stat-value\">$62.40</dd>\n    <dd class=\"stat-delta stat-bad\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5.5 10.5 10 15l4.5-4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Down 4.8% on last week</dd>\n  </div>\n</dl>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet stat-group vaec28dcb · https://qusaialjbali.github.io/tearsheet/zine/parts/stat-group.html */\n.stats {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n  margin: 0;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.stat { padding: 20px 22px; border-right: 1px solid var(--ui-border); margin-right: -1px; }\n.stat dt { font-size: 13px; font-weight: 600; color: var(--ui-muted); }\n.stat dd { margin: 0; }\n.stat-value { margin-top: 4px !important; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: var(--ui-text); font-variant-numeric: tabular-nums; }\n.stat-delta { display: flex; align-items: center; gap: 4px; margin-top: 6px !important; font-size: 13px; font-weight: 600; }\n.stat-delta svg { width: 16px; height: 16px; }\n.stat-good { color: var(--ui-success); }\n.stat-bad { color: var(--ui-danger); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "StatGroup.jsx",
+        "code": "/* tearsheet stat-group vaec28dcb · https://qusaialjbali.github.io/tearsheet/zine/parts/stat-group.html */\nimport './StatGroup.css';\n\nexport function StatGroup() {\n  return (\n    <dl className=\"stats\">\n      <div className=\"stat\">\n        <dt>Visitors</dt>\n        <dd className=\"stat-value\">48,210</dd>\n        <dd className=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>Up 12.4% on last week</dd>\n      </div>\n      <div className=\"stat\">\n        <dt>Sign-ups</dt>\n        <dd className=\"stat-value\">1,284</dd>\n        <dd className=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>Up 3.1% on last week</dd>\n      </div>\n      <div className=\"stat\">\n        <dt>Average order</dt>\n        <dd className=\"stat-value\">$62.40</dd>\n        <dd className=\"stat-delta stat-bad\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5.5 10.5 10 15l4.5-4.5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>Down 4.8% on last week</dd>\n      </div>\n    </dl>\n  );\n}"
+      },
+      {
+        "name": "StatGroup.css",
+        "code": "/* tearsheet stat-group vaec28dcb · https://qusaialjbali.github.io/tearsheet/zine/parts/stat-group.html */\n.stats {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n  margin: 0;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.stat { padding: 20px 22px; border-right: 1px solid var(--ui-border); margin-right: -1px; }\n.stat dt { font-size: 13px; font-weight: 600; color: var(--ui-muted); }\n.stat dd { margin: 0; }\n.stat-value { margin-top: 4px !important; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: var(--ui-text); font-variant-numeric: tabular-nums; }\n.stat-delta { display: flex; align-items: center; gap: 4px; margin-top: 6px !important; font-size: 13px; font-weight: 600; }\n.stat-delta svg { width: 16px; height: 16px; }\n.stat-good { color: var(--ui-success); }\n.stat-bad { color: var(--ui-danger); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "StatGroup.vue",
+        "code": "<!-- tearsheet stat-group vaec28dcb · https://qusaialjbali.github.io/tearsheet/zine/parts/stat-group.html -->\n<template>\n  <dl class=\"stats\">\n    <div class=\"stat\">\n      <dt>Visitors</dt>\n      <dd class=\"stat-value\">48,210</dd>\n      <dd class=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Up 12.4% on last week</dd>\n    </div>\n    <div class=\"stat\">\n      <dt>Sign-ups</dt>\n      <dd class=\"stat-value\">1,284</dd>\n      <dd class=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Up 3.1% on last week</dd>\n    </div>\n    <div class=\"stat\">\n      <dt>Average order</dt>\n      <dd class=\"stat-value\">$62.40</dd>\n      <dd class=\"stat-delta stat-bad\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5.5 10.5 10 15l4.5-4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Down 4.8% on last week</dd>\n    </div>\n  </dl>\n</template>\n\n<style scoped>\n.stats {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n  margin: 0;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.stat { padding: 20px 22px; border-right: 1px solid var(--ui-border); margin-right: -1px; }\n.stat dt { font-size: 13px; font-weight: 600; color: var(--ui-muted); }\n.stat dd { margin: 0; }\n.stat-value { margin-top: 4px !important; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: var(--ui-text); font-variant-numeric: tabular-nums; }\n.stat-delta { display: flex; align-items: center; gap: 4px; margin-top: 6px !important; font-size: 13px; font-weight: 600; }\n.stat-delta svg { width: 16px; height: 16px; }\n.stat-good { color: var(--ui-success); }\n.stat-bad { color: var(--ui-danger); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "StatGroup.svelte",
+        "code": "<!-- tearsheet stat-group vaec28dcb · https://qusaialjbali.github.io/tearsheet/zine/parts/stat-group.html -->\n<dl class=\"stats\">\n  <div class=\"stat\">\n    <dt>Visitors</dt>\n    <dd class=\"stat-value\">48,210</dd>\n    <dd class=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Up 12.4% on last week</dd>\n  </div>\n  <div class=\"stat\">\n    <dt>Sign-ups</dt>\n    <dd class=\"stat-value\">1,284</dd>\n    <dd class=\"stat-delta stat-good\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 15V5M5.5 9.5 10 5l4.5 4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Up 3.1% on last week</dd>\n  </div>\n  <div class=\"stat\">\n    <dt>Average order</dt>\n    <dd class=\"stat-value\">$62.40</dd>\n    <dd class=\"stat-delta stat-bad\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5.5 10.5 10 15l4.5-4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Down 4.8% on last week</dd>\n  </div>\n</dl>\n\n<style>\n.stats {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\n  margin: 0;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.stat { padding: 20px 22px; border-right: 1px solid var(--ui-border); margin-right: -1px; }\n.stat dt { font-size: 13px; font-weight: 600; color: var(--ui-muted); }\n.stat dd { margin: 0; }\n.stat-value { margin-top: 4px !important; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: var(--ui-text); font-variant-numeric: tabular-nums; }\n.stat-delta { display: flex; align-items: center; gap: 4px; margin-top: 6px !important; font-size: 13px; font-weight: 600; }\n.stat-delta svg { width: 16px; height: 16px; }\n.stat-good { color: var(--ui-success); }\n.stat-bad { color: var(--ui-danger); }\n</style>"
+      }
+    ]
+  }
+}

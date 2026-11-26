@@ -1,0 +1,91 @@
+{
+  "id": "empty-state",
+  "name": "Empty state",
+  "page": "p.49",
+  "collection": "Feedback",
+  "experimental": false,
+  "description": "Explains why a view is empty and offers the next step.",
+  "notes": "An empty screen is a chance to teach. Say what will appear here and give one clear way to get started.",
+  "usesJavaScript": false,
+  "sizeKb": 2.1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#empty-state",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/empty-state.json",
+  "version": "c0a4ccc5",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"New project\"",
+      "button \"Browse templates\""
+    ],
+    "tree": "- heading \"No projects yet\" [level=3]\n- paragraph: Projects you create will show up here. Start from a template or a blank canvas.\n- button \"New project\"\n- button \"Browse templates\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet empty-state vc0a4ccc5 · https://qusaialjbali.github.io/tearsheet/zine/parts/empty-state.html -->\n<div class=\"empty\">\n  <svg class=\"empty-icon\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M6 14a4 4 0 0 1 4-4h9l4 5h15a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><path d=\"M24 22v10M19 27h10\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></svg>\n  <h3 class=\"empty-title\">No projects yet</h3>\n  <p class=\"empty-text\">Projects you create will show up here. Start from a template or a blank canvas.</p>\n  <div class=\"empty-actions\">\n    <button class=\"btn btn-primary\" type=\"button\">New project</button>\n    <button class=\"btn btn-secondary\" type=\"button\">Browse templates</button>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet empty-state vc0a4ccc5 · https://qusaialjbali.github.io/tearsheet/zine/parts/empty-state.html */\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.empty {\n  display: grid;\n  justify-items: center;\n  max-width: 420px;\n  padding: 40px 24px;\n  text-align: center;\n  border: 1.5px dashed var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.empty-icon {\n  width: 56px;\n  height: 56px;\n  padding: 10px;\n  margin-bottom: 16px;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 16px;\n}\n.empty-title { margin: 0 0 6px; font-size: 18px; color: var(--ui-text); }\n.empty-text { margin: 0 0 20px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.empty-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }"
+      }
+    ],
+    "react": [
+      {
+        "name": "EmptyState.jsx",
+        "code": "/* tearsheet empty-state vc0a4ccc5 · https://qusaialjbali.github.io/tearsheet/zine/parts/empty-state.html */\nimport './EmptyState.css';\n\nexport function EmptyState() {\n  return (\n    <div className=\"empty\">\n      <svg className=\"empty-icon\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M6 14a4 4 0 0 1 4-4h9l4 5h15a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.5\" strokeLinejoin=\"round\"/><path d=\"M24 22v10M19 27h10\" stroke=\"currentColor\" strokeWidth=\"2.5\" strokeLinecap=\"round\"/></svg>\n      <h3 className=\"empty-title\">No projects yet</h3>\n      <p className=\"empty-text\">Projects you create will show up here. Start from a template or a blank canvas.</p>\n      <div className=\"empty-actions\">\n        <button className=\"btn btn-primary\" type=\"button\">New project</button>\n        <button className=\"btn btn-secondary\" type=\"button\">Browse templates</button>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "EmptyState.css",
+        "code": "/* tearsheet empty-state vc0a4ccc5 · https://qusaialjbali.github.io/tearsheet/zine/parts/empty-state.html */\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.empty {\n  display: grid;\n  justify-items: center;\n  max-width: 420px;\n  padding: 40px 24px;\n  text-align: center;\n  border: 1.5px dashed var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.empty-icon {\n  width: 56px;\n  height: 56px;\n  padding: 10px;\n  margin-bottom: 16px;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 16px;\n}\n.empty-title { margin: 0 0 6px; font-size: 18px; color: var(--ui-text); }\n.empty-text { margin: 0 0 20px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.empty-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "EmptyState.vue",
+        "code": "<!-- tearsheet empty-state vc0a4ccc5 · https://qusaialjbali.github.io/tearsheet/zine/parts/empty-state.html -->\n<template>\n  <div class=\"empty\">\n    <svg class=\"empty-icon\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M6 14a4 4 0 0 1 4-4h9l4 5h15a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><path d=\"M24 22v10M19 27h10\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></svg>\n    <h3 class=\"empty-title\">No projects yet</h3>\n    <p class=\"empty-text\">Projects you create will show up here. Start from a template or a blank canvas.</p>\n    <div class=\"empty-actions\">\n      <button class=\"btn btn-primary\" type=\"button\">New project</button>\n      <button class=\"btn btn-secondary\" type=\"button\">Browse templates</button>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.empty {\n  display: grid;\n  justify-items: center;\n  max-width: 420px;\n  padding: 40px 24px;\n  text-align: center;\n  border: 1.5px dashed var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.empty-icon {\n  width: 56px;\n  height: 56px;\n  padding: 10px;\n  margin-bottom: 16px;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 16px;\n}\n.empty-title { margin: 0 0 6px; font-size: 18px; color: var(--ui-text); }\n.empty-text { margin: 0 0 20px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.empty-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "EmptyState.svelte",
+        "code": "<!-- tearsheet empty-state vc0a4ccc5 · https://qusaialjbali.github.io/tearsheet/zine/parts/empty-state.html -->\n<div class=\"empty\">\n  <svg class=\"empty-icon\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M6 14a4 4 0 0 1 4-4h9l4 5h15a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><path d=\"M24 22v10M19 27h10\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></svg>\n  <h3 class=\"empty-title\">No projects yet</h3>\n  <p class=\"empty-text\">Projects you create will show up here. Start from a template or a blank canvas.</p>\n  <div class=\"empty-actions\">\n    <button class=\"btn btn-primary\" type=\"button\">New project</button>\n    <button class=\"btn btn-secondary\" type=\"button\">Browse templates</button>\n  </div>\n</div>\n\n<style>\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.empty {\n  display: grid;\n  justify-items: center;\n  max-width: 420px;\n  padding: 40px 24px;\n  text-align: center;\n  border: 1.5px dashed var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.empty-icon {\n  width: 56px;\n  height: 56px;\n  padding: 10px;\n  margin-bottom: 16px;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 16px;\n}\n.empty-title { margin: 0 0 6px; font-size: 18px; color: var(--ui-text); }\n.empty-text { margin: 0 0 20px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.empty-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }\n</style>"
+      }
+    ]
+  }
+}

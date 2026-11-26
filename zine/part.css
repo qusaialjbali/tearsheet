@@ -1,0 +1,64 @@
+/* Static part pages (zine/parts/*.html): the zine's inks on a single, quiet page. */
+@font-face { font-family: "Bricolage Grotesque"; src: url("../shared/fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+:root { --stock: #f6f6f2; --sheet: #fafaf7; --ink: #1b1b20; --ink-2: #4a4a55; --rule: #1b1b20; --soft: #ebebe4; --pink: #ff48b0; --blue: #0078bf; --blue-text: #1f4f9e; --display: "Bricolage Grotesque", system-ui, sans-serif; color-scheme: light; }
+[data-theme="dark"] { --stock: #0b0b0e; --sheet: #141418; --ink: #f2f2ee; --ink-2: #b4b4bd; --rule: #f2f2ee; --soft: #1d1d22; --blue-text: #8cc4ff; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--display); font-size: 17px; line-height: 1.55; color: var(--ink); background: var(--stock); }
+a { color: inherit; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 980px; margin: 0 auto; padding: 16px 20px; border-bottom: 2px solid var(--rule); }
+.brand { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; }
+.brand span { color: var(--pink); }
+.top nav { display: flex; gap: 6px; }
+.top nav a { padding: 6px 12px; font-weight: 600; text-decoration: none; border-radius: 999px; }
+.top nav a:hover { background: var(--soft); }
+.part { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
+.crumbs { margin: 0 0 8px; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--blue-text); }
+.part h1 { position: relative; display: inline-block; margin: 0 0 12px; font-size: clamp(40px, 8vw, 76px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; }
+.part h1 .a { position: relative; z-index: 1; color: var(--ink); mix-blend-mode: multiply; }
+.part h1 .b { position: absolute; left: 0; top: 0; color: var(--pink); transform: translate(0.04em, 0.035em); }
+[data-theme="dark"] .part h1 .a { mix-blend-mode: normal; }
+.lede { max-width: 62ch; margin: 0 0 10px; font-size: 20px; }
+.why { max-width: 70ch; margin: 0 0 20px; color: var(--ink-2); }
+.preview { margin: 0 0 14px; border: 2px solid var(--pink); border-radius: 4px; background: var(--sheet); }
+.preview iframe { display: block; width: 100%; height: 240px; border: 0; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 0 0 6px; }
+.actions a { padding: 8px 16px; font-weight: 800; text-decoration: none; color: #1b1b20; background: var(--pink); border-radius: 999px; }
+.actions code, .file code { font-family: ui-monospace, "SF Mono", Consolas, monospace; }
+.actions code { padding: 4px 8px; font-size: 14px; background: var(--soft); border-radius: 6px; overflow-wrap: anywhere; }
+.needs { margin: 0 0 24px; font-size: 15px; color: var(--ink-2); }
+.format { margin: 0 0 10px; border-top: 2px dashed var(--rule); }
+.format summary { padding: 12px 0; cursor: pointer; }
+.format summary h2 { display: inline; margin: 0; font-size: 22px; letter-spacing: -0.02em; }
+.file { margin: 0 0 14px; border: 2px solid var(--rule); border-radius: 4px; background: var(--sheet); }
+.file-head { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; font-size: 14px; font-weight: 700; border-bottom: 2px solid var(--rule); }
+.copy { padding: 4px 12px; font: inherit; font-size: 13px; font-weight: 700; color: inherit; background: none; border: 2px solid currentColor; border-radius: 999px; cursor: pointer; }
+.file pre { max-height: 420px; margin: 0; padding: 12px 14px; overflow: auto; font-size: 13.5px; line-height: 1.6; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; padding-top: 16px; border-top: 2px solid var(--rule); font-weight: 700; }
+.every section { margin-top: 28px; }
+.every h2 { margin: 0 0 4px; font-size: 28px; letter-spacing: -0.02em; }
+.every h3 { margin: 18px 0 6px; font-size: 18px; color: var(--blue-text); }
+.every ul { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.every li a { font-weight: 700; }
+.every li span { color: var(--ink-2); }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.foot { max-width: 980px; margin: 0 auto; padding: 20px; font-size: 14px; color: var(--ink-2); border-top: 2px solid var(--rule); }
+
+/* Stress toggles and the receipt */
+.stress { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 8px; font-size: 14px; }
+.stress-label { font-weight: 700; color: var(--ink-2); }
+.stress-btn { min-height: 32px; padding: 0 12px; font: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: transparent; border: 2px solid var(--rule); border-radius: 999px; cursor: pointer; }
+.stress-btn[aria-pressed="true"] { color: #1b1b20; background: var(--pink); border-color: var(--pink); }
+.stress-status { flex-basis: 100%; max-width: 62ch; font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+.receipt { position: relative; max-width: 620px; margin: 0 0 22px; padding: 12px 16px 18px; font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 13px; line-height: 1.55; background: var(--sheet); border: 2px dashed var(--rule); }
+.receipt summary { cursor: pointer; font-weight: 700; }
+.r-lines, .r-keys { margin: 10px 0 0; padding-left: 0; list-style: none; }
+.r-lines li { padding: 3px 0; border-bottom: 1px dotted color-mix(in srgb, var(--ink) 35%, transparent); }
+.r-ok, .r-no { display: inline-block; min-width: 4.2ch; color: var(--blue-text); }
+.r-no { color: #c2187a; }
+.r-keys { padding-left: 2.4em; list-style: decimal; }
+.r-head { margin: 12px 0 0; font-weight: 700; }
+.r-tree { max-height: 220px; margin: 6px 0 0; padding: 8px; overflow: auto; font-size: 12px; white-space: pre-wrap; background: var(--stock); border: 1px solid var(--rule); }
+.r-foot { margin: 12px 0 0; font-size: 12px; color: var(--ink-2); }
+/* Small screens: keep the header on one line */
+.top nav a { white-space: nowrap; }
+@media (max-width: 480px) { .top { padding: 12px 14px; gap: 8px; } .brand { font-size: 19px; } .top nav { gap: 0; } .top nav a { padding: 6px 7px; font-size: 15px; } }

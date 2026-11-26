@@ -1,0 +1,98 @@
+{
+  "id": "hold-to-confirm",
+  "name": "Hold to confirm",
+  "page": "p.82",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A destructive button you have to press and hold, so a stray click can never delete anything.",
+  "notes": "Works with mouse, touch, Space and Enter. Letting go early cancels. Tell people they need to hold, right next to the button.",
+  "usesJavaScript": true,
+  "sizeKb": 3,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#hold-to-confirm",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/hold-to-confirm.json",
+  "version": "54b2d2e1",
+  "checked": "axe clean in light and dark; tightest text contrast 5.24:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 15
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 15
+      }
+    },
+    "contrast": {
+      "ratio": 5.24,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Hold to delete\""
+    ],
+    "tree": "- button \"Hold to delete\"\n- paragraph: Press and hold for 1.5 seconds",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html -->\n<div class=\"hold-demo\">\n  <button class=\"hold\" type=\"button\" aria-describedby=\"hold-hint\">\n    <span class=\"hold-fill\" aria-hidden=\"true\"></span>\n    <span class=\"hold-label\">Hold to delete</span>\n  </button>\n  <p class=\"hold-hint\" id=\"hold-hint\">Press and hold for 1.5 seconds</p>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html */\n.hold-demo { display: grid; justify-items: center; gap: 10px; }\n.hold {\n  position: relative;\n  overflow: hidden;\n  min-width: 220px;\n  padding: 14px 24px;\n  font: inherit;\n  font-size: 15px;\n  font-weight: 700;\n  color: var(--ui-danger);\n  background: var(--ui-danger-soft);\n  border: 2px solid var(--ui-danger);\n  border-radius: 999px;\n  cursor: pointer;\n  user-select: none;\n  -webkit-user-select: none;\n  touch-action: none;\n}\n.hold:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.hold-fill {\n  position: absolute;\n  inset: 0;\n  background: var(--ui-danger);\n  transform: scaleX(0);\n  transform-origin: left;\n  transition: transform 0.3s ease-out;\n}\n.hold.is-holding .hold-fill { transform: scaleX(1); transition: transform 1.5s linear; }\n.hold-label { position: relative; transition: color 0.2s; }\n.hold.is-holding .hold-label, .hold.is-done .hold-label { color: var(--ui-danger-text); }\n.hold.is-done .hold-fill { transform: scaleX(1); }\n.hold.is-holding { animation: hold-shake 0.12s 1.1s 3; }\n@keyframes hold-shake { 50% { translate: 2px 0; } }\n.hold-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n@media (prefers-reduced-motion: reduce) { .hold.is-holding { animation: none; } }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html */\nfunction setup(root) {\n  const button = root.querySelector('.hold');\n  const label = root.querySelector('.hold-label');\n  const original = label.textContent;\n  let timer;\n  let resetTimer;\n\n  const start = () => {\n    if (button.classList.contains('is-done')) return;\n    button.classList.add('is-holding');\n    timer = setTimeout(() => {\n      button.classList.remove('is-holding');\n      button.classList.add('is-done');\n      label.textContent = 'Deleted';\n      resetTimer = setTimeout(() => {\n        button.classList.remove('is-done');\n        label.textContent = original;\n      }, 2200);\n    }, 1500);\n  };\n  const cancel = () => {\n    clearTimeout(timer);\n    button.classList.remove('is-holding');\n  };\n  const onKeyDown = (e) => {\n    if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) {\n      e.preventDefault();\n      start();\n    }\n  };\n  const onKeyUp = (e) => {\n    if (e.key === ' ' || e.key === 'Enter') cancel();\n  };\n\n  button.addEventListener('pointerdown', start);\n  button.addEventListener('pointerup', cancel);\n  button.addEventListener('pointerleave', cancel);\n  button.addEventListener('keydown', onKeyDown);\n  button.addEventListener('keyup', onKeyUp);\n  return () => {\n    clearTimeout(timer);\n    clearTimeout(resetTimer);\n    button.removeEventListener('pointerdown', start);\n    button.removeEventListener('pointerup', cancel);\n    button.removeEventListener('pointerleave', cancel);\n    button.removeEventListener('keydown', onKeyDown);\n    button.removeEventListener('keyup', onKeyUp);\n  };\n}\n\ndocument.querySelectorAll(\".hold-demo\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "HoldToConfirm.jsx",
+        "code": "/* tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html */\nimport { useEffect, useRef } from 'react';\nimport './HoldToConfirm.css';\n\nfunction setup(root) {\n  const button = root.querySelector('.hold');\n  const label = root.querySelector('.hold-label');\n  const original = label.textContent;\n  let timer;\n  let resetTimer;\n\n  const start = () => {\n    if (button.classList.contains('is-done')) return;\n    button.classList.add('is-holding');\n    timer = setTimeout(() => {\n      button.classList.remove('is-holding');\n      button.classList.add('is-done');\n      label.textContent = 'Deleted';\n      resetTimer = setTimeout(() => {\n        button.classList.remove('is-done');\n        label.textContent = original;\n      }, 2200);\n    }, 1500);\n  };\n  const cancel = () => {\n    clearTimeout(timer);\n    button.classList.remove('is-holding');\n  };\n  const onKeyDown = (e) => {\n    if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) {\n      e.preventDefault();\n      start();\n    }\n  };\n  const onKeyUp = (e) => {\n    if (e.key === ' ' || e.key === 'Enter') cancel();\n  };\n\n  button.addEventListener('pointerdown', start);\n  button.addEventListener('pointerup', cancel);\n  button.addEventListener('pointerleave', cancel);\n  button.addEventListener('keydown', onKeyDown);\n  button.addEventListener('keyup', onKeyUp);\n  return () => {\n    clearTimeout(timer);\n    clearTimeout(resetTimer);\n    button.removeEventListener('pointerdown', start);\n    button.removeEventListener('pointerup', cancel);\n    button.removeEventListener('pointerleave', cancel);\n    button.removeEventListener('keydown', onKeyDown);\n    button.removeEventListener('keyup', onKeyUp);\n  };\n}\n\nexport function HoldToConfirm() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"hold-demo\">\n      <button className=\"hold\" type=\"button\" aria-describedby=\"hold-hint\">\n        <span className=\"hold-fill\" aria-hidden=\"true\"></span>\n        <span className=\"hold-label\">Hold to delete</span>\n      </button>\n      <p className=\"hold-hint\" id=\"hold-hint\">Press and hold for 1.5 seconds</p>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "HoldToConfirm.css",
+        "code": "/* tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html */\n.hold-demo { display: grid; justify-items: center; gap: 10px; }\n.hold {\n  position: relative;\n  overflow: hidden;\n  min-width: 220px;\n  padding: 14px 24px;\n  font: inherit;\n  font-size: 15px;\n  font-weight: 700;\n  color: var(--ui-danger);\n  background: var(--ui-danger-soft);\n  border: 2px solid var(--ui-danger);\n  border-radius: 999px;\n  cursor: pointer;\n  user-select: none;\n  -webkit-user-select: none;\n  touch-action: none;\n}\n.hold:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.hold-fill {\n  position: absolute;\n  inset: 0;\n  background: var(--ui-danger);\n  transform: scaleX(0);\n  transform-origin: left;\n  transition: transform 0.3s ease-out;\n}\n.hold.is-holding .hold-fill { transform: scaleX(1); transition: transform 1.5s linear; }\n.hold-label { position: relative; transition: color 0.2s; }\n.hold.is-holding .hold-label, .hold.is-done .hold-label { color: var(--ui-danger-text); }\n.hold.is-done .hold-fill { transform: scaleX(1); }\n.hold.is-holding { animation: hold-shake 0.12s 1.1s 3; }\n@keyframes hold-shake { 50% { translate: 2px 0; } }\n.hold-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n@media (prefers-reduced-motion: reduce) { .hold.is-holding { animation: none; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "HoldToConfirm.vue",
+        "code": "<!-- tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const button = root.querySelector('.hold');\n  const label = root.querySelector('.hold-label');\n  const original = label.textContent;\n  let timer;\n  let resetTimer;\n\n  const start = () => {\n    if (button.classList.contains('is-done')) return;\n    button.classList.add('is-holding');\n    timer = setTimeout(() => {\n      button.classList.remove('is-holding');\n      button.classList.add('is-done');\n      label.textContent = 'Deleted';\n      resetTimer = setTimeout(() => {\n        button.classList.remove('is-done');\n        label.textContent = original;\n      }, 2200);\n    }, 1500);\n  };\n  const cancel = () => {\n    clearTimeout(timer);\n    button.classList.remove('is-holding');\n  };\n  const onKeyDown = (e) => {\n    if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) {\n      e.preventDefault();\n      start();\n    }\n  };\n  const onKeyUp = (e) => {\n    if (e.key === ' ' || e.key === 'Enter') cancel();\n  };\n\n  button.addEventListener('pointerdown', start);\n  button.addEventListener('pointerup', cancel);\n  button.addEventListener('pointerleave', cancel);\n  button.addEventListener('keydown', onKeyDown);\n  button.addEventListener('keyup', onKeyUp);\n  return () => {\n    clearTimeout(timer);\n    clearTimeout(resetTimer);\n    button.removeEventListener('pointerdown', start);\n    button.removeEventListener('pointerup', cancel);\n    button.removeEventListener('pointerleave', cancel);\n    button.removeEventListener('keydown', onKeyDown);\n    button.removeEventListener('keyup', onKeyUp);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"hold-demo\">\n    <button class=\"hold\" type=\"button\" aria-describedby=\"hold-hint\">\n      <span class=\"hold-fill\" aria-hidden=\"true\"></span>\n      <span class=\"hold-label\">Hold to delete</span>\n    </button>\n    <p class=\"hold-hint\" id=\"hold-hint\">Press and hold for 1.5 seconds</p>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.hold-demo { display: grid; justify-items: center; gap: 10px; }\n.hold {\n  position: relative;\n  overflow: hidden;\n  min-width: 220px;\n  padding: 14px 24px;\n  font: inherit;\n  font-size: 15px;\n  font-weight: 700;\n  color: var(--ui-danger);\n  background: var(--ui-danger-soft);\n  border: 2px solid var(--ui-danger);\n  border-radius: 999px;\n  cursor: pointer;\n  user-select: none;\n  -webkit-user-select: none;\n  touch-action: none;\n}\n.hold:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.hold-fill {\n  position: absolute;\n  inset: 0;\n  background: var(--ui-danger);\n  transform: scaleX(0);\n  transform-origin: left;\n  transition: transform 0.3s ease-out;\n}\n.hold.is-holding .hold-fill { transform: scaleX(1); transition: transform 1.5s linear; }\n.hold-label { position: relative; transition: color 0.2s; }\n.hold.is-holding .hold-label, .hold.is-done .hold-label { color: var(--ui-danger-text); }\n.hold.is-done .hold-fill { transform: scaleX(1); }\n.hold.is-holding { animation: hold-shake 0.12s 1.1s 3; }\n@keyframes hold-shake { 50% { translate: 2px 0; } }\n.hold-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n@media (prefers-reduced-motion: reduce) { .hold.is-holding { animation: none; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "HoldToConfirm.svelte",
+        "code": "<!-- tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './HoldToConfirm.css';\n\n  let node;\n\n  function setup(root) {\n    const button = root.querySelector('.hold');\n    const label = root.querySelector('.hold-label');\n    const original = label.textContent;\n    let timer;\n    let resetTimer;\n\n    const start = () => {\n      if (button.classList.contains('is-done')) return;\n      button.classList.add('is-holding');\n      timer = setTimeout(() => {\n        button.classList.remove('is-holding');\n        button.classList.add('is-done');\n        label.textContent = 'Deleted';\n        resetTimer = setTimeout(() => {\n          button.classList.remove('is-done');\n          label.textContent = original;\n        }, 2200);\n      }, 1500);\n    };\n    const cancel = () => {\n      clearTimeout(timer);\n      button.classList.remove('is-holding');\n    };\n    const onKeyDown = (e) => {\n      if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) {\n        e.preventDefault();\n        start();\n      }\n    };\n    const onKeyUp = (e) => {\n      if (e.key === ' ' || e.key === 'Enter') cancel();\n    };\n\n    button.addEventListener('pointerdown', start);\n    button.addEventListener('pointerup', cancel);\n    button.addEventListener('pointerleave', cancel);\n    button.addEventListener('keydown', onKeyDown);\n    button.addEventListener('keyup', onKeyUp);\n    return () => {\n      clearTimeout(timer);\n      clearTimeout(resetTimer);\n      button.removeEventListener('pointerdown', start);\n      button.removeEventListener('pointerup', cancel);\n      button.removeEventListener('pointerleave', cancel);\n      button.removeEventListener('keydown', onKeyDown);\n      button.removeEventListener('keyup', onKeyUp);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"hold-demo\">\n  <button class=\"hold\" type=\"button\" aria-describedby=\"hold-hint\">\n    <span class=\"hold-fill\" aria-hidden=\"true\"></span>\n    <span class=\"hold-label\">Hold to delete</span>\n  </button>\n  <p class=\"hold-hint\" id=\"hold-hint\">Press and hold for 1.5 seconds</p>\n</div>"
+      },
+      {
+        "name": "HoldToConfirm.css",
+        "code": "/* tearsheet hold-to-confirm v54b2d2e1 · https://qusaialjbali.github.io/tearsheet/zine/parts/hold-to-confirm.html */\n.hold-demo { display: grid; justify-items: center; gap: 10px; }\n.hold {\n  position: relative;\n  overflow: hidden;\n  min-width: 220px;\n  padding: 14px 24px;\n  font: inherit;\n  font-size: 15px;\n  font-weight: 700;\n  color: var(--ui-danger);\n  background: var(--ui-danger-soft);\n  border: 2px solid var(--ui-danger);\n  border-radius: 999px;\n  cursor: pointer;\n  user-select: none;\n  -webkit-user-select: none;\n  touch-action: none;\n}\n.hold:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.hold-fill {\n  position: absolute;\n  inset: 0;\n  background: var(--ui-danger);\n  transform: scaleX(0);\n  transform-origin: left;\n  transition: transform 0.3s ease-out;\n}\n.hold.is-holding .hold-fill { transform: scaleX(1); transition: transform 1.5s linear; }\n.hold-label { position: relative; transition: color 0.2s; }\n.hold.is-holding .hold-label, .hold.is-done .hold-label { color: var(--ui-danger-text); }\n.hold.is-done .hold-fill { transform: scaleX(1); }\n.hold.is-holding { animation: hold-shake 0.12s 1.1s 3; }\n@keyframes hold-shake { 50% { translate: 2px 0; } }\n.hold-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n@media (prefers-reduced-motion: reduce) { .hold.is-holding { animation: none; } }"
+      }
+    ]
+  }
+}

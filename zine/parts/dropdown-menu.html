@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dropdown menu · Overlays component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="An actions menu built on &lt;details>, with icons and a separated destructive item.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Dropdown menu · Overlays component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="An actions menu built on &lt;details>, with icons and a separated destructive item.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Dropdown menu","description":"An actions menu built on <details>, with icons and a separated destructive item.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#dropdown-menu">Issue 01</a> · Overlays · p.57</p>
+    <h1><span class="a">Dropdown menu</span><span class="b" aria-hidden="true">Dropdown menu</span></h1>
+    <p class="lede">An actions menu built on &lt;details>, with icons and a separated destructive item.</p>
+    <p class="why"><b>Why it works:</b> Group items, put destructive actions last and visually apart. For a full keyboard menu pattern (arrow keys, typeahead) add the WAI-ARIA menu button script.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Dropdown menu preview" data-min="300" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.menu { position: relative; display: inline-block; }
+.menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  list-style: none;
+}
+.menu-trigger::-webkit-details-marker { display: none; }
+.menu-trigger svg { width: 16px; height: 16px; transition: transform 0.2s; }
+.menu[open] .menu-trigger svg { transform: rotate(180deg); }
+.menu-trigger:hover { background: var(--ui-surface-2); }
+.menu-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 10;
+  min-width: 200px;
+  padding: 6px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow-lg);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 14px;
+  text-align: start;
+  color: var(--ui-text);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.menu-item svg { width: 18px; height: 18px; color: var(--ui-muted); }
+.menu-item:hover, .menu-item:focus-visible { outline: none; background: var(--ui-surface-2); }
+.menu-danger, .menu-danger svg { color: var(--ui-danger); }
+.menu-sep { margin: 6px 4px; border: 0; border-top: 1px solid var(--ui-border); }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;details class=&quot;menu&quot;>
+  &lt;summary class=&quot;menu-trigger&quot;>Options &lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;m5 8 5 5 5-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/summary>
+  &lt;div class=&quot;menu-list&quot;>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M13.5 3.5 16.5 6.5 7 16H4v-3Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Rename&lt;/button>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;rect x=&quot;7&quot; y=&quot;7&quot; width=&quot;9&quot; height=&quot;9&quot; rx=&quot;2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot;/>&lt;path d=&quot;M13 4H6a2 2 0 0 0-2 2v7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>Duplicate&lt;/button>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 13V3M6 7l4-4 4 4M4 12v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Share&lt;/button>
+    &lt;hr class=&quot;menu-sep&quot;>
+    &lt;button class=&quot;menu-item menu-danger&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Delete&lt;/button>
+  &lt;/div>
+&lt;/details>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 16.1:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (9 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 16.1:1, where 4.5:1 is needed (dark).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Only short hover and focus transitions (under 300ms).</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>text: Options</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- group: Options</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#dropdown-menu">See it in the zine</a> <code>npx -y tearsheet add dropdown-menu</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet dropdown-menu vff55de92 · https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html -->
+&lt;details class=&quot;menu&quot;>
+  &lt;summary class=&quot;menu-trigger&quot;>Options &lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;m5 8 5 5 5-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/summary>
+  &lt;div class=&quot;menu-list&quot;>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M13.5 3.5 16.5 6.5 7 16H4v-3Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Rename&lt;/button>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;rect x=&quot;7&quot; y=&quot;7&quot; width=&quot;9&quot; height=&quot;9&quot; rx=&quot;2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot;/>&lt;path d=&quot;M13 4H6a2 2 0 0 0-2 2v7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>Duplicate&lt;/button>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 13V3M6 7l4-4 4 4M4 12v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Share&lt;/button>
+    &lt;hr class=&quot;menu-sep&quot;>
+    &lt;button class=&quot;menu-item menu-danger&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Delete&lt;/button>
+  &lt;/div>
+&lt;/details></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet dropdown-menu vff55de92 · https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html */
+.menu { position: relative; display: inline-block; }
+.menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  list-style: none;
+}
+.menu-trigger::-webkit-details-marker { display: none; }
+.menu-trigger svg { width: 16px; height: 16px; transition: transform 0.2s; }
+.menu[open] .menu-trigger svg { transform: rotate(180deg); }
+.menu-trigger:hover { background: var(--ui-surface-2); }
+.menu-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 10;
+  min-width: 200px;
+  padding: 6px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow-lg);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 14px;
+  text-align: start;
+  color: var(--ui-text);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.menu-item svg { width: 18px; height: 18px; color: var(--ui-muted); }
+.menu-item:hover, .menu-item:focus-visible { outline: none; background: var(--ui-surface-2); }
+.menu-danger, .menu-danger svg { color: var(--ui-danger); }
+.menu-sep { margin: 6px 4px; border: 0; border-top: 1px solid var(--ui-border); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>DropdownMenu.jsx</span></div><pre tabindex="0"><code>/* tearsheet dropdown-menu vff55de92 · https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html */
+import './DropdownMenu.css';
+
+export function DropdownMenu() {
+  return (
+    &lt;details className=&quot;menu&quot;>
+      &lt;summary className=&quot;menu-trigger&quot;>Options &lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;m5 8 5 5 5-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>&lt;/summary>
+      &lt;div className=&quot;menu-list&quot;>
+        &lt;button className=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M13.5 3.5 16.5 6.5 7 16H4v-3Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.7&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>Rename&lt;/button>
+        &lt;button className=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;rect x=&quot;7&quot; y=&quot;7&quot; width=&quot;9&quot; height=&quot;9&quot; rx=&quot;2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.7&quot;/>&lt;path d=&quot;M13 4H6a2 2 0 0 0-2 2v7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.7&quot; strokeLinecap=&quot;round&quot;/>&lt;/svg>Duplicate&lt;/button>
+        &lt;button className=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 13V3M6 7l4-4 4 4M4 12v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.7&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>Share&lt;/button>
+        &lt;hr className=&quot;menu-sep&quot; />
+        &lt;button className=&quot;menu-item menu-danger&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.7&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>Delete&lt;/button>
+      &lt;/div>
+    &lt;/details>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>DropdownMenu.css</span></div><pre tabindex="0"><code>/* tearsheet dropdown-menu vff55de92 · https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html */
+.menu { position: relative; display: inline-block; }
+.menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  list-style: none;
+}
+.menu-trigger::-webkit-details-marker { display: none; }
+.menu-trigger svg { width: 16px; height: 16px; transition: transform 0.2s; }
+.menu[open] .menu-trigger svg { transform: rotate(180deg); }
+.menu-trigger:hover { background: var(--ui-surface-2); }
+.menu-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 10;
+  min-width: 200px;
+  padding: 6px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow-lg);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 14px;
+  text-align: start;
+  color: var(--ui-text);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.menu-item svg { width: 18px; height: 18px; color: var(--ui-muted); }
+.menu-item:hover, .menu-item:focus-visible { outline: none; background: var(--ui-surface-2); }
+.menu-danger, .menu-danger svg { color: var(--ui-danger); }
+.menu-sep { margin: 6px 4px; border: 0; border-top: 1px solid var(--ui-border); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>DropdownMenu.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet dropdown-menu vff55de92 · https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html -->
+&lt;template>
+  &lt;details class=&quot;menu&quot;>
+    &lt;summary class=&quot;menu-trigger&quot;>Options &lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;m5 8 5 5 5-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/summary>
+    &lt;div class=&quot;menu-list&quot;>
+      &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M13.5 3.5 16.5 6.5 7 16H4v-3Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Rename&lt;/button>
+      &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;rect x=&quot;7&quot; y=&quot;7&quot; width=&quot;9&quot; height=&quot;9&quot; rx=&quot;2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot;/>&lt;path d=&quot;M13 4H6a2 2 0 0 0-2 2v7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>Duplicate&lt;/button>
+      &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 13V3M6 7l4-4 4 4M4 12v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Share&lt;/button>
+      &lt;hr class=&quot;menu-sep&quot;>
+      &lt;button class=&quot;menu-item menu-danger&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Delete&lt;/button>
+    &lt;/div>
+  &lt;/details>
+&lt;/template>
+
+&lt;style scoped>
+.menu { position: relative; display: inline-block; }
+.menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  list-style: none;
+}
+.menu-trigger::-webkit-details-marker { display: none; }
+.menu-trigger svg { width: 16px; height: 16px; transition: transform 0.2s; }
+.menu[open] .menu-trigger svg { transform: rotate(180deg); }
+.menu-trigger:hover { background: var(--ui-surface-2); }
+.menu-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 10;
+  min-width: 200px;
+  padding: 6px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow-lg);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 14px;
+  text-align: start;
+  color: var(--ui-text);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.menu-item svg { width: 18px; height: 18px; color: var(--ui-muted); }
+.menu-item:hover, .menu-item:focus-visible { outline: none; background: var(--ui-surface-2); }
+.menu-danger, .menu-danger svg { color: var(--ui-danger); }
+.menu-sep { margin: 6px 4px; border: 0; border-top: 1px solid var(--ui-border); }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>DropdownMenu.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet dropdown-menu vff55de92 · https://qusaialjbali.github.io/tearsheet/zine/parts/dropdown-menu.html -->
+&lt;details class=&quot;menu&quot;>
+  &lt;summary class=&quot;menu-trigger&quot;>Options &lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;m5 8 5 5 5-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/summary>
+  &lt;div class=&quot;menu-list&quot;>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M13.5 3.5 16.5 6.5 7 16H4v-3Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Rename&lt;/button>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;rect x=&quot;7&quot; y=&quot;7&quot; width=&quot;9&quot; height=&quot;9&quot; rx=&quot;2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot;/>&lt;path d=&quot;M13 4H6a2 2 0 0 0-2 2v7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot;/>&lt;/svg>Duplicate&lt;/button>
+    &lt;button class=&quot;menu-item&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M10 13V3M6 7l4-4 4 4M4 12v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Share&lt;/button>
+    &lt;hr class=&quot;menu-sep&quot;>
+    &lt;button class=&quot;menu-item menu-danger&quot; type=&quot;button&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>Delete&lt;/button>
+  &lt;/div>
+&lt;/details>
+
+&lt;style>
+.menu { position: relative; display: inline-block; }
+.menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  list-style: none;
+}
+.menu-trigger::-webkit-details-marker { display: none; }
+.menu-trigger svg { width: 16px; height: 16px; transition: transform 0.2s; }
+.menu[open] .menu-trigger svg { transform: rotate(180deg); }
+.menu-trigger:hover { background: var(--ui-surface-2); }
+.menu-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 10;
+  min-width: 200px;
+  padding: 6px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow-lg);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 14px;
+  text-align: start;
+  color: var(--ui-text);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.menu-item svg { width: 18px; height: 18px; color: var(--ui-muted); }
+.menu-item:hover, .menu-item:focus-visible { outline: none; background: var(--ui-surface-2); }
+.menu-danger, .menu-danger svg { color: var(--ui-danger); }
+.menu-sep { margin: 6px 4px; border: 0; border-top: 1px solid var(--ui-border); }
+&lt;/style></code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="tooltip.html">← Tooltip</a>
+      <a rel="next" href="drawer.html">Side drawer →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

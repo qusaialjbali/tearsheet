@@ -1,0 +1,88 @@
+{
+  "id": "progress",
+  "name": "Progress & spinner",
+  "page": "p.47",
+  "collection": "Feedback",
+  "experimental": false,
+  "description": "Determinate progress bar and an indeterminate spinner, both announced to assistive tech.",
+  "notes": "Use a progress bar when you know how long something takes, a spinner for short unknown waits (under ~3 s), and skeletons for loading page content.",
+  "usesJavaScript": false,
+  "sizeKb": 1.5,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#progress",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/progress.json",
+  "version": "e01cdc66",
+  "checked": "axe clean in light and dark; tightest text contrast 6.7:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 18
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 18
+      }
+    },
+    "contrast": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- text: Uploading report.pdf 64%\n- progressbar \"Uploading report.pdf\"\n- status: Loading results…",
+    "motion": {
+      "loopingUnderReducedMotion": 1,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet progress ve01cdc66 · https://qusaialjbali.github.io/tearsheet/zine/parts/progress.html -->\n<div class=\"progress-demo\">\n  <div class=\"progress-block\">\n    <div class=\"progress-head\">\n      <span id=\"upload-label\">Uploading report.pdf</span>\n      <span class=\"progress-value\">64%</span>\n    </div>\n    <div class=\"progress\" role=\"progressbar\" aria-labelledby=\"upload-label\" aria-valuenow=\"64\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n      <div class=\"progress-bar\" style=\"width: 64%\"></div>\n    </div>\n  </div>\n  <div class=\"loading\" role=\"status\">\n    <span class=\"spinner\" aria-hidden=\"true\"></span>\n    <span>Loading results…</span>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet progress ve01cdc66 · https://qusaialjbali.github.io/tearsheet/zine/parts/progress.html */\n.progress-demo { display: grid; gap: 28px; width: 100%; max-width: 400px; }\n.progress-head {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-text);\n}\n.progress-value { color: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.progress {\n  height: 8px;\n  overflow: hidden;\n  border-radius: 999px;\n  background: var(--ui-surface-2);\n}\n.progress-bar {\n  height: 100%;\n  border-radius: inherit;\n  background: var(--ui-accent);\n  transition: width 0.3s ease;\n}\n.loading { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ui-muted); }\n.spinner {\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  border: 2.5px solid var(--ui-surface-2);\n  border-top-color: var(--ui-accent);\n  animation: spin 0.8s linear infinite;\n}\n@keyframes spin { to { transform: rotate(360deg); } }\n@media (prefers-reduced-motion: reduce) {\n  .spinner { animation-duration: 2s; }\n}"
+      }
+    ],
+    "react": [
+      {
+        "name": "Progress.jsx",
+        "code": "/* tearsheet progress ve01cdc66 · https://qusaialjbali.github.io/tearsheet/zine/parts/progress.html */\nimport './Progress.css';\n\nexport function Progress() {\n  return (\n    <div className=\"progress-demo\">\n      <div className=\"progress-block\">\n        <div className=\"progress-head\">\n          <span id=\"upload-label\">Uploading report.pdf</span>\n          <span className=\"progress-value\">64%</span>\n        </div>\n        <div className=\"progress\" role=\"progressbar\" aria-labelledby=\"upload-label\" aria-valuenow=\"64\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n          <div className=\"progress-bar\" style={{ width: '64%' }}></div>\n        </div>\n      </div>\n      <div className=\"loading\" role=\"status\">\n        <span className=\"spinner\" aria-hidden=\"true\"></span>\n        <span>Loading results…</span>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Progress.css",
+        "code": "/* tearsheet progress ve01cdc66 · https://qusaialjbali.github.io/tearsheet/zine/parts/progress.html */\n.progress-demo { display: grid; gap: 28px; width: 100%; max-width: 400px; }\n.progress-head {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-text);\n}\n.progress-value { color: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.progress {\n  height: 8px;\n  overflow: hidden;\n  border-radius: 999px;\n  background: var(--ui-surface-2);\n}\n.progress-bar {\n  height: 100%;\n  border-radius: inherit;\n  background: var(--ui-accent);\n  transition: width 0.3s ease;\n}\n.loading { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ui-muted); }\n.spinner {\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  border: 2.5px solid var(--ui-surface-2);\n  border-top-color: var(--ui-accent);\n  animation: spin 0.8s linear infinite;\n}\n@keyframes spin { to { transform: rotate(360deg); } }\n@media (prefers-reduced-motion: reduce) {\n  .spinner { animation-duration: 2s; }\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Progress.vue",
+        "code": "<!-- tearsheet progress ve01cdc66 · https://qusaialjbali.github.io/tearsheet/zine/parts/progress.html -->\n<template>\n  <div class=\"progress-demo\">\n    <div class=\"progress-block\">\n      <div class=\"progress-head\">\n        <span id=\"upload-label\">Uploading report.pdf</span>\n        <span class=\"progress-value\">64%</span>\n      </div>\n      <div class=\"progress\" role=\"progressbar\" aria-labelledby=\"upload-label\" aria-valuenow=\"64\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n        <div class=\"progress-bar\" style=\"width: 64%\"></div>\n      </div>\n    </div>\n    <div class=\"loading\" role=\"status\">\n      <span class=\"spinner\" aria-hidden=\"true\"></span>\n      <span>Loading results…</span>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.progress-demo { display: grid; gap: 28px; width: 100%; max-width: 400px; }\n.progress-head {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-text);\n}\n.progress-value { color: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.progress {\n  height: 8px;\n  overflow: hidden;\n  border-radius: 999px;\n  background: var(--ui-surface-2);\n}\n.progress-bar {\n  height: 100%;\n  border-radius: inherit;\n  background: var(--ui-accent);\n  transition: width 0.3s ease;\n}\n.loading { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ui-muted); }\n.spinner {\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  border: 2.5px solid var(--ui-surface-2);\n  border-top-color: var(--ui-accent);\n  animation: spin 0.8s linear infinite;\n}\n@keyframes spin { to { transform: rotate(360deg); } }\n@media (prefers-reduced-motion: reduce) {\n  .spinner { animation-duration: 2s; }\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Progress.svelte",
+        "code": "<!-- tearsheet progress ve01cdc66 · https://qusaialjbali.github.io/tearsheet/zine/parts/progress.html -->\n<div class=\"progress-demo\">\n  <div class=\"progress-block\">\n    <div class=\"progress-head\">\n      <span id=\"upload-label\">Uploading report.pdf</span>\n      <span class=\"progress-value\">64%</span>\n    </div>\n    <div class=\"progress\" role=\"progressbar\" aria-labelledby=\"upload-label\" aria-valuenow=\"64\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n      <div class=\"progress-bar\" style=\"width: 64%\"></div>\n    </div>\n  </div>\n  <div class=\"loading\" role=\"status\">\n    <span class=\"spinner\" aria-hidden=\"true\"></span>\n    <span>Loading results…</span>\n  </div>\n</div>\n\n<style>\n.progress-demo { display: grid; gap: 28px; width: 100%; max-width: 400px; }\n.progress-head {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-text);\n}\n.progress-value { color: var(--ui-muted); font-variant-numeric: tabular-nums; }\n.progress {\n  height: 8px;\n  overflow: hidden;\n  border-radius: 999px;\n  background: var(--ui-surface-2);\n}\n.progress-bar {\n  height: 100%;\n  border-radius: inherit;\n  background: var(--ui-accent);\n  transition: width 0.3s ease;\n}\n.loading { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ui-muted); }\n.spinner {\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  border: 2.5px solid var(--ui-surface-2);\n  border-top-color: var(--ui-accent);\n  animation: spin 0.8s linear infinite;\n}\n@keyframes spin { to { transform: rotate(360deg); } }\n@media (prefers-reduced-motion: reduce) {\n  .spinner { animation-duration: 2s; }\n}\n</style>"
+      }
+    ]
+  }
+}

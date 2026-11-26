@@ -1,0 +1,98 @@
+{
+  "id": "slot-machine",
+  "name": "Idea slot machine",
+  "page": "p.91",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "Three reels spin and land one by one on a random brief: a mood, a colour and a component to build.",
+  "notes": "The result is written to a live region once the last reel stops. Reduced motion skips the spin and shows the result straight away.",
+  "usesJavaScript": true,
+  "sizeKb": 3.1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#slot-machine",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/slot-machine.json",
+  "version": "f05d6f2c",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Spin\""
+    ],
+    "tree": "- paragraph: Pull for a brief\n- button \"Spin\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html -->\n<div class=\"slots\">\n  <div class=\"slots-window\" aria-hidden=\"true\">\n    <div class=\"reel\" data-words=\"Calm|Loud|Tiny|Wild|Polite|Moody\"></div>\n    <div class=\"reel\" data-words=\"pink|blue|ink|lime|amber|violet\"></div>\n    <div class=\"reel\" data-words=\"button|modal|chart|toast|menu|card\"></div>\n  </div>\n  <p class=\"slots-result\" aria-live=\"polite\">Pull for a brief</p>\n  <button class=\"slots-pull\" type=\"button\">Spin</button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html */\n.slots { display: grid; justify-items: center; gap: 14px; }\n.slots-window { display: flex; gap: 6px; padding: 10px; background: #1b1b20; border-radius: 16px; box-shadow: inset 0 3px 8px rgb(0 0 0 / 0.5); }\n.reel { width: 110px; height: 56px; overflow: hidden; background: #fafaf7; border-radius: 8px; box-shadow: inset 0 10px 10px -8px rgb(0 0 0 / 0.4), inset 0 -10px 10px -8px rgb(0 0 0 / 0.4); }\n.reel span { display: grid; place-items: center; height: 56px; font-size: 20px; font-weight: 800; color: #1b1b20; }\n.slots-result { margin: 0; min-height: 1.5em; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.slots-pull { min-width: 120px; padding: 12px 24px; font: inherit; font-size: 15px; font-weight: 800; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 999px; cursor: pointer; box-shadow: 0 4px 0 var(--ui-accent-hover); }\n.slots-pull:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ui-accent-hover); }\n.slots-pull:disabled { opacity: 0.6; cursor: default; }\n.slots-pull:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html */\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const reels = [...root.querySelectorAll('.reel')];\n  const result = root.querySelector('.slots-result');\n  const pull = root.querySelector('.slots-pull');\n  const H = 56, LOOPS = 5;\n  const words = reels.map((r) => r.dataset.words.split('|'));\n  // each reel gets a long strip of its words, repeated so it can spin several loops\n  const tracks = reels.map((r, i) => {\n    const strip = document.createElement('div');\n    for (let n = 0; n < LOOPS + 1; n++) words[i].forEach((w) => { const s = document.createElement('span'); s.textContent = w; strip.append(s); });\n    r.replaceChildren(strip);\n    return strip;\n  });\n  let timers = [];\n  const onPull = () => {\n    pull.disabled = true;\n    result.textContent = 'Spinning…';\n    const picks = words.map((w) => Math.floor(Math.random() * w.length));\n    tracks.forEach((t, i) => {\n      t.style.transition = 'none';\n      t.style.transform = 'translateY(0)';\n      void t.offsetHeight;\n      const target = (LOOPS * words[i].length + picks[i]) * H;\n      t.style.transition = reduce ? 'none' : 'transform ' + (1.2 + i * 0.45) + 's cubic-bezier(0.16, 1, 0.3, 1)';\n      t.style.transform = 'translateY(' + -target + 'px)';\n    });\n    timers.push(setTimeout(() => {\n      result.textContent = picks.map((p, i) => words[i][p]).join(' ') + '. Go build it.';\n      pull.disabled = false;\n    }, reduce ? 0 : 1250 + 2 * 450));\n  };\n  pull.addEventListener('click', onPull);\n  return () => { timers.forEach(clearTimeout); pull.removeEventListener('click', onPull); };\n}\n\ndocument.querySelectorAll(\".slots\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "SlotMachine.jsx",
+        "code": "/* tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html */\nimport { useEffect, useRef } from 'react';\nimport './SlotMachine.css';\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const reels = [...root.querySelectorAll('.reel')];\n  const result = root.querySelector('.slots-result');\n  const pull = root.querySelector('.slots-pull');\n  const H = 56, LOOPS = 5;\n  const words = reels.map((r) => r.dataset.words.split('|'));\n  // each reel gets a long strip of its words, repeated so it can spin several loops\n  const tracks = reels.map((r, i) => {\n    const strip = document.createElement('div');\n    for (let n = 0; n < LOOPS + 1; n++) words[i].forEach((w) => { const s = document.createElement('span'); s.textContent = w; strip.append(s); });\n    r.replaceChildren(strip);\n    return strip;\n  });\n  let timers = [];\n  const onPull = () => {\n    pull.disabled = true;\n    result.textContent = 'Spinning…';\n    const picks = words.map((w) => Math.floor(Math.random() * w.length));\n    tracks.forEach((t, i) => {\n      t.style.transition = 'none';\n      t.style.transform = 'translateY(0)';\n      void t.offsetHeight;\n      const target = (LOOPS * words[i].length + picks[i]) * H;\n      t.style.transition = reduce ? 'none' : 'transform ' + (1.2 + i * 0.45) + 's cubic-bezier(0.16, 1, 0.3, 1)';\n      t.style.transform = 'translateY(' + -target + 'px)';\n    });\n    timers.push(setTimeout(() => {\n      result.textContent = picks.map((p, i) => words[i][p]).join(' ') + '. Go build it.';\n      pull.disabled = false;\n    }, reduce ? 0 : 1250 + 2 * 450));\n  };\n  pull.addEventListener('click', onPull);\n  return () => { timers.forEach(clearTimeout); pull.removeEventListener('click', onPull); };\n}\n\nexport function SlotMachine() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"slots\">\n      <div className=\"slots-window\" aria-hidden=\"true\">\n        <div className=\"reel\" data-words=\"Calm|Loud|Tiny|Wild|Polite|Moody\"></div>\n        <div className=\"reel\" data-words=\"pink|blue|ink|lime|amber|violet\"></div>\n        <div className=\"reel\" data-words=\"button|modal|chart|toast|menu|card\"></div>\n      </div>\n      <p className=\"slots-result\" aria-live=\"polite\">Pull for a brief</p>\n      <button className=\"slots-pull\" type=\"button\">Spin</button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "SlotMachine.css",
+        "code": "/* tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html */\n.slots { display: grid; justify-items: center; gap: 14px; }\n.slots-window { display: flex; gap: 6px; padding: 10px; background: #1b1b20; border-radius: 16px; box-shadow: inset 0 3px 8px rgb(0 0 0 / 0.5); }\n.reel { width: 110px; height: 56px; overflow: hidden; background: #fafaf7; border-radius: 8px; box-shadow: inset 0 10px 10px -8px rgb(0 0 0 / 0.4), inset 0 -10px 10px -8px rgb(0 0 0 / 0.4); }\n.reel span { display: grid; place-items: center; height: 56px; font-size: 20px; font-weight: 800; color: #1b1b20; }\n.slots-result { margin: 0; min-height: 1.5em; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.slots-pull { min-width: 120px; padding: 12px 24px; font: inherit; font-size: 15px; font-weight: 800; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 999px; cursor: pointer; box-shadow: 0 4px 0 var(--ui-accent-hover); }\n.slots-pull:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ui-accent-hover); }\n.slots-pull:disabled { opacity: 0.6; cursor: default; }\n.slots-pull:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "SlotMachine.vue",
+        "code": "<!-- tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const reels = [...root.querySelectorAll('.reel')];\n  const result = root.querySelector('.slots-result');\n  const pull = root.querySelector('.slots-pull');\n  const H = 56, LOOPS = 5;\n  const words = reels.map((r) => r.dataset.words.split('|'));\n  // each reel gets a long strip of its words, repeated so it can spin several loops\n  const tracks = reels.map((r, i) => {\n    const strip = document.createElement('div');\n    for (let n = 0; n < LOOPS + 1; n++) words[i].forEach((w) => { const s = document.createElement('span'); s.textContent = w; strip.append(s); });\n    r.replaceChildren(strip);\n    return strip;\n  });\n  let timers = [];\n  const onPull = () => {\n    pull.disabled = true;\n    result.textContent = 'Spinning…';\n    const picks = words.map((w) => Math.floor(Math.random() * w.length));\n    tracks.forEach((t, i) => {\n      t.style.transition = 'none';\n      t.style.transform = 'translateY(0)';\n      void t.offsetHeight;\n      const target = (LOOPS * words[i].length + picks[i]) * H;\n      t.style.transition = reduce ? 'none' : 'transform ' + (1.2 + i * 0.45) + 's cubic-bezier(0.16, 1, 0.3, 1)';\n      t.style.transform = 'translateY(' + -target + 'px)';\n    });\n    timers.push(setTimeout(() => {\n      result.textContent = picks.map((p, i) => words[i][p]).join(' ') + '. Go build it.';\n      pull.disabled = false;\n    }, reduce ? 0 : 1250 + 2 * 450));\n  };\n  pull.addEventListener('click', onPull);\n  return () => { timers.forEach(clearTimeout); pull.removeEventListener('click', onPull); };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"slots\">\n    <div class=\"slots-window\" aria-hidden=\"true\">\n      <div class=\"reel\" data-words=\"Calm|Loud|Tiny|Wild|Polite|Moody\"></div>\n      <div class=\"reel\" data-words=\"pink|blue|ink|lime|amber|violet\"></div>\n      <div class=\"reel\" data-words=\"button|modal|chart|toast|menu|card\"></div>\n    </div>\n    <p class=\"slots-result\" aria-live=\"polite\">Pull for a brief</p>\n    <button class=\"slots-pull\" type=\"button\">Spin</button>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.slots { display: grid; justify-items: center; gap: 14px; }\n.slots-window { display: flex; gap: 6px; padding: 10px; background: #1b1b20; border-radius: 16px; box-shadow: inset 0 3px 8px rgb(0 0 0 / 0.5); }\n.reel { width: 110px; height: 56px; overflow: hidden; background: #fafaf7; border-radius: 8px; box-shadow: inset 0 10px 10px -8px rgb(0 0 0 / 0.4), inset 0 -10px 10px -8px rgb(0 0 0 / 0.4); }\n.reel span { display: grid; place-items: center; height: 56px; font-size: 20px; font-weight: 800; color: #1b1b20; }\n.slots-result { margin: 0; min-height: 1.5em; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.slots-pull { min-width: 120px; padding: 12px 24px; font: inherit; font-size: 15px; font-weight: 800; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 999px; cursor: pointer; box-shadow: 0 4px 0 var(--ui-accent-hover); }\n.slots-pull:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ui-accent-hover); }\n.slots-pull:disabled { opacity: 0.6; cursor: default; }\n.slots-pull:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "SlotMachine.svelte",
+        "code": "<!-- tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './SlotMachine.css';\n\n  let node;\n\n  function setup(root) {\n    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    const reels = [...root.querySelectorAll('.reel')];\n    const result = root.querySelector('.slots-result');\n    const pull = root.querySelector('.slots-pull');\n    const H = 56, LOOPS = 5;\n    const words = reels.map((r) => r.dataset.words.split('|'));\n    // each reel gets a long strip of its words, repeated so it can spin several loops\n    const tracks = reels.map((r, i) => {\n      const strip = document.createElement('div');\n      for (let n = 0; n < LOOPS + 1; n++) words[i].forEach((w) => { const s = document.createElement('span'); s.textContent = w; strip.append(s); });\n      r.replaceChildren(strip);\n      return strip;\n    });\n    let timers = [];\n    const onPull = () => {\n      pull.disabled = true;\n      result.textContent = 'Spinning…';\n      const picks = words.map((w) => Math.floor(Math.random() * w.length));\n      tracks.forEach((t, i) => {\n        t.style.transition = 'none';\n        t.style.transform = 'translateY(0)';\n        void t.offsetHeight;\n        const target = (LOOPS * words[i].length + picks[i]) * H;\n        t.style.transition = reduce ? 'none' : 'transform ' + (1.2 + i * 0.45) + 's cubic-bezier(0.16, 1, 0.3, 1)';\n        t.style.transform = 'translateY(' + -target + 'px)';\n      });\n      timers.push(setTimeout(() => {\n        result.textContent = picks.map((p, i) => words[i][p]).join(' ') + '. Go build it.';\n        pull.disabled = false;\n      }, reduce ? 0 : 1250 + 2 * 450));\n    };\n    pull.addEventListener('click', onPull);\n    return () => { timers.forEach(clearTimeout); pull.removeEventListener('click', onPull); };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"slots\">\n  <div class=\"slots-window\" aria-hidden=\"true\">\n    <div class=\"reel\" data-words=\"Calm|Loud|Tiny|Wild|Polite|Moody\"></div>\n    <div class=\"reel\" data-words=\"pink|blue|ink|lime|amber|violet\"></div>\n    <div class=\"reel\" data-words=\"button|modal|chart|toast|menu|card\"></div>\n  </div>\n  <p class=\"slots-result\" aria-live=\"polite\">Pull for a brief</p>\n  <button class=\"slots-pull\" type=\"button\">Spin</button>\n</div>"
+      },
+      {
+        "name": "SlotMachine.css",
+        "code": "/* tearsheet slot-machine vf05d6f2c · https://qusaialjbali.github.io/tearsheet/zine/parts/slot-machine.html */\n.slots { display: grid; justify-items: center; gap: 14px; }\n.slots-window { display: flex; gap: 6px; padding: 10px; background: #1b1b20; border-radius: 16px; box-shadow: inset 0 3px 8px rgb(0 0 0 / 0.5); }\n.reel { width: 110px; height: 56px; overflow: hidden; background: #fafaf7; border-radius: 8px; box-shadow: inset 0 10px 10px -8px rgb(0 0 0 / 0.4), inset 0 -10px 10px -8px rgb(0 0 0 / 0.4); }\n.reel span { display: grid; place-items: center; height: 56px; font-size: 20px; font-weight: 800; color: #1b1b20; }\n.slots-result { margin: 0; min-height: 1.5em; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.slots-pull { min-width: 120px; padding: 12px 24px; font: inherit; font-size: 15px; font-weight: 800; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 999px; cursor: pointer; box-shadow: 0 4px 0 var(--ui-accent-hover); }\n.slots-pull:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ui-accent-hover); }\n.slots-pull:disabled { opacity: 0.6; cursor: default; }\n.slots-pull:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ]
+  }
+}

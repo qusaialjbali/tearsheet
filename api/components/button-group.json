@@ -1,0 +1,94 @@
+{
+  "id": "button-group",
+  "name": "Toggle button group",
+  "page": "p.02",
+  "collection": "Actions",
+  "experimental": false,
+  "description": "A formatting toolbar of joined icon buttons that each switch on and off.",
+  "notes": "Each button reports its state with aria-pressed, and the group has a role=\"toolbar\" label. Icon-only buttons always carry an aria-label.",
+  "usesJavaScript": true,
+  "sizeKb": 3.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#button-group",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/button-group.json",
+  "version": "b1cf99ae",
+  "checked": "axe clean in light and dark; 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 16
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 16
+      }
+    },
+    "contrast": null,
+    "brand": true,
+    "keyboard": [
+      "button \"Bold\" [pressed]"
+    ],
+    "tree": "- toolbar \"Text formatting\":\n  - button \"Bold\" [pressed]\n  - button \"Italic\"\n  - button \"Underline\"\n  - button \"Bulleted list\"\n  - button \"Insert link\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html -->\n<div class=\"toolbar-group\" role=\"toolbar\" aria-label=\"Text formatting\">\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"true\" aria-label=\"Bold\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4h5a3 3 0 0 1 0 6H6zM6 10h6a3 3 0 0 1 0 6H6z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linejoin=\"round\"/></svg></button>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Italic\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M12 4H8M12 16H8M11 4 9 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Underline\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4v5a4 4 0 0 0 8 0V4M5 17h10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n  <span class=\"tg-sep\" aria-hidden=\"true\"></span>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Bulleted list\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8 5h9M8 10h9M8 15h9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"4\" cy=\"5\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"10\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"15\" r=\"1.3\" fill=\"currentColor\"/></svg></button>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Insert link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8.5 11.5a3 3 0 0 0 4.2 0l2.6-2.6a3 3 0 0 0-4.2-4.2l-.8.8M11.5 8.5a3 3 0 0 0-4.2 0l-2.6 2.6a3 3 0 0 0 4.2 4.2l.8-.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg></button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html */\n.toolbar-group {\n  display: inline-flex; align-items: center; gap: 2px; padding: 4px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: calc(var(--ui-radius-sm) + 4px);\n  box-shadow: var(--ui-shadow);\n}\n.tg-btn {\n  display: grid; place-items: center; width: 40px; height: 40px;\n  color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.tg-btn svg { width: 18px; height: 18px; }\n.tg-btn:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tg-btn[aria-pressed=\"true\"] { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.tg-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tg-sep { width: 1px; height: 24px; margin: 0 4px; background: var(--ui-border); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html */\nfunction setup(root) {\n  const buttons = [...root.querySelectorAll('.tg-btn')];\n  const onClick = (e) => {\n    const b = e.currentTarget;\n    b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));\n  };\n  // Arrow keys move between buttons, Tab leaves the toolbar\n  const onKey = (e) => {\n    const i = buttons.indexOf(document.activeElement);\n    if (i < 0) return;\n    const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];\n    if (d) { e.preventDefault(); buttons[(i + d + buttons.length) % buttons.length].focus(); }\n  };\n  buttons.forEach((b, i) => { b.tabIndex = i === 0 ? 0 : -1; b.addEventListener('click', onClick); });\n  const onFocus = (e) => buttons.forEach((b) => (b.tabIndex = b === e.target ? 0 : -1));\n  root.addEventListener('keydown', onKey);\n  root.addEventListener('focusin', onFocus);\n  return () => {\n    buttons.forEach((b) => b.removeEventListener('click', onClick));\n    root.removeEventListener('keydown', onKey);\n    root.removeEventListener('focusin', onFocus);\n  };\n}\n\ndocument.querySelectorAll(\".toolbar-group\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "ButtonGroup.jsx",
+        "code": "/* tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html */\nimport { useEffect, useRef } from 'react';\nimport './ButtonGroup.css';\n\nfunction setup(root) {\n  const buttons = [...root.querySelectorAll('.tg-btn')];\n  const onClick = (e) => {\n    const b = e.currentTarget;\n    b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));\n  };\n  // Arrow keys move between buttons, Tab leaves the toolbar\n  const onKey = (e) => {\n    const i = buttons.indexOf(document.activeElement);\n    if (i < 0) return;\n    const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];\n    if (d) { e.preventDefault(); buttons[(i + d + buttons.length) % buttons.length].focus(); }\n  };\n  buttons.forEach((b, i) => { b.tabIndex = i === 0 ? 0 : -1; b.addEventListener('click', onClick); });\n  const onFocus = (e) => buttons.forEach((b) => (b.tabIndex = b === e.target ? 0 : -1));\n  root.addEventListener('keydown', onKey);\n  root.addEventListener('focusin', onFocus);\n  return () => {\n    buttons.forEach((b) => b.removeEventListener('click', onClick));\n    root.removeEventListener('keydown', onKey);\n    root.removeEventListener('focusin', onFocus);\n  };\n}\n\nexport function ButtonGroup() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"toolbar-group\" role=\"toolbar\" aria-label=\"Text formatting\">\n      <button className=\"tg-btn\" type=\"button\" aria-pressed=\"true\" aria-label=\"Bold\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4h5a3 3 0 0 1 0 6H6zM6 10h6a3 3 0 0 1 0 6H6z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.2\" strokeLinejoin=\"round\"/></svg></button>\n      <button className=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Italic\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M12 4H8M12 16H8M11 4 9 16\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\"/></svg></button>\n      <button className=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Underline\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4v5a4 4 0 0 0 8 0V4M5 17h10\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\"/></svg></button>\n      <span className=\"tg-sep\" aria-hidden=\"true\"></span>\n      <button className=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Bulleted list\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8 5h9M8 10h9M8 15h9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\"/><circle cx=\"4\" cy=\"5\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"10\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"15\" r=\"1.3\" fill=\"currentColor\"/></svg></button>\n      <button className=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Insert link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8.5 11.5a3 3 0 0 0 4.2 0l2.6-2.6a3 3 0 0 0-4.2-4.2l-.8.8M11.5 8.5a3 3 0 0 0-4.2 0l-2.6 2.6a3 3 0 0 0 4.2 4.2l.8-.8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\"/></svg></button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "ButtonGroup.css",
+        "code": "/* tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html */\n.toolbar-group {\n  display: inline-flex; align-items: center; gap: 2px; padding: 4px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: calc(var(--ui-radius-sm) + 4px);\n  box-shadow: var(--ui-shadow);\n}\n.tg-btn {\n  display: grid; place-items: center; width: 40px; height: 40px;\n  color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.tg-btn svg { width: 18px; height: 18px; }\n.tg-btn:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tg-btn[aria-pressed=\"true\"] { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.tg-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tg-sep { width: 1px; height: 24px; margin: 0 4px; background: var(--ui-border); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "ButtonGroup.vue",
+        "code": "<!-- tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const buttons = [...root.querySelectorAll('.tg-btn')];\n  const onClick = (e) => {\n    const b = e.currentTarget;\n    b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));\n  };\n  // Arrow keys move between buttons, Tab leaves the toolbar\n  const onKey = (e) => {\n    const i = buttons.indexOf(document.activeElement);\n    if (i < 0) return;\n    const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];\n    if (d) { e.preventDefault(); buttons[(i + d + buttons.length) % buttons.length].focus(); }\n  };\n  buttons.forEach((b, i) => { b.tabIndex = i === 0 ? 0 : -1; b.addEventListener('click', onClick); });\n  const onFocus = (e) => buttons.forEach((b) => (b.tabIndex = b === e.target ? 0 : -1));\n  root.addEventListener('keydown', onKey);\n  root.addEventListener('focusin', onFocus);\n  return () => {\n    buttons.forEach((b) => b.removeEventListener('click', onClick));\n    root.removeEventListener('keydown', onKey);\n    root.removeEventListener('focusin', onFocus);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"toolbar-group\" role=\"toolbar\" aria-label=\"Text formatting\">\n    <button class=\"tg-btn\" type=\"button\" aria-pressed=\"true\" aria-label=\"Bold\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4h5a3 3 0 0 1 0 6H6zM6 10h6a3 3 0 0 1 0 6H6z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linejoin=\"round\"/></svg></button>\n    <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Italic\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M12 4H8M12 16H8M11 4 9 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Underline\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4v5a4 4 0 0 0 8 0V4M5 17h10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    <span class=\"tg-sep\" aria-hidden=\"true\"></span>\n    <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Bulleted list\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8 5h9M8 10h9M8 15h9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"4\" cy=\"5\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"10\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"15\" r=\"1.3\" fill=\"currentColor\"/></svg></button>\n    <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Insert link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8.5 11.5a3 3 0 0 0 4.2 0l2.6-2.6a3 3 0 0 0-4.2-4.2l-.8.8M11.5 8.5a3 3 0 0 0-4.2 0l-2.6 2.6a3 3 0 0 0 4.2 4.2l.8-.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg></button>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.toolbar-group {\n  display: inline-flex; align-items: center; gap: 2px; padding: 4px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: calc(var(--ui-radius-sm) + 4px);\n  box-shadow: var(--ui-shadow);\n}\n.tg-btn {\n  display: grid; place-items: center; width: 40px; height: 40px;\n  color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.tg-btn svg { width: 18px; height: 18px; }\n.tg-btn:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tg-btn[aria-pressed=\"true\"] { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.tg-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tg-sep { width: 1px; height: 24px; margin: 0 4px; background: var(--ui-border); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "ButtonGroup.svelte",
+        "code": "<!-- tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './ButtonGroup.css';\n\n  let node;\n\n  function setup(root) {\n    const buttons = [...root.querySelectorAll('.tg-btn')];\n    const onClick = (e) => {\n      const b = e.currentTarget;\n      b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));\n    };\n    // Arrow keys move between buttons, Tab leaves the toolbar\n    const onKey = (e) => {\n      const i = buttons.indexOf(document.activeElement);\n      if (i < 0) return;\n      const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];\n      if (d) { e.preventDefault(); buttons[(i + d + buttons.length) % buttons.length].focus(); }\n    };\n    buttons.forEach((b, i) => { b.tabIndex = i === 0 ? 0 : -1; b.addEventListener('click', onClick); });\n    const onFocus = (e) => buttons.forEach((b) => (b.tabIndex = b === e.target ? 0 : -1));\n    root.addEventListener('keydown', onKey);\n    root.addEventListener('focusin', onFocus);\n    return () => {\n      buttons.forEach((b) => b.removeEventListener('click', onClick));\n      root.removeEventListener('keydown', onKey);\n      root.removeEventListener('focusin', onFocus);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"toolbar-group\" role=\"toolbar\" aria-label=\"Text formatting\">\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"true\" aria-label=\"Bold\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4h5a3 3 0 0 1 0 6H6zM6 10h6a3 3 0 0 1 0 6H6z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linejoin=\"round\"/></svg></button>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Italic\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M12 4H8M12 16H8M11 4 9 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Underline\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M6 4v5a4 4 0 0 0 8 0V4M5 17h10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n  <span class=\"tg-sep\" aria-hidden=\"true\"></span>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Bulleted list\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8 5h9M8 10h9M8 15h9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"4\" cy=\"5\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"10\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4\" cy=\"15\" r=\"1.3\" fill=\"currentColor\"/></svg></button>\n  <button class=\"tg-btn\" type=\"button\" aria-pressed=\"false\" aria-label=\"Insert link\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8.5 11.5a3 3 0 0 0 4.2 0l2.6-2.6a3 3 0 0 0-4.2-4.2l-.8.8M11.5 8.5a3 3 0 0 0-4.2 0l-2.6 2.6a3 3 0 0 0 4.2 4.2l.8-.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg></button>\n</div>"
+      },
+      {
+        "name": "ButtonGroup.css",
+        "code": "/* tearsheet button-group vb1cf99ae · https://qusaialjbali.github.io/tearsheet/zine/parts/button-group.html */\n.toolbar-group {\n  display: inline-flex; align-items: center; gap: 2px; padding: 4px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: calc(var(--ui-radius-sm) + 4px);\n  box-shadow: var(--ui-shadow);\n}\n.tg-btn {\n  display: grid; place-items: center; width: 40px; height: 40px;\n  color: var(--ui-muted); background: none; border: 0; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.tg-btn svg { width: 18px; height: 18px; }\n.tg-btn:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tg-btn[aria-pressed=\"true\"] { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.tg-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tg-sep { width: 1px; height: 24px; margin: 0 4px; background: var(--ui-border); }"
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "id": "jelly-button",
+  "name": "Jelly button",
+  "page": "p.97",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A button that squashes and wobbles like jelly when you press it, then settles.",
+  "notes": "The wobble plays after the click, never before, so it cannot delay the action. Reduced motion keeps a simple press state.",
+  "usesJavaScript": true,
+  "sizeKb": 1.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#jelly-button",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/jelly-button.json",
+  "version": "917865be",
+  "checked": "axe clean in light and dark; tightest text contrast 11.37:1 (needs 3:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 11.37,
+      "need": 3,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Boing\""
+    ],
+    "tree": "- button \"Boing\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html -->\n<div class=\"jelly-demo\">\n  <button class=\"jelly\" type=\"button\">Boing</button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html */\n.jelly-demo { display: grid; place-items: center; padding: 20px; }\n.jelly {\n  padding: 18px 36px; font: inherit; font-size: 20px; font-weight: 900; letter-spacing: 0.02em;\n  color: #1b1b20; background: #a3e635; border: 0; border-radius: 22px; cursor: pointer;\n  box-shadow: 0 10px 0 -2px #65a30d, 0 18px 30px -10px rgb(0 0 0 / 0.35);\n}\n.jelly:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.jelly:active { transform: scale(0.96, 0.9); }\n.jelly.is-wobbling { animation: jelly 0.7s both; }\n@keyframes jelly {\n  0% { transform: scale(1, 1); }\n  25% { transform: scale(1.18, 0.82); }\n  40% { transform: scale(0.88, 1.12); }\n  55% { transform: scale(1.06, 0.94); }\n  70% { transform: scale(0.97, 1.03); }\n  85% { transform: scale(1.01, 0.99); }\n  100% { transform: scale(1, 1); }\n}\n@media (prefers-reduced-motion: reduce) { .jelly.is-wobbling { animation: none; } }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html */\nfunction setup(root) {\n  const btn = root.querySelector('.jelly');\n  const onClick = () => { btn.classList.remove('is-wobbling'); void btn.offsetWidth; btn.classList.add('is-wobbling'); };\n  const onEnd = () => btn.classList.remove('is-wobbling');\n  btn.addEventListener('click', onClick);\n  btn.addEventListener('animationend', onEnd);\n  return () => { btn.removeEventListener('click', onClick); btn.removeEventListener('animationend', onEnd); };\n}\n\ndocument.querySelectorAll(\".jelly-demo\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "JellyButton.jsx",
+        "code": "/* tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html */\nimport { useEffect, useRef } from 'react';\nimport './JellyButton.css';\n\nfunction setup(root) {\n  const btn = root.querySelector('.jelly');\n  const onClick = () => { btn.classList.remove('is-wobbling'); void btn.offsetWidth; btn.classList.add('is-wobbling'); };\n  const onEnd = () => btn.classList.remove('is-wobbling');\n  btn.addEventListener('click', onClick);\n  btn.addEventListener('animationend', onEnd);\n  return () => { btn.removeEventListener('click', onClick); btn.removeEventListener('animationend', onEnd); };\n}\n\nexport function JellyButton() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"jelly-demo\">\n      <button className=\"jelly\" type=\"button\">Boing</button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "JellyButton.css",
+        "code": "/* tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html */\n.jelly-demo { display: grid; place-items: center; padding: 20px; }\n.jelly {\n  padding: 18px 36px; font: inherit; font-size: 20px; font-weight: 900; letter-spacing: 0.02em;\n  color: #1b1b20; background: #a3e635; border: 0; border-radius: 22px; cursor: pointer;\n  box-shadow: 0 10px 0 -2px #65a30d, 0 18px 30px -10px rgb(0 0 0 / 0.35);\n}\n.jelly:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.jelly:active { transform: scale(0.96, 0.9); }\n.jelly.is-wobbling { animation: jelly 0.7s both; }\n@keyframes jelly {\n  0% { transform: scale(1, 1); }\n  25% { transform: scale(1.18, 0.82); }\n  40% { transform: scale(0.88, 1.12); }\n  55% { transform: scale(1.06, 0.94); }\n  70% { transform: scale(0.97, 1.03); }\n  85% { transform: scale(1.01, 0.99); }\n  100% { transform: scale(1, 1); }\n}\n@media (prefers-reduced-motion: reduce) { .jelly.is-wobbling { animation: none; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "JellyButton.vue",
+        "code": "<!-- tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const btn = root.querySelector('.jelly');\n  const onClick = () => { btn.classList.remove('is-wobbling'); void btn.offsetWidth; btn.classList.add('is-wobbling'); };\n  const onEnd = () => btn.classList.remove('is-wobbling');\n  btn.addEventListener('click', onClick);\n  btn.addEventListener('animationend', onEnd);\n  return () => { btn.removeEventListener('click', onClick); btn.removeEventListener('animationend', onEnd); };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"jelly-demo\">\n    <button class=\"jelly\" type=\"button\">Boing</button>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.jelly-demo { display: grid; place-items: center; padding: 20px; }\n.jelly {\n  padding: 18px 36px; font: inherit; font-size: 20px; font-weight: 900; letter-spacing: 0.02em;\n  color: #1b1b20; background: #a3e635; border: 0; border-radius: 22px; cursor: pointer;\n  box-shadow: 0 10px 0 -2px #65a30d, 0 18px 30px -10px rgb(0 0 0 / 0.35);\n}\n.jelly:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.jelly:active { transform: scale(0.96, 0.9); }\n.jelly.is-wobbling { animation: jelly 0.7s both; }\n@keyframes jelly {\n  0% { transform: scale(1, 1); }\n  25% { transform: scale(1.18, 0.82); }\n  40% { transform: scale(0.88, 1.12); }\n  55% { transform: scale(1.06, 0.94); }\n  70% { transform: scale(0.97, 1.03); }\n  85% { transform: scale(1.01, 0.99); }\n  100% { transform: scale(1, 1); }\n}\n@media (prefers-reduced-motion: reduce) { .jelly.is-wobbling { animation: none; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "JellyButton.svelte",
+        "code": "<!-- tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './JellyButton.css';\n\n  let node;\n\n  function setup(root) {\n    const btn = root.querySelector('.jelly');\n    const onClick = () => { btn.classList.remove('is-wobbling'); void btn.offsetWidth; btn.classList.add('is-wobbling'); };\n    const onEnd = () => btn.classList.remove('is-wobbling');\n    btn.addEventListener('click', onClick);\n    btn.addEventListener('animationend', onEnd);\n    return () => { btn.removeEventListener('click', onClick); btn.removeEventListener('animationend', onEnd); };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"jelly-demo\">\n  <button class=\"jelly\" type=\"button\">Boing</button>\n</div>"
+      },
+      {
+        "name": "JellyButton.css",
+        "code": "/* tearsheet jelly-button v917865be · https://qusaialjbali.github.io/tearsheet/zine/parts/jelly-button.html */\n.jelly-demo { display: grid; place-items: center; padding: 20px; }\n.jelly {\n  padding: 18px 36px; font: inherit; font-size: 20px; font-weight: 900; letter-spacing: 0.02em;\n  color: #1b1b20; background: #a3e635; border: 0; border-radius: 22px; cursor: pointer;\n  box-shadow: 0 10px 0 -2px #65a30d, 0 18px 30px -10px rgb(0 0 0 / 0.35);\n}\n.jelly:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.jelly:active { transform: scale(0.96, 0.9); }\n.jelly.is-wobbling { animation: jelly 0.7s both; }\n@keyframes jelly {\n  0% { transform: scale(1, 1); }\n  25% { transform: scale(1.18, 0.82); }\n  40% { transform: scale(0.88, 1.12); }\n  55% { transform: scale(1.06, 0.94); }\n  70% { transform: scale(0.97, 1.03); }\n  85% { transform: scale(1.01, 0.99); }\n  100% { transform: scale(1, 1); }\n}\n@media (prefers-reduced-motion: reduce) { .jelly.is-wobbling { animation: none; } }"
+      }
+    ]
+  }
+}

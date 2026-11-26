@@ -1,0 +1,103 @@
+{
+  "id": "otp-input",
+  "name": "One-time code",
+  "page": "p.15",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Six-box verification code that auto-advances, handles backspace and accepts a pasted or autofilled code.",
+  "notes": "autocomplete=\"one-time-code\" lets phones offer the SMS code. Pasting a full code into any box fills them all, so nobody has to type six times.",
+  "usesJavaScript": true,
+  "sizeKb": 2.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#otp-input",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/otp-input.json",
+  "version": "27ea638b",
+  "checked": "axe clean in light and dark; tightest text contrast 17.41:1 (needs 4.5:1); 6 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 18
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 18
+      }
+    },
+    "contrast": {
+      "ratio": 17.41,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "textbox \"Digit 1\"",
+      "textbox \"Digit 2\"",
+      "textbox \"Digit 3\"",
+      "textbox \"Digit 4\"",
+      "textbox \"Digit 5\"",
+      "textbox \"Digit 6\""
+    ],
+    "tree": "- paragraph: Enter the 6-digit code we sent you\n- group \"Enter the 6-digit code we sent you\":\n  - textbox \"Digit 1\"\n  - textbox \"Digit 2\"\n  - textbox \"Digit 3\"\n  - textbox \"Digit 4\"\n  - textbox \"Digit 5\"\n  - textbox \"Digit 6\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html -->\n<div class=\"otp\">\n  <p class=\"otp-label\" id=\"otp-label\">Enter the 6-digit code we sent you</p>\n  <div class=\"otp-boxes\" role=\"group\" aria-labelledby=\"otp-label\">\n    <input class=\"otp-box\" inputmode=\"numeric\" autocomplete=\"one-time-code\" aria-label=\"Digit 1\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 2\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 3\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 4\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 5\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 6\">\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html */\n.otp { display: grid; gap: 12px; justify-items: start; }\n.otp-label { margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.otp-boxes { display: flex; gap: 8px; }\n.otp-box {\n  width: 48px;\n  height: 58px;\n  font: inherit;\n  font-size: 24px;\n  font-weight: 700;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  caret-color: var(--ui-accent);\n  font-variant-numeric: tabular-nums;\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.otp-box:nth-child(3) { margin-right: 10px; }\n.otp-box:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.otp.is-complete .otp-box { border-color: var(--ui-success); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html */\nfunction setup(root) {\n  const boxes = [...root.querySelectorAll('.otp-box')];\n\n  const fill = (start, digits) => {\n    digits.slice(0, boxes.length - start).forEach((d, k) => (boxes[start + k].value = d));\n    const next = Math.min(start + digits.length, boxes.length - 1);\n    boxes[next].focus();\n    root.classList.toggle('is-complete', boxes.every((b) => b.value));\n  };\n  const onInput = (e) => {\n    const i = boxes.indexOf(e.target);\n    const digits = e.target.value.replace(/\\D/g, '').split('');\n    e.target.value = '';\n    if (digits.length) fill(i, digits);\n    else root.classList.remove('is-complete');\n  };\n  const onKeyDown = (e) => {\n    const i = boxes.indexOf(e.target);\n    if (e.key === 'Backspace' && !e.target.value && i > 0) boxes[i - 1].focus();\n    if (e.key === 'ArrowLeft' && i > 0) boxes[i - 1].focus();\n    if (e.key === 'ArrowRight' && i < boxes.length - 1) boxes[i + 1].focus();\n  };\n  const onPaste = (e) => {\n    e.preventDefault();\n    const digits = e.clipboardData.getData('text').replace(/\\D/g, '').split('');\n    if (digits.length) fill(boxes.indexOf(e.target), digits);\n  };\n\n  boxes.forEach((b) => {\n    b.addEventListener('input', onInput);\n    b.addEventListener('keydown', onKeyDown);\n    b.addEventListener('paste', onPaste);\n  });\n  return () => boxes.forEach((b) => {\n    b.removeEventListener('input', onInput);\n    b.removeEventListener('keydown', onKeyDown);\n    b.removeEventListener('paste', onPaste);\n  });\n}\n\ndocument.querySelectorAll(\".otp\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "OtpInput.jsx",
+        "code": "/* tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html */\nimport { useEffect, useRef } from 'react';\nimport './OtpInput.css';\n\nfunction setup(root) {\n  const boxes = [...root.querySelectorAll('.otp-box')];\n\n  const fill = (start, digits) => {\n    digits.slice(0, boxes.length - start).forEach((d, k) => (boxes[start + k].value = d));\n    const next = Math.min(start + digits.length, boxes.length - 1);\n    boxes[next].focus();\n    root.classList.toggle('is-complete', boxes.every((b) => b.value));\n  };\n  const onInput = (e) => {\n    const i = boxes.indexOf(e.target);\n    const digits = e.target.value.replace(/\\D/g, '').split('');\n    e.target.value = '';\n    if (digits.length) fill(i, digits);\n    else root.classList.remove('is-complete');\n  };\n  const onKeyDown = (e) => {\n    const i = boxes.indexOf(e.target);\n    if (e.key === 'Backspace' && !e.target.value && i > 0) boxes[i - 1].focus();\n    if (e.key === 'ArrowLeft' && i > 0) boxes[i - 1].focus();\n    if (e.key === 'ArrowRight' && i < boxes.length - 1) boxes[i + 1].focus();\n  };\n  const onPaste = (e) => {\n    e.preventDefault();\n    const digits = e.clipboardData.getData('text').replace(/\\D/g, '').split('');\n    if (digits.length) fill(boxes.indexOf(e.target), digits);\n  };\n\n  boxes.forEach((b) => {\n    b.addEventListener('input', onInput);\n    b.addEventListener('keydown', onKeyDown);\n    b.addEventListener('paste', onPaste);\n  });\n  return () => boxes.forEach((b) => {\n    b.removeEventListener('input', onInput);\n    b.removeEventListener('keydown', onKeyDown);\n    b.removeEventListener('paste', onPaste);\n  });\n}\n\nexport function OtpInput() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"otp\">\n      <p className=\"otp-label\" id=\"otp-label\">Enter the 6-digit code we sent you</p>\n      <div className=\"otp-boxes\" role=\"group\" aria-labelledby=\"otp-label\">\n        <input className=\"otp-box\" inputMode=\"numeric\" autoComplete=\"one-time-code\" aria-label=\"Digit 1\" />\n        <input className=\"otp-box\" inputMode=\"numeric\" aria-label=\"Digit 2\" />\n        <input className=\"otp-box\" inputMode=\"numeric\" aria-label=\"Digit 3\" />\n        <input className=\"otp-box\" inputMode=\"numeric\" aria-label=\"Digit 4\" />\n        <input className=\"otp-box\" inputMode=\"numeric\" aria-label=\"Digit 5\" />\n        <input className=\"otp-box\" inputMode=\"numeric\" aria-label=\"Digit 6\" />\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "OtpInput.css",
+        "code": "/* tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html */\n.otp { display: grid; gap: 12px; justify-items: start; }\n.otp-label { margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.otp-boxes { display: flex; gap: 8px; }\n.otp-box {\n  width: 48px;\n  height: 58px;\n  font: inherit;\n  font-size: 24px;\n  font-weight: 700;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  caret-color: var(--ui-accent);\n  font-variant-numeric: tabular-nums;\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.otp-box:nth-child(3) { margin-right: 10px; }\n.otp-box:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.otp.is-complete .otp-box { border-color: var(--ui-success); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "OtpInput.vue",
+        "code": "<!-- tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const boxes = [...root.querySelectorAll('.otp-box')];\n\n  const fill = (start, digits) => {\n    digits.slice(0, boxes.length - start).forEach((d, k) => (boxes[start + k].value = d));\n    const next = Math.min(start + digits.length, boxes.length - 1);\n    boxes[next].focus();\n    root.classList.toggle('is-complete', boxes.every((b) => b.value));\n  };\n  const onInput = (e) => {\n    const i = boxes.indexOf(e.target);\n    const digits = e.target.value.replace(/\\D/g, '').split('');\n    e.target.value = '';\n    if (digits.length) fill(i, digits);\n    else root.classList.remove('is-complete');\n  };\n  const onKeyDown = (e) => {\n    const i = boxes.indexOf(e.target);\n    if (e.key === 'Backspace' && !e.target.value && i > 0) boxes[i - 1].focus();\n    if (e.key === 'ArrowLeft' && i > 0) boxes[i - 1].focus();\n    if (e.key === 'ArrowRight' && i < boxes.length - 1) boxes[i + 1].focus();\n  };\n  const onPaste = (e) => {\n    e.preventDefault();\n    const digits = e.clipboardData.getData('text').replace(/\\D/g, '').split('');\n    if (digits.length) fill(boxes.indexOf(e.target), digits);\n  };\n\n  boxes.forEach((b) => {\n    b.addEventListener('input', onInput);\n    b.addEventListener('keydown', onKeyDown);\n    b.addEventListener('paste', onPaste);\n  });\n  return () => boxes.forEach((b) => {\n    b.removeEventListener('input', onInput);\n    b.removeEventListener('keydown', onKeyDown);\n    b.removeEventListener('paste', onPaste);\n  });\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"otp\">\n    <p class=\"otp-label\" id=\"otp-label\">Enter the 6-digit code we sent you</p>\n    <div class=\"otp-boxes\" role=\"group\" aria-labelledby=\"otp-label\">\n      <input class=\"otp-box\" inputmode=\"numeric\" autocomplete=\"one-time-code\" aria-label=\"Digit 1\">\n      <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 2\">\n      <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 3\">\n      <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 4\">\n      <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 5\">\n      <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 6\">\n    </div>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.otp { display: grid; gap: 12px; justify-items: start; }\n.otp-label { margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.otp-boxes { display: flex; gap: 8px; }\n.otp-box {\n  width: 48px;\n  height: 58px;\n  font: inherit;\n  font-size: 24px;\n  font-weight: 700;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  caret-color: var(--ui-accent);\n  font-variant-numeric: tabular-nums;\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.otp-box:nth-child(3) { margin-right: 10px; }\n.otp-box:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.otp.is-complete .otp-box { border-color: var(--ui-success); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "OtpInput.svelte",
+        "code": "<!-- tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './OtpInput.css';\n\n  let node;\n\n  function setup(root) {\n    const boxes = [...root.querySelectorAll('.otp-box')];\n\n    const fill = (start, digits) => {\n      digits.slice(0, boxes.length - start).forEach((d, k) => (boxes[start + k].value = d));\n      const next = Math.min(start + digits.length, boxes.length - 1);\n      boxes[next].focus();\n      root.classList.toggle('is-complete', boxes.every((b) => b.value));\n    };\n    const onInput = (e) => {\n      const i = boxes.indexOf(e.target);\n      const digits = e.target.value.replace(/\\D/g, '').split('');\n      e.target.value = '';\n      if (digits.length) fill(i, digits);\n      else root.classList.remove('is-complete');\n    };\n    const onKeyDown = (e) => {\n      const i = boxes.indexOf(e.target);\n      if (e.key === 'Backspace' && !e.target.value && i > 0) boxes[i - 1].focus();\n      if (e.key === 'ArrowLeft' && i > 0) boxes[i - 1].focus();\n      if (e.key === 'ArrowRight' && i < boxes.length - 1) boxes[i + 1].focus();\n    };\n    const onPaste = (e) => {\n      e.preventDefault();\n      const digits = e.clipboardData.getData('text').replace(/\\D/g, '').split('');\n      if (digits.length) fill(boxes.indexOf(e.target), digits);\n    };\n\n    boxes.forEach((b) => {\n      b.addEventListener('input', onInput);\n      b.addEventListener('keydown', onKeyDown);\n      b.addEventListener('paste', onPaste);\n    });\n    return () => boxes.forEach((b) => {\n      b.removeEventListener('input', onInput);\n      b.removeEventListener('keydown', onKeyDown);\n      b.removeEventListener('paste', onPaste);\n    });\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"otp\">\n  <p class=\"otp-label\" id=\"otp-label\">Enter the 6-digit code we sent you</p>\n  <div class=\"otp-boxes\" role=\"group\" aria-labelledby=\"otp-label\">\n    <input class=\"otp-box\" inputmode=\"numeric\" autocomplete=\"one-time-code\" aria-label=\"Digit 1\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 2\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 3\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 4\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 5\">\n    <input class=\"otp-box\" inputmode=\"numeric\" aria-label=\"Digit 6\">\n  </div>\n</div>"
+      },
+      {
+        "name": "OtpInput.css",
+        "code": "/* tearsheet otp-input v27ea638b · https://qusaialjbali.github.io/tearsheet/zine/parts/otp-input.html */\n.otp { display: grid; gap: 12px; justify-items: start; }\n.otp-label { margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.otp-boxes { display: flex; gap: 8px; }\n.otp-box {\n  width: 48px;\n  height: 58px;\n  font: inherit;\n  font-size: 24px;\n  font-weight: 700;\n  text-align: center;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  caret-color: var(--ui-accent);\n  font-variant-numeric: tabular-nums;\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.otp-box:nth-child(3) { margin-right: 10px; }\n.otp-box:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.otp.is-complete .otp-box { border-color: var(--ui-success); }"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install check tools
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Generated files are committed
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            echo "::error::Generated files are out of date. Run 'npm run build' and commit the result."
+            exit 1
+          fi
+
+      - name: Every component compiles in every format
+        run: npm run check:code
+
+      - name: Install a browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Accessibility, brand contrast, RTL and long text (writes receipts)
+        run: npm run check:a11y
+
+      - name: Published receipts match this run
+        run: |
+          if ! git diff --quiet -- api/receipts.json; then
+            echo "::warning::api/receipts.json differs from this run. Run 'npm run check:a11y' and commit the result."
+            git diff --stat -- api/receipts.json
+          fi

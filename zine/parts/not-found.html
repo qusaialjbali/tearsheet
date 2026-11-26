@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 page · Sections component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A not-found page that admits the mistake, offers a search and the three most likely destinations.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="404 page · Sections component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A not-found page that admits the mistake, offers a search and the three most likely destinations.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"404 page","description":"A not-found page that admits the mistake, offers a search and the three most likely destinations.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#not-found">Issue 01</a> · Sections · p.75</p>
+    <h1><span class="a">404 page</span><span class="b" aria-hidden="true">404 page</span></h1>
+    <p class="lede">A not-found page that admits the mistake, offers a search and the three most likely destinations.</p>
+    <p class="why"><b>Why it works:</b> Do not blame the visitor. Give them a search box and the few places they most likely meant to go, and log 404s so you can fix the broken links.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="404 page preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.nf { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.nf { text-align: center; }
+.nf-code { margin: 0; font-size: clamp(72px, 14vw, 140px); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; color: var(--ui-accent); }
+.nf h1 { margin: 16px 0 8px; font-size: clamp(24px, 3.4vw, 36px); letter-spacing: -0.02em; }
+.nf-text { max-width: 44ch; margin: 0 auto 24px; color: var(--ui-muted); }
+.nf-search { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 20px; }
+.nf-search input { flex: 1; min-width: 0; min-height: 44px; padding: 0 14px; font: inherit; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); }
+.nf-search input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.nf-search button { padding: 0 18px; font: inherit; font-weight: 700; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }
+.nf-search button:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.nf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin: 0; padding: 0; list-style: none; }
+.nf-links a { font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage full&quot;>&lt;section class=&quot;nf&quot;>
+  &lt;p class=&quot;nf-code&quot; aria-hidden=&quot;true&quot;>404&lt;/p>
+  &lt;h1>That page has wandered off.&lt;/h1>
+  &lt;p class=&quot;nf-text&quot;>The link may be old, or we moved something. Try a search, or head somewhere useful.&lt;/p>
+  &lt;form class=&quot;nf-search&quot; role=&quot;search&quot;>
+    &lt;label class=&quot;sr-only&quot; for=&quot;nf-q&quot;>Search the site&lt;/label>
+    &lt;input id=&quot;nf-q&quot; type=&quot;search&quot; placeholder=&quot;Search the site&quot;>
+    &lt;button type=&quot;submit&quot;>Search&lt;/button>
+  &lt;/form>
+  &lt;ul class=&quot;nf-links&quot;>
+    &lt;li>&lt;a href=&quot;#&quot;>Home&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot;>Help centre&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot;>Contact support&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/section>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 5.93:1 · 5 tab stops · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (19 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 5.93:1, where 4.5:1 is needed (dark).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> No motion.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>searchbox &quot;Search the site&quot;</li><li>button &quot;Search&quot;</li><li>link &quot;Home&quot;:</li><li>link &quot;Help centre&quot;:</li><li>link &quot;Contact support&quot;:</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- heading &quot;That page has wandered off.&quot; [level=1]
+- paragraph: The link may be old, or we moved something. Try a search, or head somewhere useful.
+- search:
+  - text: Search the site
+  - searchbox &quot;Search the site&quot;
+  - button &quot;Search&quot;
+- list:
+  - listitem:
+    - link &quot;Home&quot;:
+      - /url: &quot;#&quot;
+  - listitem:
+    - link &quot;Help centre&quot;:
+      - /url: &quot;#&quot;
+  - listitem:
+    - link &quot;Contact support&quot;:
+      - /url: &quot;#&quot;</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#not-found">See it in the zine</a> <code>npx -y tearsheet add not-found</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet not-found vc3139eca · https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html -->
+&lt;section class=&quot;nf&quot;>
+  &lt;p class=&quot;nf-code&quot; aria-hidden=&quot;true&quot;>404&lt;/p>
+  &lt;h1>That page has wandered off.&lt;/h1>
+  &lt;p class=&quot;nf-text&quot;>The link may be old, or we moved something. Try a search, or head somewhere useful.&lt;/p>
+  &lt;form class=&quot;nf-search&quot; role=&quot;search&quot;>
+    &lt;label class=&quot;sr-only&quot; for=&quot;nf-q&quot;>Search the site&lt;/label>
+    &lt;input id=&quot;nf-q&quot; type=&quot;search&quot; placeholder=&quot;Search the site&quot;>
+    &lt;button type=&quot;submit&quot;>Search&lt;/button>
+  &lt;/form>
+  &lt;ul class=&quot;nf-links&quot;>
+    &lt;li>&lt;a href=&quot;#&quot;>Home&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot;>Help centre&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot;>Contact support&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/section></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet not-found vc3139eca · https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.nf { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.nf { text-align: center; }
+.nf-code { margin: 0; font-size: clamp(72px, 14vw, 140px); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; color: var(--ui-accent); }
+.nf h1 { margin: 16px 0 8px; font-size: clamp(24px, 3.4vw, 36px); letter-spacing: -0.02em; }
+.nf-text { max-width: 44ch; margin: 0 auto 24px; color: var(--ui-muted); }
+.nf-search { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 20px; }
+.nf-search input { flex: 1; min-width: 0; min-height: 44px; padding: 0 14px; font: inherit; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); }
+.nf-search input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.nf-search button { padding: 0 18px; font: inherit; font-weight: 700; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }
+.nf-search button:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.nf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin: 0; padding: 0; list-style: none; }
+.nf-links a { font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>NotFound.jsx</span></div><pre tabindex="0"><code>/* tearsheet not-found vc3139eca · https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html */
+import './NotFound.css';
+
+export function NotFound() {
+  return (
+    &lt;section className=&quot;nf&quot;>
+      &lt;p className=&quot;nf-code&quot; aria-hidden=&quot;true&quot;>404&lt;/p>
+      &lt;h1>That page has wandered off.&lt;/h1>
+      &lt;p className=&quot;nf-text&quot;>The link may be old, or we moved something. Try a search, or head somewhere useful.&lt;/p>
+      &lt;form className=&quot;nf-search&quot; role=&quot;search&quot;>
+        &lt;label className=&quot;sr-only&quot; htmlFor=&quot;nf-q&quot;>Search the site&lt;/label>
+        &lt;input id=&quot;nf-q&quot; type=&quot;search&quot; placeholder=&quot;Search the site&quot; />
+        &lt;button type=&quot;submit&quot;>Search&lt;/button>
+      &lt;/form>
+      &lt;ul className=&quot;nf-links&quot;>
+        &lt;li>&lt;a href=&quot;#&quot;>Home&lt;/a>&lt;/li>
+        &lt;li>&lt;a href=&quot;#&quot;>Help centre&lt;/a>&lt;/li>
+        &lt;li>&lt;a href=&quot;#&quot;>Contact support&lt;/a>&lt;/li>
+      &lt;/ul>
+    &lt;/section>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>NotFound.css</span></div><pre tabindex="0"><code>/* tearsheet not-found vc3139eca · https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.nf { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.nf { text-align: center; }
+.nf-code { margin: 0; font-size: clamp(72px, 14vw, 140px); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; color: var(--ui-accent); }
+.nf h1 { margin: 16px 0 8px; font-size: clamp(24px, 3.4vw, 36px); letter-spacing: -0.02em; }
+.nf-text { max-width: 44ch; margin: 0 auto 24px; color: var(--ui-muted); }
+.nf-search { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 20px; }
+.nf-search input { flex: 1; min-width: 0; min-height: 44px; padding: 0 14px; font: inherit; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); }
+.nf-search input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.nf-search button { padding: 0 18px; font: inherit; font-weight: 700; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }
+.nf-search button:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.nf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin: 0; padding: 0; list-style: none; }
+.nf-links a { font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>NotFound.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet not-found vc3139eca · https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html -->
+&lt;template>
+  &lt;section class=&quot;nf&quot;>
+    &lt;p class=&quot;nf-code&quot; aria-hidden=&quot;true&quot;>404&lt;/p>
+    &lt;h1>That page has wandered off.&lt;/h1>
+    &lt;p class=&quot;nf-text&quot;>The link may be old, or we moved something. Try a search, or head somewhere useful.&lt;/p>
+    &lt;form class=&quot;nf-search&quot; role=&quot;search&quot;>
+      &lt;label class=&quot;sr-only&quot; for=&quot;nf-q&quot;>Search the site&lt;/label>
+      &lt;input id=&quot;nf-q&quot; type=&quot;search&quot; placeholder=&quot;Search the site&quot;>
+      &lt;button type=&quot;submit&quot;>Search&lt;/button>
+    &lt;/form>
+    &lt;ul class=&quot;nf-links&quot;>
+      &lt;li>&lt;a href=&quot;#&quot;>Home&lt;/a>&lt;/li>
+      &lt;li>&lt;a href=&quot;#&quot;>Help centre&lt;/a>&lt;/li>
+      &lt;li>&lt;a href=&quot;#&quot;>Contact support&lt;/a>&lt;/li>
+    &lt;/ul>
+  &lt;/section>
+&lt;/template>
+
+&lt;style scoped>
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.nf { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.nf { text-align: center; }
+.nf-code { margin: 0; font-size: clamp(72px, 14vw, 140px); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; color: var(--ui-accent); }
+.nf h1 { margin: 16px 0 8px; font-size: clamp(24px, 3.4vw, 36px); letter-spacing: -0.02em; }
+.nf-text { max-width: 44ch; margin: 0 auto 24px; color: var(--ui-muted); }
+.nf-search { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 20px; }
+.nf-search input { flex: 1; min-width: 0; min-height: 44px; padding: 0 14px; font: inherit; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); }
+.nf-search input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.nf-search button { padding: 0 18px; font: inherit; font-weight: 700; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }
+.nf-search button:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.nf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin: 0; padding: 0; list-style: none; }
+.nf-links a { font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>NotFound.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet not-found vc3139eca · https://qusaialjbali.github.io/tearsheet/zine/parts/not-found.html -->
+&lt;section class=&quot;nf&quot;>
+  &lt;p class=&quot;nf-code&quot; aria-hidden=&quot;true&quot;>404&lt;/p>
+  &lt;h1>That page has wandered off.&lt;/h1>
+  &lt;p class=&quot;nf-text&quot;>The link may be old, or we moved something. Try a search, or head somewhere useful.&lt;/p>
+  &lt;form class=&quot;nf-search&quot; role=&quot;search&quot;>
+    &lt;label class=&quot;sr-only&quot; for=&quot;nf-q&quot;>Search the site&lt;/label>
+    &lt;input id=&quot;nf-q&quot; type=&quot;search&quot; placeholder=&quot;Search the site&quot;>
+    &lt;button type=&quot;submit&quot;>Search&lt;/button>
+  &lt;/form>
+  &lt;ul class=&quot;nf-links&quot;>
+    &lt;li>&lt;a href=&quot;#&quot;>Home&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot;>Help centre&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot;>Contact support&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/section>
+
+&lt;style>
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.nf { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.nf { text-align: center; }
+.nf-code { margin: 0; font-size: clamp(72px, 14vw, 140px); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; color: var(--ui-accent); }
+.nf h1 { margin: 16px 0 8px; font-size: clamp(24px, 3.4vw, 36px); letter-spacing: -0.02em; }
+.nf-text { max-width: 44ch; margin: 0 auto 24px; color: var(--ui-muted); }
+.nf-search { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 20px; }
+.nf-search input { flex: 1; min-width: 0; min-height: 44px; padding: 0 14px; font: inherit; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); }
+.nf-search input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.nf-search button { padding: 0 18px; font: inherit; font-weight: 700; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: var(--ui-radius-sm); cursor: pointer; }
+.nf-search button:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.nf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin: 0; padding: 0; list-style: none; }
+.nf-links a { font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }
+&lt;/style></code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="site-footer.html">← Site footer</a>
+      <a rel="next" href="pricing-tiers.html">Pricing tiers →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

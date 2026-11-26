@@ -1,0 +1,92 @@
+{
+  "id": "checkbox-switch",
+  "name": "Checkbox & switch",
+  "page": "p.07",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Custom-styled native checkboxes and a toggle switch. Keyboard and screen-reader support stays native.",
+  "notes": "Checkboxes are for choices submitted later; switches are for settings that apply instantly. The whole label is clickable, giving a large target.",
+  "usesJavaScript": false,
+  "sizeKb": 2.2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#checkbox-switch",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/checkbox-switch.json",
+  "version": "8c0af3c4",
+  "checked": "axe clean in light and dark; tightest text contrast 17.41:1 (needs 4.5:1); 3 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 13
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 13
+      }
+    },
+    "contrast": {
+      "ratio": 17.41,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "checkbox \"Email me product updates\" [checked]",
+      "checkbox \"I agree to the terms\"",
+      "switch \"Notifications\" [checked]"
+    ],
+    "tree": "- checkbox \"Email me product updates\" [checked]\n- text: Email me product updates\n- checkbox \"I agree to the terms\"\n- text: I agree to the terms\n- switch \"Notifications\" [checked]\n- text: Notifications",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet checkbox-switch v8c0af3c4 · https://qusaialjbali.github.io/tearsheet/zine/parts/checkbox-switch.html -->\n<div class=\"choices\">\n  <label class=\"check\">\n    <input type=\"checkbox\" checked>\n    <span>Email me product updates</span>\n  </label>\n  <label class=\"check\">\n    <input type=\"checkbox\">\n    <span>I agree to the terms</span>\n  </label>\n  <label class=\"switch\">\n    <input type=\"checkbox\" role=\"switch\" checked>\n    <span class=\"switch-track\" aria-hidden=\"true\"></span>\n    <span>Notifications</span>\n  </label>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet checkbox-switch v8c0af3c4 · https://qusaialjbali.github.io/tearsheet/zine/parts/checkbox-switch.html */\n.choices { display: grid; gap: 14px; }\n.check, .switch {\n  display: inline-flex;\n  align-items: center;\n  gap: 10px;\n  font-size: 15px;\n  cursor: pointer;\n}\n.check input {\n  appearance: none;\n  margin: 0;\n  width: 20px;\n  height: 20px;\n  display: grid;\n  place-content: center;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 6px;\n  background: var(--ui-surface);\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s;\n}\n.check input::after {\n  content: \"\";\n  width: 5px;\n  height: 10px;\n  border: solid var(--ui-accent-text);\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg) translate(-1px, -1px) scale(0);\n  transition: transform 0.12s;\n}\n.check input:checked { background: var(--ui-accent); border-color: var(--ui-accent); }\n.check input:checked::after { transform: rotate(45deg) translate(-1px, -1px) scale(1); }\n.check input:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n\n.switch input {\n  position: absolute;\n  opacity: 0;\n  width: 1px;\n  height: 1px;\n}\n.switch-track {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  flex: none;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.switch-track::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.switch input:checked + .switch-track { background: var(--ui-accent); }\n.switch input:checked + .switch-track::after { transform: translateX(18px); }\n.switch input:focus-visible + .switch-track { box-shadow: var(--ui-focus); }\n\n@media (prefers-reduced-motion: reduce) {\n  .switch-track, .switch-track::after, .check input::after { transition: none; }\n}"
+      }
+    ],
+    "react": [
+      {
+        "name": "CheckboxSwitch.jsx",
+        "code": "/* tearsheet checkbox-switch v8c0af3c4 · https://qusaialjbali.github.io/tearsheet/zine/parts/checkbox-switch.html */\nimport './CheckboxSwitch.css';\n\nexport function CheckboxSwitch() {\n  return (\n    <div className=\"choices\">\n      <label className=\"check\">\n        <input type=\"checkbox\" defaultChecked />\n        <span>Email me product updates</span>\n      </label>\n      <label className=\"check\">\n        <input type=\"checkbox\" />\n        <span>I agree to the terms</span>\n      </label>\n      <label className=\"switch\">\n        <input type=\"checkbox\" role=\"switch\" defaultChecked />\n        <span className=\"switch-track\" aria-hidden=\"true\"></span>\n        <span>Notifications</span>\n      </label>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "CheckboxSwitch.css",
+        "code": "/* tearsheet checkbox-switch v8c0af3c4 · https://qusaialjbali.github.io/tearsheet/zine/parts/checkbox-switch.html */\n.choices { display: grid; gap: 14px; }\n.check, .switch {\n  display: inline-flex;\n  align-items: center;\n  gap: 10px;\n  font-size: 15px;\n  cursor: pointer;\n}\n.check input {\n  appearance: none;\n  margin: 0;\n  width: 20px;\n  height: 20px;\n  display: grid;\n  place-content: center;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 6px;\n  background: var(--ui-surface);\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s;\n}\n.check input::after {\n  content: \"\";\n  width: 5px;\n  height: 10px;\n  border: solid var(--ui-accent-text);\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg) translate(-1px, -1px) scale(0);\n  transition: transform 0.12s;\n}\n.check input:checked { background: var(--ui-accent); border-color: var(--ui-accent); }\n.check input:checked::after { transform: rotate(45deg) translate(-1px, -1px) scale(1); }\n.check input:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n\n.switch input {\n  position: absolute;\n  opacity: 0;\n  width: 1px;\n  height: 1px;\n}\n.switch-track {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  flex: none;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.switch-track::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.switch input:checked + .switch-track { background: var(--ui-accent); }\n.switch input:checked + .switch-track::after { transform: translateX(18px); }\n.switch input:focus-visible + .switch-track { box-shadow: var(--ui-focus); }\n\n@media (prefers-reduced-motion: reduce) {\n  .switch-track, .switch-track::after, .check input::after { transition: none; }\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "CheckboxSwitch.vue",
+        "code": "<!-- tearsheet checkbox-switch v8c0af3c4 · https://qusaialjbali.github.io/tearsheet/zine/parts/checkbox-switch.html -->\n<template>\n  <div class=\"choices\">\n    <label class=\"check\">\n      <input type=\"checkbox\" checked>\n      <span>Email me product updates</span>\n    </label>\n    <label class=\"check\">\n      <input type=\"checkbox\">\n      <span>I agree to the terms</span>\n    </label>\n    <label class=\"switch\">\n      <input type=\"checkbox\" role=\"switch\" checked>\n      <span class=\"switch-track\" aria-hidden=\"true\"></span>\n      <span>Notifications</span>\n    </label>\n  </div>\n</template>\n\n<style scoped>\n.choices { display: grid; gap: 14px; }\n.check, .switch {\n  display: inline-flex;\n  align-items: center;\n  gap: 10px;\n  font-size: 15px;\n  cursor: pointer;\n}\n.check input {\n  appearance: none;\n  margin: 0;\n  width: 20px;\n  height: 20px;\n  display: grid;\n  place-content: center;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 6px;\n  background: var(--ui-surface);\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s;\n}\n.check input::after {\n  content: \"\";\n  width: 5px;\n  height: 10px;\n  border: solid var(--ui-accent-text);\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg) translate(-1px, -1px) scale(0);\n  transition: transform 0.12s;\n}\n.check input:checked { background: var(--ui-accent); border-color: var(--ui-accent); }\n.check input:checked::after { transform: rotate(45deg) translate(-1px, -1px) scale(1); }\n.check input:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n\n.switch input {\n  position: absolute;\n  opacity: 0;\n  width: 1px;\n  height: 1px;\n}\n.switch-track {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  flex: none;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.switch-track::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.switch input:checked + .switch-track { background: var(--ui-accent); }\n.switch input:checked + .switch-track::after { transform: translateX(18px); }\n.switch input:focus-visible + .switch-track { box-shadow: var(--ui-focus); }\n\n@media (prefers-reduced-motion: reduce) {\n  .switch-track, .switch-track::after, .check input::after { transition: none; }\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "CheckboxSwitch.svelte",
+        "code": "<!-- tearsheet checkbox-switch v8c0af3c4 · https://qusaialjbali.github.io/tearsheet/zine/parts/checkbox-switch.html -->\n<div class=\"choices\">\n  <label class=\"check\">\n    <input type=\"checkbox\" checked>\n    <span>Email me product updates</span>\n  </label>\n  <label class=\"check\">\n    <input type=\"checkbox\">\n    <span>I agree to the terms</span>\n  </label>\n  <label class=\"switch\">\n    <input type=\"checkbox\" role=\"switch\" checked>\n    <span class=\"switch-track\" aria-hidden=\"true\"></span>\n    <span>Notifications</span>\n  </label>\n</div>\n\n<style>\n.choices { display: grid; gap: 14px; }\n.check, .switch {\n  display: inline-flex;\n  align-items: center;\n  gap: 10px;\n  font-size: 15px;\n  cursor: pointer;\n}\n.check input {\n  appearance: none;\n  margin: 0;\n  width: 20px;\n  height: 20px;\n  display: grid;\n  place-content: center;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 6px;\n  background: var(--ui-surface);\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s;\n}\n.check input::after {\n  content: \"\";\n  width: 5px;\n  height: 10px;\n  border: solid var(--ui-accent-text);\n  border-width: 0 2px 2px 0;\n  transform: rotate(45deg) translate(-1px, -1px) scale(0);\n  transition: transform 0.12s;\n}\n.check input:checked { background: var(--ui-accent); border-color: var(--ui-accent); }\n.check input:checked::after { transform: rotate(45deg) translate(-1px, -1px) scale(1); }\n.check input:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n\n.switch input {\n  position: absolute;\n  opacity: 0;\n  width: 1px;\n  height: 1px;\n}\n.switch-track {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  flex: none;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.switch-track::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.switch input:checked + .switch-track { background: var(--ui-accent); }\n.switch input:checked + .switch-track::after { transform: translateX(18px); }\n.switch input:focus-visible + .switch-track { box-shadow: var(--ui-focus); }\n\n@media (prefers-reduced-motion: reduce) {\n  .switch-track, .switch-track::after, .check input::after { transition: none; }\n}\n</style>"
+      }
+    ]
+  }
+}

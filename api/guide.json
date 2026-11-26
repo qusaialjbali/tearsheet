@@ -1,0 +1,355 @@
+{
+  "name": "Tearsheet design guide",
+  "chapters": [
+    {
+      "id": "principles",
+      "title": "Principles",
+      "intro": "Before pixels: know what the page is for. Every screen should answer three questions in about five seconds: what is this, what can I do here, and why should I care?",
+      "rules": [
+        {
+          "do": "Give each screen one primary action and make it visually obvious.",
+          "dont": "Give five buttons equal weight and make people work out which one matters.",
+          "why": "When everything is emphasized, nothing is. Hierarchy is how a design tells people where to look."
+        },
+        {
+          "do": "Use conventions people already know: logo top-left links home, search looks like search, links look like links.",
+          "dont": "Reinvent scrolling, navigation or form controls for novelty.",
+          "why": "People spend most of their time on other sites (Jakob’s Law). Familiar patterns cost them nothing to learn."
+        },
+        {
+          "do": "Remove things until the page breaks, then put the last one back.",
+          "dont": "Fill space because it’s empty. Whitespace is a feature, not waste.",
+          "why": ""
+        },
+        {
+          "do": "Be consistent: the same thing should look and behave the same everywhere.",
+          "dont": "Use three button styles, four greys and two date formats for the same job.",
+          "why": "A design system (even a small one, like our tokens file) is how you stay consistent without thinking about it."
+        }
+      ]
+    },
+    {
+      "id": "layout",
+      "title": "Layout & spacing",
+      "intro": "Spacing is the quietest design tool and the one that most separates amateur from professional work. Pick a scale and stick to it.",
+      "rules": [
+        {
+          "do": "Use a spacing scale based on 4 or 8: 4, 8, 12, 16, 24, 32, 48, 64, 96.",
+          "dont": "Pick values by eye: 13px here, 17px there, 22px somewhere else. It reads as messy even when nobody can say why.",
+          "why": ""
+        },
+        {
+          "do": "Put related things close together and unrelated things further apart. A label sits closer to its field than to the field above.",
+          "dont": "Space everything evenly. Equal gaps erase the grouping people use to read a page.",
+          "why": "This is the law of proximity: distance is how the eye decides what belongs together."
+        },
+        {
+          "do": "Keep body text between 45 and 75 characters per line. max-width: 65ch does it in one line of CSS.",
+          "dont": "Let paragraphs stretch the full width of a 1440px screen. Long lines make readers lose their place.",
+          "why": ""
+        },
+        {
+          "do": "Align to a grid and left-align body text (right-align in right-to-left languages).",
+          "dont": "Center-align long paragraphs. Every line starts in a different place, so reading is slower.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "typography",
+      "title": "Typography",
+      "intro": "Most of the web is text. Get type right and a plain design looks considered; get it wrong and no amount of decoration helps.",
+      "rules": [
+        {
+          "do": "Use at least 16px for body text with a line height of 1.5 to 1.7.",
+          "dont": "Set body text at 12–13px in light grey. It looks elegant in a mockup and is unreadable on a phone in sunlight.",
+          "why": ""
+        },
+        {
+          "do": "Use a type scale with a fixed ratio (for example 1.25: 16, 20, 25, 31, 39, 49) and at most two typefaces.",
+          "dont": "Use five fonts and a dozen sizes picked one at a time.",
+          "why": ""
+        },
+        {
+          "do": "Build hierarchy with size, weight and color, and use each sparingly. Headings should be clearly bigger than text, not 2px bigger.",
+          "dont": "Bold whole paragraphs or write sentences in ALL CAPS. Emphasis everywhere is emphasis nowhere.",
+          "why": ""
+        },
+        {
+          "do": "Use one <h1> per page and keep heading levels in order (h2 then h3, never skipping).",
+          "dont": "Pick heading tags for their default size. Style with CSS; choose the tag for meaning.",
+          "why": "Screen-reader users jump between headings to navigate. Search engines use them to understand the page."
+        },
+        {
+          "do": "Load web fonts carefully: two or three weights, font-display: swap, WOFF2, self-hosted where you can. System fonts are a perfectly good choice.",
+          "dont": "Load a font family in nine weights to use two of them.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "color",
+      "title": "Color & contrast",
+      "intro": "Color carries meaning and mood, but its first job is legibility. Contrast is measurable, so measure it.",
+      "rules": [
+        {
+          "do": "Check every text and background pair against those numbers.",
+          "dont": "Use pale grey text on white to look “minimal”.",
+          "why": ""
+        },
+        {
+          "do": "Keep a small palette: neutrals, one accent, and semantic colors for success, warning and danger.",
+          "dont": "Use your accent color for decoration and for clickable things. If blue means “click”, only clickable things are blue.",
+          "why": ""
+        },
+        {
+          "do": "Pair color with a second cue: an icon, a label, an underline, a pattern.",
+          "dont": "Show status with a red or green dot alone. About 1 in 12 men can’t reliably tell them apart.",
+          "why": ""
+        },
+        {
+          "do": "Design dark mode on purpose: dark grey backgrounds (not pure black), slightly softer text, and lighter, less saturated accents.",
+          "dont": "Invert your light theme and call it done. Shadows vanish, colors vibrate and white text on pure black glares.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "buttons",
+      "title": "Buttons & links",
+      "intro": "A button does something. A link goes somewhere. Keeping that distinction clear fixes a surprising number of usability and accessibility problems.",
+      "rules": [
+        {
+          "do": "Show a clear hierarchy: one primary, then secondary, then text links.",
+          "dont": "Make every option a loud, filled button.",
+          "why": ""
+        },
+        {
+          "do": "Start labels with a verb that says what happens: “Save changes”, “Download invoice”, “Delete project”.",
+          "dont": "Write “Submit”, “OK”, “Yes” or “Click here”. Out of context (and screen readers often list links out of context) they mean nothing.",
+          "why": ""
+        },
+        {
+          "do": "Use <button> for actions and <a href> for navigation.",
+          "dont": "Put a click handler on a <div>. It can’t be focused, doesn’t respond to Enter or Space, and isn’t announced as a button.",
+          "why": ""
+        },
+        {
+          "do": "Make touch targets at least 44 × 44px, with space between them. (WCAG 2.2 sets an absolute floor of 24 × 24.)",
+          "dont": "Cram tiny icon buttons together so people tap the wrong one.",
+          "why": ""
+        },
+        {
+          "do": "Show a loading state on click and block double submits. For destructive actions, confirm with a specific label or, better, offer Undo.",
+          "dont": "Leave a button looking idle while a request runs, so people click it three more times.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "forms",
+      "title": "Forms",
+      "intro": "Forms are where users give you something: money, data, trust. Every extra field and every unclear error costs you completions.",
+      "rules": [
+        {
+          "do": "Put a visible label above every field.",
+          "dont": "Use the placeholder as the label. It disappears the moment someone starts typing.",
+          "why": ""
+        },
+        {
+          "do": "Show errors next to the field, in words that say how to fix it.",
+          "dont": "Show “Invalid input” in a banner at the top, or clear the form when something is wrong.",
+          "why": ""
+        },
+        {
+          "do": "Use the right input types and autocomplete values (type=\"email\", autocomplete=\"one-time-code\") so phones show the right keyboard and browsers can fill things in.",
+          "dont": "Ask for things you don’t need. Every optional field is a reason to leave.",
+          "why": ""
+        },
+        {
+          "do": "Lay forms out in a single column, and validate when a field loses focus or on submit.",
+          "dont": "Shout an error after the first keystroke, before the person has had a chance to finish.",
+          "why": ""
+        },
+        {
+          "do": "Accept input in the forms people use: spaces in card numbers, dashes in phone numbers, any capitalization in email addresses.",
+          "dont": "Disable paste in password or email fields. It punishes password managers and makes accounts less secure.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "navigation",
+      "title": "Navigation",
+      "intro": "Navigation answers “where am I, and where can I go?” If people have to think about it, it isn’t working.",
+      "rules": [
+        {
+          "do": "Keep top-level navigation to about five to seven items with plain names (“Pricing”, “Docs”, “Contact”).",
+          "dont": "Use clever labels like “Discover”, “Solutions” or “Our world” that could mean anything.",
+          "why": ""
+        },
+        {
+          "do": "Show where people are: highlight the current section and set aria-current=\"page\". Add breadcrumbs on deep sites.",
+          "dont": "Hide navigation behind a hamburger icon on desktop when there’s room to show it.",
+          "why": ""
+        },
+        {
+          "do": "Make links look like links (underlines in body text are good), and keep URLs readable and shareable.",
+          "dont": "Open links in new tabs by default. Let people choose; the back button is the most-used control on the web.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "accessibility",
+      "title": "Accessibility",
+      "intro": "About one in six people has a disability, and everyone is temporarily impaired sometimes: a broken arm, bright sunlight, a slow connection. Accessible design is simply design that works.",
+      "rules": [
+        {
+          "do": "Make everything work with a keyboard alone, in a logical tab order, with a clearly visible focus state (:focus-visible).",
+          "dont": "Write outline: none without a replacement, or use positive tabindex values.",
+          "why": ""
+        },
+        {
+          "do": "Write alt text that says what an image is for (“Chart: sign-ups doubled in March”). Use alt=\"\" for purely decorative images.",
+          "dont": "Write “image of…”, repeat the file name, or leave alt off entirely (screen readers then read the file name aloud).",
+          "why": ""
+        },
+        {
+          "do": "Support 200% zoom and a 320px-wide viewport without sideways scrolling. Set lang on <html> and a unique <title> per page.",
+          "dont": "Disable pinch zoom with maximum-scale=1 or user-scalable=no.",
+          "why": ""
+        },
+        {
+          "do": "Add a “Skip to content” link, use landmarks (header, nav, main, footer) and announce dynamic updates with live regions.",
+          "dont": "Rely on hover alone, or on time limits people can’t extend.",
+          "why": "Test it: unplug your mouse for five minutes, then try your page with a screen reader (VoiceOver on Mac/iOS, NVDA on Windows, TalkBack on Android)."
+        }
+      ]
+    },
+    {
+      "id": "states",
+      "title": "Feedback & states",
+      "intro": "Mockups show the happy path. Real products spend a lot of time in the other states. Design all of them.",
+      "rules": [
+        {
+          "do": "Respond to every action within about 100ms, even if only by showing that the click registered.",
+          "dont": "Let a click do nothing visible while the network catches up.",
+          "why": ""
+        },
+        {
+          "do": "Write errors like a helpful person: “That card was declined. Try another card or contact your bank.”",
+          "dont": "Show “Error 0x80004005” or “Something went wrong” with no way forward.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "motion",
+      "title": "Motion",
+      "intro": "Good motion explains: where something came from, where it went, what changed. Bad motion performs.",
+      "rules": [
+        {
+          "do": "Keep UI transitions between 150 and 300ms. Use ease-out for things entering and ease-in for things leaving.",
+          "dont": "Make people wait for a 1-second animation before they can click.",
+          "why": ""
+        },
+        {
+          "do": "Animate transform and opacity, which the browser can animate smoothly.",
+          "dont": "Animate width, height, top or left, which force layout on every frame and stutter on slower phones.",
+          "why": ""
+        },
+        {
+          "do": "Honor prefers-reduced-motion: replace slides and parallax with simple fades or nothing.",
+          "dont": "Autoplay carousels or background video with no pause control. They distract, and for some people cause nausea.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "responsive",
+      "title": "Responsive design",
+      "intro": "Most visits come from phones. Design for the small screen first and let the layout grow, rather than squeezing a desktop page down.",
+      "rules": [
+        {
+          "do": "Set breakpoints where your content breaks, and use fluid sizing like clamp(2rem, 5vw, 4rem) for headings.",
+          "dont": "Design for specific devices (“iPhone 15 width”). Next year’s devices will be different.",
+          "why": ""
+        },
+        {
+          "do": "Keep key actions within thumb reach on phones and test on a real device, not just a resized browser.",
+          "dont": "Hide important content or features on mobile. People on phones want the same things.",
+          "why": ""
+        },
+        {
+          "do": "Use relative units (rem, %, ch) and modern layout (flexbox, grid, container queries).",
+          "dont": "Fix heights on text containers. Translations, zoom and real content will overflow them.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "title": "Performance",
+      "intro": "Speed is a design feature. A beautiful page that takes six seconds to load is, for most visitors, a blank page.",
+      "rules": [
+        {
+          "do": "Serve images in AVIF or WebP at the size they’re shown, with width and height set and loading=\"lazy\" below the fold.",
+          "dont": "Ship a 4MB PNG hero image, or images without dimensions that shove the text down as they load.",
+          "why": ""
+        },
+        {
+          "do": "Ship less JavaScript. Reach for HTML and CSS first; many components here need no JS at all.",
+          "dont": "Add a library for something the platform already does (<dialog>, <details>, form validation, smooth scrolling).",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "title": "Content & ethics",
+      "intro": "Words are interface. And trust, once spent on a trick, doesn’t come back.",
+      "rules": [
+        {
+          "do": "Write like a person. Put the important words first, keep sentences short, and use headings and lists so pages can be scanned.",
+          "dont": "Write walls of text full of jargon (“Leverage our synergistic platform”).",
+          "why": ""
+        },
+        {
+          "do": "Make cancelling as easy as signing up, show the full price up front, and make the privacy-friendly choice the default.",
+          "dont": "Use dark patterns: pre-ticked opt-ins, hidden fees, fake countdown timers, or confirmshaming (“No thanks, I don’t like saving money”).",
+          "why": "Beyond being wrong, many of these are now illegal in the EU, UK and parts of the US."
+        },
+        {
+          "do": "Ask for permissions (notifications, location) at the moment they’re needed and say why.",
+          "dont": "Fire a cookie banner, a newsletter pop-up and a notification prompt in the first three seconds.",
+          "why": ""
+        }
+      ]
+    },
+    {
+      "id": "checklist",
+      "title": "Pre-launch checklist",
+      "intro": "Run through this before you ship. Your progress is saved in this browser.",
+      "rules": [],
+      "checklist": [
+        "Each page has one clear purpose and one primary action.",
+        "All text passes 4.5:1 contrast (3:1 for large text and UI parts).",
+        "Everything works with a keyboard, and focus is always visible.",
+        "One h1 per page; headings are in order.",
+        "Every meaningful image has alt text; decorative ones have alt=\"\".",
+        "Every form field has a visible label and helpful error messages.",
+        "Tested on a real phone, at 320px wide and at 200% zoom.",
+        "Touch targets are at least 44 × 44px.",
+        "Empty, loading, error and success states are designed.",
+        "Animations respect prefers-reduced-motion.",
+        "Images are compressed, sized, and have width/height set.",
+        "Lighthouse / PageSpeed shows good Core Web Vitals.",
+        "Every page has a unique title, meta description and lang attribute.",
+        "No broken links; the 404 page helps people find their way.",
+        "Buttons say what they do; copy has been read aloud once.",
+        "No dark patterns: pricing is clear, opting out is easy."
+      ]
+    }
+  ]
+}

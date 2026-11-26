@@ -1,0 +1,98 @@
+{
+  "id": "split-flap",
+  "name": "Split-flap board",
+  "page": "p.78",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "An airport departures board: every letter clatters through the alphabet until it lands.",
+  "notes": "Screen readers get the finished message once through a live region; the flipping cells are hidden from them. With reduced motion, letters swap instantly.",
+  "usesJavaScript": true,
+  "sizeKb": 3.3,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#split-flap",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/split-flap.json",
+  "version": "ea81d3b4",
+  "checked": "axe clean in light and dark; tightest text contrast 11.47:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 11.47,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Next message\""
+    ],
+    "tree": "- paragraph: FREE UI\n- button \"Next message\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html -->\n<div class=\"flap-board\" data-words=\"FREE UI|SHIP IT|NO LOGIN|COPY ME\">\n  <p class=\"flap-row\" aria-hidden=\"true\"></p>\n  <p class=\"flap-sr\" aria-live=\"polite\"></p>\n  <button class=\"flap-next\" type=\"button\">Next message</button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html */\n.flap-board {\n  display: grid;\n  justify-items: center;\n  gap: 18px;\n  padding: 26px 24px 22px;\n  background: #121214;\n  border-radius: 14px;\n  box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.06), 0 12px 30px rgb(0 0 0 / 0.3);\n}\n.flap-row { display: flex; gap: 5px; margin: 0; perspective: 300px; }\n.flap {\n  position: relative;\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 62px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 36px;\n  font-weight: 700;\n  color: #f3f0e6;\n  background: linear-gradient(#2a2a2e 50%, #232326 50%);\n  border-radius: 5px;\n  box-shadow: 0 2px 0 #000;\n}\n.flap::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 50%;\n  height: 1px;\n  background: #0a0a0b;\n}\n.flap.is-flip { animation: flap 0.09s ease-in; }\n@keyframes flap {\n  from { transform: rotateX(-70deg); filter: brightness(0.6); }\n}\n.flap-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.flap-next {\n  padding: 8px 16px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: #121214;\n  background: #f5c518;\n  border: 0;\n  border-radius: 6px;\n  cursor: pointer;\n}\n.flap-next:focus-visible { outline: 3px solid #f5c518; outline-offset: 3px; }\n@media (max-width: 480px) {\n  .flap { width: 30px; height: 44px; font-size: 24px; }\n  .flap-row { gap: 3px; }\n}"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html */\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const CHARS = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\n  const words = root.dataset.words.split('|');\n  const row = root.querySelector('.flap-row');\n  const sr = root.querySelector('.flap-sr');\n  const next = root.querySelector('.flap-next');\n  const length = Math.max(...words.map((w) => w.length));\n  let index = 0;\n  let timers = [];\n\n  row.textContent = '';\n  const cells = Array.from({ length }, () => {\n    const cell = document.createElement('span');\n    cell.className = 'flap';\n    cell.textContent = ' ';\n    row.append(cell);\n    return cell;\n  });\n\n  const show = (word) => {\n    sr.textContent = word;\n    timers.forEach(clearInterval);\n    timers = [];\n    const target = word.padEnd(length, ' ');\n    cells.forEach((cell, i) => {\n      const goal = target[i];\n      if (reduce) {\n        cell.textContent = goal;\n        return;\n      }\n      let pos = Math.max(0, CHARS.indexOf(cell.textContent));\n      const t = setInterval(() => {\n        if (cell.textContent === goal) return clearInterval(t);\n        pos = (pos + 1) % CHARS.length;\n        cell.textContent = CHARS[pos];\n        cell.classList.remove('is-flip');\n        void cell.offsetWidth;\n        cell.classList.add('is-flip');\n      }, 40 + i * 7);\n      timers.push(t);\n    });\n  };\n  const onNext = () => {\n    index = (index + 1) % words.length;\n    show(words[index]);\n  };\n\n  next.addEventListener('click', onNext);\n  show(words[0]);\n  return () => {\n    timers.forEach(clearInterval);\n    next.removeEventListener('click', onNext);\n  };\n}\n\ndocument.querySelectorAll(\".flap-board\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "SplitFlap.jsx",
+        "code": "/* tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html */\nimport { useEffect, useRef } from 'react';\nimport './SplitFlap.css';\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const CHARS = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\n  const words = root.dataset.words.split('|');\n  const row = root.querySelector('.flap-row');\n  const sr = root.querySelector('.flap-sr');\n  const next = root.querySelector('.flap-next');\n  const length = Math.max(...words.map((w) => w.length));\n  let index = 0;\n  let timers = [];\n\n  row.textContent = '';\n  const cells = Array.from({ length }, () => {\n    const cell = document.createElement('span');\n    cell.className = 'flap';\n    cell.textContent = ' ';\n    row.append(cell);\n    return cell;\n  });\n\n  const show = (word) => {\n    sr.textContent = word;\n    timers.forEach(clearInterval);\n    timers = [];\n    const target = word.padEnd(length, ' ');\n    cells.forEach((cell, i) => {\n      const goal = target[i];\n      if (reduce) {\n        cell.textContent = goal;\n        return;\n      }\n      let pos = Math.max(0, CHARS.indexOf(cell.textContent));\n      const t = setInterval(() => {\n        if (cell.textContent === goal) return clearInterval(t);\n        pos = (pos + 1) % CHARS.length;\n        cell.textContent = CHARS[pos];\n        cell.classList.remove('is-flip');\n        void cell.offsetWidth;\n        cell.classList.add('is-flip');\n      }, 40 + i * 7);\n      timers.push(t);\n    });\n  };\n  const onNext = () => {\n    index = (index + 1) % words.length;\n    show(words[index]);\n  };\n\n  next.addEventListener('click', onNext);\n  show(words[0]);\n  return () => {\n    timers.forEach(clearInterval);\n    next.removeEventListener('click', onNext);\n  };\n}\n\nexport function SplitFlap() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"flap-board\" data-words=\"FREE UI|SHIP IT|NO LOGIN|COPY ME\">\n      <p className=\"flap-row\" aria-hidden=\"true\"></p>\n      <p className=\"flap-sr\" aria-live=\"polite\"></p>\n      <button className=\"flap-next\" type=\"button\">Next message</button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "SplitFlap.css",
+        "code": "/* tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html */\n.flap-board {\n  display: grid;\n  justify-items: center;\n  gap: 18px;\n  padding: 26px 24px 22px;\n  background: #121214;\n  border-radius: 14px;\n  box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.06), 0 12px 30px rgb(0 0 0 / 0.3);\n}\n.flap-row { display: flex; gap: 5px; margin: 0; perspective: 300px; }\n.flap {\n  position: relative;\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 62px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 36px;\n  font-weight: 700;\n  color: #f3f0e6;\n  background: linear-gradient(#2a2a2e 50%, #232326 50%);\n  border-radius: 5px;\n  box-shadow: 0 2px 0 #000;\n}\n.flap::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 50%;\n  height: 1px;\n  background: #0a0a0b;\n}\n.flap.is-flip { animation: flap 0.09s ease-in; }\n@keyframes flap {\n  from { transform: rotateX(-70deg); filter: brightness(0.6); }\n}\n.flap-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.flap-next {\n  padding: 8px 16px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: #121214;\n  background: #f5c518;\n  border: 0;\n  border-radius: 6px;\n  cursor: pointer;\n}\n.flap-next:focus-visible { outline: 3px solid #f5c518; outline-offset: 3px; }\n@media (max-width: 480px) {\n  .flap { width: 30px; height: 44px; font-size: 24px; }\n  .flap-row { gap: 3px; }\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "SplitFlap.vue",
+        "code": "<!-- tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const CHARS = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\n  const words = root.dataset.words.split('|');\n  const row = root.querySelector('.flap-row');\n  const sr = root.querySelector('.flap-sr');\n  const next = root.querySelector('.flap-next');\n  const length = Math.max(...words.map((w) => w.length));\n  let index = 0;\n  let timers = [];\n\n  row.textContent = '';\n  const cells = Array.from({ length }, () => {\n    const cell = document.createElement('span');\n    cell.className = 'flap';\n    cell.textContent = ' ';\n    row.append(cell);\n    return cell;\n  });\n\n  const show = (word) => {\n    sr.textContent = word;\n    timers.forEach(clearInterval);\n    timers = [];\n    const target = word.padEnd(length, ' ');\n    cells.forEach((cell, i) => {\n      const goal = target[i];\n      if (reduce) {\n        cell.textContent = goal;\n        return;\n      }\n      let pos = Math.max(0, CHARS.indexOf(cell.textContent));\n      const t = setInterval(() => {\n        if (cell.textContent === goal) return clearInterval(t);\n        pos = (pos + 1) % CHARS.length;\n        cell.textContent = CHARS[pos];\n        cell.classList.remove('is-flip');\n        void cell.offsetWidth;\n        cell.classList.add('is-flip');\n      }, 40 + i * 7);\n      timers.push(t);\n    });\n  };\n  const onNext = () => {\n    index = (index + 1) % words.length;\n    show(words[index]);\n  };\n\n  next.addEventListener('click', onNext);\n  show(words[0]);\n  return () => {\n    timers.forEach(clearInterval);\n    next.removeEventListener('click', onNext);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"flap-board\" data-words=\"FREE UI|SHIP IT|NO LOGIN|COPY ME\">\n    <p class=\"flap-row\" aria-hidden=\"true\"></p>\n    <p class=\"flap-sr\" aria-live=\"polite\"></p>\n    <button class=\"flap-next\" type=\"button\">Next message</button>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.flap-board {\n  display: grid;\n  justify-items: center;\n  gap: 18px;\n  padding: 26px 24px 22px;\n  background: #121214;\n  border-radius: 14px;\n  box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.06), 0 12px 30px rgb(0 0 0 / 0.3);\n}\n.flap-row { display: flex; gap: 5px; margin: 0; perspective: 300px; }\n.flap {\n  position: relative;\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 62px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 36px;\n  font-weight: 700;\n  color: #f3f0e6;\n  background: linear-gradient(#2a2a2e 50%, #232326 50%);\n  border-radius: 5px;\n  box-shadow: 0 2px 0 #000;\n}\n.flap::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 50%;\n  height: 1px;\n  background: #0a0a0b;\n}\n.flap.is-flip { animation: flap 0.09s ease-in; }\n@keyframes flap {\n  from { transform: rotateX(-70deg); filter: brightness(0.6); }\n}\n.flap-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.flap-next {\n  padding: 8px 16px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: #121214;\n  background: #f5c518;\n  border: 0;\n  border-radius: 6px;\n  cursor: pointer;\n}\n.flap-next:focus-visible { outline: 3px solid #f5c518; outline-offset: 3px; }\n@media (max-width: 480px) {\n  .flap { width: 30px; height: 44px; font-size: 24px; }\n  .flap-row { gap: 3px; }\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "SplitFlap.svelte",
+        "code": "<!-- tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './SplitFlap.css';\n\n  let node;\n\n  function setup(root) {\n    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    const CHARS = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\n    const words = root.dataset.words.split('|');\n    const row = root.querySelector('.flap-row');\n    const sr = root.querySelector('.flap-sr');\n    const next = root.querySelector('.flap-next');\n    const length = Math.max(...words.map((w) => w.length));\n    let index = 0;\n    let timers = [];\n\n    row.textContent = '';\n    const cells = Array.from({ length }, () => {\n      const cell = document.createElement('span');\n      cell.className = 'flap';\n      cell.textContent = ' ';\n      row.append(cell);\n      return cell;\n    });\n\n    const show = (word) => {\n      sr.textContent = word;\n      timers.forEach(clearInterval);\n      timers = [];\n      const target = word.padEnd(length, ' ');\n      cells.forEach((cell, i) => {\n        const goal = target[i];\n        if (reduce) {\n          cell.textContent = goal;\n          return;\n        }\n        let pos = Math.max(0, CHARS.indexOf(cell.textContent));\n        const t = setInterval(() => {\n          if (cell.textContent === goal) return clearInterval(t);\n          pos = (pos + 1) % CHARS.length;\n          cell.textContent = CHARS[pos];\n          cell.classList.remove('is-flip');\n          void cell.offsetWidth;\n          cell.classList.add('is-flip');\n        }, 40 + i * 7);\n        timers.push(t);\n      });\n    };\n    const onNext = () => {\n      index = (index + 1) % words.length;\n      show(words[index]);\n    };\n\n    next.addEventListener('click', onNext);\n    show(words[0]);\n    return () => {\n      timers.forEach(clearInterval);\n      next.removeEventListener('click', onNext);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"flap-board\" data-words=\"FREE UI|SHIP IT|NO LOGIN|COPY ME\">\n  <p class=\"flap-row\" aria-hidden=\"true\"></p>\n  <p class=\"flap-sr\" aria-live=\"polite\"></p>\n  <button class=\"flap-next\" type=\"button\">Next message</button>\n</div>"
+      },
+      {
+        "name": "SplitFlap.css",
+        "code": "/* tearsheet split-flap vea81d3b4 · https://qusaialjbali.github.io/tearsheet/zine/parts/split-flap.html */\n.flap-board {\n  display: grid;\n  justify-items: center;\n  gap: 18px;\n  padding: 26px 24px 22px;\n  background: #121214;\n  border-radius: 14px;\n  box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.06), 0 12px 30px rgb(0 0 0 / 0.3);\n}\n.flap-row { display: flex; gap: 5px; margin: 0; perspective: 300px; }\n.flap {\n  position: relative;\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 62px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 36px;\n  font-weight: 700;\n  color: #f3f0e6;\n  background: linear-gradient(#2a2a2e 50%, #232326 50%);\n  border-radius: 5px;\n  box-shadow: 0 2px 0 #000;\n}\n.flap::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 50%;\n  height: 1px;\n  background: #0a0a0b;\n}\n.flap.is-flip { animation: flap 0.09s ease-in; }\n@keyframes flap {\n  from { transform: rotateX(-70deg); filter: brightness(0.6); }\n}\n.flap-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.flap-next {\n  padding: 8px 16px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: #121214;\n  background: #f5c518;\n  border: 0;\n  border-radius: 6px;\n  cursor: pointer;\n}\n.flap-next:focus-visible { outline: 3px solid #f5c518; outline-offset: 3px; }\n@media (max-width: 480px) {\n  .flap { width: 30px; height: 44px; font-size: 24px; }\n  .flap-row { gap: 3px; }\n}"
+      }
+    ]
+  }
+}

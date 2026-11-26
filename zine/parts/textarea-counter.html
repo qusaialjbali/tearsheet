@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Textarea with counter · Forms component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A comment box that grows with its text and counts down the characters left.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Textarea with counter · Forms component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A comment box that grows with its text and counts down the characters left.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Textarea with counter","description":"A comment box that grows with its text and counts down the characters left.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#textarea-counter">Issue 01</a> · Forms · p.21</p>
+    <h1><span class="a">Textarea with counter</span><span class="b" aria-hidden="true">Textarea with counter</span></h1>
+    <p class="lede">A comment box that grows with its text and counts down the characters left.</p>
+    <p class="why"><b>Why it works:</b> The live count is announced only near the limit so screen readers are not flooded on every keystroke. Over the limit, the field explains how to fix it instead of silently cutting text.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Textarea with counter preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.counted { display: grid; gap: 6px; width: 100%; max-width: 420px; }
+.counted-label { font-size: 14px; font-weight: 600; }
+.counted-input {
+  width: 100%; min-height: 90px; padding: 10px 12px; resize: none; overflow: hidden;
+  font: inherit; font-size: 15px; line-height: 1.5; color: var(--ui-text);
+  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);
+  field-sizing: content;
+}
+.counted-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.counted-input[aria-invalid=&quot;true&quot;] { border-color: var(--ui-danger); }
+.counted-meta { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 13px; color: var(--ui-muted); }
+.counted-count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.counted-count.is-near { color: var(--ui-warning); font-weight: 600; }
+.counted-count.is-over { color: var(--ui-danger); font-weight: 700; }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;counted&quot;>
+  &lt;label class=&quot;counted-label&quot; for=&quot;bio&quot;>Short bio&lt;/label>
+  &lt;textarea class=&quot;counted-input&quot; id=&quot;bio&quot; rows=&quot;3&quot; aria-describedby=&quot;bio-count&quot;>I design calm interfaces for busy people.&lt;/textarea>
+  &lt;p class=&quot;counted-meta&quot;>&lt;span>Shown on your public profile.&lt;/span>&lt;span class=&quot;counted-count&quot; id=&quot;bio-count&quot; aria-live=&quot;polite&quot;>&lt;/span>&lt;/p>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const MAX = 120;
+  const input = root.querySelector('.counted-input');
+  const count = root.querySelector('.counted-count');
+  const update = () => {
+    input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px';
+    const left = MAX - input.value.length;
+    count.classList.toggle('is-near', left &lt;= 20 &amp;&amp; left >= 0);
+    count.classList.toggle('is-over', left &lt; 0);
+    input.setAttribute('aria-invalid', String(left &lt; 0));
+    count.textContent = left &lt; 0 ? Math.abs(left) + ' over the limit, please shorten it' : left + ' characters left';
+    // only speak up near the limit
+    count.setAttribute('aria-live', left &lt;= 20 ? 'polite' : 'off');
+  };
+  input.addEventListener('input', update);
+  update();
+  return () => input.removeEventListener('input', update);
+}
+
+document.querySelectorAll(&quot;.counted&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.7:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (15 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.7:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> No motion.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>textbox &quot;Short bio&quot;: I design calm interfaces for busy people.</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- text: Short bio
+- textbox &quot;Short bio&quot;: I design calm interfaces for busy people.
+- paragraph: Shown on your public profile. 79 characters left</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#textarea-counter">See it in the zine</a> <code>npx -y tearsheet add textarea-counter</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html -->
+&lt;div class=&quot;counted&quot;>
+  &lt;label class=&quot;counted-label&quot; for=&quot;bio&quot;>Short bio&lt;/label>
+  &lt;textarea class=&quot;counted-input&quot; id=&quot;bio&quot; rows=&quot;3&quot; aria-describedby=&quot;bio-count&quot;>I design calm interfaces for busy people.&lt;/textarea>
+  &lt;p class=&quot;counted-meta&quot;>&lt;span>Shown on your public profile.&lt;/span>&lt;span class=&quot;counted-count&quot; id=&quot;bio-count&quot; aria-live=&quot;polite&quot;>&lt;/span>&lt;/p>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html */
+.counted { display: grid; gap: 6px; width: 100%; max-width: 420px; }
+.counted-label { font-size: 14px; font-weight: 600; }
+.counted-input {
+  width: 100%; min-height: 90px; padding: 10px 12px; resize: none; overflow: hidden;
+  font: inherit; font-size: 15px; line-height: 1.5; color: var(--ui-text);
+  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);
+  field-sizing: content;
+}
+.counted-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.counted-input[aria-invalid=&quot;true&quot;] { border-color: var(--ui-danger); }
+.counted-meta { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 13px; color: var(--ui-muted); }
+.counted-count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.counted-count.is-near { color: var(--ui-warning); font-weight: 600; }
+.counted-count.is-over { color: var(--ui-danger); font-weight: 700; }</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html */
+function setup(root) {
+  const MAX = 120;
+  const input = root.querySelector('.counted-input');
+  const count = root.querySelector('.counted-count');
+  const update = () => {
+    input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px';
+    const left = MAX - input.value.length;
+    count.classList.toggle('is-near', left &lt;= 20 &amp;&amp; left >= 0);
+    count.classList.toggle('is-over', left &lt; 0);
+    input.setAttribute('aria-invalid', String(left &lt; 0));
+    count.textContent = left &lt; 0 ? Math.abs(left) + ' over the limit, please shorten it' : left + ' characters left';
+    // only speak up near the limit
+    count.setAttribute('aria-live', left &lt;= 20 ? 'polite' : 'off');
+  };
+  input.addEventListener('input', update);
+  update();
+  return () => input.removeEventListener('input', update);
+}
+
+document.querySelectorAll(&quot;.counted&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>TextareaCounter.jsx</span></div><pre tabindex="0"><code>/* tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html */
+import { useEffect, useRef } from 'react';
+import './TextareaCounter.css';
+
+function setup(root) {
+  const MAX = 120;
+  const input = root.querySelector('.counted-input');
+  const count = root.querySelector('.counted-count');
+  const update = () => {
+    input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px';
+    const left = MAX - input.value.length;
+    count.classList.toggle('is-near', left &lt;= 20 &amp;&amp; left >= 0);
+    count.classList.toggle('is-over', left &lt; 0);
+    input.setAttribute('aria-invalid', String(left &lt; 0));
+    count.textContent = left &lt; 0 ? Math.abs(left) + ' over the limit, please shorten it' : left + ' characters left';
+    // only speak up near the limit
+    count.setAttribute('aria-live', left &lt;= 20 ? 'polite' : 'off');
+  };
+  input.addEventListener('input', update);
+  update();
+  return () => input.removeEventListener('input', update);
+}
+
+export function TextareaCounter() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;div ref={ref} className=&quot;counted&quot;>
+      &lt;label className=&quot;counted-label&quot; htmlFor=&quot;bio&quot;>Short bio&lt;/label>
+      &lt;textarea className=&quot;counted-input&quot; id=&quot;bio&quot; rows=&quot;3&quot; aria-describedby=&quot;bio-count&quot;>I design calm interfaces for busy people.&lt;/textarea>
+      &lt;p className=&quot;counted-meta&quot;>&lt;span>Shown on your public profile.&lt;/span>&lt;span className=&quot;counted-count&quot; id=&quot;bio-count&quot; aria-live=&quot;polite&quot;>&lt;/span>&lt;/p>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>TextareaCounter.css</span></div><pre tabindex="0"><code>/* tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html */
+.counted { display: grid; gap: 6px; width: 100%; max-width: 420px; }
+.counted-label { font-size: 14px; font-weight: 600; }
+.counted-input {
+  width: 100%; min-height: 90px; padding: 10px 12px; resize: none; overflow: hidden;
+  font: inherit; font-size: 15px; line-height: 1.5; color: var(--ui-text);
+  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);
+  field-sizing: content;
+}
+.counted-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.counted-input[aria-invalid=&quot;true&quot;] { border-color: var(--ui-danger); }
+.counted-meta { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 13px; color: var(--ui-muted); }
+.counted-count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.counted-count.is-near { color: var(--ui-warning); font-weight: 600; }
+.counted-count.is-over { color: var(--ui-danger); font-weight: 700; }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>TextareaCounter.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const MAX = 120;
+  const input = root.querySelector('.counted-input');
+  const count = root.querySelector('.counted-count');
+  const update = () => {
+    input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px';
+    const left = MAX - input.value.length;
+    count.classList.toggle('is-near', left &lt;= 20 &amp;&amp; left >= 0);
+    count.classList.toggle('is-over', left &lt; 0);
+    input.setAttribute('aria-invalid', String(left &lt; 0));
+    count.textContent = left &lt; 0 ? Math.abs(left) + ' over the limit, please shorten it' : left + ' characters left';
+    // only speak up near the limit
+    count.setAttribute('aria-live', left &lt;= 20 ? 'polite' : 'off');
+  };
+  input.addEventListener('input', update);
+  update();
+  return () => input.removeEventListener('input', update);
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;div ref=&quot;el&quot; class=&quot;counted&quot;>
+    &lt;label class=&quot;counted-label&quot; for=&quot;bio&quot;>Short bio&lt;/label>
+    &lt;textarea class=&quot;counted-input&quot; id=&quot;bio&quot; rows=&quot;3&quot; aria-describedby=&quot;bio-count&quot;>I design calm interfaces for busy people.&lt;/textarea>
+    &lt;p class=&quot;counted-meta&quot;>&lt;span>Shown on your public profile.&lt;/span>&lt;span class=&quot;counted-count&quot; id=&quot;bio-count&quot; aria-live=&quot;polite&quot;>&lt;/span>&lt;/p>
+  &lt;/div>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.counted { display: grid; gap: 6px; width: 100%; max-width: 420px; }
+.counted-label { font-size: 14px; font-weight: 600; }
+.counted-input {
+  width: 100%; min-height: 90px; padding: 10px 12px; resize: none; overflow: hidden;
+  font: inherit; font-size: 15px; line-height: 1.5; color: var(--ui-text);
+  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);
+  field-sizing: content;
+}
+.counted-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.counted-input[aria-invalid=&quot;true&quot;] { border-color: var(--ui-danger); }
+.counted-meta { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 13px; color: var(--ui-muted); }
+.counted-count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.counted-count.is-near { color: var(--ui-warning); font-weight: 600; }
+.counted-count.is-over { color: var(--ui-danger); font-weight: 700; }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>TextareaCounter.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './TextareaCounter.css';
+
+  let node;
+
+  function setup(root) {
+    const MAX = 120;
+    const input = root.querySelector('.counted-input');
+    const count = root.querySelector('.counted-count');
+    const update = () => {
+      input.style.height = 'auto';
+      input.style.height = input.scrollHeight + 'px';
+      const left = MAX - input.value.length;
+      count.classList.toggle('is-near', left &lt;= 20 &amp;&amp; left >= 0);
+      count.classList.toggle('is-over', left &lt; 0);
+      input.setAttribute('aria-invalid', String(left &lt; 0));
+      count.textContent = left &lt; 0 ? Math.abs(left) + ' over the limit, please shorten it' : left + ' characters left';
+      // only speak up near the limit
+      count.setAttribute('aria-live', left &lt;= 20 ? 'polite' : 'off');
+    };
+    input.addEventListener('input', update);
+    update();
+    return () => input.removeEventListener('input', update);
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;div bind:this={node} class=&quot;counted&quot;>
+  &lt;label class=&quot;counted-label&quot; for=&quot;bio&quot;>Short bio&lt;/label>
+  &lt;textarea class=&quot;counted-input&quot; id=&quot;bio&quot; rows=&quot;3&quot; aria-describedby=&quot;bio-count&quot;>I design calm interfaces for busy people.&lt;/textarea>
+  &lt;p class=&quot;counted-meta&quot;>&lt;span>Shown on your public profile.&lt;/span>&lt;span class=&quot;counted-count&quot; id=&quot;bio-count&quot; aria-live=&quot;polite&quot;>&lt;/span>&lt;/p>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>TextareaCounter.css</span></div><pre tabindex="0"><code>/* tearsheet textarea-counter v392b1a97 · https://qusaialjbali.github.io/tearsheet/zine/parts/textarea-counter.html */
+.counted { display: grid; gap: 6px; width: 100%; max-width: 420px; }
+.counted-label { font-size: 14px; font-weight: 600; }
+.counted-input {
+  width: 100%; min-height: 90px; padding: 10px 12px; resize: none; overflow: hidden;
+  font: inherit; font-size: 15px; line-height: 1.5; color: var(--ui-text);
+  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);
+  field-sizing: content;
+}
+.counted-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }
+.counted-input[aria-invalid=&quot;true&quot;] { border-color: var(--ui-danger); }
+.counted-meta { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 13px; color: var(--ui-muted); }
+.counted-count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.counted-count.is-near { color: var(--ui-warning); font-weight: 600; }
+.counted-count.is-over { color: var(--ui-danger); font-weight: 700; }</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="multi-step-form.html">← Multi-step form</a>
+      <a rel="next" href="card.html">Card →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{
+  "id": "buttons",
+  "name": "Buttons",
+  "page": "p.01",
+  "collection": "Actions",
+  "experimental": false,
+  "description": "Primary, secondary, ghost and destructive buttons with hover, focus and disabled states.",
+  "notes": "Use one primary button per view. Label with a verb (“Save changes”, not “Submit”). Use <button> for actions and <a> for navigation.",
+  "usesJavaScript": false,
+  "sizeKb": 1.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#buttons",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/buttons.json",
+  "version": "3f4ce376",
+  "checked": "axe clean in light and dark; tightest text contrast 5.73:1 (needs 4.5:1); 4 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 5.73,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Save changes\"",
+      "button \"Cancel\"",
+      "button \"Learn more\"",
+      "button \"Delete\""
+    ],
+    "tree": "- button \"Save changes\"\n- button \"Cancel\"\n- button \"Learn more\"\n- button \"Delete\"\n- button \"Disabled\" [disabled]",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet buttons v3f4ce376 · https://qusaialjbali.github.io/tearsheet/zine/parts/buttons.html -->\n<div class=\"btn-row\">\n  <button class=\"btn btn-primary\" type=\"button\">Save changes</button>\n  <button class=\"btn btn-secondary\" type=\"button\">Cancel</button>\n  <button class=\"btn btn-ghost\" type=\"button\">Learn more</button>\n  <button class=\"btn btn-danger\" type=\"button\">Delete</button>\n  <button class=\"btn btn-primary\" type=\"button\" disabled>Disabled</button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet buttons v3f4ce376 · https://qusaialjbali.github.io/tearsheet/zine/parts/buttons.html */\n.btn-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 12px;\n  align-items: center;\n}\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.btn-ghost { background: transparent; color: var(--ui-accent); }\n.btn-ghost:hover:not(:disabled) { background: var(--ui-accent-soft); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "Buttons.jsx",
+        "code": "/* tearsheet buttons v3f4ce376 · https://qusaialjbali.github.io/tearsheet/zine/parts/buttons.html */\nimport './Buttons.css';\n\nexport function Buttons() {\n  return (\n    <div className=\"btn-row\">\n      <button className=\"btn btn-primary\" type=\"button\">Save changes</button>\n      <button className=\"btn btn-secondary\" type=\"button\">Cancel</button>\n      <button className=\"btn btn-ghost\" type=\"button\">Learn more</button>\n      <button className=\"btn btn-danger\" type=\"button\">Delete</button>\n      <button className=\"btn btn-primary\" type=\"button\" disabled>Disabled</button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Buttons.css",
+        "code": "/* tearsheet buttons v3f4ce376 · https://qusaialjbali.github.io/tearsheet/zine/parts/buttons.html */\n.btn-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 12px;\n  align-items: center;\n}\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.btn-ghost { background: transparent; color: var(--ui-accent); }\n.btn-ghost:hover:not(:disabled) { background: var(--ui-accent-soft); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Buttons.vue",
+        "code": "<!-- tearsheet buttons v3f4ce376 · https://qusaialjbali.github.io/tearsheet/zine/parts/buttons.html -->\n<template>\n  <div class=\"btn-row\">\n    <button class=\"btn btn-primary\" type=\"button\">Save changes</button>\n    <button class=\"btn btn-secondary\" type=\"button\">Cancel</button>\n    <button class=\"btn btn-ghost\" type=\"button\">Learn more</button>\n    <button class=\"btn btn-danger\" type=\"button\">Delete</button>\n    <button class=\"btn btn-primary\" type=\"button\" disabled>Disabled</button>\n  </div>\n</template>\n\n<style scoped>\n.btn-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 12px;\n  align-items: center;\n}\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.btn-ghost { background: transparent; color: var(--ui-accent); }\n.btn-ghost:hover:not(:disabled) { background: var(--ui-accent-soft); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Buttons.svelte",
+        "code": "<!-- tearsheet buttons v3f4ce376 · https://qusaialjbali.github.io/tearsheet/zine/parts/buttons.html -->\n<div class=\"btn-row\">\n  <button class=\"btn btn-primary\" type=\"button\">Save changes</button>\n  <button class=\"btn btn-secondary\" type=\"button\">Cancel</button>\n  <button class=\"btn btn-ghost\" type=\"button\">Learn more</button>\n  <button class=\"btn btn-danger\" type=\"button\">Delete</button>\n  <button class=\"btn btn-primary\" type=\"button\" disabled>Disabled</button>\n</div>\n\n<style>\n.btn-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 12px;\n  align-items: center;\n}\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.btn-ghost { background: transparent; color: var(--ui-accent); }\n.btn-ghost:hover:not(:disabled) { background: var(--ui-accent-soft); }\n</style>"
+      }
+    ]
+  }
+}

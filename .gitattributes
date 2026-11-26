@@ -1,0 +1,3 @@
+# Keep LF endings so the CLI's shebang line works on macOS and Linux
+* text=auto eol=lf
+*.woff2 binary

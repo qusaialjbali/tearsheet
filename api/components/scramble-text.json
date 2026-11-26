@@ -1,0 +1,98 @@
+{
+  "id": "scramble-text",
+  "name": "Decoder text",
+  "page": "p.81",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A headline that decrypts itself from noise, one letter locking in at a time.",
+  "notes": "The real sentence sits in visually hidden text and the scrambled copy is aria-hidden, so screen readers never hear the noise. It plays on hover and on the button, never on its own loop.",
+  "usesJavaScript": true,
+  "sizeKb": 2.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#scramble-text",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/scramble-text.json",
+  "version": "00fecc37",
+  "checked": "axe clean in light and dark; tightest text contrast 17.41:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 17.41,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Decode again\""
+    ],
+    "tree": "- paragraph: Design is how it works\n- button \"Decode again\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html -->\n<div class=\"decode\">\n  <p class=\"decode-text\"><span class=\"decode-sr\">Design is how it works</span><span class=\"decode-show\" aria-hidden=\"true\">Design is how it works</span></p>\n  <button class=\"decode-btn\" type=\"button\">Decode again</button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html */\n.decode { display: grid; justify-items: center; gap: 16px; }\n.decode-text {\n  margin: 0;\n  font-size: clamp(28px, 5vw, 44px);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n  color: var(--ui-text);\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  cursor: default;\n}\n.decode-noise { color: var(--ui-accent); }\n.decode-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }\n.decode-btn {\n  padding: 8px 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: none;\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.decode-btn:hover { background: var(--ui-surface-2); }\n.decode-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html */\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const GLYPHS = '!<>-_/[]{}=+*^?#ABCDEFGHJKLMNPQRSTUVWXYZ';\n  const textEl = root.querySelector('.decode-text');\n  const span = textEl.querySelector('.decode-show');\n  const button = root.querySelector('.decode-btn');\n  const text = span.textContent;\n  let raf;\n\n  const run = () => {\n    if (reduce) return;\n    cancelAnimationFrame(raf);\n    let frame = 0;\n    const tick = () => {\n      const frag = document.createDocumentFragment();\n      let done = true;\n      [...text].forEach((ch, i) => {\n        if (ch === ' ' || frame > i * 2 + 8) {\n          frag.append(ch);\n        } else {\n          done = false;\n          const noise = document.createElement('span');\n          noise.className = 'decode-noise';\n          noise.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];\n          frag.append(noise);\n        }\n      });\n      span.replaceChildren(frag);\n      frame++;\n      if (!done) raf = requestAnimationFrame(tick);\n    };\n    tick();\n  };\n\n  textEl.addEventListener('pointerenter', run);\n  button.addEventListener('click', run);\n  run();\n  return () => {\n    cancelAnimationFrame(raf);\n    textEl.removeEventListener('pointerenter', run);\n    button.removeEventListener('click', run);\n  };\n}\n\ndocument.querySelectorAll(\".decode\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "ScrambleText.jsx",
+        "code": "/* tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html */\nimport { useEffect, useRef } from 'react';\nimport './ScrambleText.css';\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const GLYPHS = '!<>-_/[]{}=+*^?#ABCDEFGHJKLMNPQRSTUVWXYZ';\n  const textEl = root.querySelector('.decode-text');\n  const span = textEl.querySelector('.decode-show');\n  const button = root.querySelector('.decode-btn');\n  const text = span.textContent;\n  let raf;\n\n  const run = () => {\n    if (reduce) return;\n    cancelAnimationFrame(raf);\n    let frame = 0;\n    const tick = () => {\n      const frag = document.createDocumentFragment();\n      let done = true;\n      [...text].forEach((ch, i) => {\n        if (ch === ' ' || frame > i * 2 + 8) {\n          frag.append(ch);\n        } else {\n          done = false;\n          const noise = document.createElement('span');\n          noise.className = 'decode-noise';\n          noise.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];\n          frag.append(noise);\n        }\n      });\n      span.replaceChildren(frag);\n      frame++;\n      if (!done) raf = requestAnimationFrame(tick);\n    };\n    tick();\n  };\n\n  textEl.addEventListener('pointerenter', run);\n  button.addEventListener('click', run);\n  run();\n  return () => {\n    cancelAnimationFrame(raf);\n    textEl.removeEventListener('pointerenter', run);\n    button.removeEventListener('click', run);\n  };\n}\n\nexport function ScrambleText() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"decode\">\n      <p className=\"decode-text\"><span className=\"decode-sr\">Design is how it works</span><span className=\"decode-show\" aria-hidden=\"true\">Design is how it works</span></p>\n      <button className=\"decode-btn\" type=\"button\">Decode again</button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "ScrambleText.css",
+        "code": "/* tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html */\n.decode { display: grid; justify-items: center; gap: 16px; }\n.decode-text {\n  margin: 0;\n  font-size: clamp(28px, 5vw, 44px);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n  color: var(--ui-text);\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  cursor: default;\n}\n.decode-noise { color: var(--ui-accent); }\n.decode-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }\n.decode-btn {\n  padding: 8px 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: none;\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.decode-btn:hover { background: var(--ui-surface-2); }\n.decode-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "ScrambleText.vue",
+        "code": "<!-- tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const GLYPHS = '!<>-_/[]{}=+*^?#ABCDEFGHJKLMNPQRSTUVWXYZ';\n  const textEl = root.querySelector('.decode-text');\n  const span = textEl.querySelector('.decode-show');\n  const button = root.querySelector('.decode-btn');\n  const text = span.textContent;\n  let raf;\n\n  const run = () => {\n    if (reduce) return;\n    cancelAnimationFrame(raf);\n    let frame = 0;\n    const tick = () => {\n      const frag = document.createDocumentFragment();\n      let done = true;\n      [...text].forEach((ch, i) => {\n        if (ch === ' ' || frame > i * 2 + 8) {\n          frag.append(ch);\n        } else {\n          done = false;\n          const noise = document.createElement('span');\n          noise.className = 'decode-noise';\n          noise.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];\n          frag.append(noise);\n        }\n      });\n      span.replaceChildren(frag);\n      frame++;\n      if (!done) raf = requestAnimationFrame(tick);\n    };\n    tick();\n  };\n\n  textEl.addEventListener('pointerenter', run);\n  button.addEventListener('click', run);\n  run();\n  return () => {\n    cancelAnimationFrame(raf);\n    textEl.removeEventListener('pointerenter', run);\n    button.removeEventListener('click', run);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"decode\">\n    <p class=\"decode-text\"><span class=\"decode-sr\">Design is how it works</span><span class=\"decode-show\" aria-hidden=\"true\">Design is how it works</span></p>\n    <button class=\"decode-btn\" type=\"button\">Decode again</button>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.decode { display: grid; justify-items: center; gap: 16px; }\n.decode-text {\n  margin: 0;\n  font-size: clamp(28px, 5vw, 44px);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n  color: var(--ui-text);\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  cursor: default;\n}\n.decode-noise { color: var(--ui-accent); }\n.decode-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }\n.decode-btn {\n  padding: 8px 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: none;\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.decode-btn:hover { background: var(--ui-surface-2); }\n.decode-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "ScrambleText.svelte",
+        "code": "<!-- tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './ScrambleText.css';\n\n  let node;\n\n  function setup(root) {\n    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    const GLYPHS = '!<>-_/[]{}=+*^?#ABCDEFGHJKLMNPQRSTUVWXYZ';\n    const textEl = root.querySelector('.decode-text');\n    const span = textEl.querySelector('.decode-show');\n    const button = root.querySelector('.decode-btn');\n    const text = span.textContent;\n    let raf;\n\n    const run = () => {\n      if (reduce) return;\n      cancelAnimationFrame(raf);\n      let frame = 0;\n      const tick = () => {\n        const frag = document.createDocumentFragment();\n        let done = true;\n        [...text].forEach((ch, i) => {\n          if (ch === ' ' || frame > i * 2 + 8) {\n            frag.append(ch);\n          } else {\n            done = false;\n            const noise = document.createElement('span');\n            noise.className = 'decode-noise';\n            noise.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];\n            frag.append(noise);\n          }\n        });\n        span.replaceChildren(frag);\n        frame++;\n        if (!done) raf = requestAnimationFrame(tick);\n      };\n      tick();\n    };\n\n    textEl.addEventListener('pointerenter', run);\n    button.addEventListener('click', run);\n    run();\n    return () => {\n      cancelAnimationFrame(raf);\n      textEl.removeEventListener('pointerenter', run);\n      button.removeEventListener('click', run);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"decode\">\n  <p class=\"decode-text\"><span class=\"decode-sr\">Design is how it works</span><span class=\"decode-show\" aria-hidden=\"true\">Design is how it works</span></p>\n  <button class=\"decode-btn\" type=\"button\">Decode again</button>\n</div>"
+      },
+      {
+        "name": "ScrambleText.css",
+        "code": "/* tearsheet scramble-text v00fecc37 · https://qusaialjbali.github.io/tearsheet/zine/parts/scramble-text.html */\n.decode { display: grid; justify-items: center; gap: 16px; }\n.decode-text {\n  margin: 0;\n  font-size: clamp(28px, 5vw, 44px);\n  font-weight: 800;\n  letter-spacing: -0.02em;\n  color: var(--ui-text);\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  cursor: default;\n}\n.decode-noise { color: var(--ui-accent); }\n.decode-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }\n.decode-btn {\n  padding: 8px 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: none;\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.decode-btn:hover { background: var(--ui-surface-2); }\n.decode-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ]
+  }
+}

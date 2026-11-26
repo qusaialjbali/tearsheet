@@ -1,0 +1,88 @@
+{
+  "id": "changelog",
+  "name": "Changelog",
+  "page": "p.73",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "Release notes grouped by date, each change tagged New, Improved or Fixed.",
+  "notes": "Lead with what changed for the user, not the ticket title. Dates are machine-readable <time> elements so feeds and search engines understand them.",
+  "usesJavaScript": false,
+  "sizeKb": 2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#changelog",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/changelog.json",
+  "version": "72a745d0",
+  "checked": "axe clean in light and dark; tightest text contrast 4.79:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 4.79,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- heading \"What’s new\" [level=2]\n- article:\n  - time: 20 Nov 2026\n  - heading \"Version 3.2\" [level=3]\n  - list:\n    - listitem: New Split by percentage, not just shares.\n    - listitem: Improved Receipts load twice as fast on slow connections.\n    - listitem: Fixed Totals no longer round the wrong way in yen.\n- article:\n  - time: 28 Oct 2026\n  - heading \"Version 3.1\" [level=3]\n  - list:\n    - listitem: New Dark mode follows your system setting.\n    - listitem: Fixed Guests can now attach photos.",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet changelog v72a745d0 · https://qusaialjbali.github.io/tearsheet/zine/parts/changelog.html -->\n<section class=\"changelog\">\n  <h2>What’s new</h2>\n  <article class=\"cl-entry\">\n    <time datetime=\"2026-11-20\">20 Nov 2026</time>\n    <div>\n      <h3>Version 3.2</h3>\n      <ul>\n        <li><span class=\"cl-tag new\">New</span> Split by percentage, not just shares.</li>\n        <li><span class=\"cl-tag imp\">Improved</span> Receipts load twice as fast on slow connections.</li>\n        <li><span class=\"cl-tag fix\">Fixed</span> Totals no longer round the wrong way in yen.</li>\n      </ul>\n    </div>\n  </article>\n  <article class=\"cl-entry\">\n    <time datetime=\"2026-10-28\">28 Oct 2026</time>\n    <div>\n      <h3>Version 3.1</h3>\n      <ul>\n        <li><span class=\"cl-tag new\">New</span> Dark mode follows your system setting.</li>\n        <li><span class=\"cl-tag fix\">Fixed</span> Guests can now attach photos.</li>\n      </ul>\n    </div>\n  </article>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet changelog v72a745d0 · https://qusaialjbali.github.io/tearsheet/zine/parts/changelog.html */\n.changelog { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.changelog h2 { margin: 0 0 24px; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; }\n.cl-entry { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 20px 0; border-top: 1px solid var(--ui-border); }\n.cl-entry time { font-size: 14px; font-weight: 600; color: var(--ui-muted); }\n.cl-entry h3 { margin: 0 0 10px; font-size: 17px; }\n.cl-entry ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.cl-entry li { font-size: 15px; }\n.cl-tag { display: inline-block; min-width: 76px; margin-right: 8px; padding: 1px 8px; text-align: center; font-size: 12px; font-weight: 700; border-radius: 999px; }\n.cl-tag.new { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.cl-tag.imp { color: var(--ui-success); background: var(--ui-success-soft); }\n.cl-tag.fix { color: var(--ui-warning); background: var(--ui-warning-soft); }\n@media (max-width: 520px) { .cl-entry { grid-template-columns: 1fr; gap: 6px; } }"
+      }
+    ],
+    "react": [
+      {
+        "name": "Changelog.jsx",
+        "code": "/* tearsheet changelog v72a745d0 · https://qusaialjbali.github.io/tearsheet/zine/parts/changelog.html */\nimport './Changelog.css';\n\nexport function Changelog() {\n  return (\n    <section className=\"changelog\">\n      <h2>What’s new</h2>\n      <article className=\"cl-entry\">\n        <time dateTime=\"2026-11-20\">20 Nov 2026</time>\n        <div>\n          <h3>Version 3.2</h3>\n          <ul>\n            <li><span className=\"cl-tag new\">New</span> Split by percentage, not just shares.</li>\n            <li><span className=\"cl-tag imp\">Improved</span> Receipts load twice as fast on slow connections.</li>\n            <li><span className=\"cl-tag fix\">Fixed</span> Totals no longer round the wrong way in yen.</li>\n          </ul>\n        </div>\n      </article>\n      <article className=\"cl-entry\">\n        <time dateTime=\"2026-10-28\">28 Oct 2026</time>\n        <div>\n          <h3>Version 3.1</h3>\n          <ul>\n            <li><span className=\"cl-tag new\">New</span> Dark mode follows your system setting.</li>\n            <li><span className=\"cl-tag fix\">Fixed</span> Guests can now attach photos.</li>\n          </ul>\n        </div>\n      </article>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "Changelog.css",
+        "code": "/* tearsheet changelog v72a745d0 · https://qusaialjbali.github.io/tearsheet/zine/parts/changelog.html */\n.changelog { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.changelog h2 { margin: 0 0 24px; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; }\n.cl-entry { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 20px 0; border-top: 1px solid var(--ui-border); }\n.cl-entry time { font-size: 14px; font-weight: 600; color: var(--ui-muted); }\n.cl-entry h3 { margin: 0 0 10px; font-size: 17px; }\n.cl-entry ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.cl-entry li { font-size: 15px; }\n.cl-tag { display: inline-block; min-width: 76px; margin-right: 8px; padding: 1px 8px; text-align: center; font-size: 12px; font-weight: 700; border-radius: 999px; }\n.cl-tag.new { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.cl-tag.imp { color: var(--ui-success); background: var(--ui-success-soft); }\n.cl-tag.fix { color: var(--ui-warning); background: var(--ui-warning-soft); }\n@media (max-width: 520px) { .cl-entry { grid-template-columns: 1fr; gap: 6px; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Changelog.vue",
+        "code": "<!-- tearsheet changelog v72a745d0 · https://qusaialjbali.github.io/tearsheet/zine/parts/changelog.html -->\n<template>\n  <section class=\"changelog\">\n    <h2>What’s new</h2>\n    <article class=\"cl-entry\">\n      <time datetime=\"2026-11-20\">20 Nov 2026</time>\n      <div>\n        <h3>Version 3.2</h3>\n        <ul>\n          <li><span class=\"cl-tag new\">New</span> Split by percentage, not just shares.</li>\n          <li><span class=\"cl-tag imp\">Improved</span> Receipts load twice as fast on slow connections.</li>\n          <li><span class=\"cl-tag fix\">Fixed</span> Totals no longer round the wrong way in yen.</li>\n        </ul>\n      </div>\n    </article>\n    <article class=\"cl-entry\">\n      <time datetime=\"2026-10-28\">28 Oct 2026</time>\n      <div>\n        <h3>Version 3.1</h3>\n        <ul>\n          <li><span class=\"cl-tag new\">New</span> Dark mode follows your system setting.</li>\n          <li><span class=\"cl-tag fix\">Fixed</span> Guests can now attach photos.</li>\n        </ul>\n      </div>\n    </article>\n  </section>\n</template>\n\n<style scoped>\n.changelog { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.changelog h2 { margin: 0 0 24px; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; }\n.cl-entry { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 20px 0; border-top: 1px solid var(--ui-border); }\n.cl-entry time { font-size: 14px; font-weight: 600; color: var(--ui-muted); }\n.cl-entry h3 { margin: 0 0 10px; font-size: 17px; }\n.cl-entry ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.cl-entry li { font-size: 15px; }\n.cl-tag { display: inline-block; min-width: 76px; margin-right: 8px; padding: 1px 8px; text-align: center; font-size: 12px; font-weight: 700; border-radius: 999px; }\n.cl-tag.new { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.cl-tag.imp { color: var(--ui-success); background: var(--ui-success-soft); }\n.cl-tag.fix { color: var(--ui-warning); background: var(--ui-warning-soft); }\n@media (max-width: 520px) { .cl-entry { grid-template-columns: 1fr; gap: 6px; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Changelog.svelte",
+        "code": "<!-- tearsheet changelog v72a745d0 · https://qusaialjbali.github.io/tearsheet/zine/parts/changelog.html -->\n<section class=\"changelog\">\n  <h2>What’s new</h2>\n  <article class=\"cl-entry\">\n    <time datetime=\"2026-11-20\">20 Nov 2026</time>\n    <div>\n      <h3>Version 3.2</h3>\n      <ul>\n        <li><span class=\"cl-tag new\">New</span> Split by percentage, not just shares.</li>\n        <li><span class=\"cl-tag imp\">Improved</span> Receipts load twice as fast on slow connections.</li>\n        <li><span class=\"cl-tag fix\">Fixed</span> Totals no longer round the wrong way in yen.</li>\n      </ul>\n    </div>\n  </article>\n  <article class=\"cl-entry\">\n    <time datetime=\"2026-10-28\">28 Oct 2026</time>\n    <div>\n      <h3>Version 3.1</h3>\n      <ul>\n        <li><span class=\"cl-tag new\">New</span> Dark mode follows your system setting.</li>\n        <li><span class=\"cl-tag fix\">Fixed</span> Guests can now attach photos.</li>\n      </ul>\n    </div>\n  </article>\n</section>\n\n<style>\n.changelog { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.changelog h2 { margin: 0 0 24px; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; }\n.cl-entry { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 20px 0; border-top: 1px solid var(--ui-border); }\n.cl-entry time { font-size: 14px; font-weight: 600; color: var(--ui-muted); }\n.cl-entry h3 { margin: 0 0 10px; font-size: 17px; }\n.cl-entry ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }\n.cl-entry li { font-size: 15px; }\n.cl-tag { display: inline-block; min-width: 76px; margin-right: 8px; padding: 1px 8px; text-align: center; font-size: 12px; font-weight: 700; border-radius: 999px; }\n.cl-tag.new { color: var(--ui-accent); background: var(--ui-accent-soft); }\n.cl-tag.imp { color: var(--ui-success); background: var(--ui-success-soft); }\n.cl-tag.fix { color: var(--ui-warning); background: var(--ui-warning-soft); }\n@media (max-width: 520px) { .cl-entry { grid-template-columns: 1fr; gap: 6px; } }\n</style>"
+      }
+    ]
+  }
+}

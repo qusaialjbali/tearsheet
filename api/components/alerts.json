@@ -1,0 +1,88 @@
+{
+  "id": "alerts",
+  "name": "Alerts",
+  "page": "p.45",
+  "collection": "Feedback",
+  "experimental": false,
+  "description": "Info, success, warning and error banners. Each pairs color with an icon and text, so meaning never relies on color alone.",
+  "notes": "Use role=\"status\" for polite updates and role=\"alert\" only for urgent errors; alert interrupts screen readers.",
+  "usesJavaScript": false,
+  "sizeKb": 2.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#alerts",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/alerts.json",
+  "version": "6df2fcfc",
+  "checked": "axe clean in light and dark; tightest text contrast 5.81:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 10
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 10
+      }
+    },
+    "contrast": {
+      "ratio": 5.81,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- status:\n  - paragraph: New version available\n  - paragraph: Refresh the page to get the latest features.\n- status:\n  - paragraph: Payment received\n  - paragraph: A receipt is on its way to your inbox.\n- status:\n  - paragraph: Storage almost full\n  - paragraph: You’ve used 92% of your plan. Free up space or upgrade.\n- alert:\n  - paragraph: Couldn’t save your changes\n  - paragraph: Check your connection and try again.",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet alerts v6df2fcfc · https://qusaialjbali.github.io/tearsheet/zine/parts/alerts.html -->\n<div class=\"alerts\">\n  <div class=\"alert alert-info\" role=\"status\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"M10 9v5M10 6v.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">New version available</p>\n      <p class=\"alert-text\">Refresh the page to get the latest features.</p>\n    </div>\n  </div>\n  <div class=\"alert alert-success\" role=\"status\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"m6.5 10.2 2.3 2.3 4.7-4.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">Payment received</p>\n      <p class=\"alert-text\">A receipt is on its way to your inbox.</p>\n    </div>\n  </div>\n  <div class=\"alert alert-warning\" role=\"status\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 2.8 18 17H2Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"M10 8v4M10 14.5v.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">Storage almost full</p>\n      <p class=\"alert-text\">You’ve used 92% of your plan. Free up space or upgrade.</p>\n    </div>\n  </div>\n  <div class=\"alert alert-error\" role=\"alert\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"m7.2 7.2 5.6 5.6M12.8 7.2l-5.6 5.6\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">Couldn’t save your changes</p>\n      <p class=\"alert-text\">Check your connection and try again.</p>\n    </div>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet alerts v6df2fcfc · https://qusaialjbali.github.io/tearsheet/zine/parts/alerts.html */\n.alerts { display: grid; gap: 12px; width: 100%; max-width: 520px; }\n.alert {\n  --tone: var(--ui-accent);\n  --tone-soft: var(--ui-accent-soft);\n  display: flex;\n  gap: 12px;\n  align-items: flex-start;\n  padding: 14px 16px;\n  border-radius: var(--ui-radius-sm);\n  background: var(--tone-soft);\n  border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);\n  border-left: 4px solid var(--tone);\n}\n.alert-success { --tone: var(--ui-success); --tone-soft: var(--ui-success-soft); }\n.alert-warning { --tone: var(--ui-warning); --tone-soft: var(--ui-warning-soft); }\n.alert-error { --tone: var(--ui-danger); --tone-soft: var(--ui-danger-soft); }\n.alert-icon { width: 20px; height: 20px; flex: none; margin-top: 1px; color: var(--tone); }\n.alert-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.alert-text { margin: 2px 0 0; font-size: 14px; color: var(--ui-muted); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "Alerts.jsx",
+        "code": "/* tearsheet alerts v6df2fcfc · https://qusaialjbali.github.io/tearsheet/zine/parts/alerts.html */\nimport './Alerts.css';\n\nexport function Alerts() {\n  return (\n    <div className=\"alerts\">\n      <div className=\"alert alert-info\" role=\"status\">\n        <svg className=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\"/><path d=\"M10 9v5M10 6v.5\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\"/></svg>\n        <div>\n          <p className=\"alert-title\">New version available</p>\n          <p className=\"alert-text\">Refresh the page to get the latest features.</p>\n        </div>\n      </div>\n      <div className=\"alert alert-success\" role=\"status\">\n        <svg className=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\"/><path d=\"m6.5 10.2 2.3 2.3 4.7-4.9\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>\n        <div>\n          <p className=\"alert-title\">Payment received</p>\n          <p className=\"alert-text\">A receipt is on its way to your inbox.</p>\n        </div>\n      </div>\n      <div className=\"alert alert-warning\" role=\"status\">\n        <svg className=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 2.8 18 17H2Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinejoin=\"round\"/><path d=\"M10 8v4M10 14.5v.5\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\"/></svg>\n        <div>\n          <p className=\"alert-title\">Storage almost full</p>\n          <p className=\"alert-text\">You’ve used 92% of your plan. Free up space or upgrade.</p>\n        </div>\n      </div>\n      <div className=\"alert alert-error\" role=\"alert\">\n        <svg className=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\"/><path d=\"m7.2 7.2 5.6 5.6M12.8 7.2l-5.6 5.6\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\"/></svg>\n        <div>\n          <p className=\"alert-title\">Couldn’t save your changes</p>\n          <p className=\"alert-text\">Check your connection and try again.</p>\n        </div>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Alerts.css",
+        "code": "/* tearsheet alerts v6df2fcfc · https://qusaialjbali.github.io/tearsheet/zine/parts/alerts.html */\n.alerts { display: grid; gap: 12px; width: 100%; max-width: 520px; }\n.alert {\n  --tone: var(--ui-accent);\n  --tone-soft: var(--ui-accent-soft);\n  display: flex;\n  gap: 12px;\n  align-items: flex-start;\n  padding: 14px 16px;\n  border-radius: var(--ui-radius-sm);\n  background: var(--tone-soft);\n  border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);\n  border-left: 4px solid var(--tone);\n}\n.alert-success { --tone: var(--ui-success); --tone-soft: var(--ui-success-soft); }\n.alert-warning { --tone: var(--ui-warning); --tone-soft: var(--ui-warning-soft); }\n.alert-error { --tone: var(--ui-danger); --tone-soft: var(--ui-danger-soft); }\n.alert-icon { width: 20px; height: 20px; flex: none; margin-top: 1px; color: var(--tone); }\n.alert-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.alert-text { margin: 2px 0 0; font-size: 14px; color: var(--ui-muted); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Alerts.vue",
+        "code": "<!-- tearsheet alerts v6df2fcfc · https://qusaialjbali.github.io/tearsheet/zine/parts/alerts.html -->\n<template>\n  <div class=\"alerts\">\n    <div class=\"alert alert-info\" role=\"status\">\n      <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"M10 9v5M10 6v.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n      <div>\n        <p class=\"alert-title\">New version available</p>\n        <p class=\"alert-text\">Refresh the page to get the latest features.</p>\n      </div>\n    </div>\n    <div class=\"alert alert-success\" role=\"status\">\n      <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"m6.5 10.2 2.3 2.3 4.7-4.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n      <div>\n        <p class=\"alert-title\">Payment received</p>\n        <p class=\"alert-text\">A receipt is on its way to your inbox.</p>\n      </div>\n    </div>\n    <div class=\"alert alert-warning\" role=\"status\">\n      <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 2.8 18 17H2Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"M10 8v4M10 14.5v.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n      <div>\n        <p class=\"alert-title\">Storage almost full</p>\n        <p class=\"alert-text\">You’ve used 92% of your plan. Free up space or upgrade.</p>\n      </div>\n    </div>\n    <div class=\"alert alert-error\" role=\"alert\">\n      <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"m7.2 7.2 5.6 5.6M12.8 7.2l-5.6 5.6\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n      <div>\n        <p class=\"alert-title\">Couldn’t save your changes</p>\n        <p class=\"alert-text\">Check your connection and try again.</p>\n      </div>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.alerts { display: grid; gap: 12px; width: 100%; max-width: 520px; }\n.alert {\n  --tone: var(--ui-accent);\n  --tone-soft: var(--ui-accent-soft);\n  display: flex;\n  gap: 12px;\n  align-items: flex-start;\n  padding: 14px 16px;\n  border-radius: var(--ui-radius-sm);\n  background: var(--tone-soft);\n  border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);\n  border-left: 4px solid var(--tone);\n}\n.alert-success { --tone: var(--ui-success); --tone-soft: var(--ui-success-soft); }\n.alert-warning { --tone: var(--ui-warning); --tone-soft: var(--ui-warning-soft); }\n.alert-error { --tone: var(--ui-danger); --tone-soft: var(--ui-danger-soft); }\n.alert-icon { width: 20px; height: 20px; flex: none; margin-top: 1px; color: var(--tone); }\n.alert-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.alert-text { margin: 2px 0 0; font-size: 14px; color: var(--ui-muted); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Alerts.svelte",
+        "code": "<!-- tearsheet alerts v6df2fcfc · https://qusaialjbali.github.io/tearsheet/zine/parts/alerts.html -->\n<div class=\"alerts\">\n  <div class=\"alert alert-info\" role=\"status\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"M10 9v5M10 6v.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">New version available</p>\n      <p class=\"alert-text\">Refresh the page to get the latest features.</p>\n    </div>\n  </div>\n  <div class=\"alert alert-success\" role=\"status\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"m6.5 10.2 2.3 2.3 4.7-4.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">Payment received</p>\n      <p class=\"alert-text\">A receipt is on its way to your inbox.</p>\n    </div>\n  </div>\n  <div class=\"alert alert-warning\" role=\"status\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 2.8 18 17H2Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"M10 8v4M10 14.5v.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">Storage almost full</p>\n      <p class=\"alert-text\">You’ve used 92% of your plan. Free up space or upgrade.</p>\n    </div>\n  </div>\n  <div class=\"alert alert-error\" role=\"alert\">\n    <svg class=\"alert-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/><path d=\"m7.2 7.2 5.6 5.6M12.8 7.2l-5.6 5.6\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg>\n    <div>\n      <p class=\"alert-title\">Couldn’t save your changes</p>\n      <p class=\"alert-text\">Check your connection and try again.</p>\n    </div>\n  </div>\n</div>\n\n<style>\n.alerts { display: grid; gap: 12px; width: 100%; max-width: 520px; }\n.alert {\n  --tone: var(--ui-accent);\n  --tone-soft: var(--ui-accent-soft);\n  display: flex;\n  gap: 12px;\n  align-items: flex-start;\n  padding: 14px 16px;\n  border-radius: var(--ui-radius-sm);\n  background: var(--tone-soft);\n  border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);\n  border-left: 4px solid var(--tone);\n}\n.alert-success { --tone: var(--ui-success); --tone-soft: var(--ui-success-soft); }\n.alert-warning { --tone: var(--ui-warning); --tone-soft: var(--ui-warning-soft); }\n.alert-error { --tone: var(--ui-danger); --tone-soft: var(--ui-danger-soft); }\n.alert-icon { width: 20px; height: 20px; flex: none; margin-top: 1px; color: var(--tone); }\n.alert-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.alert-text { margin: 2px 0 0; font-size: 14px; color: var(--ui-muted); }\n</style>"
+      }
+    ]
+  }
+}

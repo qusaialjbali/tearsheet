@@ -1,0 +1,88 @@
+{
+  "id": "bar-chart",
+  "name": "Bar chart",
+  "page": "p.38",
+  "collection": "Data",
+  "experimental": false,
+  "description": "Horizontal bars drawn with plain HTML and CSS, every value printed next to its bar.",
+  "notes": "The numbers are real text, so the chart is readable without colour or sight, and nothing needs a chart library. Sort bars by value unless the categories have a natural order.",
+  "usesJavaScript": false,
+  "sizeKb": 1.9,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#bar-chart",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/bar-chart.json",
+  "version": "f5a4d37e",
+  "checked": "axe clean in light and dark; tightest text contrast 6.7:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- figure \"Visits by source, last 30 days\":\n  - text: Visits by source, last 30 days\n  - list:\n    - listitem: Search 12,480\n    - listitem: Direct 7,990\n    - listitem: Newsletter 5,120\n    - listitem: Social 2,740\n    - listitem: Other 1,130",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet bar-chart vf5a4d37e · https://qusaialjbali.github.io/tearsheet/zine/parts/bar-chart.html -->\n<figure class=\"bars\">\n  <figcaption>Visits by source, last 30 days</figcaption>\n  <ul class=\"bars-list\">\n    <li style=\"--v: 100%\"><span class=\"bars-name\">Search</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">12,480</span></li>\n    <li style=\"--v: 64%\"><span class=\"bars-name\">Direct</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">7,990</span></li>\n    <li style=\"--v: 41%\"><span class=\"bars-name\">Newsletter</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">5,120</span></li>\n    <li style=\"--v: 22%\"><span class=\"bars-name\">Social</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">2,740</span></li>\n    <li style=\"--v: 9%\"><span class=\"bars-name\">Other</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">1,130</span></li>\n  </ul>\n</figure>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet bar-chart vf5a4d37e · https://qusaialjbali.github.io/tearsheet/zine/parts/bar-chart.html */\n.bars { width: 100%; max-width: 460px; margin: 0; }\n.bars figcaption { margin-bottom: 14px; font-size: 15px; font-weight: 700; }\n.bars-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }\n.bars-list li { display: grid; grid-template-columns: 90px 1fr 64px; align-items: center; gap: 12px; font-size: 14px; }\n.bars-name { color: var(--ui-muted); }\n.bars-track { height: 14px; background: var(--ui-surface-2); border-radius: 4px; overflow: hidden; }\n.bars-fill { display: block; height: 100%; width: var(--v); background: var(--ui-accent); border-radius: 4px; animation: bars-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: left; }\n.bars-list li:nth-child(n + 2) .bars-fill { opacity: 0.8; }\n.bars-val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }\n@keyframes bars-grow { from { transform: scaleX(0); } }\n@media (prefers-reduced-motion: reduce) { .bars-fill { animation: none; } }"
+      }
+    ],
+    "react": [
+      {
+        "name": "BarChart.jsx",
+        "code": "/* tearsheet bar-chart vf5a4d37e · https://qusaialjbali.github.io/tearsheet/zine/parts/bar-chart.html */\nimport './BarChart.css';\n\nexport function BarChart() {\n  return (\n    <figure className=\"bars\">\n      <figcaption>Visits by source, last 30 days</figcaption>\n      <ul className=\"bars-list\">\n        <li style={{ '--v': '100%' }}><span className=\"bars-name\">Search</span><span className=\"bars-track\"><span className=\"bars-fill\"></span></span><span className=\"bars-val\">12,480</span></li>\n        <li style={{ '--v': '64%' }}><span className=\"bars-name\">Direct</span><span className=\"bars-track\"><span className=\"bars-fill\"></span></span><span className=\"bars-val\">7,990</span></li>\n        <li style={{ '--v': '41%' }}><span className=\"bars-name\">Newsletter</span><span className=\"bars-track\"><span className=\"bars-fill\"></span></span><span className=\"bars-val\">5,120</span></li>\n        <li style={{ '--v': '22%' }}><span className=\"bars-name\">Social</span><span className=\"bars-track\"><span className=\"bars-fill\"></span></span><span className=\"bars-val\">2,740</span></li>\n        <li style={{ '--v': '9%' }}><span className=\"bars-name\">Other</span><span className=\"bars-track\"><span className=\"bars-fill\"></span></span><span className=\"bars-val\">1,130</span></li>\n      </ul>\n    </figure>\n  );\n}"
+      },
+      {
+        "name": "BarChart.css",
+        "code": "/* tearsheet bar-chart vf5a4d37e · https://qusaialjbali.github.io/tearsheet/zine/parts/bar-chart.html */\n.bars { width: 100%; max-width: 460px; margin: 0; }\n.bars figcaption { margin-bottom: 14px; font-size: 15px; font-weight: 700; }\n.bars-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }\n.bars-list li { display: grid; grid-template-columns: 90px 1fr 64px; align-items: center; gap: 12px; font-size: 14px; }\n.bars-name { color: var(--ui-muted); }\n.bars-track { height: 14px; background: var(--ui-surface-2); border-radius: 4px; overflow: hidden; }\n.bars-fill { display: block; height: 100%; width: var(--v); background: var(--ui-accent); border-radius: 4px; animation: bars-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: left; }\n.bars-list li:nth-child(n + 2) .bars-fill { opacity: 0.8; }\n.bars-val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }\n@keyframes bars-grow { from { transform: scaleX(0); } }\n@media (prefers-reduced-motion: reduce) { .bars-fill { animation: none; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "BarChart.vue",
+        "code": "<!-- tearsheet bar-chart vf5a4d37e · https://qusaialjbali.github.io/tearsheet/zine/parts/bar-chart.html -->\n<template>\n  <figure class=\"bars\">\n    <figcaption>Visits by source, last 30 days</figcaption>\n    <ul class=\"bars-list\">\n      <li style=\"--v: 100%\"><span class=\"bars-name\">Search</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">12,480</span></li>\n      <li style=\"--v: 64%\"><span class=\"bars-name\">Direct</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">7,990</span></li>\n      <li style=\"--v: 41%\"><span class=\"bars-name\">Newsletter</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">5,120</span></li>\n      <li style=\"--v: 22%\"><span class=\"bars-name\">Social</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">2,740</span></li>\n      <li style=\"--v: 9%\"><span class=\"bars-name\">Other</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">1,130</span></li>\n    </ul>\n  </figure>\n</template>\n\n<style scoped>\n.bars { width: 100%; max-width: 460px; margin: 0; }\n.bars figcaption { margin-bottom: 14px; font-size: 15px; font-weight: 700; }\n.bars-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }\n.bars-list li { display: grid; grid-template-columns: 90px 1fr 64px; align-items: center; gap: 12px; font-size: 14px; }\n.bars-name { color: var(--ui-muted); }\n.bars-track { height: 14px; background: var(--ui-surface-2); border-radius: 4px; overflow: hidden; }\n.bars-fill { display: block; height: 100%; width: var(--v); background: var(--ui-accent); border-radius: 4px; animation: bars-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: left; }\n.bars-list li:nth-child(n + 2) .bars-fill { opacity: 0.8; }\n.bars-val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }\n@keyframes bars-grow { from { transform: scaleX(0); } }\n@media (prefers-reduced-motion: reduce) { .bars-fill { animation: none; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "BarChart.svelte",
+        "code": "<!-- tearsheet bar-chart vf5a4d37e · https://qusaialjbali.github.io/tearsheet/zine/parts/bar-chart.html -->\n<figure class=\"bars\">\n  <figcaption>Visits by source, last 30 days</figcaption>\n  <ul class=\"bars-list\">\n    <li style=\"--v: 100%\"><span class=\"bars-name\">Search</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">12,480</span></li>\n    <li style=\"--v: 64%\"><span class=\"bars-name\">Direct</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">7,990</span></li>\n    <li style=\"--v: 41%\"><span class=\"bars-name\">Newsletter</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">5,120</span></li>\n    <li style=\"--v: 22%\"><span class=\"bars-name\">Social</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">2,740</span></li>\n    <li style=\"--v: 9%\"><span class=\"bars-name\">Other</span><span class=\"bars-track\"><span class=\"bars-fill\"></span></span><span class=\"bars-val\">1,130</span></li>\n  </ul>\n</figure>\n\n<style>\n.bars { width: 100%; max-width: 460px; margin: 0; }\n.bars figcaption { margin-bottom: 14px; font-size: 15px; font-weight: 700; }\n.bars-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }\n.bars-list li { display: grid; grid-template-columns: 90px 1fr 64px; align-items: center; gap: 12px; font-size: 14px; }\n.bars-name { color: var(--ui-muted); }\n.bars-track { height: 14px; background: var(--ui-surface-2); border-radius: 4px; overflow: hidden; }\n.bars-fill { display: block; height: 100%; width: var(--v); background: var(--ui-accent); border-radius: 4px; animation: bars-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: left; }\n.bars-list li:nth-child(n + 2) .bars-fill { opacity: 0.8; }\n.bars-val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }\n@keyframes bars-grow { from { transform: scaleX(0); } }\n@media (prefers-reduced-motion: reduce) { .bars-fill { animation: none; } }\n</style>"
+      }
+    ]
+  }
+}

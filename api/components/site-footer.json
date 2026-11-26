@@ -1,0 +1,102 @@
+{
+  "id": "site-footer",
+  "name": "Site footer",
+  "page": "p.74",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "A footer with the brand line, grouped links, a language picker and the legal row.",
+  "notes": "Group links under short headings people scan for (Product, Company, Help). Keep the legal links and the copyright on their own quiet row.",
+  "usesJavaScript": false,
+  "sizeKb": 2.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#site-footer",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/site-footer.json",
+  "version": "5907f40b",
+  "checked": "axe clean in light and dark; tightest text contrast 6.7:1 (needs 4.5:1); 13 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 18
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 18
+      }
+    },
+    "contrast": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "link \"Features\":",
+      "link \"Pricing\":",
+      "link \"Changelog\":",
+      "link \"About\":",
+      "link \"Careers\":",
+      "link \"Press\":",
+      "link \"Support\":",
+      "link \"Status\":",
+      "link \"Contact\":",
+      "link \"Privacy\":",
+      "link \"Terms\":",
+      "link \"Cookies\":",
+      "combobox \"Language\":"
+    ],
+    "tree": "- contentinfo:\n  - paragraph: Pocketsplit\n  - paragraph: Shared budgets without the awkward maths.\n  - navigation \"Footer\":\n    - heading \"Product\" [level=3]\n    - list:\n      - listitem:\n        - link \"Features\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Pricing\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Changelog\":\n          - /url: \"#\"\n    - heading \"Company\" [level=3]\n    - list:\n      - listitem:\n        - link \"About\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Careers\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Press\":\n          - /url: \"#\"\n    - heading \"Help\" [level=3]\n    - list:\n      - listitem:\n        - link \"Support\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Status\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Contact\":\n          - /url: \"#\"\n  - paragraph: © 2026 Pocketsplit Ltd.\n  - list:\n    - listitem:\n- …",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet site-footer v5907f40b · https://qusaialjbali.github.io/tearsheet/zine/parts/site-footer.html -->\n<footer class=\"sfoot\">\n  <div class=\"sfoot-top\">\n    <div class=\"sfoot-brand\">\n      <p class=\"sfoot-logo\">Pocketsplit</p>\n      <p>Shared budgets without the awkward maths.</p>\n    </div>\n    <nav class=\"sfoot-cols\" aria-label=\"Footer\">\n      <div><h3>Product</h3><ul><li><a href=\"#\">Features</a></li><li><a href=\"#\">Pricing</a></li><li><a href=\"#\">Changelog</a></li></ul></div>\n      <div><h3>Company</h3><ul><li><a href=\"#\">About</a></li><li><a href=\"#\">Careers</a></li><li><a href=\"#\">Press</a></li></ul></div>\n      <div><h3>Help</h3><ul><li><a href=\"#\">Support</a></li><li><a href=\"#\">Status</a></li><li><a href=\"#\">Contact</a></li></ul></div>\n    </nav>\n  </div>\n  <div class=\"sfoot-bottom\">\n    <p>© 2026 Pocketsplit Ltd.</p>\n    <ul><li><a href=\"#\">Privacy</a></li><li><a href=\"#\">Terms</a></li><li><a href=\"#\">Cookies</a></li></ul>\n    <label class=\"sfoot-lang\"><span class=\"sr-only\">Language</span>\n      <select><option>English</option><option>Español</option><option>Deutsch</option><option>العربية</option></select>\n    </label>\n  </div>\n</footer>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet site-footer v5907f40b · https://qusaialjbali.github.io/tearsheet/zine/parts/site-footer.html */\n.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.sfoot { width: 100%; padding: 40px clamp(20px, 4vw, 40px) 24px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.sfoot a { color: var(--ui-muted); text-decoration: none; }\n.sfoot a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.sfoot a:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.sfoot-top { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--ui-border); }\n.sfoot-logo { margin: 0 0 6px; font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--ui-text) !important; }\n.sfoot-brand p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.sfoot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 24px; }\n.sfoot-cols h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }\n.sfoot-cols ul, .sfoot-bottom ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; }\n.sfoot-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-top: 20px; font-size: 13px; color: var(--ui-muted); }\n.sfoot-bottom p { margin: 0; }\n.sfoot-bottom ul { display: flex; gap: 18px; font-size: 13px; }\n.sfoot-lang { margin-left: auto; }\n.sfoot-lang select { padding: 6px 10px; font: inherit; font-size: 13px; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: 6px; }\n@media (max-width: 600px) { .sfoot-top { grid-template-columns: 1fr; } .sfoot-lang { margin-left: 0; } }"
+      }
+    ],
+    "react": [
+      {
+        "name": "SiteFooter.jsx",
+        "code": "/* tearsheet site-footer v5907f40b · https://qusaialjbali.github.io/tearsheet/zine/parts/site-footer.html */\nimport './SiteFooter.css';\n\nexport function SiteFooter() {\n  return (\n    <footer className=\"sfoot\">\n      <div className=\"sfoot-top\">\n        <div className=\"sfoot-brand\">\n          <p className=\"sfoot-logo\">Pocketsplit</p>\n          <p>Shared budgets without the awkward maths.</p>\n        </div>\n        <nav className=\"sfoot-cols\" aria-label=\"Footer\">\n          <div><h3>Product</h3><ul><li><a href=\"#\">Features</a></li><li><a href=\"#\">Pricing</a></li><li><a href=\"#\">Changelog</a></li></ul></div>\n          <div><h3>Company</h3><ul><li><a href=\"#\">About</a></li><li><a href=\"#\">Careers</a></li><li><a href=\"#\">Press</a></li></ul></div>\n          <div><h3>Help</h3><ul><li><a href=\"#\">Support</a></li><li><a href=\"#\">Status</a></li><li><a href=\"#\">Contact</a></li></ul></div>\n        </nav>\n      </div>\n      <div className=\"sfoot-bottom\">\n        <p>© 2026 Pocketsplit Ltd.</p>\n        <ul><li><a href=\"#\">Privacy</a></li><li><a href=\"#\">Terms</a></li><li><a href=\"#\">Cookies</a></li></ul>\n        <label className=\"sfoot-lang\"><span className=\"sr-only\">Language</span>\n          <select><option>English</option><option>Español</option><option>Deutsch</option><option>العربية</option></select>\n        </label>\n      </div>\n    </footer>\n  );\n}"
+      },
+      {
+        "name": "SiteFooter.css",
+        "code": "/* tearsheet site-footer v5907f40b · https://qusaialjbali.github.io/tearsheet/zine/parts/site-footer.html */\n.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.sfoot { width: 100%; padding: 40px clamp(20px, 4vw, 40px) 24px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.sfoot a { color: var(--ui-muted); text-decoration: none; }\n.sfoot a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.sfoot a:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.sfoot-top { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--ui-border); }\n.sfoot-logo { margin: 0 0 6px; font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--ui-text) !important; }\n.sfoot-brand p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.sfoot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 24px; }\n.sfoot-cols h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }\n.sfoot-cols ul, .sfoot-bottom ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; }\n.sfoot-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-top: 20px; font-size: 13px; color: var(--ui-muted); }\n.sfoot-bottom p { margin: 0; }\n.sfoot-bottom ul { display: flex; gap: 18px; font-size: 13px; }\n.sfoot-lang { margin-left: auto; }\n.sfoot-lang select { padding: 6px 10px; font: inherit; font-size: 13px; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: 6px; }\n@media (max-width: 600px) { .sfoot-top { grid-template-columns: 1fr; } .sfoot-lang { margin-left: 0; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "SiteFooter.vue",
+        "code": "<!-- tearsheet site-footer v5907f40b · https://qusaialjbali.github.io/tearsheet/zine/parts/site-footer.html -->\n<template>\n  <footer class=\"sfoot\">\n    <div class=\"sfoot-top\">\n      <div class=\"sfoot-brand\">\n        <p class=\"sfoot-logo\">Pocketsplit</p>\n        <p>Shared budgets without the awkward maths.</p>\n      </div>\n      <nav class=\"sfoot-cols\" aria-label=\"Footer\">\n        <div><h3>Product</h3><ul><li><a href=\"#\">Features</a></li><li><a href=\"#\">Pricing</a></li><li><a href=\"#\">Changelog</a></li></ul></div>\n        <div><h3>Company</h3><ul><li><a href=\"#\">About</a></li><li><a href=\"#\">Careers</a></li><li><a href=\"#\">Press</a></li></ul></div>\n        <div><h3>Help</h3><ul><li><a href=\"#\">Support</a></li><li><a href=\"#\">Status</a></li><li><a href=\"#\">Contact</a></li></ul></div>\n      </nav>\n    </div>\n    <div class=\"sfoot-bottom\">\n      <p>© 2026 Pocketsplit Ltd.</p>\n      <ul><li><a href=\"#\">Privacy</a></li><li><a href=\"#\">Terms</a></li><li><a href=\"#\">Cookies</a></li></ul>\n      <label class=\"sfoot-lang\"><span class=\"sr-only\">Language</span>\n        <select><option>English</option><option>Español</option><option>Deutsch</option><option>العربية</option></select>\n      </label>\n    </div>\n  </footer>\n</template>\n\n<style scoped>\n.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.sfoot { width: 100%; padding: 40px clamp(20px, 4vw, 40px) 24px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.sfoot a { color: var(--ui-muted); text-decoration: none; }\n.sfoot a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.sfoot a:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.sfoot-top { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--ui-border); }\n.sfoot-logo { margin: 0 0 6px; font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--ui-text) !important; }\n.sfoot-brand p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.sfoot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 24px; }\n.sfoot-cols h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }\n.sfoot-cols ul, .sfoot-bottom ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; }\n.sfoot-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-top: 20px; font-size: 13px; color: var(--ui-muted); }\n.sfoot-bottom p { margin: 0; }\n.sfoot-bottom ul { display: flex; gap: 18px; font-size: 13px; }\n.sfoot-lang { margin-left: auto; }\n.sfoot-lang select { padding: 6px 10px; font: inherit; font-size: 13px; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: 6px; }\n@media (max-width: 600px) { .sfoot-top { grid-template-columns: 1fr; } .sfoot-lang { margin-left: 0; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "SiteFooter.svelte",
+        "code": "<!-- tearsheet site-footer v5907f40b · https://qusaialjbali.github.io/tearsheet/zine/parts/site-footer.html -->\n<footer class=\"sfoot\">\n  <div class=\"sfoot-top\">\n    <div class=\"sfoot-brand\">\n      <p class=\"sfoot-logo\">Pocketsplit</p>\n      <p>Shared budgets without the awkward maths.</p>\n    </div>\n    <nav class=\"sfoot-cols\" aria-label=\"Footer\">\n      <div><h3>Product</h3><ul><li><a href=\"#\">Features</a></li><li><a href=\"#\">Pricing</a></li><li><a href=\"#\">Changelog</a></li></ul></div>\n      <div><h3>Company</h3><ul><li><a href=\"#\">About</a></li><li><a href=\"#\">Careers</a></li><li><a href=\"#\">Press</a></li></ul></div>\n      <div><h3>Help</h3><ul><li><a href=\"#\">Support</a></li><li><a href=\"#\">Status</a></li><li><a href=\"#\">Contact</a></li></ul></div>\n    </nav>\n  </div>\n  <div class=\"sfoot-bottom\">\n    <p>© 2026 Pocketsplit Ltd.</p>\n    <ul><li><a href=\"#\">Privacy</a></li><li><a href=\"#\">Terms</a></li><li><a href=\"#\">Cookies</a></li></ul>\n    <label class=\"sfoot-lang\"><span class=\"sr-only\">Language</span>\n      <select><option>English</option><option>Español</option><option>Deutsch</option><option>العربية</option></select>\n    </label>\n  </div>\n</footer>\n\n<style>\n.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.sfoot { width: 100%; padding: 40px clamp(20px, 4vw, 40px) 24px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.sfoot a { color: var(--ui-muted); text-decoration: none; }\n.sfoot a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.sfoot a:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }\n.sfoot-top { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--ui-border); }\n.sfoot-logo { margin: 0 0 6px; font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--ui-text) !important; }\n.sfoot-brand p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.sfoot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 24px; }\n.sfoot-cols h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }\n.sfoot-cols ul, .sfoot-bottom ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; }\n.sfoot-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-top: 20px; font-size: 13px; color: var(--ui-muted); }\n.sfoot-bottom p { margin: 0; }\n.sfoot-bottom ul { display: flex; gap: 18px; font-size: 13px; }\n.sfoot-lang { margin-left: auto; }\n.sfoot-lang select { padding: 6px 10px; font: inherit; font-size: 13px; color: var(--ui-text); background: var(--ui-bg); border: 1px solid var(--ui-border-strong); border-radius: 6px; }\n@media (max-width: 600px) { .sfoot-top { grid-template-columns: 1fr; } .sfoot-lang { margin-left: 0; } }\n</style>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "tearsheet",
+  "version": "1.1.0",
+  "description": "Free, accessible UI components in HTML, React, Vue and Svelte with published accessibility receipts, a brand fitter, an audit for your own UI, and a CLI and MCP server for AI agents. MIT-0.",
+  "license": "MIT-0",
+  "homepage": "https://qusaialjbali.github.io/tearsheet/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qusaialjbali/tearsheet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qusaialjbali/tearsheet/issues"
+  },
+  "bin": {
+    "tearsheet": "bin/tearsheet.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "shared/**/*.js",
+    "shared/guide-body.html",
+    "api/receipts.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build-guides.js && node build-api.js && node build-pages.js",
+    "check": "npm run check:code && npm run check:a11y",
+    "check:code": "node tools/check-code.js",
+    "check:a11y": "node tools/check-a11y.js",
+    "og": "node tools/og.js",
+    "mcp": "node bin/tearsheet.js mcp"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "react",
+    "vue",
+    "svelte",
+    "html",
+    "css",
+    "accessibility",
+    "design-system",
+    "mcp",
+    "cli",
+    "ui-kit",
+    "copy-paste",
+    "zine",
+    "animation"
+  ],
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.1",
+    "@vue/compiler-sfc": "^3.5.46",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.65.1",
+    "svelte": "^5.59.2"
+  }
+}

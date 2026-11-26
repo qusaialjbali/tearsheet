@@ -1,0 +1,6 @@
+# Design-tool working files (decision pages, mocks, review captures)
+.impeccable/
+# OS clutter
+.DS_Store
+Thumbs.db
+node_modules/

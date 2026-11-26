@@ -1,0 +1,96 @@
+{
+  "id": "navbar",
+  "name": "Navigation bar",
+  "page": "p.51",
+  "collection": "Navigation",
+  "experimental": false,
+  "description": "Responsive site header with brand, links, actions and a no-JS mobile menu.",
+  "notes": "Mark the current page with aria-current=\"page\". Keep top-level links to about five to seven, with plain names people would search for.",
+  "usesJavaScript": false,
+  "sizeKb": 3.2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#navbar",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/navbar.json",
+  "version": "4cc9869e",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 7 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 15
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 15
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "link \"Acme\":",
+      "link \"Product\":",
+      "link \"Pricing\":",
+      "link \"Docs\":",
+      "link \"Blog\":",
+      "link \"Sign in\":",
+      "link \"Get started\":"
+    ],
+    "tree": "- banner:\n  - link \"Acme\":\n    - /url: \"#\"\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Product\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Pricing\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Docs\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Blog\":\n          - /url: \"#\"\n  - link \"Sign in\":\n    - /url: \"#\"\n  - link \"Get started\":\n    - /url: \"#\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet navbar v4cc9869e · https://qusaialjbali.github.io/tearsheet/zine/parts/navbar.html -->\n<header class=\"nav\">\n  <a class=\"nav-brand\" href=\"#\"><span class=\"nav-logo\" aria-hidden=\"true\"></span>Acme</a>\n  <nav class=\"nav-main\" aria-label=\"Main\">\n    <ul class=\"nav-links\">\n      <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n      <li><a href=\"#\">Pricing</a></li>\n      <li><a href=\"#\">Docs</a></li>\n      <li><a href=\"#\">Blog</a></li>\n    </ul>\n  </nav>\n  <div class=\"nav-actions\">\n    <a class=\"nav-signin\" href=\"#\">Sign in</a>\n    <a class=\"nav-cta\" href=\"#\">Get started</a>\n    <details class=\"nav-menu\">\n      <summary aria-label=\"Menu\"><span></span></summary>\n      <ul>\n        <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n        <li><a href=\"#\">Pricing</a></li>\n        <li><a href=\"#\">Docs</a></li>\n        <li><a href=\"#\">Blog</a></li>\n        <li><a href=\"#\">Sign in</a></li>\n      </ul>\n    </details>\n  </div>\n</header>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet navbar v4cc9869e · https://qusaialjbali.github.io/tearsheet/zine/parts/navbar.html */\n.nav {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 24px;\n  padding: 12px 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.nav a { color: inherit; text-decoration: none; border-radius: 6px; }\n.nav a:focus-visible, .nav summary:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.nav-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; }\n.nav-logo {\n  width: 22px;\n  height: 22px;\n  border-radius: 6px;\n  background: linear-gradient(135deg, var(--ui-accent), var(--ui-accent-hover));\n}\n.nav-links { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }\n.nav-links a, .nav-signin {\n  display: block;\n  padding: 8px 12px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-muted);\n}\n.nav-links a:hover, .nav-signin:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.nav-links a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; }\n.nav-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }\n.nav-cta {\n  padding: 9px 16px;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-accent-text) !important;\n  background: var(--ui-accent);\n}\n.nav-cta:hover { background: var(--ui-accent-hover); }\n\n.nav-menu { display: none; }\n.nav-menu summary {\n  display: grid;\n  place-items: center;\n  width: 40px;\n  height: 40px;\n  border-radius: 8px;\n  cursor: pointer;\n  list-style: none;\n}\n.nav-menu summary::-webkit-details-marker { display: none; }\n.nav-menu summary span,\n.nav-menu summary span::before,\n.nav-menu summary span::after {\n  display: block;\n  width: 18px;\n  height: 2px;\n  background: var(--ui-text);\n  border-radius: 2px;\n  position: relative;\n}\n.nav-menu summary span::before, .nav-menu summary span::after { content: \"\"; position: absolute; }\n.nav-menu summary span::before { top: -6px; }\n.nav-menu summary span::after { top: 6px; }\n.nav-menu ul {\n  position: absolute;\n  top: calc(100% + 8px);\n  left: 0;\n  right: 0;\n  z-index: 10;\n  margin: 0;\n  padding: 8px;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.nav-menu li a { display: block; padding: 12px; font-weight: 500; }\n.nav-menu li a:hover { background: var(--ui-surface-2); }\n\n@media (max-width: 720px) {\n  .nav-main, .nav-signin { display: none; }\n  .nav-menu { display: block; }\n}"
+      }
+    ],
+    "react": [
+      {
+        "name": "Navbar.jsx",
+        "code": "/* tearsheet navbar v4cc9869e · https://qusaialjbali.github.io/tearsheet/zine/parts/navbar.html */\nimport './Navbar.css';\n\nexport function Navbar() {\n  return (\n    <header className=\"nav\">\n      <a className=\"nav-brand\" href=\"#\"><span className=\"nav-logo\" aria-hidden=\"true\"></span>Acme</a>\n      <nav className=\"nav-main\" aria-label=\"Main\">\n        <ul className=\"nav-links\">\n          <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n          <li><a href=\"#\">Pricing</a></li>\n          <li><a href=\"#\">Docs</a></li>\n          <li><a href=\"#\">Blog</a></li>\n        </ul>\n      </nav>\n      <div className=\"nav-actions\">\n        <a className=\"nav-signin\" href=\"#\">Sign in</a>\n        <a className=\"nav-cta\" href=\"#\">Get started</a>\n        <details className=\"nav-menu\">\n          <summary aria-label=\"Menu\"><span></span></summary>\n          <ul>\n            <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n            <li><a href=\"#\">Pricing</a></li>\n            <li><a href=\"#\">Docs</a></li>\n            <li><a href=\"#\">Blog</a></li>\n            <li><a href=\"#\">Sign in</a></li>\n          </ul>\n        </details>\n      </div>\n    </header>\n  );\n}"
+      },
+      {
+        "name": "Navbar.css",
+        "code": "/* tearsheet navbar v4cc9869e · https://qusaialjbali.github.io/tearsheet/zine/parts/navbar.html */\n.nav {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 24px;\n  padding: 12px 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.nav a { color: inherit; text-decoration: none; border-radius: 6px; }\n.nav a:focus-visible, .nav summary:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.nav-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; }\n.nav-logo {\n  width: 22px;\n  height: 22px;\n  border-radius: 6px;\n  background: linear-gradient(135deg, var(--ui-accent), var(--ui-accent-hover));\n}\n.nav-links { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }\n.nav-links a, .nav-signin {\n  display: block;\n  padding: 8px 12px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-muted);\n}\n.nav-links a:hover, .nav-signin:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.nav-links a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; }\n.nav-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }\n.nav-cta {\n  padding: 9px 16px;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-accent-text) !important;\n  background: var(--ui-accent);\n}\n.nav-cta:hover { background: var(--ui-accent-hover); }\n\n.nav-menu { display: none; }\n.nav-menu summary {\n  display: grid;\n  place-items: center;\n  width: 40px;\n  height: 40px;\n  border-radius: 8px;\n  cursor: pointer;\n  list-style: none;\n}\n.nav-menu summary::-webkit-details-marker { display: none; }\n.nav-menu summary span,\n.nav-menu summary span::before,\n.nav-menu summary span::after {\n  display: block;\n  width: 18px;\n  height: 2px;\n  background: var(--ui-text);\n  border-radius: 2px;\n  position: relative;\n}\n.nav-menu summary span::before, .nav-menu summary span::after { content: \"\"; position: absolute; }\n.nav-menu summary span::before { top: -6px; }\n.nav-menu summary span::after { top: 6px; }\n.nav-menu ul {\n  position: absolute;\n  top: calc(100% + 8px);\n  left: 0;\n  right: 0;\n  z-index: 10;\n  margin: 0;\n  padding: 8px;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.nav-menu li a { display: block; padding: 12px; font-weight: 500; }\n.nav-menu li a:hover { background: var(--ui-surface-2); }\n\n@media (max-width: 720px) {\n  .nav-main, .nav-signin { display: none; }\n  .nav-menu { display: block; }\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Navbar.vue",
+        "code": "<!-- tearsheet navbar v4cc9869e · https://qusaialjbali.github.io/tearsheet/zine/parts/navbar.html -->\n<template>\n  <header class=\"nav\">\n    <a class=\"nav-brand\" href=\"#\"><span class=\"nav-logo\" aria-hidden=\"true\"></span>Acme</a>\n    <nav class=\"nav-main\" aria-label=\"Main\">\n      <ul class=\"nav-links\">\n        <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n        <li><a href=\"#\">Pricing</a></li>\n        <li><a href=\"#\">Docs</a></li>\n        <li><a href=\"#\">Blog</a></li>\n      </ul>\n    </nav>\n    <div class=\"nav-actions\">\n      <a class=\"nav-signin\" href=\"#\">Sign in</a>\n      <a class=\"nav-cta\" href=\"#\">Get started</a>\n      <details class=\"nav-menu\">\n        <summary aria-label=\"Menu\"><span></span></summary>\n        <ul>\n          <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n          <li><a href=\"#\">Pricing</a></li>\n          <li><a href=\"#\">Docs</a></li>\n          <li><a href=\"#\">Blog</a></li>\n          <li><a href=\"#\">Sign in</a></li>\n        </ul>\n      </details>\n    </div>\n  </header>\n</template>\n\n<style scoped>\n.nav {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 24px;\n  padding: 12px 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.nav a { color: inherit; text-decoration: none; border-radius: 6px; }\n.nav a:focus-visible, .nav summary:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.nav-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; }\n.nav-logo {\n  width: 22px;\n  height: 22px;\n  border-radius: 6px;\n  background: linear-gradient(135deg, var(--ui-accent), var(--ui-accent-hover));\n}\n.nav-links { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }\n.nav-links a, .nav-signin {\n  display: block;\n  padding: 8px 12px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-muted);\n}\n.nav-links a:hover, .nav-signin:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.nav-links a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; }\n.nav-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }\n.nav-cta {\n  padding: 9px 16px;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-accent-text) !important;\n  background: var(--ui-accent);\n}\n.nav-cta:hover { background: var(--ui-accent-hover); }\n\n.nav-menu { display: none; }\n.nav-menu summary {\n  display: grid;\n  place-items: center;\n  width: 40px;\n  height: 40px;\n  border-radius: 8px;\n  cursor: pointer;\n  list-style: none;\n}\n.nav-menu summary::-webkit-details-marker { display: none; }\n.nav-menu summary span,\n.nav-menu summary span::before,\n.nav-menu summary span::after {\n  display: block;\n  width: 18px;\n  height: 2px;\n  background: var(--ui-text);\n  border-radius: 2px;\n  position: relative;\n}\n.nav-menu summary span::before, .nav-menu summary span::after { content: \"\"; position: absolute; }\n.nav-menu summary span::before { top: -6px; }\n.nav-menu summary span::after { top: 6px; }\n.nav-menu ul {\n  position: absolute;\n  top: calc(100% + 8px);\n  left: 0;\n  right: 0;\n  z-index: 10;\n  margin: 0;\n  padding: 8px;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.nav-menu li a { display: block; padding: 12px; font-weight: 500; }\n.nav-menu li a:hover { background: var(--ui-surface-2); }\n\n@media (max-width: 720px) {\n  .nav-main, .nav-signin { display: none; }\n  .nav-menu { display: block; }\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Navbar.svelte",
+        "code": "<!-- tearsheet navbar v4cc9869e · https://qusaialjbali.github.io/tearsheet/zine/parts/navbar.html -->\n<header class=\"nav\">\n  <a class=\"nav-brand\" href=\"#\"><span class=\"nav-logo\" aria-hidden=\"true\"></span>Acme</a>\n  <nav class=\"nav-main\" aria-label=\"Main\">\n    <ul class=\"nav-links\">\n      <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n      <li><a href=\"#\">Pricing</a></li>\n      <li><a href=\"#\">Docs</a></li>\n      <li><a href=\"#\">Blog</a></li>\n    </ul>\n  </nav>\n  <div class=\"nav-actions\">\n    <a class=\"nav-signin\" href=\"#\">Sign in</a>\n    <a class=\"nav-cta\" href=\"#\">Get started</a>\n    <details class=\"nav-menu\">\n      <summary aria-label=\"Menu\"><span></span></summary>\n      <ul>\n        <li><a href=\"#\" aria-current=\"page\">Product</a></li>\n        <li><a href=\"#\">Pricing</a></li>\n        <li><a href=\"#\">Docs</a></li>\n        <li><a href=\"#\">Blog</a></li>\n        <li><a href=\"#\">Sign in</a></li>\n      </ul>\n    </details>\n  </div>\n</header>\n\n<style>\n.nav {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 24px;\n  padding: 12px 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.nav a { color: inherit; text-decoration: none; border-radius: 6px; }\n.nav a:focus-visible, .nav summary:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.nav-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; }\n.nav-logo {\n  width: 22px;\n  height: 22px;\n  border-radius: 6px;\n  background: linear-gradient(135deg, var(--ui-accent), var(--ui-accent-hover));\n}\n.nav-links { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }\n.nav-links a, .nav-signin {\n  display: block;\n  padding: 8px 12px;\n  font-size: 14px;\n  font-weight: 500;\n  color: var(--ui-muted);\n}\n.nav-links a:hover, .nav-signin:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.nav-links a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; }\n.nav-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }\n.nav-cta {\n  padding: 9px 16px;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-accent-text) !important;\n  background: var(--ui-accent);\n}\n.nav-cta:hover { background: var(--ui-accent-hover); }\n\n.nav-menu { display: none; }\n.nav-menu summary {\n  display: grid;\n  place-items: center;\n  width: 40px;\n  height: 40px;\n  border-radius: 8px;\n  cursor: pointer;\n  list-style: none;\n}\n.nav-menu summary::-webkit-details-marker { display: none; }\n.nav-menu summary span,\n.nav-menu summary span::before,\n.nav-menu summary span::after {\n  display: block;\n  width: 18px;\n  height: 2px;\n  background: var(--ui-text);\n  border-radius: 2px;\n  position: relative;\n}\n.nav-menu summary span::before, .nav-menu summary span::after { content: \"\"; position: absolute; }\n.nav-menu summary span::before { top: -6px; }\n.nav-menu summary span::after { top: 6px; }\n.nav-menu ul {\n  position: absolute;\n  top: calc(100% + 8px);\n  left: 0;\n  right: 0;\n  z-index: 10;\n  margin: 0;\n  padding: 8px;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.nav-menu li a { display: block; padding: 12px; font-weight: 500; }\n.nav-menu li a:hover { background: var(--ui-surface-2); }\n\n@media (max-width: 720px) {\n  .nav-main, .nav-signin { display: none; }\n  .nav-menu { display: block; }\n}\n</style>"
+      }
+    ]
+  }
+}

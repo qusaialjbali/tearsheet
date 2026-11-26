@@ -1,0 +1,88 @@
+{
+  "id": "logo-strip",
+  "name": "Logo strip",
+  "page": "p.68",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "A quiet row of customer logos under a plain label, greyed so it never competes with the content.",
+  "notes": "Only show logos you have permission to show. These are made-up wordmarks. Keep logos monochrome and the same visual weight.",
+  "usesJavaScript": false,
+  "sizeKb": 1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#logo-strip",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/logo-strip.json",
+  "version": "94b0425b",
+  "checked": "axe clean in light and dark; tightest text contrast 4.62:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 4.62,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- region \"Used by teams at (example names)\":\n  - paragraph: Used by teams at (example names)\n  - list:\n    - listitem: northwind\n    - listitem: GLOBEX\n    - listitem: Initech\n    - listitem: umbra&co\n    - listitem: HOOLI",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet logo-strip v94b0425b · https://qusaialjbali.github.io/tearsheet/zine/parts/logo-strip.html -->\n<section class=\"logos\" aria-labelledby=\"logos-title\">\n  <p id=\"logos-title\">Used by teams at (example names)</p>\n  <ul>\n    <li class=\"lg1\">northwind</li>\n    <li class=\"lg2\">GLOBEX</li>\n    <li class=\"lg3\">Initech</li>\n    <li class=\"lg4\">umbra&amp;co</li>\n    <li class=\"lg5\">HOOLI</li>\n  </ul>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet logo-strip v94b0425b · https://qusaialjbali.github.io/tearsheet/zine/parts/logo-strip.html */\n.logos { width: 100%; padding: 28px 20px; text-align: center; }\n.logos p { margin: 0 0 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--ui-muted); }\n.logos ul { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 44px; margin: 0; padding: 0; list-style: none; color: var(--ui-muted); opacity: 0.85; }\n.logos li { font-size: 22px; }\n.lg1 { font-weight: 800; letter-spacing: -0.04em; }\n.lg2 { font-weight: 900; letter-spacing: 0.12em; font-size: 18px !important; }\n.lg3 { font-family: Georgia, serif; font-style: italic; }\n.lg4 { font-weight: 300; letter-spacing: 0.02em; }\n.lg5 { font-weight: 700; font-family: ui-monospace, Consolas, monospace; }"
+      }
+    ],
+    "react": [
+      {
+        "name": "LogoStrip.jsx",
+        "code": "/* tearsheet logo-strip v94b0425b · https://qusaialjbali.github.io/tearsheet/zine/parts/logo-strip.html */\nimport './LogoStrip.css';\n\nexport function LogoStrip() {\n  return (\n    <section className=\"logos\" aria-labelledby=\"logos-title\">\n      <p id=\"logos-title\">Used by teams at (example names)</p>\n      <ul>\n        <li className=\"lg1\">northwind</li>\n        <li className=\"lg2\">GLOBEX</li>\n        <li className=\"lg3\">Initech</li>\n        <li className=\"lg4\">umbra&amp;co</li>\n        <li className=\"lg5\">HOOLI</li>\n      </ul>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "LogoStrip.css",
+        "code": "/* tearsheet logo-strip v94b0425b · https://qusaialjbali.github.io/tearsheet/zine/parts/logo-strip.html */\n.logos { width: 100%; padding: 28px 20px; text-align: center; }\n.logos p { margin: 0 0 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--ui-muted); }\n.logos ul { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 44px; margin: 0; padding: 0; list-style: none; color: var(--ui-muted); opacity: 0.85; }\n.logos li { font-size: 22px; }\n.lg1 { font-weight: 800; letter-spacing: -0.04em; }\n.lg2 { font-weight: 900; letter-spacing: 0.12em; font-size: 18px !important; }\n.lg3 { font-family: Georgia, serif; font-style: italic; }\n.lg4 { font-weight: 300; letter-spacing: 0.02em; }\n.lg5 { font-weight: 700; font-family: ui-monospace, Consolas, monospace; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "LogoStrip.vue",
+        "code": "<!-- tearsheet logo-strip v94b0425b · https://qusaialjbali.github.io/tearsheet/zine/parts/logo-strip.html -->\n<template>\n  <section class=\"logos\" aria-labelledby=\"logos-title\">\n    <p id=\"logos-title\">Used by teams at (example names)</p>\n    <ul>\n      <li class=\"lg1\">northwind</li>\n      <li class=\"lg2\">GLOBEX</li>\n      <li class=\"lg3\">Initech</li>\n      <li class=\"lg4\">umbra&amp;co</li>\n      <li class=\"lg5\">HOOLI</li>\n    </ul>\n  </section>\n</template>\n\n<style scoped>\n.logos { width: 100%; padding: 28px 20px; text-align: center; }\n.logos p { margin: 0 0 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--ui-muted); }\n.logos ul { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 44px; margin: 0; padding: 0; list-style: none; color: var(--ui-muted); opacity: 0.85; }\n.logos li { font-size: 22px; }\n.lg1 { font-weight: 800; letter-spacing: -0.04em; }\n.lg2 { font-weight: 900; letter-spacing: 0.12em; font-size: 18px !important; }\n.lg3 { font-family: Georgia, serif; font-style: italic; }\n.lg4 { font-weight: 300; letter-spacing: 0.02em; }\n.lg5 { font-weight: 700; font-family: ui-monospace, Consolas, monospace; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "LogoStrip.svelte",
+        "code": "<!-- tearsheet logo-strip v94b0425b · https://qusaialjbali.github.io/tearsheet/zine/parts/logo-strip.html -->\n<section class=\"logos\" aria-labelledby=\"logos-title\">\n  <p id=\"logos-title\">Used by teams at (example names)</p>\n  <ul>\n    <li class=\"lg1\">northwind</li>\n    <li class=\"lg2\">GLOBEX</li>\n    <li class=\"lg3\">Initech</li>\n    <li class=\"lg4\">umbra&amp;co</li>\n    <li class=\"lg5\">HOOLI</li>\n  </ul>\n</section>\n\n<style>\n.logos { width: 100%; padding: 28px 20px; text-align: center; }\n.logos p { margin: 0 0 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--ui-muted); }\n.logos ul { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 44px; margin: 0; padding: 0; list-style: none; color: var(--ui-muted); opacity: 0.85; }\n.logos li { font-size: 22px; }\n.lg1 { font-weight: 800; letter-spacing: -0.04em; }\n.lg2 { font-weight: 900; letter-spacing: 0.12em; font-size: 18px !important; }\n.lg3 { font-family: Georgia, serif; font-style: italic; }\n.lg4 { font-weight: 300; letter-spacing: 0.02em; }\n.lg5 { font-weight: 700; font-family: ui-monospace, Consolas, monospace; }\n</style>"
+      }
+    ]
+  }
+}

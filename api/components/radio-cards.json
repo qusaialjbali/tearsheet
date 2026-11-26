@@ -1,0 +1,90 @@
+{
+  "id": "radio-cards",
+  "name": "Radio cards",
+  "page": "p.09",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Big, scannable choice cards built on native radio buttons.",
+  "notes": "The whole card is the label, so the click target is huge. Arrow keys move between options because they are real radios in one group.",
+  "usesJavaScript": false,
+  "sizeKb": 2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#radio-cards",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/radio-cards.json",
+  "version": "27c9c3d2",
+  "checked": "axe clean in light and dark; tightest text contrast 5.99:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 5.99,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "radio \"Pro Unlimited projects · email help $12/mo\" [checked]"
+    ],
+    "tree": "- group \"Choose a plan\":\n  - text: Choose a plan\n  - radio \"Hobby 1 project · community help Free\"\n  - text: Hobby 1 project · community help Free\n  - radio \"Pro Unlimited projects · email help $12/mo\" [checked]\n  - text: Pro Unlimited projects · email help $12/mo\n  - radio \"Team Shared workspace · priority help $29/mo\"\n  - text: Team Shared workspace · priority help $29/mo",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet radio-cards v27c9c3d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/radio-cards.html -->\n<fieldset class=\"plans\">\n  <legend class=\"plans-legend\">Choose a plan</legend>\n  <label class=\"plan\">\n    <input type=\"radio\" name=\"plan\" value=\"hobby\">\n    <span class=\"plan-name\">Hobby</span>\n    <span class=\"plan-meta\">1 project · community help</span>\n    <span class=\"plan-price\">Free</span>\n  </label>\n  <label class=\"plan\">\n    <input type=\"radio\" name=\"plan\" value=\"pro\" checked>\n    <span class=\"plan-name\">Pro</span>\n    <span class=\"plan-meta\">Unlimited projects · email help</span>\n    <span class=\"plan-price\">$12/mo</span>\n  </label>\n  <label class=\"plan\">\n    <input type=\"radio\" name=\"plan\" value=\"team\">\n    <span class=\"plan-name\">Team</span>\n    <span class=\"plan-meta\">Shared workspace · priority help</span>\n    <span class=\"plan-price\">$29/mo</span>\n  </label>\n</fieldset>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet radio-cards v27c9c3d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/radio-cards.html */\n.plans { display: grid; gap: 10px; width: 100%; max-width: 420px; margin: 0; padding: 0; border: 0; }\n.plans-legend { margin-bottom: 8px; padding: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.plan {\n  display: grid;\n  grid-template-columns: auto 1fr auto;\n  column-gap: 14px;\n  align-items: center;\n  padding: 14px 16px;\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.plan:hover { border-color: var(--ui-border-strong); }\n.plan input {\n  grid-row: span 2;\n  appearance: none;\n  width: 20px;\n  height: 20px;\n  margin: 0;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 50%;\n  transition: border-width 0.15s, border-color 0.15s;\n}\n.plan input:checked { border: 6px solid var(--ui-accent); }\n.plan:has(input:checked) { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.plan:has(input:focus-visible) { box-shadow: var(--ui-focus); }\n.plan-name { font-weight: 600; color: var(--ui-text); }\n.plan-meta { grid-column: 2; font-size: 13px; color: var(--ui-muted); }\n.plan-price { grid-row: 1 / span 2; grid-column: 3; font-weight: 700; color: var(--ui-text); font-variant-numeric: tabular-nums; }"
+      }
+    ],
+    "react": [
+      {
+        "name": "RadioCards.jsx",
+        "code": "/* tearsheet radio-cards v27c9c3d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/radio-cards.html */\nimport './RadioCards.css';\n\nexport function RadioCards() {\n  return (\n    <fieldset className=\"plans\">\n      <legend className=\"plans-legend\">Choose a plan</legend>\n      <label className=\"plan\">\n        <input type=\"radio\" name=\"plan\" defaultValue=\"hobby\" />\n        <span className=\"plan-name\">Hobby</span>\n        <span className=\"plan-meta\">1 project · community help</span>\n        <span className=\"plan-price\">Free</span>\n      </label>\n      <label className=\"plan\">\n        <input type=\"radio\" name=\"plan\" defaultValue=\"pro\" defaultChecked />\n        <span className=\"plan-name\">Pro</span>\n        <span className=\"plan-meta\">Unlimited projects · email help</span>\n        <span className=\"plan-price\">$12/mo</span>\n      </label>\n      <label className=\"plan\">\n        <input type=\"radio\" name=\"plan\" defaultValue=\"team\" />\n        <span className=\"plan-name\">Team</span>\n        <span className=\"plan-meta\">Shared workspace · priority help</span>\n        <span className=\"plan-price\">$29/mo</span>\n      </label>\n    </fieldset>\n  );\n}"
+      },
+      {
+        "name": "RadioCards.css",
+        "code": "/* tearsheet radio-cards v27c9c3d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/radio-cards.html */\n.plans { display: grid; gap: 10px; width: 100%; max-width: 420px; margin: 0; padding: 0; border: 0; }\n.plans-legend { margin-bottom: 8px; padding: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.plan {\n  display: grid;\n  grid-template-columns: auto 1fr auto;\n  column-gap: 14px;\n  align-items: center;\n  padding: 14px 16px;\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.plan:hover { border-color: var(--ui-border-strong); }\n.plan input {\n  grid-row: span 2;\n  appearance: none;\n  width: 20px;\n  height: 20px;\n  margin: 0;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 50%;\n  transition: border-width 0.15s, border-color 0.15s;\n}\n.plan input:checked { border: 6px solid var(--ui-accent); }\n.plan:has(input:checked) { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.plan:has(input:focus-visible) { box-shadow: var(--ui-focus); }\n.plan-name { font-weight: 600; color: var(--ui-text); }\n.plan-meta { grid-column: 2; font-size: 13px; color: var(--ui-muted); }\n.plan-price { grid-row: 1 / span 2; grid-column: 3; font-weight: 700; color: var(--ui-text); font-variant-numeric: tabular-nums; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "RadioCards.vue",
+        "code": "<!-- tearsheet radio-cards v27c9c3d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/radio-cards.html -->\n<template>\n  <fieldset class=\"plans\">\n    <legend class=\"plans-legend\">Choose a plan</legend>\n    <label class=\"plan\">\n      <input type=\"radio\" name=\"plan\" value=\"hobby\">\n      <span class=\"plan-name\">Hobby</span>\n      <span class=\"plan-meta\">1 project · community help</span>\n      <span class=\"plan-price\">Free</span>\n    </label>\n    <label class=\"plan\">\n      <input type=\"radio\" name=\"plan\" value=\"pro\" checked>\n      <span class=\"plan-name\">Pro</span>\n      <span class=\"plan-meta\">Unlimited projects · email help</span>\n      <span class=\"plan-price\">$12/mo</span>\n    </label>\n    <label class=\"plan\">\n      <input type=\"radio\" name=\"plan\" value=\"team\">\n      <span class=\"plan-name\">Team</span>\n      <span class=\"plan-meta\">Shared workspace · priority help</span>\n      <span class=\"plan-price\">$29/mo</span>\n    </label>\n  </fieldset>\n</template>\n\n<style scoped>\n.plans { display: grid; gap: 10px; width: 100%; max-width: 420px; margin: 0; padding: 0; border: 0; }\n.plans-legend { margin-bottom: 8px; padding: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.plan {\n  display: grid;\n  grid-template-columns: auto 1fr auto;\n  column-gap: 14px;\n  align-items: center;\n  padding: 14px 16px;\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.plan:hover { border-color: var(--ui-border-strong); }\n.plan input {\n  grid-row: span 2;\n  appearance: none;\n  width: 20px;\n  height: 20px;\n  margin: 0;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 50%;\n  transition: border-width 0.15s, border-color 0.15s;\n}\n.plan input:checked { border: 6px solid var(--ui-accent); }\n.plan:has(input:checked) { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.plan:has(input:focus-visible) { box-shadow: var(--ui-focus); }\n.plan-name { font-weight: 600; color: var(--ui-text); }\n.plan-meta { grid-column: 2; font-size: 13px; color: var(--ui-muted); }\n.plan-price { grid-row: 1 / span 2; grid-column: 3; font-weight: 700; color: var(--ui-text); font-variant-numeric: tabular-nums; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "RadioCards.svelte",
+        "code": "<!-- tearsheet radio-cards v27c9c3d2 · https://qusaialjbali.github.io/tearsheet/zine/parts/radio-cards.html -->\n<fieldset class=\"plans\">\n  <legend class=\"plans-legend\">Choose a plan</legend>\n  <label class=\"plan\">\n    <input type=\"radio\" name=\"plan\" value=\"hobby\">\n    <span class=\"plan-name\">Hobby</span>\n    <span class=\"plan-meta\">1 project · community help</span>\n    <span class=\"plan-price\">Free</span>\n  </label>\n  <label class=\"plan\">\n    <input type=\"radio\" name=\"plan\" value=\"pro\" checked>\n    <span class=\"plan-name\">Pro</span>\n    <span class=\"plan-meta\">Unlimited projects · email help</span>\n    <span class=\"plan-price\">$12/mo</span>\n  </label>\n  <label class=\"plan\">\n    <input type=\"radio\" name=\"plan\" value=\"team\">\n    <span class=\"plan-name\">Team</span>\n    <span class=\"plan-meta\">Shared workspace · priority help</span>\n    <span class=\"plan-price\">$29/mo</span>\n  </label>\n</fieldset>\n\n<style>\n.plans { display: grid; gap: 10px; width: 100%; max-width: 420px; margin: 0; padding: 0; border: 0; }\n.plans-legend { margin-bottom: 8px; padding: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.plan {\n  display: grid;\n  grid-template-columns: auto 1fr auto;\n  column-gap: 14px;\n  align-items: center;\n  padding: 14px 16px;\n  background: var(--ui-surface);\n  border: 1.5px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.plan:hover { border-color: var(--ui-border-strong); }\n.plan input {\n  grid-row: span 2;\n  appearance: none;\n  width: 20px;\n  height: 20px;\n  margin: 0;\n  border: 1.5px solid var(--ui-border-strong);\n  border-radius: 50%;\n  transition: border-width 0.15s, border-color 0.15s;\n}\n.plan input:checked { border: 6px solid var(--ui-accent); }\n.plan:has(input:checked) { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.plan:has(input:focus-visible) { box-shadow: var(--ui-focus); }\n.plan-name { font-weight: 600; color: var(--ui-text); }\n.plan-meta { grid-column: 2; font-size: 13px; color: var(--ui-muted); }\n.plan-price { grid-row: 1 / span 2; grid-column: 3; font-weight: 700; color: var(--ui-text); font-variant-numeric: tabular-nums; }\n</style>"
+      }
+    ]
+  }
+}

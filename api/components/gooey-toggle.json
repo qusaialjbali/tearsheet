@@ -1,0 +1,90 @@
+{
+  "id": "gooey-toggle",
+  "name": "Gooey switch",
+  "page": "p.90",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A switch whose knob stretches like liquid as it slides, made with an SVG goo filter and zero JavaScript.",
+  "notes": "Underneath it is a native checkbox with role=\"switch\", so keyboard, forms and screen readers work as normal. The goo is two blobs, one lagging behind the other, melted together by the filter.",
+  "usesJavaScript": false,
+  "sizeKb": 1.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#gooey-toggle",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/gooey-toggle.json",
+  "version": "17174b71",
+  "checked": "axe clean in light and dark; tightest text contrast 17.41:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 13
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 13
+      }
+    },
+    "contrast": {
+      "ratio": 17.41,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "switch \"Airplane mode\" [checked]"
+    ],
+    "tree": "- switch \"Airplane mode\" [checked]\n- text: Airplane mode",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet gooey-toggle v17174b71 · https://qusaialjbali.github.io/tearsheet/zine/parts/gooey-toggle.html -->\n<label class=\"goo\">\n  <input type=\"checkbox\" role=\"switch\" checked>\n  <span class=\"goo-track\" aria-hidden=\"true\"><span class=\"goo-blobs\"><i></i><i></i></span></span>\n  <span class=\"goo-text\">Airplane mode</span>\n  <svg class=\"goo-defs\" aria-hidden=\"true\" focusable=\"false\"><filter id=\"goo-filter\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"3.5\"/><feColorMatrix values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9\"/></filter></svg>\n</label>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet gooey-toggle v17174b71 · https://qusaialjbali.github.io/tearsheet/zine/parts/gooey-toggle.html */\n.goo { display: inline-flex; align-items: center; gap: 14px; font-size: 16px; font-weight: 600; cursor: pointer; }\n.goo input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.goo-defs { position: absolute; width: 0; height: 0; }\n.goo-track { position: relative; width: 76px; height: 40px; border-radius: 999px; background: var(--ui-border-strong); transition: background-color 0.3s; }\n.goo-blobs { position: absolute; inset: 0; filter: url(#goo-filter); }\n.goo-blobs i { position: absolute; top: 6px; left: 6px; width: 28px; height: 28px; border-radius: 50%; background: #fff; transition: transform 0.35s cubic-bezier(0.5, 0, 0.3, 1); }\n.goo-blobs i + i { transition-duration: 0.6s; }\n.goo input:checked + .goo-track { background: var(--ui-accent); }\n.goo input:checked + .goo-track i { transform: translateX(36px); }\n.goo input:focus-visible + .goo-track { box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .goo-blobs i { transition-duration: 0.01s !important; } }"
+      }
+    ],
+    "react": [
+      {
+        "name": "GooeyToggle.jsx",
+        "code": "/* tearsheet gooey-toggle v17174b71 · https://qusaialjbali.github.io/tearsheet/zine/parts/gooey-toggle.html */\nimport './GooeyToggle.css';\n\nexport function GooeyToggle() {\n  return (\n    <label className=\"goo\">\n      <input type=\"checkbox\" role=\"switch\" defaultChecked />\n      <span className=\"goo-track\" aria-hidden=\"true\"><span className=\"goo-blobs\"><i></i><i></i></span></span>\n      <span className=\"goo-text\">Airplane mode</span>\n      <svg className=\"goo-defs\" aria-hidden=\"true\" focusable=\"false\"><filter id=\"goo-filter\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"3.5\"/><feColorMatrix values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9\"/></filter></svg>\n    </label>\n  );\n}"
+      },
+      {
+        "name": "GooeyToggle.css",
+        "code": "/* tearsheet gooey-toggle v17174b71 · https://qusaialjbali.github.io/tearsheet/zine/parts/gooey-toggle.html */\n.goo { display: inline-flex; align-items: center; gap: 14px; font-size: 16px; font-weight: 600; cursor: pointer; }\n.goo input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.goo-defs { position: absolute; width: 0; height: 0; }\n.goo-track { position: relative; width: 76px; height: 40px; border-radius: 999px; background: var(--ui-border-strong); transition: background-color 0.3s; }\n.goo-blobs { position: absolute; inset: 0; filter: url(#goo-filter); }\n.goo-blobs i { position: absolute; top: 6px; left: 6px; width: 28px; height: 28px; border-radius: 50%; background: #fff; transition: transform 0.35s cubic-bezier(0.5, 0, 0.3, 1); }\n.goo-blobs i + i { transition-duration: 0.6s; }\n.goo input:checked + .goo-track { background: var(--ui-accent); }\n.goo input:checked + .goo-track i { transform: translateX(36px); }\n.goo input:focus-visible + .goo-track { box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .goo-blobs i { transition-duration: 0.01s !important; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "GooeyToggle.vue",
+        "code": "<!-- tearsheet gooey-toggle v17174b71 · https://qusaialjbali.github.io/tearsheet/zine/parts/gooey-toggle.html -->\n<template>\n  <label class=\"goo\">\n    <input type=\"checkbox\" role=\"switch\" checked>\n    <span class=\"goo-track\" aria-hidden=\"true\"><span class=\"goo-blobs\"><i></i><i></i></span></span>\n    <span class=\"goo-text\">Airplane mode</span>\n    <svg class=\"goo-defs\" aria-hidden=\"true\" focusable=\"false\"><filter id=\"goo-filter\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"3.5\"/><feColorMatrix values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9\"/></filter></svg>\n  </label>\n</template>\n\n<style scoped>\n.goo { display: inline-flex; align-items: center; gap: 14px; font-size: 16px; font-weight: 600; cursor: pointer; }\n.goo input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.goo-defs { position: absolute; width: 0; height: 0; }\n.goo-track { position: relative; width: 76px; height: 40px; border-radius: 999px; background: var(--ui-border-strong); transition: background-color 0.3s; }\n.goo-blobs { position: absolute; inset: 0; filter: url(#goo-filter); }\n.goo-blobs i { position: absolute; top: 6px; left: 6px; width: 28px; height: 28px; border-radius: 50%; background: #fff; transition: transform 0.35s cubic-bezier(0.5, 0, 0.3, 1); }\n.goo-blobs i + i { transition-duration: 0.6s; }\n.goo input:checked + .goo-track { background: var(--ui-accent); }\n.goo input:checked + .goo-track i { transform: translateX(36px); }\n.goo input:focus-visible + .goo-track { box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .goo-blobs i { transition-duration: 0.01s !important; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "GooeyToggle.svelte",
+        "code": "<!-- tearsheet gooey-toggle v17174b71 · https://qusaialjbali.github.io/tearsheet/zine/parts/gooey-toggle.html -->\n<label class=\"goo\">\n  <input type=\"checkbox\" role=\"switch\" checked>\n  <span class=\"goo-track\" aria-hidden=\"true\"><span class=\"goo-blobs\"><i></i><i></i></span></span>\n  <span class=\"goo-text\">Airplane mode</span>\n  <svg class=\"goo-defs\" aria-hidden=\"true\" focusable=\"false\"><filter id=\"goo-filter\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"3.5\"/><feColorMatrix values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9\"/></filter></svg>\n</label>\n\n<style>\n.goo { display: inline-flex; align-items: center; gap: 14px; font-size: 16px; font-weight: 600; cursor: pointer; }\n.goo input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.goo-defs { position: absolute; width: 0; height: 0; }\n.goo-track { position: relative; width: 76px; height: 40px; border-radius: 999px; background: var(--ui-border-strong); transition: background-color 0.3s; }\n.goo-blobs { position: absolute; inset: 0; filter: url(#goo-filter); }\n.goo-blobs i { position: absolute; top: 6px; left: 6px; width: 28px; height: 28px; border-radius: 50%; background: #fff; transition: transform 0.35s cubic-bezier(0.5, 0, 0.3, 1); }\n.goo-blobs i + i { transition-duration: 0.6s; }\n.goo input:checked + .goo-track { background: var(--ui-accent); }\n.goo input:checked + .goo-track i { transform: translateX(36px); }\n.goo input:focus-visible + .goo-track { box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .goo-blobs i { transition-duration: 0.01s !important; } }\n</style>"
+      }
+    ]
+  }
+}

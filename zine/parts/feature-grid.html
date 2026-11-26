@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feature grid · Sections component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="Six features as short, scannable blocks, each leading with what it does for the reader.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Feature grid · Sections component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="Six features as short, scannable blocks, each leading with what it does for the reader.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Feature grid","description":"Six features as short, scannable blocks, each leading with what it does for the reader.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#feature-grid">Issue 01</a> · Sections · p.66</p>
+    <h1><span class="a">Feature grid</span><span class="b" aria-hidden="true">Feature grid</span></h1>
+    <p class="lede">Six features as short, scannable blocks, each leading with what it does for the reader.</p>
+    <p class="why"><b>Why it works:</b> Write the heading as the benefit (“Settle in one tap”), not the feature name. Six is a comfortable maximum; more and nobody reads them.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Feature grid preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }
+.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }
+.feat-icon svg { width: 22px; height: 22px; }
+.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }
+.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage full&quot;>&lt;section class=&quot;features&quot;>
+  &lt;h2>Everything a shared budget needs&lt;/h2>
+  &lt;ul class=&quot;feat-grid&quot;>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Settle in one tap&lt;/h3>&lt;p>Pocketsplit finds the fewest payments to square everyone up.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 7h16M4 12h10M4 17h7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Split any way&lt;/h3>&lt;p>Evenly, by shares, by exact amounts or by percentage.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Any currency&lt;/h3>&lt;p>Spend in yen, settle in euros, at the day’s real rate.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M6 3h9l3 3v15H6ZM9 12h6M9 16h4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Snap the receipt&lt;/h3>&lt;p>Photos are attached to the expense, so nobody argues later.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Works offline&lt;/h3>&lt;p>Add expenses on the mountain; they sync when you are back.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Private by default&lt;/h3>&lt;p>Only people in a group can see it. No ads, ever.&lt;/p>&lt;/li>
+  &lt;/ul>
+&lt;/section>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.7:1 · 0 tab stops · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (9 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.7:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> No motion.</li>
+      </ul>
+      <p class="r-head">Tab order: nothing here takes focus (it is content, not controls).</p>
+      
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- heading &quot;Everything a shared budget needs&quot; [level=2]
+- list:
+  - listitem:
+    - heading &quot;Settle in one tap&quot; [level=3]
+    - paragraph: Pocketsplit finds the fewest payments to square everyone up.
+  - listitem:
+    - heading &quot;Split any way&quot; [level=3]
+    - paragraph: Evenly, by shares, by exact amounts or by percentage.
+  - listitem:
+    - heading &quot;Any currency&quot; [level=3]
+    - paragraph: Spend in yen, settle in euros, at the day’s real rate.
+  - listitem:
+    - heading &quot;Snap the receipt&quot; [level=3]
+    - paragraph: Photos are attached to the expense, so nobody argues later.
+  - listitem:
+    - heading &quot;Works offline&quot; [level=3]
+    - paragraph: Add expenses on the mountain; they sync when you are back.
+  - listitem:
+    - heading &quot;Private by default&quot; [level=3]
+    - paragraph: Only people in a group can see it. No ads, ever.</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#feature-grid">See it in the zine</a> <code>npx -y tearsheet add feature-grid</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html -->
+&lt;section class=&quot;features&quot;>
+  &lt;h2>Everything a shared budget needs&lt;/h2>
+  &lt;ul class=&quot;feat-grid&quot;>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Settle in one tap&lt;/h3>&lt;p>Pocketsplit finds the fewest payments to square everyone up.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 7h16M4 12h10M4 17h7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Split any way&lt;/h3>&lt;p>Evenly, by shares, by exact amounts or by percentage.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Any currency&lt;/h3>&lt;p>Spend in yen, settle in euros, at the day’s real rate.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M6 3h9l3 3v15H6ZM9 12h6M9 16h4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Snap the receipt&lt;/h3>&lt;p>Photos are attached to the expense, so nobody argues later.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Works offline&lt;/h3>&lt;p>Add expenses on the mountain; they sync when you are back.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Private by default&lt;/h3>&lt;p>Only people in a group can see it. No ads, ever.&lt;/p>&lt;/li>
+  &lt;/ul>
+&lt;/section></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html */
+.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }
+.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }
+.feat-icon svg { width: 22px; height: 22px; }
+.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }
+.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>FeatureGrid.jsx</span></div><pre tabindex="0"><code>/* tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html */
+import './FeatureGrid.css';
+
+export function FeatureGrid() {
+  return (
+    &lt;section className=&quot;features&quot;>
+      &lt;h2>Everything a shared budget needs&lt;/h2>
+      &lt;ul className=&quot;feat-grid&quot;>
+        &lt;li>&lt;span className=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Settle in one tap&lt;/h3>&lt;p>Pocketsplit finds the fewest payments to square everyone up.&lt;/p>&lt;/li>
+        &lt;li>&lt;span className=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 7h16M4 12h10M4 17h7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Split any way&lt;/h3>&lt;p>Evenly, by shares, by exact amounts or by percentage.&lt;/p>&lt;/li>
+        &lt;li>&lt;span className=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Any currency&lt;/h3>&lt;p>Spend in yen, settle in euros, at the day’s real rate.&lt;/p>&lt;/li>
+        &lt;li>&lt;span className=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M6 3h9l3 3v15H6ZM9 12h6M9 16h4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Snap the receipt&lt;/h3>&lt;p>Photos are attached to the expense, so nobody argues later.&lt;/p>&lt;/li>
+        &lt;li>&lt;span className=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Works offline&lt;/h3>&lt;p>Add expenses on the mountain; they sync when you are back.&lt;/p>&lt;/li>
+        &lt;li>&lt;span className=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Private by default&lt;/h3>&lt;p>Only people in a group can see it. No ads, ever.&lt;/p>&lt;/li>
+      &lt;/ul>
+    &lt;/section>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>FeatureGrid.css</span></div><pre tabindex="0"><code>/* tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html */
+.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }
+.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }
+.feat-icon svg { width: 22px; height: 22px; }
+.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }
+.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>FeatureGrid.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html -->
+&lt;template>
+  &lt;section class=&quot;features&quot;>
+    &lt;h2>Everything a shared budget needs&lt;/h2>
+    &lt;ul class=&quot;feat-grid&quot;>
+      &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Settle in one tap&lt;/h3>&lt;p>Pocketsplit finds the fewest payments to square everyone up.&lt;/p>&lt;/li>
+      &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 7h16M4 12h10M4 17h7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Split any way&lt;/h3>&lt;p>Evenly, by shares, by exact amounts or by percentage.&lt;/p>&lt;/li>
+      &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Any currency&lt;/h3>&lt;p>Spend in yen, settle in euros, at the day’s real rate.&lt;/p>&lt;/li>
+      &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M6 3h9l3 3v15H6ZM9 12h6M9 16h4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Snap the receipt&lt;/h3>&lt;p>Photos are attached to the expense, so nobody argues later.&lt;/p>&lt;/li>
+      &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Works offline&lt;/h3>&lt;p>Add expenses on the mountain; they sync when you are back.&lt;/p>&lt;/li>
+      &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Private by default&lt;/h3>&lt;p>Only people in a group can see it. No ads, ever.&lt;/p>&lt;/li>
+    &lt;/ul>
+  &lt;/section>
+&lt;/template>
+
+&lt;style scoped>
+.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }
+.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }
+.feat-icon svg { width: 22px; height: 22px; }
+.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }
+.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>FeatureGrid.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html -->
+&lt;section class=&quot;features&quot;>
+  &lt;h2>Everything a shared budget needs&lt;/h2>
+  &lt;ul class=&quot;feat-grid&quot;>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Settle in one tap&lt;/h3>&lt;p>Pocketsplit finds the fewest payments to square everyone up.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M4 7h16M4 12h10M4 17h7&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Split any way&lt;/h3>&lt;p>Evenly, by shares, by exact amounts or by percentage.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Any currency&lt;/h3>&lt;p>Spend in yen, settle in euros, at the day’s real rate.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M6 3h9l3 3v15H6ZM9 12h6M9 16h4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Snap the receipt&lt;/h3>&lt;p>Photos are attached to the expense, so nobody argues later.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Works offline&lt;/h3>&lt;p>Add expenses on the mountain; they sync when you are back.&lt;/p>&lt;/li>
+    &lt;li>&lt;span class=&quot;feat-icon&quot;>&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg>&lt;/span>&lt;h3>Private by default&lt;/h3>&lt;p>Only people in a group can see it. No ads, ever.&lt;/p>&lt;/li>
+  &lt;/ul>
+&lt;/section>
+
+&lt;style>
+.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }
+.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }
+.feat-icon svg { width: 22px; height: 22px; }
+.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }
+.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }
+&lt;/style></code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="hero-signup.html">← Hero with signup</a>
+      <a rel="next" href="testimonial.html">Testimonial →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

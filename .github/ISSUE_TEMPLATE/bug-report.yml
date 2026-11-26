@@ -1,0 +1,25 @@
+name: Bug report
+description: Something is broken, inaccessible or wrong in a component, the site, the CLI or the MCP server.
+labels: ["bug"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Which component or tool?
+      placeholder: e.g. date-range, the CLI add command, the MCP server
+    validations:
+      required: true
+  - type: dropdown
+    id: format
+    attributes:
+      label: Format
+      options: ["HTML + CSS", "React", "Vue", "Svelte", "Not format-specific"]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      description: Include the browser, assistive technology or framework version if it matters.
+    validations:
+      required: true

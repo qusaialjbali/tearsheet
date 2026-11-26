@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Command palette · Overlays component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A searchable list of actions on Ctrl/⌘ K, driven entirely by the keyboard.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Command palette · Overlays component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A searchable list of actions on Ctrl/⌘ K, driven entirely by the keyboard.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Command palette","description":"A searchable list of actions on Ctrl/⌘ K, driven entirely by the keyboard.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#command-palette">Issue 01</a> · Overlays · p.62</p>
+    <h1><span class="a">Command palette</span><span class="b" aria-hidden="true">Command palette</span></h1>
+    <p class="lede">A searchable list of actions on Ctrl/⌘ K, driven entirely by the keyboard.</p>
+    <p class="why"><b>Why it works:</b> It is a combobox: focus stays in the input while arrow keys move the highlighted option (aria-activedescendant). Always also offer these actions somewhere visible.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Command palette preview" data-min="460" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 16px;
+  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;
+  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }
+.btn-primary:hover { background: var(--ui-accent-hover); }
+.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }
+.btn-secondary:hover { background: var(--ui-surface-2); }
+.palette { display: grid; justify-items: center; gap: 12px; }
+.palette kbd, .pal-list kbd {
+  padding: 1px 6px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--ui-muted);
+  border: 1px solid var(--ui-border-strong); border-bottom-width: 2px; border-radius: 4px;
+}
+.pal-dialog {
+  width: min(520px, calc(100vw - 32px)); margin: 10vh auto auto; padding: 8px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 14px; box-shadow: var(--ui-shadow-lg);
+}
+.pal-dialog::backdrop { background: rgb(0 0 0 / 0.35); }
+.pal-input {
+  width: 100%; padding: 14px 14px; font: inherit; font-size: 17px; color: var(--ui-text);
+  background: none; border: 0; border-bottom: 1px solid var(--ui-border); outline: none;
+}
+.pal-list { max-height: 280px; overflow-y: auto; margin: 6px 0 0; padding: 0; list-style: none; }
+.pal-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; font-size: 15px; border-radius: 8px; cursor: pointer; }
+.pal-list li[aria-selected=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.pal-list li[aria-selected=&quot;true&quot;] kbd { color: inherit; border-color: currentColor; }
+.pal-list li[hidden] { display: none; }
+.pal-empty { margin: 0; padding: 16px 12px; color: var(--ui-muted); }
+.pal-out { margin: 0; min-height: 1.5em; font-size: 14px; color: var(--ui-muted); }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;palette&quot;>
+  &lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot; data-open>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M9 15A6 6 0 1 0 9 3a6 6 0 0 0 0 12ZM13.5 13.5 17 17&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg> Search commands &lt;kbd>Ctrl K&lt;/kbd>&lt;/button>
+  &lt;dialog class=&quot;pal-dialog&quot; aria-label=&quot;Command palette&quot;>
+    &lt;input class=&quot;pal-input&quot; type=&quot;text&quot; role=&quot;combobox&quot; aria-label=&quot;Search commands&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;pal-list&quot; aria-autocomplete=&quot;list&quot; placeholder=&quot;Type a command…&quot; autocomplete=&quot;off&quot; spellcheck=&quot;false&quot;>
+    &lt;ul class=&quot;pal-list&quot; id=&quot;pal-list&quot; role=&quot;listbox&quot; aria-label=&quot;Commands&quot;>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;New file&quot;>New file &lt;kbd>N&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Open recent&quot;>Open recent &lt;kbd>R&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Invite teammate&quot;>Invite teammate&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Switch theme&quot;>Switch theme &lt;kbd>T&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Export as PDF&quot;>Export as PDF&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Keyboard shortcuts&quot;>Keyboard shortcuts &lt;kbd>?&lt;/kbd>&lt;/li>
+    &lt;/ul>
+    &lt;p class=&quot;pal-empty&quot; hidden>No commands match.&lt;/p>
+  &lt;/dialog>
+  &lt;p class=&quot;pal-out&quot; aria-live=&quot;polite&quot;>&lt;/p>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const dialog = root.querySelector('.pal-dialog');
+  const input = root.querySelector('.pal-input');
+  const options = [...root.querySelectorAll('[role=&quot;option&quot;]')];
+  const empty = root.querySelector('.pal-empty');
+  const out = root.querySelector('.pal-out');
+  const openBtn = root.querySelector('[data-open]');
+  let visible = options;
+  let active = 0;
+  options.forEach((o, i) => (o.id = 'pal-opt-' + i));
+
+  const highlight = (i) => {
+    active = Math.max(0, Math.min(visible.length - 1, i));
+    options.forEach((o) => o.setAttribute('aria-selected', 'false'));
+    const o = visible[active];
+    if (o) { o.setAttribute('aria-selected', 'true'); o.scrollIntoView({ block: 'nearest' }); input.setAttribute('aria-activedescendant', o.id); }
+    else input.removeAttribute('aria-activedescendant');
+  };
+  const filter = () => {
+    const q = input.value.trim().toLowerCase();
+    visible = options.filter((o) => { const ok = o.dataset.cmd.toLowerCase().includes(q); o.hidden = !ok; return ok; });
+    empty.hidden = visible.length > 0;
+    highlight(0);
+  };
+  const run = (o) => { if (!o) return; dialog.close(); out.textContent = 'Ran: ' + o.dataset.cmd; };
+  const open = () => { input.value = ''; filter(); dialog.showModal(); input.focus(); };
+  const onKey = (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); highlight(active + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active - 1); }
+    else if (e.key === 'Enter') { e.preventDefault(); run(visible[active]); }
+  };
+  const onGlobal = (e) => { if ((e.ctrlKey || e.metaKey) &amp;&amp; e.key.toLowerCase() === 'k') { e.preventDefault(); open(); } };
+  const onList = (e) => run(e.target.closest('[role=&quot;option&quot;]'));
+  const onBackdrop = (e) => { if (e.target === dialog) dialog.close(); };
+
+  openBtn.addEventListener('click', open);
+  input.addEventListener('input', filter);
+  input.addEventListener('keydown', onKey);
+  dialog.addEventListener('click', onList);
+  dialog.addEventListener('click', onBackdrop);
+  document.addEventListener('keydown', onGlobal);
+  return () => {
+    openBtn.removeEventListener('click', open);
+    input.removeEventListener('input', filter);
+    input.removeEventListener('keydown', onKey);
+    dialog.removeEventListener('click', onList);
+    dialog.removeEventListener('click', onBackdrop);
+    document.removeEventListener('keydown', onGlobal);
+  };
+}
+
+document.querySelectorAll(&quot;.palette&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.7:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (15 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.7:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Only short hover and focus transitions (under 300ms).</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>button &quot;Search commands Ctrl K&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- button &quot;Search commands Ctrl K&quot;
+- paragraph</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#command-palette">See it in the zine</a> <code>npx -y tearsheet add command-palette</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html -->
+&lt;div class=&quot;palette&quot;>
+  &lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot; data-open>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M9 15A6 6 0 1 0 9 3a6 6 0 0 0 0 12ZM13.5 13.5 17 17&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg> Search commands &lt;kbd>Ctrl K&lt;/kbd>&lt;/button>
+  &lt;dialog class=&quot;pal-dialog&quot; aria-label=&quot;Command palette&quot;>
+    &lt;input class=&quot;pal-input&quot; type=&quot;text&quot; role=&quot;combobox&quot; aria-label=&quot;Search commands&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;pal-list&quot; aria-autocomplete=&quot;list&quot; placeholder=&quot;Type a command…&quot; autocomplete=&quot;off&quot; spellcheck=&quot;false&quot;>
+    &lt;ul class=&quot;pal-list&quot; id=&quot;pal-list&quot; role=&quot;listbox&quot; aria-label=&quot;Commands&quot;>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;New file&quot;>New file &lt;kbd>N&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Open recent&quot;>Open recent &lt;kbd>R&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Invite teammate&quot;>Invite teammate&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Switch theme&quot;>Switch theme &lt;kbd>T&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Export as PDF&quot;>Export as PDF&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Keyboard shortcuts&quot;>Keyboard shortcuts &lt;kbd>?&lt;/kbd>&lt;/li>
+    &lt;/ul>
+    &lt;p class=&quot;pal-empty&quot; hidden>No commands match.&lt;/p>
+  &lt;/dialog>
+  &lt;p class=&quot;pal-out&quot; aria-live=&quot;polite&quot;>&lt;/p>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 16px;
+  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;
+  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }
+.btn-primary:hover { background: var(--ui-accent-hover); }
+.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }
+.btn-secondary:hover { background: var(--ui-surface-2); }
+.palette { display: grid; justify-items: center; gap: 12px; }
+.palette kbd, .pal-list kbd {
+  padding: 1px 6px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--ui-muted);
+  border: 1px solid var(--ui-border-strong); border-bottom-width: 2px; border-radius: 4px;
+}
+.pal-dialog {
+  width: min(520px, calc(100vw - 32px)); margin: 10vh auto auto; padding: 8px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 14px; box-shadow: var(--ui-shadow-lg);
+}
+.pal-dialog::backdrop { background: rgb(0 0 0 / 0.35); }
+.pal-input {
+  width: 100%; padding: 14px 14px; font: inherit; font-size: 17px; color: var(--ui-text);
+  background: none; border: 0; border-bottom: 1px solid var(--ui-border); outline: none;
+}
+.pal-list { max-height: 280px; overflow-y: auto; margin: 6px 0 0; padding: 0; list-style: none; }
+.pal-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; font-size: 15px; border-radius: 8px; cursor: pointer; }
+.pal-list li[aria-selected=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.pal-list li[aria-selected=&quot;true&quot;] kbd { color: inherit; border-color: currentColor; }
+.pal-list li[hidden] { display: none; }
+.pal-empty { margin: 0; padding: 16px 12px; color: var(--ui-muted); }
+.pal-out { margin: 0; min-height: 1.5em; font-size: 14px; color: var(--ui-muted); }</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html */
+function setup(root) {
+  const dialog = root.querySelector('.pal-dialog');
+  const input = root.querySelector('.pal-input');
+  const options = [...root.querySelectorAll('[role=&quot;option&quot;]')];
+  const empty = root.querySelector('.pal-empty');
+  const out = root.querySelector('.pal-out');
+  const openBtn = root.querySelector('[data-open]');
+  let visible = options;
+  let active = 0;
+  options.forEach((o, i) => (o.id = 'pal-opt-' + i));
+
+  const highlight = (i) => {
+    active = Math.max(0, Math.min(visible.length - 1, i));
+    options.forEach((o) => o.setAttribute('aria-selected', 'false'));
+    const o = visible[active];
+    if (o) { o.setAttribute('aria-selected', 'true'); o.scrollIntoView({ block: 'nearest' }); input.setAttribute('aria-activedescendant', o.id); }
+    else input.removeAttribute('aria-activedescendant');
+  };
+  const filter = () => {
+    const q = input.value.trim().toLowerCase();
+    visible = options.filter((o) => { const ok = o.dataset.cmd.toLowerCase().includes(q); o.hidden = !ok; return ok; });
+    empty.hidden = visible.length > 0;
+    highlight(0);
+  };
+  const run = (o) => { if (!o) return; dialog.close(); out.textContent = 'Ran: ' + o.dataset.cmd; };
+  const open = () => { input.value = ''; filter(); dialog.showModal(); input.focus(); };
+  const onKey = (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); highlight(active + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active - 1); }
+    else if (e.key === 'Enter') { e.preventDefault(); run(visible[active]); }
+  };
+  const onGlobal = (e) => { if ((e.ctrlKey || e.metaKey) &amp;&amp; e.key.toLowerCase() === 'k') { e.preventDefault(); open(); } };
+  const onList = (e) => run(e.target.closest('[role=&quot;option&quot;]'));
+  const onBackdrop = (e) => { if (e.target === dialog) dialog.close(); };
+
+  openBtn.addEventListener('click', open);
+  input.addEventListener('input', filter);
+  input.addEventListener('keydown', onKey);
+  dialog.addEventListener('click', onList);
+  dialog.addEventListener('click', onBackdrop);
+  document.addEventListener('keydown', onGlobal);
+  return () => {
+    openBtn.removeEventListener('click', open);
+    input.removeEventListener('input', filter);
+    input.removeEventListener('keydown', onKey);
+    dialog.removeEventListener('click', onList);
+    dialog.removeEventListener('click', onBackdrop);
+    document.removeEventListener('keydown', onGlobal);
+  };
+}
+
+document.querySelectorAll(&quot;.palette&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>CommandPalette.jsx</span></div><pre tabindex="0"><code>/* tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html */
+import { useEffect, useRef } from 'react';
+import './CommandPalette.css';
+
+function setup(root) {
+  const dialog = root.querySelector('.pal-dialog');
+  const input = root.querySelector('.pal-input');
+  const options = [...root.querySelectorAll('[role=&quot;option&quot;]')];
+  const empty = root.querySelector('.pal-empty');
+  const out = root.querySelector('.pal-out');
+  const openBtn = root.querySelector('[data-open]');
+  let visible = options;
+  let active = 0;
+  options.forEach((o, i) => (o.id = 'pal-opt-' + i));
+
+  const highlight = (i) => {
+    active = Math.max(0, Math.min(visible.length - 1, i));
+    options.forEach((o) => o.setAttribute('aria-selected', 'false'));
+    const o = visible[active];
+    if (o) { o.setAttribute('aria-selected', 'true'); o.scrollIntoView({ block: 'nearest' }); input.setAttribute('aria-activedescendant', o.id); }
+    else input.removeAttribute('aria-activedescendant');
+  };
+  const filter = () => {
+    const q = input.value.trim().toLowerCase();
+    visible = options.filter((o) => { const ok = o.dataset.cmd.toLowerCase().includes(q); o.hidden = !ok; return ok; });
+    empty.hidden = visible.length > 0;
+    highlight(0);
+  };
+  const run = (o) => { if (!o) return; dialog.close(); out.textContent = 'Ran: ' + o.dataset.cmd; };
+  const open = () => { input.value = ''; filter(); dialog.showModal(); input.focus(); };
+  const onKey = (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); highlight(active + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active - 1); }
+    else if (e.key === 'Enter') { e.preventDefault(); run(visible[active]); }
+  };
+  const onGlobal = (e) => { if ((e.ctrlKey || e.metaKey) &amp;&amp; e.key.toLowerCase() === 'k') { e.preventDefault(); open(); } };
+  const onList = (e) => run(e.target.closest('[role=&quot;option&quot;]'));
+  const onBackdrop = (e) => { if (e.target === dialog) dialog.close(); };
+
+  openBtn.addEventListener('click', open);
+  input.addEventListener('input', filter);
+  input.addEventListener('keydown', onKey);
+  dialog.addEventListener('click', onList);
+  dialog.addEventListener('click', onBackdrop);
+  document.addEventListener('keydown', onGlobal);
+  return () => {
+    openBtn.removeEventListener('click', open);
+    input.removeEventListener('input', filter);
+    input.removeEventListener('keydown', onKey);
+    dialog.removeEventListener('click', onList);
+    dialog.removeEventListener('click', onBackdrop);
+    document.removeEventListener('keydown', onGlobal);
+  };
+}
+
+export function CommandPalette() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;div ref={ref} className=&quot;palette&quot;>
+      &lt;button className=&quot;btn btn-secondary&quot; type=&quot;button&quot; data-open>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M9 15A6 6 0 1 0 9 3a6 6 0 0 0 0 12ZM13.5 13.5 17 17&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;/>&lt;/svg> Search commands &lt;kbd>Ctrl K&lt;/kbd>&lt;/button>
+      &lt;dialog className=&quot;pal-dialog&quot; aria-label=&quot;Command palette&quot;>
+        &lt;input className=&quot;pal-input&quot; type=&quot;text&quot; role=&quot;combobox&quot; aria-label=&quot;Search commands&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;pal-list&quot; aria-autocomplete=&quot;list&quot; placeholder=&quot;Type a command…&quot; autoComplete=&quot;off&quot; spellCheck=&quot;false&quot; />
+        &lt;ul className=&quot;pal-list&quot; id=&quot;pal-list&quot; role=&quot;listbox&quot; aria-label=&quot;Commands&quot;>
+          &lt;li role=&quot;option&quot; data-cmd=&quot;New file&quot;>New file &lt;kbd>N&lt;/kbd>&lt;/li>
+          &lt;li role=&quot;option&quot; data-cmd=&quot;Open recent&quot;>Open recent &lt;kbd>R&lt;/kbd>&lt;/li>
+          &lt;li role=&quot;option&quot; data-cmd=&quot;Invite teammate&quot;>Invite teammate&lt;/li>
+          &lt;li role=&quot;option&quot; data-cmd=&quot;Switch theme&quot;>Switch theme &lt;kbd>T&lt;/kbd>&lt;/li>
+          &lt;li role=&quot;option&quot; data-cmd=&quot;Export as PDF&quot;>Export as PDF&lt;/li>
+          &lt;li role=&quot;option&quot; data-cmd=&quot;Keyboard shortcuts&quot;>Keyboard shortcuts &lt;kbd>?&lt;/kbd>&lt;/li>
+        &lt;/ul>
+        &lt;p className=&quot;pal-empty&quot; hidden>No commands match.&lt;/p>
+      &lt;/dialog>
+      &lt;p className=&quot;pal-out&quot; aria-live=&quot;polite&quot;>&lt;/p>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>CommandPalette.css</span></div><pre tabindex="0"><code>/* tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 16px;
+  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;
+  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }
+.btn-primary:hover { background: var(--ui-accent-hover); }
+.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }
+.btn-secondary:hover { background: var(--ui-surface-2); }
+.palette { display: grid; justify-items: center; gap: 12px; }
+.palette kbd, .pal-list kbd {
+  padding: 1px 6px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--ui-muted);
+  border: 1px solid var(--ui-border-strong); border-bottom-width: 2px; border-radius: 4px;
+}
+.pal-dialog {
+  width: min(520px, calc(100vw - 32px)); margin: 10vh auto auto; padding: 8px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 14px; box-shadow: var(--ui-shadow-lg);
+}
+.pal-dialog::backdrop { background: rgb(0 0 0 / 0.35); }
+.pal-input {
+  width: 100%; padding: 14px 14px; font: inherit; font-size: 17px; color: var(--ui-text);
+  background: none; border: 0; border-bottom: 1px solid var(--ui-border); outline: none;
+}
+.pal-list { max-height: 280px; overflow-y: auto; margin: 6px 0 0; padding: 0; list-style: none; }
+.pal-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; font-size: 15px; border-radius: 8px; cursor: pointer; }
+.pal-list li[aria-selected=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.pal-list li[aria-selected=&quot;true&quot;] kbd { color: inherit; border-color: currentColor; }
+.pal-list li[hidden] { display: none; }
+.pal-empty { margin: 0; padding: 16px 12px; color: var(--ui-muted); }
+.pal-out { margin: 0; min-height: 1.5em; font-size: 14px; color: var(--ui-muted); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>CommandPalette.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const dialog = root.querySelector('.pal-dialog');
+  const input = root.querySelector('.pal-input');
+  const options = [...root.querySelectorAll('[role=&quot;option&quot;]')];
+  const empty = root.querySelector('.pal-empty');
+  const out = root.querySelector('.pal-out');
+  const openBtn = root.querySelector('[data-open]');
+  let visible = options;
+  let active = 0;
+  options.forEach((o, i) => (o.id = 'pal-opt-' + i));
+
+  const highlight = (i) => {
+    active = Math.max(0, Math.min(visible.length - 1, i));
+    options.forEach((o) => o.setAttribute('aria-selected', 'false'));
+    const o = visible[active];
+    if (o) { o.setAttribute('aria-selected', 'true'); o.scrollIntoView({ block: 'nearest' }); input.setAttribute('aria-activedescendant', o.id); }
+    else input.removeAttribute('aria-activedescendant');
+  };
+  const filter = () => {
+    const q = input.value.trim().toLowerCase();
+    visible = options.filter((o) => { const ok = o.dataset.cmd.toLowerCase().includes(q); o.hidden = !ok; return ok; });
+    empty.hidden = visible.length > 0;
+    highlight(0);
+  };
+  const run = (o) => { if (!o) return; dialog.close(); out.textContent = 'Ran: ' + o.dataset.cmd; };
+  const open = () => { input.value = ''; filter(); dialog.showModal(); input.focus(); };
+  const onKey = (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); highlight(active + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active - 1); }
+    else if (e.key === 'Enter') { e.preventDefault(); run(visible[active]); }
+  };
+  const onGlobal = (e) => { if ((e.ctrlKey || e.metaKey) &amp;&amp; e.key.toLowerCase() === 'k') { e.preventDefault(); open(); } };
+  const onList = (e) => run(e.target.closest('[role=&quot;option&quot;]'));
+  const onBackdrop = (e) => { if (e.target === dialog) dialog.close(); };
+
+  openBtn.addEventListener('click', open);
+  input.addEventListener('input', filter);
+  input.addEventListener('keydown', onKey);
+  dialog.addEventListener('click', onList);
+  dialog.addEventListener('click', onBackdrop);
+  document.addEventListener('keydown', onGlobal);
+  return () => {
+    openBtn.removeEventListener('click', open);
+    input.removeEventListener('input', filter);
+    input.removeEventListener('keydown', onKey);
+    dialog.removeEventListener('click', onList);
+    dialog.removeEventListener('click', onBackdrop);
+    document.removeEventListener('keydown', onGlobal);
+  };
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;div ref=&quot;el&quot; class=&quot;palette&quot;>
+    &lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot; data-open>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M9 15A6 6 0 1 0 9 3a6 6 0 0 0 0 12ZM13.5 13.5 17 17&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg> Search commands &lt;kbd>Ctrl K&lt;/kbd>&lt;/button>
+    &lt;dialog class=&quot;pal-dialog&quot; aria-label=&quot;Command palette&quot;>
+      &lt;input class=&quot;pal-input&quot; type=&quot;text&quot; role=&quot;combobox&quot; aria-label=&quot;Search commands&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;pal-list&quot; aria-autocomplete=&quot;list&quot; placeholder=&quot;Type a command…&quot; autocomplete=&quot;off&quot; spellcheck=&quot;false&quot;>
+      &lt;ul class=&quot;pal-list&quot; id=&quot;pal-list&quot; role=&quot;listbox&quot; aria-label=&quot;Commands&quot;>
+        &lt;li role=&quot;option&quot; data-cmd=&quot;New file&quot;>New file &lt;kbd>N&lt;/kbd>&lt;/li>
+        &lt;li role=&quot;option&quot; data-cmd=&quot;Open recent&quot;>Open recent &lt;kbd>R&lt;/kbd>&lt;/li>
+        &lt;li role=&quot;option&quot; data-cmd=&quot;Invite teammate&quot;>Invite teammate&lt;/li>
+        &lt;li role=&quot;option&quot; data-cmd=&quot;Switch theme&quot;>Switch theme &lt;kbd>T&lt;/kbd>&lt;/li>
+        &lt;li role=&quot;option&quot; data-cmd=&quot;Export as PDF&quot;>Export as PDF&lt;/li>
+        &lt;li role=&quot;option&quot; data-cmd=&quot;Keyboard shortcuts&quot;>Keyboard shortcuts &lt;kbd>?&lt;/kbd>&lt;/li>
+      &lt;/ul>
+      &lt;p class=&quot;pal-empty&quot; hidden>No commands match.&lt;/p>
+    &lt;/dialog>
+    &lt;p class=&quot;pal-out&quot; aria-live=&quot;polite&quot;>&lt;/p>
+  &lt;/div>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 16px;
+  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;
+  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }
+.btn-primary:hover { background: var(--ui-accent-hover); }
+.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }
+.btn-secondary:hover { background: var(--ui-surface-2); }
+.palette { display: grid; justify-items: center; gap: 12px; }
+.palette kbd, .pal-list kbd {
+  padding: 1px 6px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--ui-muted);
+  border: 1px solid var(--ui-border-strong); border-bottom-width: 2px; border-radius: 4px;
+}
+.pal-dialog {
+  width: min(520px, calc(100vw - 32px)); margin: 10vh auto auto; padding: 8px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 14px; box-shadow: var(--ui-shadow-lg);
+}
+.pal-dialog::backdrop { background: rgb(0 0 0 / 0.35); }
+.pal-input {
+  width: 100%; padding: 14px 14px; font: inherit; font-size: 17px; color: var(--ui-text);
+  background: none; border: 0; border-bottom: 1px solid var(--ui-border); outline: none;
+}
+.pal-list { max-height: 280px; overflow-y: auto; margin: 6px 0 0; padding: 0; list-style: none; }
+.pal-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; font-size: 15px; border-radius: 8px; cursor: pointer; }
+.pal-list li[aria-selected=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.pal-list li[aria-selected=&quot;true&quot;] kbd { color: inherit; border-color: currentColor; }
+.pal-list li[hidden] { display: none; }
+.pal-empty { margin: 0; padding: 16px 12px; color: var(--ui-muted); }
+.pal-out { margin: 0; min-height: 1.5em; font-size: 14px; color: var(--ui-muted); }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>CommandPalette.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './CommandPalette.css';
+
+  let node;
+
+  function setup(root) {
+    const dialog = root.querySelector('.pal-dialog');
+    const input = root.querySelector('.pal-input');
+    const options = [...root.querySelectorAll('[role=&quot;option&quot;]')];
+    const empty = root.querySelector('.pal-empty');
+    const out = root.querySelector('.pal-out');
+    const openBtn = root.querySelector('[data-open]');
+    let visible = options;
+    let active = 0;
+    options.forEach((o, i) => (o.id = 'pal-opt-' + i));
+
+    const highlight = (i) => {
+      active = Math.max(0, Math.min(visible.length - 1, i));
+      options.forEach((o) => o.setAttribute('aria-selected', 'false'));
+      const o = visible[active];
+      if (o) { o.setAttribute('aria-selected', 'true'); o.scrollIntoView({ block: 'nearest' }); input.setAttribute('aria-activedescendant', o.id); }
+      else input.removeAttribute('aria-activedescendant');
+    };
+    const filter = () => {
+      const q = input.value.trim().toLowerCase();
+      visible = options.filter((o) => { const ok = o.dataset.cmd.toLowerCase().includes(q); o.hidden = !ok; return ok; });
+      empty.hidden = visible.length > 0;
+      highlight(0);
+    };
+    const run = (o) => { if (!o) return; dialog.close(); out.textContent = 'Ran: ' + o.dataset.cmd; };
+    const open = () => { input.value = ''; filter(); dialog.showModal(); input.focus(); };
+    const onKey = (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); highlight(active + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active - 1); }
+      else if (e.key === 'Enter') { e.preventDefault(); run(visible[active]); }
+    };
+    const onGlobal = (e) => { if ((e.ctrlKey || e.metaKey) &amp;&amp; e.key.toLowerCase() === 'k') { e.preventDefault(); open(); } };
+    const onList = (e) => run(e.target.closest('[role=&quot;option&quot;]'));
+    const onBackdrop = (e) => { if (e.target === dialog) dialog.close(); };
+
+    openBtn.addEventListener('click', open);
+    input.addEventListener('input', filter);
+    input.addEventListener('keydown', onKey);
+    dialog.addEventListener('click', onList);
+    dialog.addEventListener('click', onBackdrop);
+    document.addEventListener('keydown', onGlobal);
+    return () => {
+      openBtn.removeEventListener('click', open);
+      input.removeEventListener('input', filter);
+      input.removeEventListener('keydown', onKey);
+      dialog.removeEventListener('click', onList);
+      dialog.removeEventListener('click', onBackdrop);
+      document.removeEventListener('keydown', onGlobal);
+    };
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;div bind:this={node} class=&quot;palette&quot;>
+  &lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot; data-open>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path d=&quot;M9 15A6 6 0 1 0 9 3a6 6 0 0 0 0 12ZM13.5 13.5 17 17&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/>&lt;/svg> Search commands &lt;kbd>Ctrl K&lt;/kbd>&lt;/button>
+  &lt;dialog class=&quot;pal-dialog&quot; aria-label=&quot;Command palette&quot;>
+    &lt;input class=&quot;pal-input&quot; type=&quot;text&quot; role=&quot;combobox&quot; aria-label=&quot;Search commands&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;pal-list&quot; aria-autocomplete=&quot;list&quot; placeholder=&quot;Type a command…&quot; autocomplete=&quot;off&quot; spellcheck=&quot;false&quot;>
+    &lt;ul class=&quot;pal-list&quot; id=&quot;pal-list&quot; role=&quot;listbox&quot; aria-label=&quot;Commands&quot;>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;New file&quot;>New file &lt;kbd>N&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Open recent&quot;>Open recent &lt;kbd>R&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Invite teammate&quot;>Invite teammate&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Switch theme&quot;>Switch theme &lt;kbd>T&lt;/kbd>&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Export as PDF&quot;>Export as PDF&lt;/li>
+      &lt;li role=&quot;option&quot; data-cmd=&quot;Keyboard shortcuts&quot;>Keyboard shortcuts &lt;kbd>?&lt;/kbd>&lt;/li>
+    &lt;/ul>
+    &lt;p class=&quot;pal-empty&quot; hidden>No commands match.&lt;/p>
+  &lt;/dialog>
+  &lt;p class=&quot;pal-out&quot; aria-live=&quot;polite&quot;>&lt;/p>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>CommandPalette.css</span></div><pre tabindex="0"><code>/* tearsheet command-palette ve52a0554 · https://qusaialjbali.github.io/tearsheet/zine/parts/command-palette.html */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 16px;
+  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;
+  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }
+.btn-primary:hover { background: var(--ui-accent-hover); }
+.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }
+.btn-secondary:hover { background: var(--ui-surface-2); }
+.palette { display: grid; justify-items: center; gap: 12px; }
+.palette kbd, .pal-list kbd {
+  padding: 1px 6px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--ui-muted);
+  border: 1px solid var(--ui-border-strong); border-bottom-width: 2px; border-radius: 4px;
+}
+.pal-dialog {
+  width: min(520px, calc(100vw - 32px)); margin: 10vh auto auto; padding: 8px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 14px; box-shadow: var(--ui-shadow-lg);
+}
+.pal-dialog::backdrop { background: rgb(0 0 0 / 0.35); }
+.pal-input {
+  width: 100%; padding: 14px 14px; font: inherit; font-size: 17px; color: var(--ui-text);
+  background: none; border: 0; border-bottom: 1px solid var(--ui-border); outline: none;
+}
+.pal-list { max-height: 280px; overflow-y: auto; margin: 6px 0 0; padding: 0; list-style: none; }
+.pal-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; font-size: 15px; border-radius: 8px; cursor: pointer; }
+.pal-list li[aria-selected=&quot;true&quot;] { color: var(--ui-accent-text); background: var(--ui-accent); }
+.pal-list li[aria-selected=&quot;true&quot;] kbd { color: inherit; border-color: currentColor; }
+.pal-list li[hidden] { display: none; }
+.pal-empty { margin: 0; padding: 16px 12px; color: var(--ui-muted); }
+.pal-out { margin: 0; min-height: 1.5em; font-size: 14px; color: var(--ui-muted); }</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="cookie-banner.html">← Honest cookie banner</a>
+      <a rel="next" href="pricing-card.html">Pricing card →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

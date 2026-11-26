@@ -1,0 +1,88 @@
+{
+  "id": "activity-timeline",
+  "name": "Activity timeline",
+  "page": "p.30",
+  "collection": "Content",
+  "experimental": false,
+  "description": "A vertical feed of events with machine-readable times.",
+  "notes": "Wrap times in <time datetime=\"…\"> so they can be parsed and localised. Newest first, unless the story is a process.",
+  "usesJavaScript": false,
+  "sizeKb": 1.5,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#activity-timeline",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/activity-timeline.json",
+  "version": "8be89136",
+  "checked": "axe clean in light and dark; tightest text contrast 6.7:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- list:\n  - listitem:\n    - paragraph:\n      - strong: Maya\n      - text: published version 2.4\n    - time: Today, 9:12\n  - listitem:\n    - paragraph:\n      - strong: Leo\n      - text: merged “Fix focus ring in dark mode”\n    - time: Yesterday, 17:40\n  - listitem:\n    - paragraph:\n      - strong: Sam\n      - text: opened an issue about the tooltip on touch screens\n    - time: 21 Nov, 11:05\n  - listitem:\n    - paragraph: Project created\n    - time: 20 Nov, 08:00",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet activity-timeline v8be89136 · https://qusaialjbali.github.io/tearsheet/zine/parts/activity-timeline.html -->\n<ol class=\"timeline\">\n  <li class=\"tl-item tl-accent\">\n    <p class=\"tl-title\"><strong>Maya</strong> published version 2.4</p>\n    <time class=\"tl-time\" datetime=\"2026-11-23T09:12\">Today, 9:12</time>\n  </li>\n  <li class=\"tl-item\">\n    <p class=\"tl-title\"><strong>Leo</strong> merged “Fix focus ring in dark mode”</p>\n    <time class=\"tl-time\" datetime=\"2026-11-22T17:40\">Yesterday, 17:40</time>\n  </li>\n  <li class=\"tl-item\">\n    <p class=\"tl-title\"><strong>Sam</strong> opened an issue about the tooltip on touch screens</p>\n    <time class=\"tl-time\" datetime=\"2026-11-21T11:05\">21 Nov, 11:05</time>\n  </li>\n  <li class=\"tl-item\">\n    <p class=\"tl-title\">Project created</p>\n    <time class=\"tl-time\" datetime=\"2026-11-20T08:00\">20 Nov, 08:00</time>\n  </li>\n</ol>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet activity-timeline v8be89136 · https://qusaialjbali.github.io/tearsheet/zine/parts/activity-timeline.html */\n.timeline { width: 100%; max-width: 420px; margin: 0; padding: 0; list-style: none; }\n.tl-item { position: relative; padding: 0 0 22px 28px; }\n.tl-item::before {\n  content: \"\";\n  position: absolute;\n  left: 5px;\n  top: 6px;\n  bottom: -6px;\n  width: 2px;\n  background: var(--ui-border);\n}\n.tl-item:last-child::before { display: none; }\n.tl-item::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 5px;\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-border-strong);\n}\n.tl-accent::after { background: var(--ui-accent); border-color: var(--ui-accent); box-shadow: 0 0 0 4px var(--ui-accent-soft); }\n.tl-title { margin: 0; font-size: 15px; color: var(--ui-text); }\n.tl-time { font-size: 13px; color: var(--ui-muted); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "ActivityTimeline.jsx",
+        "code": "/* tearsheet activity-timeline v8be89136 · https://qusaialjbali.github.io/tearsheet/zine/parts/activity-timeline.html */\nimport './ActivityTimeline.css';\n\nexport function ActivityTimeline() {\n  return (\n    <ol className=\"timeline\">\n      <li className=\"tl-item tl-accent\">\n        <p className=\"tl-title\"><strong>Maya</strong> published version 2.4</p>\n        <time className=\"tl-time\" dateTime=\"2026-11-23T09:12\">Today, 9:12</time>\n      </li>\n      <li className=\"tl-item\">\n        <p className=\"tl-title\"><strong>Leo</strong> merged “Fix focus ring in dark mode”</p>\n        <time className=\"tl-time\" dateTime=\"2026-11-22T17:40\">Yesterday, 17:40</time>\n      </li>\n      <li className=\"tl-item\">\n        <p className=\"tl-title\"><strong>Sam</strong> opened an issue about the tooltip on touch screens</p>\n        <time className=\"tl-time\" dateTime=\"2026-11-21T11:05\">21 Nov, 11:05</time>\n      </li>\n      <li className=\"tl-item\">\n        <p className=\"tl-title\">Project created</p>\n        <time className=\"tl-time\" dateTime=\"2026-11-20T08:00\">20 Nov, 08:00</time>\n      </li>\n    </ol>\n  );\n}"
+      },
+      {
+        "name": "ActivityTimeline.css",
+        "code": "/* tearsheet activity-timeline v8be89136 · https://qusaialjbali.github.io/tearsheet/zine/parts/activity-timeline.html */\n.timeline { width: 100%; max-width: 420px; margin: 0; padding: 0; list-style: none; }\n.tl-item { position: relative; padding: 0 0 22px 28px; }\n.tl-item::before {\n  content: \"\";\n  position: absolute;\n  left: 5px;\n  top: 6px;\n  bottom: -6px;\n  width: 2px;\n  background: var(--ui-border);\n}\n.tl-item:last-child::before { display: none; }\n.tl-item::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 5px;\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-border-strong);\n}\n.tl-accent::after { background: var(--ui-accent); border-color: var(--ui-accent); box-shadow: 0 0 0 4px var(--ui-accent-soft); }\n.tl-title { margin: 0; font-size: 15px; color: var(--ui-text); }\n.tl-time { font-size: 13px; color: var(--ui-muted); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "ActivityTimeline.vue",
+        "code": "<!-- tearsheet activity-timeline v8be89136 · https://qusaialjbali.github.io/tearsheet/zine/parts/activity-timeline.html -->\n<template>\n  <ol class=\"timeline\">\n    <li class=\"tl-item tl-accent\">\n      <p class=\"tl-title\"><strong>Maya</strong> published version 2.4</p>\n      <time class=\"tl-time\" datetime=\"2026-11-23T09:12\">Today, 9:12</time>\n    </li>\n    <li class=\"tl-item\">\n      <p class=\"tl-title\"><strong>Leo</strong> merged “Fix focus ring in dark mode”</p>\n      <time class=\"tl-time\" datetime=\"2026-11-22T17:40\">Yesterday, 17:40</time>\n    </li>\n    <li class=\"tl-item\">\n      <p class=\"tl-title\"><strong>Sam</strong> opened an issue about the tooltip on touch screens</p>\n      <time class=\"tl-time\" datetime=\"2026-11-21T11:05\">21 Nov, 11:05</time>\n    </li>\n    <li class=\"tl-item\">\n      <p class=\"tl-title\">Project created</p>\n      <time class=\"tl-time\" datetime=\"2026-11-20T08:00\">20 Nov, 08:00</time>\n    </li>\n  </ol>\n</template>\n\n<style scoped>\n.timeline { width: 100%; max-width: 420px; margin: 0; padding: 0; list-style: none; }\n.tl-item { position: relative; padding: 0 0 22px 28px; }\n.tl-item::before {\n  content: \"\";\n  position: absolute;\n  left: 5px;\n  top: 6px;\n  bottom: -6px;\n  width: 2px;\n  background: var(--ui-border);\n}\n.tl-item:last-child::before { display: none; }\n.tl-item::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 5px;\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-border-strong);\n}\n.tl-accent::after { background: var(--ui-accent); border-color: var(--ui-accent); box-shadow: 0 0 0 4px var(--ui-accent-soft); }\n.tl-title { margin: 0; font-size: 15px; color: var(--ui-text); }\n.tl-time { font-size: 13px; color: var(--ui-muted); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "ActivityTimeline.svelte",
+        "code": "<!-- tearsheet activity-timeline v8be89136 · https://qusaialjbali.github.io/tearsheet/zine/parts/activity-timeline.html -->\n<ol class=\"timeline\">\n  <li class=\"tl-item tl-accent\">\n    <p class=\"tl-title\"><strong>Maya</strong> published version 2.4</p>\n    <time class=\"tl-time\" datetime=\"2026-11-23T09:12\">Today, 9:12</time>\n  </li>\n  <li class=\"tl-item\">\n    <p class=\"tl-title\"><strong>Leo</strong> merged “Fix focus ring in dark mode”</p>\n    <time class=\"tl-time\" datetime=\"2026-11-22T17:40\">Yesterday, 17:40</time>\n  </li>\n  <li class=\"tl-item\">\n    <p class=\"tl-title\"><strong>Sam</strong> opened an issue about the tooltip on touch screens</p>\n    <time class=\"tl-time\" datetime=\"2026-11-21T11:05\">21 Nov, 11:05</time>\n  </li>\n  <li class=\"tl-item\">\n    <p class=\"tl-title\">Project created</p>\n    <time class=\"tl-time\" datetime=\"2026-11-20T08:00\">20 Nov, 08:00</time>\n  </li>\n</ol>\n\n<style>\n.timeline { width: 100%; max-width: 420px; margin: 0; padding: 0; list-style: none; }\n.tl-item { position: relative; padding: 0 0 22px 28px; }\n.tl-item::before {\n  content: \"\";\n  position: absolute;\n  left: 5px;\n  top: 6px;\n  bottom: -6px;\n  width: 2px;\n  background: var(--ui-border);\n}\n.tl-item:last-child::before { display: none; }\n.tl-item::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 5px;\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-border-strong);\n}\n.tl-accent::after { background: var(--ui-accent); border-color: var(--ui-accent); box-shadow: 0 0 0 4px var(--ui-accent-soft); }\n.tl-title { margin: 0; font-size: 15px; color: var(--ui-text); }\n.tl-time { font-size: 13px; color: var(--ui-muted); }\n</style>"
+      }
+    ]
+  }
+}

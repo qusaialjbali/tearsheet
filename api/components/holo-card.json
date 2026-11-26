@@ -1,0 +1,94 @@
+{
+  "id": "holo-card",
+  "name": "Holographic card",
+  "page": "p.80",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A foil membership card that tilts in 3D and throws a moving rainbow sheen as you move across it.",
+  "notes": "Keyboard users can tilt it with the arrow keys once it has focus. Reduced motion keeps a still foil and no tilt.",
+  "usesJavaScript": true,
+  "sizeKb": 3.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#holo-card",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/holo-card.json",
+  "version": "7291d454",
+  "checked": "axe clean in light and dark; 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 16
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 16
+      }
+    },
+    "contrast": null,
+    "brand": true,
+    "keyboard": [
+      "img \"Holographic membership card for Ada Lovelace, member number 000417\""
+    ],
+    "tree": "- img \"Holographic membership card for Ada Lovelace, member number 000417\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html -->\n<div class=\"holo\" tabindex=\"0\" role=\"img\" aria-label=\"Holographic membership card for Ada Lovelace, member number 000417\">\n  <div class=\"holo-shine\" aria-hidden=\"true\"></div>\n  <div class=\"holo-chip\" aria-hidden=\"true\"></div>\n  <p class=\"holo-brand\" aria-hidden=\"true\">TEARSHEET</p>\n  <div class=\"holo-foot\" aria-hidden=\"true\">\n    <p class=\"holo-name\">Ada Lovelace</p>\n    <p class=\"holo-meta\">Member No. 000417</p>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html */\n.holo {\n  --rx: 0deg;\n  --ry: 0deg;\n  --mx: 50%;\n  --my: 50%;\n  position: relative;\n  width: 320px;\n  aspect-ratio: 1.586;\n  padding: 22px 24px;\n  overflow: hidden;\n  color: #fff;\n  border-radius: 18px;\n  background:\n    radial-gradient(120% 120% at 0% 0%, #3b2a7a, transparent 60%),\n    radial-gradient(120% 120% at 100% 100%, #0f6b78, transparent 60%),\n    #17152b;\n  box-shadow: 0 24px 50px -12px rgb(0 0 0 / 0.5);\n  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));\n  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);\n  cursor: grab;\n}\n.holo.is-active { transition: transform 0.08s linear; }\n.holo:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.holo-shine {\n  position: absolute;\n  inset: 0;\n  mix-blend-mode: color-dodge;\n  opacity: 0.55;\n  background:\n    radial-gradient(circle at var(--mx) var(--my), rgb(255 255 255 / 0.7), transparent 38%),\n    linear-gradient(115deg, #ff3cac 0%, #f5d300 20%, #2bd2ff 40%, #8bff7a 60%, #ff3cac 80%, #f5d300 100%);\n  background-size: 100% 100%, 300% 300%;\n  background-position: center, var(--mx) var(--my);\n  pointer-events: none;\n}\n.holo-chip {\n  width: 44px;\n  height: 34px;\n  border-radius: 7px;\n  background: linear-gradient(135deg, #f7e29b, #c9a24a);\n  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2);\n}\n.holo-brand { position: absolute; top: 22px; right: 24px; margin: 0; font-weight: 800; letter-spacing: 0.24em; font-size: 14px; }\n.holo-foot { position: absolute; left: 24px; bottom: 20px; }\n.holo-name { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }\n.holo-meta { margin: 2px 0 0; font-size: 12px; opacity: 0.75; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html */\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  if (reduce) return;\n\n  const set = (px, py) => {\n    root.style.setProperty('--ry', (px - 0.5) * 24 + 'deg');\n    root.style.setProperty('--rx', (0.5 - py) * 24 + 'deg');\n    root.style.setProperty('--mx', px * 100 + '%');\n    root.style.setProperty('--my', py * 100 + '%');\n  };\n  let kx = 0.5;\n  let ky = 0.5;\n\n  const onMove = (e) => {\n    const r = root.getBoundingClientRect();\n    root.classList.add('is-active');\n    set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);\n  };\n  const onLeave = () => {\n    root.classList.remove('is-active');\n    set(0.5, 0.5);\n  };\n  const onKey = (e) => {\n    const step = { ArrowLeft: [-0.1, 0], ArrowRight: [0.1, 0], ArrowUp: [0, -0.1], ArrowDown: [0, 0.1] }[e.key];\n    if (!step) return;\n    e.preventDefault();\n    kx = Math.min(1, Math.max(0, kx + step[0]));\n    ky = Math.min(1, Math.max(0, ky + step[1]));\n    set(kx, ky);\n  };\n\n  root.addEventListener('pointermove', onMove);\n  root.addEventListener('pointerleave', onLeave);\n  root.addEventListener('keydown', onKey);\n  return () => {\n    root.removeEventListener('pointermove', onMove);\n    root.removeEventListener('pointerleave', onLeave);\n    root.removeEventListener('keydown', onKey);\n  };\n}\n\ndocument.querySelectorAll(\".holo\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "HoloCard.jsx",
+        "code": "/* tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html */\nimport { useEffect, useRef } from 'react';\nimport './HoloCard.css';\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  if (reduce) return;\n\n  const set = (px, py) => {\n    root.style.setProperty('--ry', (px - 0.5) * 24 + 'deg');\n    root.style.setProperty('--rx', (0.5 - py) * 24 + 'deg');\n    root.style.setProperty('--mx', px * 100 + '%');\n    root.style.setProperty('--my', py * 100 + '%');\n  };\n  let kx = 0.5;\n  let ky = 0.5;\n\n  const onMove = (e) => {\n    const r = root.getBoundingClientRect();\n    root.classList.add('is-active');\n    set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);\n  };\n  const onLeave = () => {\n    root.classList.remove('is-active');\n    set(0.5, 0.5);\n  };\n  const onKey = (e) => {\n    const step = { ArrowLeft: [-0.1, 0], ArrowRight: [0.1, 0], ArrowUp: [0, -0.1], ArrowDown: [0, 0.1] }[e.key];\n    if (!step) return;\n    e.preventDefault();\n    kx = Math.min(1, Math.max(0, kx + step[0]));\n    ky = Math.min(1, Math.max(0, ky + step[1]));\n    set(kx, ky);\n  };\n\n  root.addEventListener('pointermove', onMove);\n  root.addEventListener('pointerleave', onLeave);\n  root.addEventListener('keydown', onKey);\n  return () => {\n    root.removeEventListener('pointermove', onMove);\n    root.removeEventListener('pointerleave', onLeave);\n    root.removeEventListener('keydown', onKey);\n  };\n}\n\nexport function HoloCard() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"holo\" tabIndex={0} role=\"img\" aria-label=\"Holographic membership card for Ada Lovelace, member number 000417\">\n      <div className=\"holo-shine\" aria-hidden=\"true\"></div>\n      <div className=\"holo-chip\" aria-hidden=\"true\"></div>\n      <p className=\"holo-brand\" aria-hidden=\"true\">TEARSHEET</p>\n      <div className=\"holo-foot\" aria-hidden=\"true\">\n        <p className=\"holo-name\">Ada Lovelace</p>\n        <p className=\"holo-meta\">Member No. 000417</p>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "HoloCard.css",
+        "code": "/* tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html */\n.holo {\n  --rx: 0deg;\n  --ry: 0deg;\n  --mx: 50%;\n  --my: 50%;\n  position: relative;\n  width: 320px;\n  aspect-ratio: 1.586;\n  padding: 22px 24px;\n  overflow: hidden;\n  color: #fff;\n  border-radius: 18px;\n  background:\n    radial-gradient(120% 120% at 0% 0%, #3b2a7a, transparent 60%),\n    radial-gradient(120% 120% at 100% 100%, #0f6b78, transparent 60%),\n    #17152b;\n  box-shadow: 0 24px 50px -12px rgb(0 0 0 / 0.5);\n  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));\n  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);\n  cursor: grab;\n}\n.holo.is-active { transition: transform 0.08s linear; }\n.holo:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.holo-shine {\n  position: absolute;\n  inset: 0;\n  mix-blend-mode: color-dodge;\n  opacity: 0.55;\n  background:\n    radial-gradient(circle at var(--mx) var(--my), rgb(255 255 255 / 0.7), transparent 38%),\n    linear-gradient(115deg, #ff3cac 0%, #f5d300 20%, #2bd2ff 40%, #8bff7a 60%, #ff3cac 80%, #f5d300 100%);\n  background-size: 100% 100%, 300% 300%;\n  background-position: center, var(--mx) var(--my);\n  pointer-events: none;\n}\n.holo-chip {\n  width: 44px;\n  height: 34px;\n  border-radius: 7px;\n  background: linear-gradient(135deg, #f7e29b, #c9a24a);\n  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2);\n}\n.holo-brand { position: absolute; top: 22px; right: 24px; margin: 0; font-weight: 800; letter-spacing: 0.24em; font-size: 14px; }\n.holo-foot { position: absolute; left: 24px; bottom: 20px; }\n.holo-name { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }\n.holo-meta { margin: 2px 0 0; font-size: 12px; opacity: 0.75; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "HoloCard.vue",
+        "code": "<!-- tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  if (reduce) return;\n\n  const set = (px, py) => {\n    root.style.setProperty('--ry', (px - 0.5) * 24 + 'deg');\n    root.style.setProperty('--rx', (0.5 - py) * 24 + 'deg');\n    root.style.setProperty('--mx', px * 100 + '%');\n    root.style.setProperty('--my', py * 100 + '%');\n  };\n  let kx = 0.5;\n  let ky = 0.5;\n\n  const onMove = (e) => {\n    const r = root.getBoundingClientRect();\n    root.classList.add('is-active');\n    set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);\n  };\n  const onLeave = () => {\n    root.classList.remove('is-active');\n    set(0.5, 0.5);\n  };\n  const onKey = (e) => {\n    const step = { ArrowLeft: [-0.1, 0], ArrowRight: [0.1, 0], ArrowUp: [0, -0.1], ArrowDown: [0, 0.1] }[e.key];\n    if (!step) return;\n    e.preventDefault();\n    kx = Math.min(1, Math.max(0, kx + step[0]));\n    ky = Math.min(1, Math.max(0, ky + step[1]));\n    set(kx, ky);\n  };\n\n  root.addEventListener('pointermove', onMove);\n  root.addEventListener('pointerleave', onLeave);\n  root.addEventListener('keydown', onKey);\n  return () => {\n    root.removeEventListener('pointermove', onMove);\n    root.removeEventListener('pointerleave', onLeave);\n    root.removeEventListener('keydown', onKey);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"holo\" tabindex=\"0\" role=\"img\" aria-label=\"Holographic membership card for Ada Lovelace, member number 000417\">\n    <div class=\"holo-shine\" aria-hidden=\"true\"></div>\n    <div class=\"holo-chip\" aria-hidden=\"true\"></div>\n    <p class=\"holo-brand\" aria-hidden=\"true\">TEARSHEET</p>\n    <div class=\"holo-foot\" aria-hidden=\"true\">\n      <p class=\"holo-name\">Ada Lovelace</p>\n      <p class=\"holo-meta\">Member No. 000417</p>\n    </div>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.holo {\n  --rx: 0deg;\n  --ry: 0deg;\n  --mx: 50%;\n  --my: 50%;\n  position: relative;\n  width: 320px;\n  aspect-ratio: 1.586;\n  padding: 22px 24px;\n  overflow: hidden;\n  color: #fff;\n  border-radius: 18px;\n  background:\n    radial-gradient(120% 120% at 0% 0%, #3b2a7a, transparent 60%),\n    radial-gradient(120% 120% at 100% 100%, #0f6b78, transparent 60%),\n    #17152b;\n  box-shadow: 0 24px 50px -12px rgb(0 0 0 / 0.5);\n  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));\n  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);\n  cursor: grab;\n}\n.holo.is-active { transition: transform 0.08s linear; }\n.holo:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.holo-shine {\n  position: absolute;\n  inset: 0;\n  mix-blend-mode: color-dodge;\n  opacity: 0.55;\n  background:\n    radial-gradient(circle at var(--mx) var(--my), rgb(255 255 255 / 0.7), transparent 38%),\n    linear-gradient(115deg, #ff3cac 0%, #f5d300 20%, #2bd2ff 40%, #8bff7a 60%, #ff3cac 80%, #f5d300 100%);\n  background-size: 100% 100%, 300% 300%;\n  background-position: center, var(--mx) var(--my);\n  pointer-events: none;\n}\n.holo-chip {\n  width: 44px;\n  height: 34px;\n  border-radius: 7px;\n  background: linear-gradient(135deg, #f7e29b, #c9a24a);\n  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2);\n}\n.holo-brand { position: absolute; top: 22px; right: 24px; margin: 0; font-weight: 800; letter-spacing: 0.24em; font-size: 14px; }\n.holo-foot { position: absolute; left: 24px; bottom: 20px; }\n.holo-name { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }\n.holo-meta { margin: 2px 0 0; font-size: 12px; opacity: 0.75; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "HoloCard.svelte",
+        "code": "<!-- tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './HoloCard.css';\n\n  let node;\n\n  function setup(root) {\n    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    if (reduce) return;\n\n    const set = (px, py) => {\n      root.style.setProperty('--ry', (px - 0.5) * 24 + 'deg');\n      root.style.setProperty('--rx', (0.5 - py) * 24 + 'deg');\n      root.style.setProperty('--mx', px * 100 + '%');\n      root.style.setProperty('--my', py * 100 + '%');\n    };\n    let kx = 0.5;\n    let ky = 0.5;\n\n    const onMove = (e) => {\n      const r = root.getBoundingClientRect();\n      root.classList.add('is-active');\n      set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);\n    };\n    const onLeave = () => {\n      root.classList.remove('is-active');\n      set(0.5, 0.5);\n    };\n    const onKey = (e) => {\n      const step = { ArrowLeft: [-0.1, 0], ArrowRight: [0.1, 0], ArrowUp: [0, -0.1], ArrowDown: [0, 0.1] }[e.key];\n      if (!step) return;\n      e.preventDefault();\n      kx = Math.min(1, Math.max(0, kx + step[0]));\n      ky = Math.min(1, Math.max(0, ky + step[1]));\n      set(kx, ky);\n    };\n\n    root.addEventListener('pointermove', onMove);\n    root.addEventListener('pointerleave', onLeave);\n    root.addEventListener('keydown', onKey);\n    return () => {\n      root.removeEventListener('pointermove', onMove);\n      root.removeEventListener('pointerleave', onLeave);\n      root.removeEventListener('keydown', onKey);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"holo\" tabindex=\"0\" role=\"img\" aria-label=\"Holographic membership card for Ada Lovelace, member number 000417\">\n  <div class=\"holo-shine\" aria-hidden=\"true\"></div>\n  <div class=\"holo-chip\" aria-hidden=\"true\"></div>\n  <p class=\"holo-brand\" aria-hidden=\"true\">TEARSHEET</p>\n  <div class=\"holo-foot\" aria-hidden=\"true\">\n    <p class=\"holo-name\">Ada Lovelace</p>\n    <p class=\"holo-meta\">Member No. 000417</p>\n  </div>\n</div>"
+      },
+      {
+        "name": "HoloCard.css",
+        "code": "/* tearsheet holo-card v7291d454 · https://qusaialjbali.github.io/tearsheet/zine/parts/holo-card.html */\n.holo {\n  --rx: 0deg;\n  --ry: 0deg;\n  --mx: 50%;\n  --my: 50%;\n  position: relative;\n  width: 320px;\n  aspect-ratio: 1.586;\n  padding: 22px 24px;\n  overflow: hidden;\n  color: #fff;\n  border-radius: 18px;\n  background:\n    radial-gradient(120% 120% at 0% 0%, #3b2a7a, transparent 60%),\n    radial-gradient(120% 120% at 100% 100%, #0f6b78, transparent 60%),\n    #17152b;\n  box-shadow: 0 24px 50px -12px rgb(0 0 0 / 0.5);\n  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));\n  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);\n  cursor: grab;\n}\n.holo.is-active { transition: transform 0.08s linear; }\n.holo:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 4px; }\n.holo-shine {\n  position: absolute;\n  inset: 0;\n  mix-blend-mode: color-dodge;\n  opacity: 0.55;\n  background:\n    radial-gradient(circle at var(--mx) var(--my), rgb(255 255 255 / 0.7), transparent 38%),\n    linear-gradient(115deg, #ff3cac 0%, #f5d300 20%, #2bd2ff 40%, #8bff7a 60%, #ff3cac 80%, #f5d300 100%);\n  background-size: 100% 100%, 300% 300%;\n  background-position: center, var(--mx) var(--my);\n  pointer-events: none;\n}\n.holo-chip {\n  width: 44px;\n  height: 34px;\n  border-radius: 7px;\n  background: linear-gradient(135deg, #f7e29b, #c9a24a);\n  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2);\n}\n.holo-brand { position: absolute; top: 22px; right: 24px; margin: 0; font-weight: 800; letter-spacing: 0.24em; font-size: 14px; }\n.holo-foot { position: absolute; left: 24px; bottom: 20px; }\n.holo-name { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }\n.holo-meta { margin: 2px 0 0; font-size: 12px; opacity: 0.75; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }"
+      }
+    ]
+  }
+}

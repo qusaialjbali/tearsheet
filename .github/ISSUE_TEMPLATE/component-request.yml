@@ -1,0 +1,38 @@
+name: Component request
+description: Ask for a component or animation that Tearsheet does not have yet.
+title: "Request: "
+labels: ["component request"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: What is it called?
+      placeholder: e.g. Date range picker, Kanban board, Toast stack
+    validations:
+      required: true
+  - type: textarea
+    id: job
+    attributes:
+      label: What should it do?
+      description: The job it does for the person using it. Links to examples you like are welcome.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Which kind?
+      options:
+        - An everyday interface part
+        - An animation or transition
+        - Something weird for the centerfold
+    validations:
+      required: true
+  - type: checkboxes
+    id: formats
+    attributes:
+      label: Formats you would use
+      options:
+        - label: HTML + CSS
+        - label: React
+        - label: Vue
+        - label: Svelte

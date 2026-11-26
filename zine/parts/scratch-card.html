@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scratch card · Weird component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="Scratch off a foil layer with your cursor or finger to reveal a hidden code.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Scratch card · Weird component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="Scratch off a foil layer with your cursor or finger to reveal a hidden code.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Scratch card","description":"Scratch off a foil layer with your cursor or finger to reveal a hidden code.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#scratch-card">Issue 01</a> · Weird · p.85</p>
+    <h1><span class="a">Scratch card</span><span class="b" aria-hidden="true">Scratch card</span></h1>
+    <p class="lede">Scratch off a foil layer with your cursor or finger to reveal a hidden code.</p>
+    <p class="why"><b>Why it works:</b> The prize text is real text underneath (screen readers can read it), and “Reveal without scratching” gives keyboard users the same result.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Scratch card preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.scratch { display: grid; justify-items: center; gap: 12px; }
+.scratch-card {
+  position: relative;
+  width: 300px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--ui-accent-soft);
+  border: 2px dashed var(--ui-accent);
+}
+.scratch-prize {
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  color: var(--ui-text);
+}
+.scratch-prize span { font-size: 13px; color: var(--ui-muted); }
+.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }
+.scratch-foil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  transition: opacity 0.6s;
+}
+.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }
+.scratch-reveal {
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-accent);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;scratch&quot;>
+  &lt;div class=&quot;scratch-card&quot;>
+    &lt;p class=&quot;scratch-prize&quot;>&lt;span>Your discount code&lt;/span>&lt;strong>TEAR-25&lt;/strong>&lt;/p>
+    &lt;canvas class=&quot;scratch-foil&quot; aria-hidden=&quot;true&quot;>&lt;/canvas>
+  &lt;/div>
+  &lt;button class=&quot;scratch-reveal&quot; type=&quot;button&quot;>Reveal without scratching&lt;/button>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const canvas = root.querySelector('.scratch-foil');
+  const reveal = root.querySelector('.scratch-reveal');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let last = null;
+  let strokes = 0;
+
+  const paint = () => {
+    const r = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = r.width * dpr;
+    canvas.height = r.height * dpr;
+    ctx.scale(dpr, dpr);
+    const g = ctx.createLinearGradient(0, 0, r.width, r.height);
+    g.addColorStop(0, '#b8bcc6');
+    g.addColorStop(0.5, '#e9ebf0');
+    g.addColorStop(1, '#9ea3ad');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, r.width, r.height);
+    ctx.fillStyle = 'rgba(0,0,0,0.45)';
+    ctx.font = '700 15px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = 36;
+    ctx.lineCap = 'round';
+  };
+  const cleared = () => {
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let clear = 0;
+    for (let i = 3; i &lt; data.length; i += 64) if (data[i] === 0) clear++;
+    return clear / (data.length / 64);
+  };
+  const point = (e) => {
+    const r = canvas.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  };
+  const onDown = (e) => {
+    drawing = true;
+    last = point(e);
+    canvas.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (!drawing) return;
+    const p = point(e);
+    ctx.beginPath();
+    ctx.moveTo(last[0], last[1]);
+    ctx.lineTo(p[0], p[1]);
+    ctx.stroke();
+    last = p;
+    if (++strokes % 12 === 0 &amp;&amp; cleared() > 0.5) root.classList.add('is-done');
+  };
+  const onUp = () => (drawing = false);
+  const onReveal = () => root.classList.add('is-done');
+
+  paint();
+  canvas.addEventListener('pointerdown', onDown);
+  canvas.addEventListener('pointermove', onMove);
+  canvas.addEventListener('pointerup', onUp);
+  reveal.addEventListener('click', onReveal);
+  return () => {
+    canvas.removeEventListener('pointerdown', onDown);
+    canvas.removeEventListener('pointermove', onMove);
+    canvas.removeEventListener('pointerup', onUp);
+    reveal.removeEventListener('click', onReveal);
+  };
+}
+
+document.querySelectorAll(&quot;.scratch&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.28:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (9 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.28:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Only short hover and focus transitions (under 300ms).</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>button &quot;Reveal without scratching&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- paragraph:
+  - text: Your discount code
+  - strong: TEAR-25
+- button &quot;Reveal without scratching&quot;</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#scratch-card">See it in the zine</a> <code>npx -y tearsheet add scratch-card</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html -->
+&lt;div class=&quot;scratch&quot;>
+  &lt;div class=&quot;scratch-card&quot;>
+    &lt;p class=&quot;scratch-prize&quot;>&lt;span>Your discount code&lt;/span>&lt;strong>TEAR-25&lt;/strong>&lt;/p>
+    &lt;canvas class=&quot;scratch-foil&quot; aria-hidden=&quot;true&quot;>&lt;/canvas>
+  &lt;/div>
+  &lt;button class=&quot;scratch-reveal&quot; type=&quot;button&quot;>Reveal without scratching&lt;/button>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */
+.scratch { display: grid; justify-items: center; gap: 12px; }
+.scratch-card {
+  position: relative;
+  width: 300px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--ui-accent-soft);
+  border: 2px dashed var(--ui-accent);
+}
+.scratch-prize {
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  color: var(--ui-text);
+}
+.scratch-prize span { font-size: 13px; color: var(--ui-muted); }
+.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }
+.scratch-foil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  transition: opacity 0.6s;
+}
+.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }
+.scratch-reveal {
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-accent);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */
+function setup(root) {
+  const canvas = root.querySelector('.scratch-foil');
+  const reveal = root.querySelector('.scratch-reveal');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let last = null;
+  let strokes = 0;
+
+  const paint = () => {
+    const r = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = r.width * dpr;
+    canvas.height = r.height * dpr;
+    ctx.scale(dpr, dpr);
+    const g = ctx.createLinearGradient(0, 0, r.width, r.height);
+    g.addColorStop(0, '#b8bcc6');
+    g.addColorStop(0.5, '#e9ebf0');
+    g.addColorStop(1, '#9ea3ad');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, r.width, r.height);
+    ctx.fillStyle = 'rgba(0,0,0,0.45)';
+    ctx.font = '700 15px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = 36;
+    ctx.lineCap = 'round';
+  };
+  const cleared = () => {
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let clear = 0;
+    for (let i = 3; i &lt; data.length; i += 64) if (data[i] === 0) clear++;
+    return clear / (data.length / 64);
+  };
+  const point = (e) => {
+    const r = canvas.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  };
+  const onDown = (e) => {
+    drawing = true;
+    last = point(e);
+    canvas.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (!drawing) return;
+    const p = point(e);
+    ctx.beginPath();
+    ctx.moveTo(last[0], last[1]);
+    ctx.lineTo(p[0], p[1]);
+    ctx.stroke();
+    last = p;
+    if (++strokes % 12 === 0 &amp;&amp; cleared() > 0.5) root.classList.add('is-done');
+  };
+  const onUp = () => (drawing = false);
+  const onReveal = () => root.classList.add('is-done');
+
+  paint();
+  canvas.addEventListener('pointerdown', onDown);
+  canvas.addEventListener('pointermove', onMove);
+  canvas.addEventListener('pointerup', onUp);
+  reveal.addEventListener('click', onReveal);
+  return () => {
+    canvas.removeEventListener('pointerdown', onDown);
+    canvas.removeEventListener('pointermove', onMove);
+    canvas.removeEventListener('pointerup', onUp);
+    reveal.removeEventListener('click', onReveal);
+  };
+}
+
+document.querySelectorAll(&quot;.scratch&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>ScratchCard.jsx</span></div><pre tabindex="0"><code>/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */
+import { useEffect, useRef } from 'react';
+import './ScratchCard.css';
+
+function setup(root) {
+  const canvas = root.querySelector('.scratch-foil');
+  const reveal = root.querySelector('.scratch-reveal');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let last = null;
+  let strokes = 0;
+
+  const paint = () => {
+    const r = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = r.width * dpr;
+    canvas.height = r.height * dpr;
+    ctx.scale(dpr, dpr);
+    const g = ctx.createLinearGradient(0, 0, r.width, r.height);
+    g.addColorStop(0, '#b8bcc6');
+    g.addColorStop(0.5, '#e9ebf0');
+    g.addColorStop(1, '#9ea3ad');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, r.width, r.height);
+    ctx.fillStyle = 'rgba(0,0,0,0.45)';
+    ctx.font = '700 15px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = 36;
+    ctx.lineCap = 'round';
+  };
+  const cleared = () => {
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let clear = 0;
+    for (let i = 3; i &lt; data.length; i += 64) if (data[i] === 0) clear++;
+    return clear / (data.length / 64);
+  };
+  const point = (e) => {
+    const r = canvas.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  };
+  const onDown = (e) => {
+    drawing = true;
+    last = point(e);
+    canvas.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (!drawing) return;
+    const p = point(e);
+    ctx.beginPath();
+    ctx.moveTo(last[0], last[1]);
+    ctx.lineTo(p[0], p[1]);
+    ctx.stroke();
+    last = p;
+    if (++strokes % 12 === 0 &amp;&amp; cleared() > 0.5) root.classList.add('is-done');
+  };
+  const onUp = () => (drawing = false);
+  const onReveal = () => root.classList.add('is-done');
+
+  paint();
+  canvas.addEventListener('pointerdown', onDown);
+  canvas.addEventListener('pointermove', onMove);
+  canvas.addEventListener('pointerup', onUp);
+  reveal.addEventListener('click', onReveal);
+  return () => {
+    canvas.removeEventListener('pointerdown', onDown);
+    canvas.removeEventListener('pointermove', onMove);
+    canvas.removeEventListener('pointerup', onUp);
+    reveal.removeEventListener('click', onReveal);
+  };
+}
+
+export function ScratchCard() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;div ref={ref} className=&quot;scratch&quot;>
+      &lt;div className=&quot;scratch-card&quot;>
+        &lt;p className=&quot;scratch-prize&quot;>&lt;span>Your discount code&lt;/span>&lt;strong>TEAR-25&lt;/strong>&lt;/p>
+        &lt;canvas className=&quot;scratch-foil&quot; aria-hidden=&quot;true&quot;>&lt;/canvas>
+      &lt;/div>
+      &lt;button className=&quot;scratch-reveal&quot; type=&quot;button&quot;>Reveal without scratching&lt;/button>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>ScratchCard.css</span></div><pre tabindex="0"><code>/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */
+.scratch { display: grid; justify-items: center; gap: 12px; }
+.scratch-card {
+  position: relative;
+  width: 300px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--ui-accent-soft);
+  border: 2px dashed var(--ui-accent);
+}
+.scratch-prize {
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  color: var(--ui-text);
+}
+.scratch-prize span { font-size: 13px; color: var(--ui-muted); }
+.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }
+.scratch-foil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  transition: opacity 0.6s;
+}
+.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }
+.scratch-reveal {
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-accent);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>ScratchCard.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const canvas = root.querySelector('.scratch-foil');
+  const reveal = root.querySelector('.scratch-reveal');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let last = null;
+  let strokes = 0;
+
+  const paint = () => {
+    const r = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = r.width * dpr;
+    canvas.height = r.height * dpr;
+    ctx.scale(dpr, dpr);
+    const g = ctx.createLinearGradient(0, 0, r.width, r.height);
+    g.addColorStop(0, '#b8bcc6');
+    g.addColorStop(0.5, '#e9ebf0');
+    g.addColorStop(1, '#9ea3ad');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, r.width, r.height);
+    ctx.fillStyle = 'rgba(0,0,0,0.45)';
+    ctx.font = '700 15px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = 36;
+    ctx.lineCap = 'round';
+  };
+  const cleared = () => {
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let clear = 0;
+    for (let i = 3; i &lt; data.length; i += 64) if (data[i] === 0) clear++;
+    return clear / (data.length / 64);
+  };
+  const point = (e) => {
+    const r = canvas.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  };
+  const onDown = (e) => {
+    drawing = true;
+    last = point(e);
+    canvas.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (!drawing) return;
+    const p = point(e);
+    ctx.beginPath();
+    ctx.moveTo(last[0], last[1]);
+    ctx.lineTo(p[0], p[1]);
+    ctx.stroke();
+    last = p;
+    if (++strokes % 12 === 0 &amp;&amp; cleared() > 0.5) root.classList.add('is-done');
+  };
+  const onUp = () => (drawing = false);
+  const onReveal = () => root.classList.add('is-done');
+
+  paint();
+  canvas.addEventListener('pointerdown', onDown);
+  canvas.addEventListener('pointermove', onMove);
+  canvas.addEventListener('pointerup', onUp);
+  reveal.addEventListener('click', onReveal);
+  return () => {
+    canvas.removeEventListener('pointerdown', onDown);
+    canvas.removeEventListener('pointermove', onMove);
+    canvas.removeEventListener('pointerup', onUp);
+    reveal.removeEventListener('click', onReveal);
+  };
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;div ref=&quot;el&quot; class=&quot;scratch&quot;>
+    &lt;div class=&quot;scratch-card&quot;>
+      &lt;p class=&quot;scratch-prize&quot;>&lt;span>Your discount code&lt;/span>&lt;strong>TEAR-25&lt;/strong>&lt;/p>
+      &lt;canvas class=&quot;scratch-foil&quot; aria-hidden=&quot;true&quot;>&lt;/canvas>
+    &lt;/div>
+    &lt;button class=&quot;scratch-reveal&quot; type=&quot;button&quot;>Reveal without scratching&lt;/button>
+  &lt;/div>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.scratch { display: grid; justify-items: center; gap: 12px; }
+.scratch-card {
+  position: relative;
+  width: 300px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--ui-accent-soft);
+  border: 2px dashed var(--ui-accent);
+}
+.scratch-prize {
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  color: var(--ui-text);
+}
+.scratch-prize span { font-size: 13px; color: var(--ui-muted); }
+.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }
+.scratch-foil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  transition: opacity 0.6s;
+}
+.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }
+.scratch-reveal {
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-accent);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>ScratchCard.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './ScratchCard.css';
+
+  let node;
+
+  function setup(root) {
+    const canvas = root.querySelector('.scratch-foil');
+    const reveal = root.querySelector('.scratch-reveal');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    let last = null;
+    let strokes = 0;
+
+    const paint = () => {
+      const r = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = r.width * dpr;
+      canvas.height = r.height * dpr;
+      ctx.scale(dpr, dpr);
+      const g = ctx.createLinearGradient(0, 0, r.width, r.height);
+      g.addColorStop(0, '#b8bcc6');
+      g.addColorStop(0.5, '#e9ebf0');
+      g.addColorStop(1, '#9ea3ad');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, r.width, r.height);
+      ctx.fillStyle = 'rgba(0,0,0,0.45)';
+      ctx.font = '700 15px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 36;
+      ctx.lineCap = 'round';
+    };
+    const cleared = () => {
+      const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let clear = 0;
+      for (let i = 3; i &lt; data.length; i += 64) if (data[i] === 0) clear++;
+      return clear / (data.length / 64);
+    };
+    const point = (e) => {
+      const r = canvas.getBoundingClientRect();
+      return [e.clientX - r.left, e.clientY - r.top];
+    };
+    const onDown = (e) => {
+      drawing = true;
+      last = point(e);
+      canvas.setPointerCapture(e.pointerId);
+    };
+    const onMove = (e) => {
+      if (!drawing) return;
+      const p = point(e);
+      ctx.beginPath();
+      ctx.moveTo(last[0], last[1]);
+      ctx.lineTo(p[0], p[1]);
+      ctx.stroke();
+      last = p;
+      if (++strokes % 12 === 0 &amp;&amp; cleared() > 0.5) root.classList.add('is-done');
+    };
+    const onUp = () => (drawing = false);
+    const onReveal = () => root.classList.add('is-done');
+
+    paint();
+    canvas.addEventListener('pointerdown', onDown);
+    canvas.addEventListener('pointermove', onMove);
+    canvas.addEventListener('pointerup', onUp);
+    reveal.addEventListener('click', onReveal);
+    return () => {
+      canvas.removeEventListener('pointerdown', onDown);
+      canvas.removeEventListener('pointermove', onMove);
+      canvas.removeEventListener('pointerup', onUp);
+      reveal.removeEventListener('click', onReveal);
+    };
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;div bind:this={node} class=&quot;scratch&quot;>
+  &lt;div class=&quot;scratch-card&quot;>
+    &lt;p class=&quot;scratch-prize&quot;>&lt;span>Your discount code&lt;/span>&lt;strong>TEAR-25&lt;/strong>&lt;/p>
+    &lt;canvas class=&quot;scratch-foil&quot; aria-hidden=&quot;true&quot;>&lt;/canvas>
+  &lt;/div>
+  &lt;button class=&quot;scratch-reveal&quot; type=&quot;button&quot;>Reveal without scratching&lt;/button>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>ScratchCard.css</span></div><pre tabindex="0"><code>/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */
+.scratch { display: grid; justify-items: center; gap: 12px; }
+.scratch-card {
+  position: relative;
+  width: 300px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--ui-accent-soft);
+  border: 2px dashed var(--ui-accent);
+}
+.scratch-prize {
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  color: var(--ui-text);
+}
+.scratch-prize span { font-size: 13px; color: var(--ui-muted); }
+.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }
+.scratch-foil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  transition: opacity 0.6s;
+}
+.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }
+.scratch-reveal {
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-accent);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="orbit-menu.html">← Orbit menu</a>
+      <a rel="next" href="liquid-progress.html">Liquid progress →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

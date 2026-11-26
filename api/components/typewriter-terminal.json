@@ -1,0 +1,98 @@
+{
+  "id": "typewriter-terminal",
+  "name": "Typewriter terminal",
+  "page": "p.92",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A terminal window that types out a short session line by line, with a blinking caret and a replay.",
+  "notes": "The full transcript is real text for screen readers from the start; only the visual copy is typed. Reduced motion shows it all at once.",
+  "usesJavaScript": true,
+  "sizeKb": 3.1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#typewriter-terminal",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/typewriter-terminal.json",
+  "version": "0fcd340d",
+  "checked": "axe clean in light and dark; tightest text contrast 6.56:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 6.56,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Replay\""
+    ],
+    "tree": "- figure:\n  - text: $ npx tearsheet add modal Fetched modal (HTML, React, Vue, Svelte) $ open Modal.jsx Done. No install needed, honestly.\n  - button \"Replay\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html -->\n<figure class=\"term\">\n  <div class=\"term-bar\" aria-hidden=\"true\"><i></i><i></i><i></i><span>zsh</span></div>\n  <pre class=\"term-sr\">$ npx tearsheet add modal\nFetched modal (HTML, React, Vue, Svelte)\n$ open Modal.jsx\nDone. No install needed, honestly.</pre>\n  <pre class=\"term-screen\" aria-hidden=\"true\"></pre>\n  <button class=\"term-replay\" type=\"button\">Replay</button>\n</figure>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */\n.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }\n.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }\n.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }\n.term-bar i:nth-child(2) { background: #febc2e; }\n.term-bar i:nth-child(3) { background: #28c840; }\n.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }\n.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }\n.term-screen .cmd { color: #86efac; }\n.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }\n@keyframes term-blink { 50% { opacity: 0; } }\n.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }\n.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }\n@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const lines = root.querySelector('.term-sr').textContent.split('\\n');\n  const screen = root.querySelector('.term-screen');\n  const replay = root.querySelector('.term-replay');\n  let timer;\n  const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };\n  const render = (upTo) => {\n    screen.replaceChildren();\n    let left = upTo;\n    for (const line of lines) {\n      if (left <= 0) break;\n      const shown = line.slice(0, left);\n      left -= line.length + 1;\n      const span = document.createElement('span');\n      if (line.startsWith('$')) span.className = 'cmd';\n      span.textContent = shown;\n      screen.append(span, left > 0 ? '\\n' : '');\n    }\n    screen.append(caret());\n  };\n  const total = lines.join('\\n').length;\n  const play = () => {\n    clearTimeout(timer);\n    if (reduce) return render(total);\n    let i = 0;\n    const tick = () => {\n      render(++i);\n      if (i < total) timer = setTimeout(tick, lines.join('\\n')[i - 1] === '\\n' ? 380 : 28 + Math.random() * 40);\n    };\n    tick();\n  };\n  replay.addEventListener('click', play);\n  play();\n  return () => { clearTimeout(timer); replay.removeEventListener('click', play); };\n}\n\ndocument.querySelectorAll(\".term\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "TypewriterTerminal.jsx",
+        "code": "/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */\nimport { useEffect, useRef } from 'react';\nimport './TypewriterTerminal.css';\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const lines = root.querySelector('.term-sr').textContent.split('\\n');\n  const screen = root.querySelector('.term-screen');\n  const replay = root.querySelector('.term-replay');\n  let timer;\n  const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };\n  const render = (upTo) => {\n    screen.replaceChildren();\n    let left = upTo;\n    for (const line of lines) {\n      if (left <= 0) break;\n      const shown = line.slice(0, left);\n      left -= line.length + 1;\n      const span = document.createElement('span');\n      if (line.startsWith('$')) span.className = 'cmd';\n      span.textContent = shown;\n      screen.append(span, left > 0 ? '\\n' : '');\n    }\n    screen.append(caret());\n  };\n  const total = lines.join('\\n').length;\n  const play = () => {\n    clearTimeout(timer);\n    if (reduce) return render(total);\n    let i = 0;\n    const tick = () => {\n      render(++i);\n      if (i < total) timer = setTimeout(tick, lines.join('\\n')[i - 1] === '\\n' ? 380 : 28 + Math.random() * 40);\n    };\n    tick();\n  };\n  replay.addEventListener('click', play);\n  play();\n  return () => { clearTimeout(timer); replay.removeEventListener('click', play); };\n}\n\nexport function TypewriterTerminal() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <figure ref={ref} className=\"term\">\n      <div className=\"term-bar\" aria-hidden=\"true\"><i></i><i></i><i></i><span>zsh</span></div>\n      <pre className=\"term-sr\">$ npx tearsheet add modal\n    Fetched modal (HTML, React, Vue, Svelte)\n    $ open Modal.jsx\n    Done. No install needed, honestly.</pre>\n      <pre className=\"term-screen\" aria-hidden=\"true\"></pre>\n      <button className=\"term-replay\" type=\"button\">Replay</button>\n    </figure>\n  );\n}"
+      },
+      {
+        "name": "TypewriterTerminal.css",
+        "code": "/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */\n.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }\n.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }\n.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }\n.term-bar i:nth-child(2) { background: #febc2e; }\n.term-bar i:nth-child(3) { background: #28c840; }\n.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }\n.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }\n.term-screen .cmd { color: #86efac; }\n.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }\n@keyframes term-blink { 50% { opacity: 0; } }\n.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }\n.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }\n@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "TypewriterTerminal.vue",
+        "code": "<!-- tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  const lines = root.querySelector('.term-sr').textContent.split('\\n');\n  const screen = root.querySelector('.term-screen');\n  const replay = root.querySelector('.term-replay');\n  let timer;\n  const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };\n  const render = (upTo) => {\n    screen.replaceChildren();\n    let left = upTo;\n    for (const line of lines) {\n      if (left <= 0) break;\n      const shown = line.slice(0, left);\n      left -= line.length + 1;\n      const span = document.createElement('span');\n      if (line.startsWith('$')) span.className = 'cmd';\n      span.textContent = shown;\n      screen.append(span, left > 0 ? '\\n' : '');\n    }\n    screen.append(caret());\n  };\n  const total = lines.join('\\n').length;\n  const play = () => {\n    clearTimeout(timer);\n    if (reduce) return render(total);\n    let i = 0;\n    const tick = () => {\n      render(++i);\n      if (i < total) timer = setTimeout(tick, lines.join('\\n')[i - 1] === '\\n' ? 380 : 28 + Math.random() * 40);\n    };\n    tick();\n  };\n  replay.addEventListener('click', play);\n  play();\n  return () => { clearTimeout(timer); replay.removeEventListener('click', play); };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <figure ref=\"el\" class=\"term\">\n    <div class=\"term-bar\" aria-hidden=\"true\"><i></i><i></i><i></i><span>zsh</span></div>\n    <pre class=\"term-sr\">$ npx tearsheet add modal\n  Fetched modal (HTML, React, Vue, Svelte)\n  $ open Modal.jsx\n  Done. No install needed, honestly.</pre>\n    <pre class=\"term-screen\" aria-hidden=\"true\"></pre>\n    <button class=\"term-replay\" type=\"button\">Replay</button>\n  </figure>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }\n.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }\n.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }\n.term-bar i:nth-child(2) { background: #febc2e; }\n.term-bar i:nth-child(3) { background: #28c840; }\n.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }\n.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }\n.term-screen .cmd { color: #86efac; }\n.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }\n@keyframes term-blink { 50% { opacity: 0; } }\n.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }\n.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }\n@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "TypewriterTerminal.svelte",
+        "code": "<!-- tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './TypewriterTerminal.css';\n\n  let node;\n\n  function setup(root) {\n    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    const lines = root.querySelector('.term-sr').textContent.split('\\n');\n    const screen = root.querySelector('.term-screen');\n    const replay = root.querySelector('.term-replay');\n    let timer;\n    const caret = () => { const c = document.createElement('span'); c.className = 'term-caret'; return c; };\n    const render = (upTo) => {\n      screen.replaceChildren();\n      let left = upTo;\n      for (const line of lines) {\n        if (left <= 0) break;\n        const shown = line.slice(0, left);\n        left -= line.length + 1;\n        const span = document.createElement('span');\n        if (line.startsWith('$')) span.className = 'cmd';\n        span.textContent = shown;\n        screen.append(span, left > 0 ? '\\n' : '');\n      }\n      screen.append(caret());\n    };\n    const total = lines.join('\\n').length;\n    const play = () => {\n      clearTimeout(timer);\n      if (reduce) return render(total);\n      let i = 0;\n      const tick = () => {\n        render(++i);\n        if (i < total) timer = setTimeout(tick, lines.join('\\n')[i - 1] === '\\n' ? 380 : 28 + Math.random() * 40);\n      };\n      tick();\n    };\n    replay.addEventListener('click', play);\n    play();\n    return () => { clearTimeout(timer); replay.removeEventListener('click', play); };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<figure bind:this={node} class=\"term\">\n  <div class=\"term-bar\" aria-hidden=\"true\"><i></i><i></i><i></i><span>zsh</span></div>\n  <pre class=\"term-sr\">$ npx tearsheet add modal\nFetched modal (HTML, React, Vue, Svelte)\n$ open Modal.jsx\nDone. No install needed, honestly.</pre>\n  <pre class=\"term-screen\" aria-hidden=\"true\"></pre>\n  <button class=\"term-replay\" type=\"button\">Replay</button>\n</figure>"
+      },
+      {
+        "name": "TypewriterTerminal.css",
+        "code": "/* tearsheet typewriter-terminal v0fcd340d · https://qusaialjbali.github.io/tearsheet/zine/parts/typewriter-terminal.html */\n.term { width: 100%; max-width: 460px; margin: 0; overflow: hidden; background: #0f1115; border-radius: 12px; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5); }\n.term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1b1e25; }\n.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }\n.term-bar i:nth-child(2) { background: #febc2e; }\n.term-bar i:nth-child(3) { background: #28c840; }\n.term-bar span { margin-left: auto; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #9ca3af; }\n.term-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.term-screen { min-height: 120px; margin: 0; padding: 16px; font-family: ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.7; color: #e5e7eb; white-space: pre-wrap; }\n.term-screen .cmd { color: #86efac; }\n.term-caret { display: inline-block; width: 8px; height: 1.1em; margin-left: 1px; vertical-align: -2px; background: #e5e7eb; animation: term-blink 1s steps(1) infinite; }\n@keyframes term-blink { 50% { opacity: 0; } }\n.term-replay { display: block; margin: 0 16px 14px auto; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e5e7eb; background: #262a33; border: 0; border-radius: 6px; cursor: pointer; }\n.term-replay:focus-visible { outline: none; box-shadow: 0 0 0 3px #818cf8; }\n@media (prefers-reduced-motion: reduce) { .term-caret { animation: none; } }"
+      }
+    ]
+  }
+}

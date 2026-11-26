@@ -1,0 +1,100 @@
+{
+  "id": "number-stepper",
+  "name": "Number stepper",
+  "page": "p.12",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Minus and plus buttons around a number field, clamped to a range.",
+  "notes": "People can still type a number directly. The buttons disable at the limits instead of silently doing nothing.",
+  "usesJavaScript": true,
+  "sizeKb": 2.9,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#number-stepper",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/number-stepper.json",
+  "version": "199faec9",
+  "checked": "axe clean in light and dark; tightest text contrast 16.1:1 (needs 4.5:1); 3 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 17
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 17
+      }
+    },
+    "contrast": {
+      "ratio": 16.1,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Fewer guests\"",
+      "spinbutton \"Guests\": \"2\"",
+      "button \"More guests\""
+    ],
+    "tree": "- text: Guests\n- button \"Fewer guests\"\n- spinbutton \"Guests\": \"2\"\n- button \"More guests\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html -->\n<div class=\"stepper\">\n  <label class=\"stepper-label\" for=\"guests\">Guests</label>\n  <div class=\"stepper-control\">\n    <button class=\"stepper-btn\" type=\"button\" data-step=\"-1\" aria-label=\"Fewer guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M5 10h10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    <input class=\"stepper-input\" id=\"guests\" type=\"number\" inputmode=\"numeric\" min=\"1\" max=\"12\" value=\"2\">\n    <button class=\"stepper-btn\" type=\"button\" data-step=\"1\" aria-label=\"More guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5 10h10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html */\n.stepper { display: grid; gap: 6px; }\n.stepper-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.stepper-control {\n  display: inline-flex;\n  align-items: center;\n  width: max-content;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.stepper-control:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.stepper-btn {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  cursor: pointer;\n}\n.stepper-btn svg { width: 18px; height: 18px; }\n.stepper-btn:hover:not(:disabled) { background: var(--ui-surface-2); }\n.stepper-btn:disabled { color: var(--ui-border-strong); cursor: not-allowed; }\n.stepper-btn:focus-visible { outline: 2px solid var(--ui-accent); outline-offset: -2px; }\n.stepper-input {\n  width: 56px;\n  font: inherit;\n  font-size: 16px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  font-variant-numeric: tabular-nums;\n  -moz-appearance: textfield;\n}\n.stepper-input:focus { outline: none; }\n.stepper-input::-webkit-inner-spin-button, .stepper-input::-webkit-outer-spin-button { appearance: none; margin: 0; }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html */\nfunction setup(root) {\n  const input = root.querySelector('.stepper-input');\n  const [minus, plus] = root.querySelectorAll('[data-step]');\n  const clamp = (v) => Math.min(Number(input.max), Math.max(Number(input.min), v));\n\n  const sync = () => {\n    minus.disabled = Number(input.value) <= Number(input.min);\n    plus.disabled = Number(input.value) >= Number(input.max);\n  };\n  const onStep = (e) => {\n    input.value = clamp((Number(input.value) || 0) + Number(e.currentTarget.dataset.step));\n    sync();\n  };\n  const onChange = () => {\n    input.value = clamp(Number(input.value) || Number(input.min));\n    sync();\n  };\n\n  minus.addEventListener('click', onStep);\n  plus.addEventListener('click', onStep);\n  input.addEventListener('change', onChange);\n  sync();\n  return () => {\n    minus.removeEventListener('click', onStep);\n    plus.removeEventListener('click', onStep);\n    input.removeEventListener('change', onChange);\n  };\n}\n\ndocument.querySelectorAll(\".stepper\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "NumberStepper.jsx",
+        "code": "/* tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html */\nimport { useEffect, useRef } from 'react';\nimport './NumberStepper.css';\n\nfunction setup(root) {\n  const input = root.querySelector('.stepper-input');\n  const [minus, plus] = root.querySelectorAll('[data-step]');\n  const clamp = (v) => Math.min(Number(input.max), Math.max(Number(input.min), v));\n\n  const sync = () => {\n    minus.disabled = Number(input.value) <= Number(input.min);\n    plus.disabled = Number(input.value) >= Number(input.max);\n  };\n  const onStep = (e) => {\n    input.value = clamp((Number(input.value) || 0) + Number(e.currentTarget.dataset.step));\n    sync();\n  };\n  const onChange = () => {\n    input.value = clamp(Number(input.value) || Number(input.min));\n    sync();\n  };\n\n  minus.addEventListener('click', onStep);\n  plus.addEventListener('click', onStep);\n  input.addEventListener('change', onChange);\n  sync();\n  return () => {\n    minus.removeEventListener('click', onStep);\n    plus.removeEventListener('click', onStep);\n    input.removeEventListener('change', onChange);\n  };\n}\n\nexport function NumberStepper() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"stepper\">\n      <label className=\"stepper-label\" htmlFor=\"guests\">Guests</label>\n      <div className=\"stepper-control\">\n        <button className=\"stepper-btn\" type=\"button\" data-step=\"-1\" aria-label=\"Fewer guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M5 10h10\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\"/></svg></button>\n        <input className=\"stepper-input\" id=\"guests\" type=\"number\" inputMode=\"numeric\" min=\"1\" max=\"12\" defaultValue=\"2\" />\n        <button className=\"stepper-btn\" type=\"button\" data-step=\"1\" aria-label=\"More guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5 10h10\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\"/></svg></button>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "NumberStepper.css",
+        "code": "/* tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html */\n.stepper { display: grid; gap: 6px; }\n.stepper-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.stepper-control {\n  display: inline-flex;\n  align-items: center;\n  width: max-content;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.stepper-control:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.stepper-btn {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  cursor: pointer;\n}\n.stepper-btn svg { width: 18px; height: 18px; }\n.stepper-btn:hover:not(:disabled) { background: var(--ui-surface-2); }\n.stepper-btn:disabled { color: var(--ui-border-strong); cursor: not-allowed; }\n.stepper-btn:focus-visible { outline: 2px solid var(--ui-accent); outline-offset: -2px; }\n.stepper-input {\n  width: 56px;\n  font: inherit;\n  font-size: 16px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  font-variant-numeric: tabular-nums;\n  -moz-appearance: textfield;\n}\n.stepper-input:focus { outline: none; }\n.stepper-input::-webkit-inner-spin-button, .stepper-input::-webkit-outer-spin-button { appearance: none; margin: 0; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "NumberStepper.vue",
+        "code": "<!-- tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const input = root.querySelector('.stepper-input');\n  const [minus, plus] = root.querySelectorAll('[data-step]');\n  const clamp = (v) => Math.min(Number(input.max), Math.max(Number(input.min), v));\n\n  const sync = () => {\n    minus.disabled = Number(input.value) <= Number(input.min);\n    plus.disabled = Number(input.value) >= Number(input.max);\n  };\n  const onStep = (e) => {\n    input.value = clamp((Number(input.value) || 0) + Number(e.currentTarget.dataset.step));\n    sync();\n  };\n  const onChange = () => {\n    input.value = clamp(Number(input.value) || Number(input.min));\n    sync();\n  };\n\n  minus.addEventListener('click', onStep);\n  plus.addEventListener('click', onStep);\n  input.addEventListener('change', onChange);\n  sync();\n  return () => {\n    minus.removeEventListener('click', onStep);\n    plus.removeEventListener('click', onStep);\n    input.removeEventListener('change', onChange);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"stepper\">\n    <label class=\"stepper-label\" for=\"guests\">Guests</label>\n    <div class=\"stepper-control\">\n      <button class=\"stepper-btn\" type=\"button\" data-step=\"-1\" aria-label=\"Fewer guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M5 10h10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n      <input class=\"stepper-input\" id=\"guests\" type=\"number\" inputmode=\"numeric\" min=\"1\" max=\"12\" value=\"2\">\n      <button class=\"stepper-btn\" type=\"button\" data-step=\"1\" aria-label=\"More guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5 10h10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    </div>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.stepper { display: grid; gap: 6px; }\n.stepper-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.stepper-control {\n  display: inline-flex;\n  align-items: center;\n  width: max-content;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.stepper-control:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.stepper-btn {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  cursor: pointer;\n}\n.stepper-btn svg { width: 18px; height: 18px; }\n.stepper-btn:hover:not(:disabled) { background: var(--ui-surface-2); }\n.stepper-btn:disabled { color: var(--ui-border-strong); cursor: not-allowed; }\n.stepper-btn:focus-visible { outline: 2px solid var(--ui-accent); outline-offset: -2px; }\n.stepper-input {\n  width: 56px;\n  font: inherit;\n  font-size: 16px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  font-variant-numeric: tabular-nums;\n  -moz-appearance: textfield;\n}\n.stepper-input:focus { outline: none; }\n.stepper-input::-webkit-inner-spin-button, .stepper-input::-webkit-outer-spin-button { appearance: none; margin: 0; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "NumberStepper.svelte",
+        "code": "<!-- tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './NumberStepper.css';\n\n  let node;\n\n  function setup(root) {\n    const input = root.querySelector('.stepper-input');\n    const [minus, plus] = root.querySelectorAll('[data-step]');\n    const clamp = (v) => Math.min(Number(input.max), Math.max(Number(input.min), v));\n\n    const sync = () => {\n      minus.disabled = Number(input.value) <= Number(input.min);\n      plus.disabled = Number(input.value) >= Number(input.max);\n    };\n    const onStep = (e) => {\n      input.value = clamp((Number(input.value) || 0) + Number(e.currentTarget.dataset.step));\n      sync();\n    };\n    const onChange = () => {\n      input.value = clamp(Number(input.value) || Number(input.min));\n      sync();\n    };\n\n    minus.addEventListener('click', onStep);\n    plus.addEventListener('click', onStep);\n    input.addEventListener('change', onChange);\n    sync();\n    return () => {\n      minus.removeEventListener('click', onStep);\n      plus.removeEventListener('click', onStep);\n      input.removeEventListener('change', onChange);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"stepper\">\n  <label class=\"stepper-label\" for=\"guests\">Guests</label>\n  <div class=\"stepper-control\">\n    <button class=\"stepper-btn\" type=\"button\" data-step=\"-1\" aria-label=\"Fewer guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M5 10h10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    <input class=\"stepper-input\" id=\"guests\" type=\"number\" inputmode=\"numeric\" min=\"1\" max=\"12\" value=\"2\">\n    <button class=\"stepper-btn\" type=\"button\" data-step=\"1\" aria-label=\"More guests\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 5v10M5 10h10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n  </div>\n</div>"
+      },
+      {
+        "name": "NumberStepper.css",
+        "code": "/* tearsheet number-stepper v199faec9 · https://qusaialjbali.github.io/tearsheet/zine/parts/number-stepper.html */\n.stepper { display: grid; gap: 6px; }\n.stepper-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.stepper-control {\n  display: inline-flex;\n  align-items: center;\n  width: max-content;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.stepper-control:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.stepper-btn {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  cursor: pointer;\n}\n.stepper-btn svg { width: 18px; height: 18px; }\n.stepper-btn:hover:not(:disabled) { background: var(--ui-surface-2); }\n.stepper-btn:disabled { color: var(--ui-border-strong); cursor: not-allowed; }\n.stepper-btn:focus-visible { outline: 2px solid var(--ui-accent); outline-offset: -2px; }\n.stepper-input {\n  width: 56px;\n  font: inherit;\n  font-size: 16px;\n  font-weight: 600;\n  text-align: center;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  font-variant-numeric: tabular-nums;\n  -moz-appearance: textfield;\n}\n.stepper-input:focus { outline: none; }\n.stepper-input::-webkit-inner-spin-button, .stepper-input::-webkit-outer-spin-button { appearance: none; margin: 0; }"
+      }
+    ]
+  }
+}

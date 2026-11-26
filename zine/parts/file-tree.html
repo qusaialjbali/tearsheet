@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File tree · Data component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A nested folder tree built from &lt;details>, with file and folder icons and no JavaScript.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="File tree · Data component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A nested folder tree built from &lt;details>, with file and folder icons and no JavaScript.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"File tree","description":"A nested folder tree built from <details>, with file and folder icons and no JavaScript.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#file-tree">Issue 01</a> · Data · p.43</p>
+    <h1><span class="a">File tree</span><span class="b" aria-hidden="true">File tree</span></h1>
+    <p class="lede">A nested folder tree built from &lt;details>, with file and folder icons and no JavaScript.</p>
+    <p class="why"><b>Why it works:</b> Each folder is a native disclosure, so it works with keyboard and screen readers out of the box. For thousands of nodes, switch to the full ARIA tree pattern with roving focus.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="File tree preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.tree { width: 100%; max-width: 300px; padding: 10px; font-size: 14px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.tree ul { margin: 0; padding: 0; list-style: none; }
+.tree ul ul { margin-left: 12px; padding-left: 8px; border-left: 1px solid var(--ui-border); }
+.tree summary, .tree-file {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  color: var(--ui-text); text-decoration: none; border-radius: 6px; cursor: pointer; list-style: none;
+}
+.tree summary::-webkit-details-marker { display: none; }
+.tree summary::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-accent);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree-file::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-muted);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree summary:hover, .tree-file:hover { background: var(--ui-surface-2); }
+.tree summary:focus-visible, .tree-file:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.tree-file[aria-current=&quot;page&quot;] { color: var(--ui-accent); font-weight: 600; background: var(--ui-accent-soft); }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;nav class=&quot;tree&quot; aria-label=&quot;Project files&quot;>
+  &lt;ul>
+    &lt;li>&lt;details open>&lt;summary>src&lt;/summary>
+      &lt;ul>
+        &lt;li>&lt;details open>&lt;summary>components&lt;/summary>
+          &lt;ul>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Button.jsx&lt;/a>&lt;/li>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot; aria-current=&quot;page&quot;>Modal.jsx&lt;/a>&lt;/li>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Tabs.jsx&lt;/a>&lt;/li>
+          &lt;/ul>
+        &lt;/details>&lt;/li>
+        &lt;li>&lt;details>&lt;summary>styles&lt;/summary>
+          &lt;ul>&lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>tokens.css&lt;/a>&lt;/li>&lt;/ul>
+        &lt;/details>&lt;/li>
+        &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>main.js&lt;/a>&lt;/li>
+      &lt;/ul>
+    &lt;/details>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>package.json&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>README.md&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/nav>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 5.35:1 · 9 tab stops · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (16 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 5.35:1, where 4.5:1 is needed (dark).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> No motion.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>text: src</li><li>text: components</li><li>link &quot;Button.jsx&quot;:</li><li>link &quot;Modal.jsx&quot;:</li><li>link &quot;Tabs.jsx&quot;:</li><li>text: styles</li><li>link &quot;main.js&quot;:</li><li>link &quot;package.json&quot;:</li><li>link &quot;README.md&quot;:</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- navigation &quot;Project files&quot;:
+  - list:
+    - listitem:
+      - group:
+        - text: src
+        - list:
+          - listitem:
+            - group:
+              - text: components
+              - list:
+                - listitem:
+                  - link &quot;Button.jsx&quot;:
+                    - /url: &quot;#&quot;
+                - listitem:
+                  - link &quot;Modal.jsx&quot;:
+                    - /url: &quot;#&quot;
+                - listitem:
+                  - link &quot;Tabs.jsx&quot;:
+                    - /url: &quot;#&quot;
+          - listitem:
+            - group: styles
+          - listitem:
+            - link &quot;main.js&quot;:
+              - /url: &quot;#&quot;
+    - listitem:
+      - link &quot;package.json&quot;:
+        - /url: &quot;#&quot;
+    - listitem:
+      - link &quot;README.md&quot;:
+        - /url: &quot;#&quot;</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#file-tree">See it in the zine</a> <code>npx -y tearsheet add file-tree</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet file-tree vc0a3d540 · https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html -->
+&lt;nav class=&quot;tree&quot; aria-label=&quot;Project files&quot;>
+  &lt;ul>
+    &lt;li>&lt;details open>&lt;summary>src&lt;/summary>
+      &lt;ul>
+        &lt;li>&lt;details open>&lt;summary>components&lt;/summary>
+          &lt;ul>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Button.jsx&lt;/a>&lt;/li>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot; aria-current=&quot;page&quot;>Modal.jsx&lt;/a>&lt;/li>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Tabs.jsx&lt;/a>&lt;/li>
+          &lt;/ul>
+        &lt;/details>&lt;/li>
+        &lt;li>&lt;details>&lt;summary>styles&lt;/summary>
+          &lt;ul>&lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>tokens.css&lt;/a>&lt;/li>&lt;/ul>
+        &lt;/details>&lt;/li>
+        &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>main.js&lt;/a>&lt;/li>
+      &lt;/ul>
+    &lt;/details>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>package.json&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>README.md&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/nav></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet file-tree vc0a3d540 · https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html */
+.tree { width: 100%; max-width: 300px; padding: 10px; font-size: 14px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.tree ul { margin: 0; padding: 0; list-style: none; }
+.tree ul ul { margin-left: 12px; padding-left: 8px; border-left: 1px solid var(--ui-border); }
+.tree summary, .tree-file {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  color: var(--ui-text); text-decoration: none; border-radius: 6px; cursor: pointer; list-style: none;
+}
+.tree summary::-webkit-details-marker { display: none; }
+.tree summary::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-accent);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree-file::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-muted);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree summary:hover, .tree-file:hover { background: var(--ui-surface-2); }
+.tree summary:focus-visible, .tree-file:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.tree-file[aria-current=&quot;page&quot;] { color: var(--ui-accent); font-weight: 600; background: var(--ui-accent-soft); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>FileTree.jsx</span></div><pre tabindex="0"><code>/* tearsheet file-tree vc0a3d540 · https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html */
+import './FileTree.css';
+
+export function FileTree() {
+  return (
+    &lt;nav className=&quot;tree&quot; aria-label=&quot;Project files&quot;>
+      &lt;ul>
+        &lt;li>&lt;details open>&lt;summary>src&lt;/summary>
+          &lt;ul>
+            &lt;li>&lt;details open>&lt;summary>components&lt;/summary>
+              &lt;ul>
+                &lt;li>&lt;a href=&quot;#&quot; className=&quot;tree-file&quot;>Button.jsx&lt;/a>&lt;/li>
+                &lt;li>&lt;a href=&quot;#&quot; className=&quot;tree-file&quot; aria-current=&quot;page&quot;>Modal.jsx&lt;/a>&lt;/li>
+                &lt;li>&lt;a href=&quot;#&quot; className=&quot;tree-file&quot;>Tabs.jsx&lt;/a>&lt;/li>
+              &lt;/ul>
+            &lt;/details>&lt;/li>
+            &lt;li>&lt;details>&lt;summary>styles&lt;/summary>
+              &lt;ul>&lt;li>&lt;a href=&quot;#&quot; className=&quot;tree-file&quot;>tokens.css&lt;/a>&lt;/li>&lt;/ul>
+            &lt;/details>&lt;/li>
+            &lt;li>&lt;a href=&quot;#&quot; className=&quot;tree-file&quot;>main.js&lt;/a>&lt;/li>
+          &lt;/ul>
+        &lt;/details>&lt;/li>
+        &lt;li>&lt;a href=&quot;#&quot; className=&quot;tree-file&quot;>package.json&lt;/a>&lt;/li>
+        &lt;li>&lt;a href=&quot;#&quot; className=&quot;tree-file&quot;>README.md&lt;/a>&lt;/li>
+      &lt;/ul>
+    &lt;/nav>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>FileTree.css</span></div><pre tabindex="0"><code>/* tearsheet file-tree vc0a3d540 · https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html */
+.tree { width: 100%; max-width: 300px; padding: 10px; font-size: 14px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.tree ul { margin: 0; padding: 0; list-style: none; }
+.tree ul ul { margin-left: 12px; padding-left: 8px; border-left: 1px solid var(--ui-border); }
+.tree summary, .tree-file {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  color: var(--ui-text); text-decoration: none; border-radius: 6px; cursor: pointer; list-style: none;
+}
+.tree summary::-webkit-details-marker { display: none; }
+.tree summary::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-accent);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree-file::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-muted);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree summary:hover, .tree-file:hover { background: var(--ui-surface-2); }
+.tree summary:focus-visible, .tree-file:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.tree-file[aria-current=&quot;page&quot;] { color: var(--ui-accent); font-weight: 600; background: var(--ui-accent-soft); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>FileTree.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet file-tree vc0a3d540 · https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html -->
+&lt;template>
+  &lt;nav class=&quot;tree&quot; aria-label=&quot;Project files&quot;>
+    &lt;ul>
+      &lt;li>&lt;details open>&lt;summary>src&lt;/summary>
+        &lt;ul>
+          &lt;li>&lt;details open>&lt;summary>components&lt;/summary>
+            &lt;ul>
+              &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Button.jsx&lt;/a>&lt;/li>
+              &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot; aria-current=&quot;page&quot;>Modal.jsx&lt;/a>&lt;/li>
+              &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Tabs.jsx&lt;/a>&lt;/li>
+            &lt;/ul>
+          &lt;/details>&lt;/li>
+          &lt;li>&lt;details>&lt;summary>styles&lt;/summary>
+            &lt;ul>&lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>tokens.css&lt;/a>&lt;/li>&lt;/ul>
+          &lt;/details>&lt;/li>
+          &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>main.js&lt;/a>&lt;/li>
+        &lt;/ul>
+      &lt;/details>&lt;/li>
+      &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>package.json&lt;/a>&lt;/li>
+      &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>README.md&lt;/a>&lt;/li>
+    &lt;/ul>
+  &lt;/nav>
+&lt;/template>
+
+&lt;style scoped>
+.tree { width: 100%; max-width: 300px; padding: 10px; font-size: 14px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.tree ul { margin: 0; padding: 0; list-style: none; }
+.tree ul ul { margin-left: 12px; padding-left: 8px; border-left: 1px solid var(--ui-border); }
+.tree summary, .tree-file {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  color: var(--ui-text); text-decoration: none; border-radius: 6px; cursor: pointer; list-style: none;
+}
+.tree summary::-webkit-details-marker { display: none; }
+.tree summary::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-accent);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree-file::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-muted);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree summary:hover, .tree-file:hover { background: var(--ui-surface-2); }
+.tree summary:focus-visible, .tree-file:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.tree-file[aria-current=&quot;page&quot;] { color: var(--ui-accent); font-weight: 600; background: var(--ui-accent-soft); }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>FileTree.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet file-tree vc0a3d540 · https://qusaialjbali.github.io/tearsheet/zine/parts/file-tree.html -->
+&lt;nav class=&quot;tree&quot; aria-label=&quot;Project files&quot;>
+  &lt;ul>
+    &lt;li>&lt;details open>&lt;summary>src&lt;/summary>
+      &lt;ul>
+        &lt;li>&lt;details open>&lt;summary>components&lt;/summary>
+          &lt;ul>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Button.jsx&lt;/a>&lt;/li>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot; aria-current=&quot;page&quot;>Modal.jsx&lt;/a>&lt;/li>
+            &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>Tabs.jsx&lt;/a>&lt;/li>
+          &lt;/ul>
+        &lt;/details>&lt;/li>
+        &lt;li>&lt;details>&lt;summary>styles&lt;/summary>
+          &lt;ul>&lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>tokens.css&lt;/a>&lt;/li>&lt;/ul>
+        &lt;/details>&lt;/li>
+        &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>main.js&lt;/a>&lt;/li>
+      &lt;/ul>
+    &lt;/details>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>package.json&lt;/a>&lt;/li>
+    &lt;li>&lt;a href=&quot;#&quot; class=&quot;tree-file&quot;>README.md&lt;/a>&lt;/li>
+  &lt;/ul>
+&lt;/nav>
+
+&lt;style>
+.tree { width: 100%; max-width: 300px; padding: 10px; font-size: 14px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }
+.tree ul { margin: 0; padding: 0; list-style: none; }
+.tree ul ul { margin-left: 12px; padding-left: 8px; border-left: 1px solid var(--ui-border); }
+.tree summary, .tree-file {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  color: var(--ui-text); text-decoration: none; border-radius: 6px; cursor: pointer; list-style: none;
+}
+.tree summary::-webkit-details-marker { display: none; }
+.tree summary::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-accent);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 5.5A1.5 1.5 0 0 1 3.5 4h4l2 2h7A1.5 1.5 0 0 1 18 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 14.5Z'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree-file::before {
+  content: &quot;&quot;; width: 16px; height: 16px; flex: none; background: var(--ui-muted);
+  -webkit-mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+  mask: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M5 2.5h6.5L15.5 6.5V17a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5ZM11.5 2.5v4h4'/%3E%3C/svg%3E&quot;) center / contain no-repeat;
+}
+.tree summary:hover, .tree-file:hover { background: var(--ui-surface-2); }
+.tree summary:focus-visible, .tree-file:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+.tree-file[aria-current=&quot;page&quot;] { color: var(--ui-accent); font-weight: 600; background: var(--ui-accent-soft); }
+&lt;/style></code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="calendar-month.html">← Month calendar</a>
+      <a rel="next" href="description-list.html">Details list →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

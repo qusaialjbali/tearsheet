@@ -1,0 +1,98 @@
+{
+  "id": "scratch-card",
+  "name": "Scratch card",
+  "page": "p.85",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "Scratch off a foil layer with your cursor or finger to reveal a hidden code.",
+  "notes": "The prize text is real text underneath (screen readers can read it), and “Reveal without scratching” gives keyboard users the same result.",
+  "usesJavaScript": true,
+  "sizeKb": 3.7,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#scratch-card",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/scratch-card.json",
+  "version": "ca084053",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Reveal without scratching\""
+    ],
+    "tree": "- paragraph:\n  - text: Your discount code\n  - strong: TEAR-25\n- button \"Reveal without scratching\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html -->\n<div class=\"scratch\">\n  <div class=\"scratch-card\">\n    <p class=\"scratch-prize\"><span>Your discount code</span><strong>TEAR-25</strong></p>\n    <canvas class=\"scratch-foil\" aria-hidden=\"true\"></canvas>\n  </div>\n  <button class=\"scratch-reveal\" type=\"button\">Reveal without scratching</button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */\n.scratch { display: grid; justify-items: center; gap: 12px; }\n.scratch-card {\n  position: relative;\n  width: 300px;\n  height: 160px;\n  overflow: hidden;\n  border-radius: 16px;\n  background: var(--ui-accent-soft);\n  border: 2px dashed var(--ui-accent);\n}\n.scratch-prize {\n  display: grid;\n  place-content: center;\n  gap: 4px;\n  height: 100%;\n  margin: 0;\n  text-align: center;\n  color: var(--ui-text);\n}\n.scratch-prize span { font-size: 13px; color: var(--ui-muted); }\n.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }\n.scratch-foil {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  cursor: crosshair;\n  touch-action: none;\n  transition: opacity 0.6s;\n}\n.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }\n.scratch-reveal {\n  padding: 6px 10px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: none;\n  border: 0;\n  border-radius: 6px;\n  text-decoration: underline;\n  text-underline-offset: 3px;\n  cursor: pointer;\n}\n.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */\nfunction setup(root) {\n  const canvas = root.querySelector('.scratch-foil');\n  const reveal = root.querySelector('.scratch-reveal');\n  const ctx = canvas.getContext('2d');\n  let drawing = false;\n  let last = null;\n  let strokes = 0;\n\n  const paint = () => {\n    const r = canvas.getBoundingClientRect();\n    const dpr = window.devicePixelRatio || 1;\n    canvas.width = r.width * dpr;\n    canvas.height = r.height * dpr;\n    ctx.scale(dpr, dpr);\n    const g = ctx.createLinearGradient(0, 0, r.width, r.height);\n    g.addColorStop(0, '#b8bcc6');\n    g.addColorStop(0.5, '#e9ebf0');\n    g.addColorStop(1, '#9ea3ad');\n    ctx.fillStyle = g;\n    ctx.fillRect(0, 0, r.width, r.height);\n    ctx.fillStyle = 'rgba(0,0,0,0.45)';\n    ctx.font = '700 15px system-ui, sans-serif';\n    ctx.textAlign = 'center';\n    ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);\n    ctx.globalCompositeOperation = 'destination-out';\n    ctx.lineWidth = 36;\n    ctx.lineCap = 'round';\n  };\n  const cleared = () => {\n    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;\n    let clear = 0;\n    for (let i = 3; i < data.length; i += 64) if (data[i] === 0) clear++;\n    return clear / (data.length / 64);\n  };\n  const point = (e) => {\n    const r = canvas.getBoundingClientRect();\n    return [e.clientX - r.left, e.clientY - r.top];\n  };\n  const onDown = (e) => {\n    drawing = true;\n    last = point(e);\n    canvas.setPointerCapture(e.pointerId);\n  };\n  const onMove = (e) => {\n    if (!drawing) return;\n    const p = point(e);\n    ctx.beginPath();\n    ctx.moveTo(last[0], last[1]);\n    ctx.lineTo(p[0], p[1]);\n    ctx.stroke();\n    last = p;\n    if (++strokes % 12 === 0 && cleared() > 0.5) root.classList.add('is-done');\n  };\n  const onUp = () => (drawing = false);\n  const onReveal = () => root.classList.add('is-done');\n\n  paint();\n  canvas.addEventListener('pointerdown', onDown);\n  canvas.addEventListener('pointermove', onMove);\n  canvas.addEventListener('pointerup', onUp);\n  reveal.addEventListener('click', onReveal);\n  return () => {\n    canvas.removeEventListener('pointerdown', onDown);\n    canvas.removeEventListener('pointermove', onMove);\n    canvas.removeEventListener('pointerup', onUp);\n    reveal.removeEventListener('click', onReveal);\n  };\n}\n\ndocument.querySelectorAll(\".scratch\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "ScratchCard.jsx",
+        "code": "/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */\nimport { useEffect, useRef } from 'react';\nimport './ScratchCard.css';\n\nfunction setup(root) {\n  const canvas = root.querySelector('.scratch-foil');\n  const reveal = root.querySelector('.scratch-reveal');\n  const ctx = canvas.getContext('2d');\n  let drawing = false;\n  let last = null;\n  let strokes = 0;\n\n  const paint = () => {\n    const r = canvas.getBoundingClientRect();\n    const dpr = window.devicePixelRatio || 1;\n    canvas.width = r.width * dpr;\n    canvas.height = r.height * dpr;\n    ctx.scale(dpr, dpr);\n    const g = ctx.createLinearGradient(0, 0, r.width, r.height);\n    g.addColorStop(0, '#b8bcc6');\n    g.addColorStop(0.5, '#e9ebf0');\n    g.addColorStop(1, '#9ea3ad');\n    ctx.fillStyle = g;\n    ctx.fillRect(0, 0, r.width, r.height);\n    ctx.fillStyle = 'rgba(0,0,0,0.45)';\n    ctx.font = '700 15px system-ui, sans-serif';\n    ctx.textAlign = 'center';\n    ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);\n    ctx.globalCompositeOperation = 'destination-out';\n    ctx.lineWidth = 36;\n    ctx.lineCap = 'round';\n  };\n  const cleared = () => {\n    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;\n    let clear = 0;\n    for (let i = 3; i < data.length; i += 64) if (data[i] === 0) clear++;\n    return clear / (data.length / 64);\n  };\n  const point = (e) => {\n    const r = canvas.getBoundingClientRect();\n    return [e.clientX - r.left, e.clientY - r.top];\n  };\n  const onDown = (e) => {\n    drawing = true;\n    last = point(e);\n    canvas.setPointerCapture(e.pointerId);\n  };\n  const onMove = (e) => {\n    if (!drawing) return;\n    const p = point(e);\n    ctx.beginPath();\n    ctx.moveTo(last[0], last[1]);\n    ctx.lineTo(p[0], p[1]);\n    ctx.stroke();\n    last = p;\n    if (++strokes % 12 === 0 && cleared() > 0.5) root.classList.add('is-done');\n  };\n  const onUp = () => (drawing = false);\n  const onReveal = () => root.classList.add('is-done');\n\n  paint();\n  canvas.addEventListener('pointerdown', onDown);\n  canvas.addEventListener('pointermove', onMove);\n  canvas.addEventListener('pointerup', onUp);\n  reveal.addEventListener('click', onReveal);\n  return () => {\n    canvas.removeEventListener('pointerdown', onDown);\n    canvas.removeEventListener('pointermove', onMove);\n    canvas.removeEventListener('pointerup', onUp);\n    reveal.removeEventListener('click', onReveal);\n  };\n}\n\nexport function ScratchCard() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"scratch\">\n      <div className=\"scratch-card\">\n        <p className=\"scratch-prize\"><span>Your discount code</span><strong>TEAR-25</strong></p>\n        <canvas className=\"scratch-foil\" aria-hidden=\"true\"></canvas>\n      </div>\n      <button className=\"scratch-reveal\" type=\"button\">Reveal without scratching</button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "ScratchCard.css",
+        "code": "/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */\n.scratch { display: grid; justify-items: center; gap: 12px; }\n.scratch-card {\n  position: relative;\n  width: 300px;\n  height: 160px;\n  overflow: hidden;\n  border-radius: 16px;\n  background: var(--ui-accent-soft);\n  border: 2px dashed var(--ui-accent);\n}\n.scratch-prize {\n  display: grid;\n  place-content: center;\n  gap: 4px;\n  height: 100%;\n  margin: 0;\n  text-align: center;\n  color: var(--ui-text);\n}\n.scratch-prize span { font-size: 13px; color: var(--ui-muted); }\n.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }\n.scratch-foil {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  cursor: crosshair;\n  touch-action: none;\n  transition: opacity 0.6s;\n}\n.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }\n.scratch-reveal {\n  padding: 6px 10px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: none;\n  border: 0;\n  border-radius: 6px;\n  text-decoration: underline;\n  text-underline-offset: 3px;\n  cursor: pointer;\n}\n.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "ScratchCard.vue",
+        "code": "<!-- tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const canvas = root.querySelector('.scratch-foil');\n  const reveal = root.querySelector('.scratch-reveal');\n  const ctx = canvas.getContext('2d');\n  let drawing = false;\n  let last = null;\n  let strokes = 0;\n\n  const paint = () => {\n    const r = canvas.getBoundingClientRect();\n    const dpr = window.devicePixelRatio || 1;\n    canvas.width = r.width * dpr;\n    canvas.height = r.height * dpr;\n    ctx.scale(dpr, dpr);\n    const g = ctx.createLinearGradient(0, 0, r.width, r.height);\n    g.addColorStop(0, '#b8bcc6');\n    g.addColorStop(0.5, '#e9ebf0');\n    g.addColorStop(1, '#9ea3ad');\n    ctx.fillStyle = g;\n    ctx.fillRect(0, 0, r.width, r.height);\n    ctx.fillStyle = 'rgba(0,0,0,0.45)';\n    ctx.font = '700 15px system-ui, sans-serif';\n    ctx.textAlign = 'center';\n    ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);\n    ctx.globalCompositeOperation = 'destination-out';\n    ctx.lineWidth = 36;\n    ctx.lineCap = 'round';\n  };\n  const cleared = () => {\n    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;\n    let clear = 0;\n    for (let i = 3; i < data.length; i += 64) if (data[i] === 0) clear++;\n    return clear / (data.length / 64);\n  };\n  const point = (e) => {\n    const r = canvas.getBoundingClientRect();\n    return [e.clientX - r.left, e.clientY - r.top];\n  };\n  const onDown = (e) => {\n    drawing = true;\n    last = point(e);\n    canvas.setPointerCapture(e.pointerId);\n  };\n  const onMove = (e) => {\n    if (!drawing) return;\n    const p = point(e);\n    ctx.beginPath();\n    ctx.moveTo(last[0], last[1]);\n    ctx.lineTo(p[0], p[1]);\n    ctx.stroke();\n    last = p;\n    if (++strokes % 12 === 0 && cleared() > 0.5) root.classList.add('is-done');\n  };\n  const onUp = () => (drawing = false);\n  const onReveal = () => root.classList.add('is-done');\n\n  paint();\n  canvas.addEventListener('pointerdown', onDown);\n  canvas.addEventListener('pointermove', onMove);\n  canvas.addEventListener('pointerup', onUp);\n  reveal.addEventListener('click', onReveal);\n  return () => {\n    canvas.removeEventListener('pointerdown', onDown);\n    canvas.removeEventListener('pointermove', onMove);\n    canvas.removeEventListener('pointerup', onUp);\n    reveal.removeEventListener('click', onReveal);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"scratch\">\n    <div class=\"scratch-card\">\n      <p class=\"scratch-prize\"><span>Your discount code</span><strong>TEAR-25</strong></p>\n      <canvas class=\"scratch-foil\" aria-hidden=\"true\"></canvas>\n    </div>\n    <button class=\"scratch-reveal\" type=\"button\">Reveal without scratching</button>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.scratch { display: grid; justify-items: center; gap: 12px; }\n.scratch-card {\n  position: relative;\n  width: 300px;\n  height: 160px;\n  overflow: hidden;\n  border-radius: 16px;\n  background: var(--ui-accent-soft);\n  border: 2px dashed var(--ui-accent);\n}\n.scratch-prize {\n  display: grid;\n  place-content: center;\n  gap: 4px;\n  height: 100%;\n  margin: 0;\n  text-align: center;\n  color: var(--ui-text);\n}\n.scratch-prize span { font-size: 13px; color: var(--ui-muted); }\n.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }\n.scratch-foil {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  cursor: crosshair;\n  touch-action: none;\n  transition: opacity 0.6s;\n}\n.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }\n.scratch-reveal {\n  padding: 6px 10px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: none;\n  border: 0;\n  border-radius: 6px;\n  text-decoration: underline;\n  text-underline-offset: 3px;\n  cursor: pointer;\n}\n.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "ScratchCard.svelte",
+        "code": "<!-- tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './ScratchCard.css';\n\n  let node;\n\n  function setup(root) {\n    const canvas = root.querySelector('.scratch-foil');\n    const reveal = root.querySelector('.scratch-reveal');\n    const ctx = canvas.getContext('2d');\n    let drawing = false;\n    let last = null;\n    let strokes = 0;\n\n    const paint = () => {\n      const r = canvas.getBoundingClientRect();\n      const dpr = window.devicePixelRatio || 1;\n      canvas.width = r.width * dpr;\n      canvas.height = r.height * dpr;\n      ctx.scale(dpr, dpr);\n      const g = ctx.createLinearGradient(0, 0, r.width, r.height);\n      g.addColorStop(0, '#b8bcc6');\n      g.addColorStop(0.5, '#e9ebf0');\n      g.addColorStop(1, '#9ea3ad');\n      ctx.fillStyle = g;\n      ctx.fillRect(0, 0, r.width, r.height);\n      ctx.fillStyle = 'rgba(0,0,0,0.45)';\n      ctx.font = '700 15px system-ui, sans-serif';\n      ctx.textAlign = 'center';\n      ctx.fillText('SCRATCH HERE', r.width / 2, r.height / 2 + 5);\n      ctx.globalCompositeOperation = 'destination-out';\n      ctx.lineWidth = 36;\n      ctx.lineCap = 'round';\n    };\n    const cleared = () => {\n      const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;\n      let clear = 0;\n      for (let i = 3; i < data.length; i += 64) if (data[i] === 0) clear++;\n      return clear / (data.length / 64);\n    };\n    const point = (e) => {\n      const r = canvas.getBoundingClientRect();\n      return [e.clientX - r.left, e.clientY - r.top];\n    };\n    const onDown = (e) => {\n      drawing = true;\n      last = point(e);\n      canvas.setPointerCapture(e.pointerId);\n    };\n    const onMove = (e) => {\n      if (!drawing) return;\n      const p = point(e);\n      ctx.beginPath();\n      ctx.moveTo(last[0], last[1]);\n      ctx.lineTo(p[0], p[1]);\n      ctx.stroke();\n      last = p;\n      if (++strokes % 12 === 0 && cleared() > 0.5) root.classList.add('is-done');\n    };\n    const onUp = () => (drawing = false);\n    const onReveal = () => root.classList.add('is-done');\n\n    paint();\n    canvas.addEventListener('pointerdown', onDown);\n    canvas.addEventListener('pointermove', onMove);\n    canvas.addEventListener('pointerup', onUp);\n    reveal.addEventListener('click', onReveal);\n    return () => {\n      canvas.removeEventListener('pointerdown', onDown);\n      canvas.removeEventListener('pointermove', onMove);\n      canvas.removeEventListener('pointerup', onUp);\n      reveal.removeEventListener('click', onReveal);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"scratch\">\n  <div class=\"scratch-card\">\n    <p class=\"scratch-prize\"><span>Your discount code</span><strong>TEAR-25</strong></p>\n    <canvas class=\"scratch-foil\" aria-hidden=\"true\"></canvas>\n  </div>\n  <button class=\"scratch-reveal\" type=\"button\">Reveal without scratching</button>\n</div>"
+      },
+      {
+        "name": "ScratchCard.css",
+        "code": "/* tearsheet scratch-card vca084053 · https://qusaialjbali.github.io/tearsheet/zine/parts/scratch-card.html */\n.scratch { display: grid; justify-items: center; gap: 12px; }\n.scratch-card {\n  position: relative;\n  width: 300px;\n  height: 160px;\n  overflow: hidden;\n  border-radius: 16px;\n  background: var(--ui-accent-soft);\n  border: 2px dashed var(--ui-accent);\n}\n.scratch-prize {\n  display: grid;\n  place-content: center;\n  gap: 4px;\n  height: 100%;\n  margin: 0;\n  text-align: center;\n  color: var(--ui-text);\n}\n.scratch-prize span { font-size: 13px; color: var(--ui-muted); }\n.scratch-prize strong { font-size: 28px; letter-spacing: 0.06em; color: var(--ui-accent); }\n.scratch-foil {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  cursor: crosshair;\n  touch-action: none;\n  transition: opacity 0.6s;\n}\n.scratch.is-done .scratch-foil { opacity: 0; pointer-events: none; }\n.scratch-reveal {\n  padding: 6px 10px;\n  font: inherit;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: none;\n  border: 0;\n  border-radius: 6px;\n  text-decoration: underline;\n  text-underline-offset: 3px;\n  cursor: pointer;\n}\n.scratch-reveal:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ]
+  }
+}

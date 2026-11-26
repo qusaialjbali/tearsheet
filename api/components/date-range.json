@@ -1,0 +1,99 @@
+{
+  "id": "date-range",
+  "name": "Date range",
+  "page": "p.19",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Start and end dates using the native date input, styled to match, with the end kept after the start.",
+  "notes": "Native date inputs give every phone its own good picker and handle locales for free. Only build a custom calendar when you need to show availability on it.",
+  "usesJavaScript": true,
+  "sizeKb": 2.3,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#date-range",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/date-range.json",
+  "version": "e79811d6",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "textbox \"Check-in\": 2026-12-18",
+      "textbox \"Check-out\": 2026-12-22"
+    ],
+    "tree": "- group \"Trip dates\":\n  - text: Trip dates Check-in\n  - textbox \"Check-in\": 2026-12-18\n  - text: Check-out\n  - textbox \"Check-out\": 2026-12-22\n  - paragraph: 4 nights",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html -->\n<fieldset class=\"dates\">\n  <legend>Trip dates</legend>\n  <div class=\"dates-row\">\n    <label class=\"date-field\">\n      <span>Check-in</span>\n      <input class=\"date-in\" type=\"date\" value=\"2026-12-18\">\n    </label>\n    <span class=\"dates-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h12M11 5l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span>\n    <label class=\"date-field\">\n      <span>Check-out</span>\n      <input class=\"date-out\" type=\"date\" value=\"2026-12-22\">\n    </label>\n  </div>\n  <p class=\"dates-sum\" aria-live=\"polite\">4 nights</p>\n</fieldset>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html */\n.dates { margin: 0; padding: 0; border: 0; }\n.dates legend { margin-bottom: 8px; font-size: 14px; font-weight: 600; }\n.dates-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }\n.date-field { display: grid; gap: 4px; font-size: 13px; color: var(--ui-muted); }\n.date-field input {\n  min-height: 42px; padding: 8px 10px; font: inherit; font-size: 15px; color: var(--ui-text);\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);\n  color-scheme: light dark;\n}\n.date-field input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.dates-arrow { padding-bottom: 10px; color: var(--ui-muted); }\n.dates-arrow svg { width: 18px; height: 18px; }\n.dates-sum { margin: 8px 0 0; font-size: 14px; font-weight: 600; color: var(--ui-accent); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html */\nfunction setup(root) {\n  const start = root.querySelector('.date-in');\n  const end = root.querySelector('.date-out');\n  const sum = root.querySelector('.dates-sum');\n  const update = () => {\n    end.min = start.value;\n    if (end.value && end.value <= start.value) {\n      const d = new Date(start.value);\n      d.setDate(d.getDate() + 1);\n      end.value = d.toISOString().slice(0, 10);\n    }\n    const nights = Math.round((new Date(end.value) - new Date(start.value)) / 86400000);\n    sum.textContent = nights > 0 ? nights + (nights === 1 ? ' night' : ' nights') : 'Pick your dates';\n  };\n  start.addEventListener('change', update);\n  end.addEventListener('change', update);\n  update();\n  return () => { start.removeEventListener('change', update); end.removeEventListener('change', update); };\n}\n\ndocument.querySelectorAll(\".dates\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "DateRange.jsx",
+        "code": "/* tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html */\nimport { useEffect, useRef } from 'react';\nimport './DateRange.css';\n\nfunction setup(root) {\n  const start = root.querySelector('.date-in');\n  const end = root.querySelector('.date-out');\n  const sum = root.querySelector('.dates-sum');\n  const update = () => {\n    end.min = start.value;\n    if (end.value && end.value <= start.value) {\n      const d = new Date(start.value);\n      d.setDate(d.getDate() + 1);\n      end.value = d.toISOString().slice(0, 10);\n    }\n    const nights = Math.round((new Date(end.value) - new Date(start.value)) / 86400000);\n    sum.textContent = nights > 0 ? nights + (nights === 1 ? ' night' : ' nights') : 'Pick your dates';\n  };\n  start.addEventListener('change', update);\n  end.addEventListener('change', update);\n  update();\n  return () => { start.removeEventListener('change', update); end.removeEventListener('change', update); };\n}\n\nexport function DateRange() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <fieldset ref={ref} className=\"dates\">\n      <legend>Trip dates</legend>\n      <div className=\"dates-row\">\n        <label className=\"date-field\">\n          <span>Check-in</span>\n          <input className=\"date-in\" type=\"date\" defaultValue=\"2026-12-18\" />\n        </label>\n        <span className=\"dates-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h12M11 5l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg></span>\n        <label className=\"date-field\">\n          <span>Check-out</span>\n          <input className=\"date-out\" type=\"date\" defaultValue=\"2026-12-22\" />\n        </label>\n      </div>\n      <p className=\"dates-sum\" aria-live=\"polite\">4 nights</p>\n    </fieldset>\n  );\n}"
+      },
+      {
+        "name": "DateRange.css",
+        "code": "/* tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html */\n.dates { margin: 0; padding: 0; border: 0; }\n.dates legend { margin-bottom: 8px; font-size: 14px; font-weight: 600; }\n.dates-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }\n.date-field { display: grid; gap: 4px; font-size: 13px; color: var(--ui-muted); }\n.date-field input {\n  min-height: 42px; padding: 8px 10px; font: inherit; font-size: 15px; color: var(--ui-text);\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);\n  color-scheme: light dark;\n}\n.date-field input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.dates-arrow { padding-bottom: 10px; color: var(--ui-muted); }\n.dates-arrow svg { width: 18px; height: 18px; }\n.dates-sum { margin: 8px 0 0; font-size: 14px; font-weight: 600; color: var(--ui-accent); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "DateRange.vue",
+        "code": "<!-- tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const start = root.querySelector('.date-in');\n  const end = root.querySelector('.date-out');\n  const sum = root.querySelector('.dates-sum');\n  const update = () => {\n    end.min = start.value;\n    if (end.value && end.value <= start.value) {\n      const d = new Date(start.value);\n      d.setDate(d.getDate() + 1);\n      end.value = d.toISOString().slice(0, 10);\n    }\n    const nights = Math.round((new Date(end.value) - new Date(start.value)) / 86400000);\n    sum.textContent = nights > 0 ? nights + (nights === 1 ? ' night' : ' nights') : 'Pick your dates';\n  };\n  start.addEventListener('change', update);\n  end.addEventListener('change', update);\n  update();\n  return () => { start.removeEventListener('change', update); end.removeEventListener('change', update); };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <fieldset ref=\"el\" class=\"dates\">\n    <legend>Trip dates</legend>\n    <div class=\"dates-row\">\n      <label class=\"date-field\">\n        <span>Check-in</span>\n        <input class=\"date-in\" type=\"date\" value=\"2026-12-18\">\n      </label>\n      <span class=\"dates-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h12M11 5l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span>\n      <label class=\"date-field\">\n        <span>Check-out</span>\n        <input class=\"date-out\" type=\"date\" value=\"2026-12-22\">\n      </label>\n    </div>\n    <p class=\"dates-sum\" aria-live=\"polite\">4 nights</p>\n  </fieldset>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.dates { margin: 0; padding: 0; border: 0; }\n.dates legend { margin-bottom: 8px; font-size: 14px; font-weight: 600; }\n.dates-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }\n.date-field { display: grid; gap: 4px; font-size: 13px; color: var(--ui-muted); }\n.date-field input {\n  min-height: 42px; padding: 8px 10px; font: inherit; font-size: 15px; color: var(--ui-text);\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);\n  color-scheme: light dark;\n}\n.date-field input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.dates-arrow { padding-bottom: 10px; color: var(--ui-muted); }\n.dates-arrow svg { width: 18px; height: 18px; }\n.dates-sum { margin: 8px 0 0; font-size: 14px; font-weight: 600; color: var(--ui-accent); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "DateRange.svelte",
+        "code": "<!-- tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './DateRange.css';\n\n  let node;\n\n  function setup(root) {\n    const start = root.querySelector('.date-in');\n    const end = root.querySelector('.date-out');\n    const sum = root.querySelector('.dates-sum');\n    const update = () => {\n      end.min = start.value;\n      if (end.value && end.value <= start.value) {\n        const d = new Date(start.value);\n        d.setDate(d.getDate() + 1);\n        end.value = d.toISOString().slice(0, 10);\n      }\n      const nights = Math.round((new Date(end.value) - new Date(start.value)) / 86400000);\n      sum.textContent = nights > 0 ? nights + (nights === 1 ? ' night' : ' nights') : 'Pick your dates';\n    };\n    start.addEventListener('change', update);\n    end.addEventListener('change', update);\n    update();\n    return () => { start.removeEventListener('change', update); end.removeEventListener('change', update); };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<fieldset bind:this={node} class=\"dates\">\n  <legend>Trip dates</legend>\n  <div class=\"dates-row\">\n    <label class=\"date-field\">\n      <span>Check-in</span>\n      <input class=\"date-in\" type=\"date\" value=\"2026-12-18\">\n    </label>\n    <span class=\"dates-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h12M11 5l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span>\n    <label class=\"date-field\">\n      <span>Check-out</span>\n      <input class=\"date-out\" type=\"date\" value=\"2026-12-22\">\n    </label>\n  </div>\n  <p class=\"dates-sum\" aria-live=\"polite\">4 nights</p>\n</fieldset>"
+      },
+      {
+        "name": "DateRange.css",
+        "code": "/* tearsheet date-range ve79811d6 · https://qusaialjbali.github.io/tearsheet/zine/parts/date-range.html */\n.dates { margin: 0; padding: 0; border: 0; }\n.dates legend { margin-bottom: 8px; font-size: 14px; font-weight: 600; }\n.dates-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }\n.date-field { display: grid; gap: 4px; font-size: 13px; color: var(--ui-muted); }\n.date-field input {\n  min-height: 42px; padding: 8px 10px; font: inherit; font-size: 15px; color: var(--ui-text);\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm);\n  color-scheme: light dark;\n}\n.date-field input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.dates-arrow { padding-bottom: 10px; color: var(--ui-muted); }\n.dates-arrow svg { width: 18px; height: 18px; }\n.dates-sum { margin: 8px 0 0; font-size: 14px; font-weight: 600; color: var(--ui-accent); }"
+      }
+    ]
+  }
+}

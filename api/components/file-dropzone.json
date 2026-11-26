@@ -1,0 +1,98 @@
+{
+  "id": "file-dropzone",
+  "name": "File dropzone",
+  "page": "p.13",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Drag files in or click to browse. A real file input underneath keeps it keyboard accessible.",
+  "notes": "State the accepted types and size limit before people try. The visually hidden input stays focusable, and the whole zone shows its focus ring.",
+  "usesJavaScript": true,
+  "sizeKb": 2.5,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#file-dropzone",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/file-dropzone.json",
+  "version": "cd41a5dc",
+  "checked": "axe clean in light and dark; tightest text contrast 5.93:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 5.93,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Drop files here or browse PNG, JPG or PDF, up to 10 MB each\""
+    ],
+    "tree": "- button \"Drop files here or browse PNG, JPG or PDF, up to 10 MB each\"\n- text: Drop files here or browse PNG, JPG or PDF, up to 10 MB each",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html -->\n<label class=\"drop\">\n  <input class=\"drop-input\" type=\"file\" multiple accept=\"image/*,.pdf\">\n  <svg class=\"drop-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 16V4M7 9l5-5 5 5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n  <span class=\"drop-title\">Drop files here or <u>browse</u></span>\n  <span class=\"drop-hint\">PNG, JPG or PDF, up to 10 MB each</span>\n  <span class=\"drop-files\" aria-live=\"polite\"></span>\n</label>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html */\n.drop {\n  position: relative;\n  display: grid;\n  justify-items: center;\n  gap: 6px;\n  width: 100%;\n  max-width: 440px;\n  padding: 32px 24px;\n  text-align: center;\n  background: var(--ui-surface);\n  border: 2px dashed var(--ui-border-strong);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.drop:hover, .drop.is-over { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.drop:focus-within { box-shadow: var(--ui-focus); }\n.drop-input { position: absolute; width: 1px; height: 1px; opacity: 0; }\n.drop-icon { width: 36px; height: 36px; margin-bottom: 6px; color: var(--ui-accent); }\n.drop-title { font-weight: 600; color: var(--ui-text); }\n.drop-title u { color: var(--ui-accent); text-underline-offset: 3px; }\n.drop-hint { font-size: 13px; color: var(--ui-muted); }\n.drop-files:not(:empty) {\n  margin-top: 10px;\n  padding: 6px 12px;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface-2);\n  border-radius: 999px;\n}"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html */\nfunction setup(root) {\n  const input = root.querySelector('.drop-input');\n  const list = root.querySelector('.drop-files');\n\n  const show = () => {\n    const names = [...input.files].map((f) => f.name);\n    list.textContent = names.length ? names.length + ' selected: ' + names.join(', ') : '';\n  };\n  const over = (e) => {\n    e.preventDefault();\n    root.classList.add('is-over');\n  };\n  const leave = () => root.classList.remove('is-over');\n  const drop = (e) => {\n    e.preventDefault();\n    leave();\n    input.files = e.dataTransfer.files;\n    show();\n  };\n\n  root.addEventListener('dragover', over);\n  root.addEventListener('dragleave', leave);\n  root.addEventListener('drop', drop);\n  input.addEventListener('change', show);\n  return () => {\n    root.removeEventListener('dragover', over);\n    root.removeEventListener('dragleave', leave);\n    root.removeEventListener('drop', drop);\n    input.removeEventListener('change', show);\n  };\n}\n\ndocument.querySelectorAll(\".drop\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "FileDropzone.jsx",
+        "code": "/* tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html */\nimport { useEffect, useRef } from 'react';\nimport './FileDropzone.css';\n\nfunction setup(root) {\n  const input = root.querySelector('.drop-input');\n  const list = root.querySelector('.drop-files');\n\n  const show = () => {\n    const names = [...input.files].map((f) => f.name);\n    list.textContent = names.length ? names.length + ' selected: ' + names.join(', ') : '';\n  };\n  const over = (e) => {\n    e.preventDefault();\n    root.classList.add('is-over');\n  };\n  const leave = () => root.classList.remove('is-over');\n  const drop = (e) => {\n    e.preventDefault();\n    leave();\n    input.files = e.dataTransfer.files;\n    show();\n  };\n\n  root.addEventListener('dragover', over);\n  root.addEventListener('dragleave', leave);\n  root.addEventListener('drop', drop);\n  input.addEventListener('change', show);\n  return () => {\n    root.removeEventListener('dragover', over);\n    root.removeEventListener('dragleave', leave);\n    root.removeEventListener('drop', drop);\n    input.removeEventListener('change', show);\n  };\n}\n\nexport function FileDropzone() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <label ref={ref} className=\"drop\">\n      <input className=\"drop-input\" type=\"file\" multiple accept=\"image/*,.pdf\" />\n      <svg className=\"drop-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 16V4M7 9l5-5 5 5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>\n      <span className=\"drop-title\">Drop files here or <u>browse</u></span>\n      <span className=\"drop-hint\">PNG, JPG or PDF, up to 10 MB each</span>\n      <span className=\"drop-files\" aria-live=\"polite\"></span>\n    </label>\n  );\n}"
+      },
+      {
+        "name": "FileDropzone.css",
+        "code": "/* tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html */\n.drop {\n  position: relative;\n  display: grid;\n  justify-items: center;\n  gap: 6px;\n  width: 100%;\n  max-width: 440px;\n  padding: 32px 24px;\n  text-align: center;\n  background: var(--ui-surface);\n  border: 2px dashed var(--ui-border-strong);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.drop:hover, .drop.is-over { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.drop:focus-within { box-shadow: var(--ui-focus); }\n.drop-input { position: absolute; width: 1px; height: 1px; opacity: 0; }\n.drop-icon { width: 36px; height: 36px; margin-bottom: 6px; color: var(--ui-accent); }\n.drop-title { font-weight: 600; color: var(--ui-text); }\n.drop-title u { color: var(--ui-accent); text-underline-offset: 3px; }\n.drop-hint { font-size: 13px; color: var(--ui-muted); }\n.drop-files:not(:empty) {\n  margin-top: 10px;\n  padding: 6px 12px;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface-2);\n  border-radius: 999px;\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "FileDropzone.vue",
+        "code": "<!-- tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const input = root.querySelector('.drop-input');\n  const list = root.querySelector('.drop-files');\n\n  const show = () => {\n    const names = [...input.files].map((f) => f.name);\n    list.textContent = names.length ? names.length + ' selected: ' + names.join(', ') : '';\n  };\n  const over = (e) => {\n    e.preventDefault();\n    root.classList.add('is-over');\n  };\n  const leave = () => root.classList.remove('is-over');\n  const drop = (e) => {\n    e.preventDefault();\n    leave();\n    input.files = e.dataTransfer.files;\n    show();\n  };\n\n  root.addEventListener('dragover', over);\n  root.addEventListener('dragleave', leave);\n  root.addEventListener('drop', drop);\n  input.addEventListener('change', show);\n  return () => {\n    root.removeEventListener('dragover', over);\n    root.removeEventListener('dragleave', leave);\n    root.removeEventListener('drop', drop);\n    input.removeEventListener('change', show);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <label ref=\"el\" class=\"drop\">\n    <input class=\"drop-input\" type=\"file\" multiple accept=\"image/*,.pdf\">\n    <svg class=\"drop-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 16V4M7 9l5-5 5 5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    <span class=\"drop-title\">Drop files here or <u>browse</u></span>\n    <span class=\"drop-hint\">PNG, JPG or PDF, up to 10 MB each</span>\n    <span class=\"drop-files\" aria-live=\"polite\"></span>\n  </label>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.drop {\n  position: relative;\n  display: grid;\n  justify-items: center;\n  gap: 6px;\n  width: 100%;\n  max-width: 440px;\n  padding: 32px 24px;\n  text-align: center;\n  background: var(--ui-surface);\n  border: 2px dashed var(--ui-border-strong);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.drop:hover, .drop.is-over { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.drop:focus-within { box-shadow: var(--ui-focus); }\n.drop-input { position: absolute; width: 1px; height: 1px; opacity: 0; }\n.drop-icon { width: 36px; height: 36px; margin-bottom: 6px; color: var(--ui-accent); }\n.drop-title { font-weight: 600; color: var(--ui-text); }\n.drop-title u { color: var(--ui-accent); text-underline-offset: 3px; }\n.drop-hint { font-size: 13px; color: var(--ui-muted); }\n.drop-files:not(:empty) {\n  margin-top: 10px;\n  padding: 6px 12px;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface-2);\n  border-radius: 999px;\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "FileDropzone.svelte",
+        "code": "<!-- tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './FileDropzone.css';\n\n  let node;\n\n  function setup(root) {\n    const input = root.querySelector('.drop-input');\n    const list = root.querySelector('.drop-files');\n\n    const show = () => {\n      const names = [...input.files].map((f) => f.name);\n      list.textContent = names.length ? names.length + ' selected: ' + names.join(', ') : '';\n    };\n    const over = (e) => {\n      e.preventDefault();\n      root.classList.add('is-over');\n    };\n    const leave = () => root.classList.remove('is-over');\n    const drop = (e) => {\n      e.preventDefault();\n      leave();\n      input.files = e.dataTransfer.files;\n      show();\n    };\n\n    root.addEventListener('dragover', over);\n    root.addEventListener('dragleave', leave);\n    root.addEventListener('drop', drop);\n    input.addEventListener('change', show);\n    return () => {\n      root.removeEventListener('dragover', over);\n      root.removeEventListener('dragleave', leave);\n      root.removeEventListener('drop', drop);\n      input.removeEventListener('change', show);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<label bind:this={node} class=\"drop\">\n  <input class=\"drop-input\" type=\"file\" multiple accept=\"image/*,.pdf\">\n  <svg class=\"drop-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 16V4M7 9l5-5 5 5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n  <span class=\"drop-title\">Drop files here or <u>browse</u></span>\n  <span class=\"drop-hint\">PNG, JPG or PDF, up to 10 MB each</span>\n  <span class=\"drop-files\" aria-live=\"polite\"></span>\n</label>"
+      },
+      {
+        "name": "FileDropzone.css",
+        "code": "/* tearsheet file-dropzone vcd41a5dc · https://qusaialjbali.github.io/tearsheet/zine/parts/file-dropzone.html */\n.drop {\n  position: relative;\n  display: grid;\n  justify-items: center;\n  gap: 6px;\n  width: 100%;\n  max-width: 440px;\n  padding: 32px 24px;\n  text-align: center;\n  background: var(--ui-surface);\n  border: 2px dashed var(--ui-border-strong);\n  border-radius: var(--ui-radius);\n  cursor: pointer;\n  transition: border-color 0.15s, background-color 0.15s;\n}\n.drop:hover, .drop.is-over { border-color: var(--ui-accent); background: var(--ui-accent-soft); }\n.drop:focus-within { box-shadow: var(--ui-focus); }\n.drop-input { position: absolute; width: 1px; height: 1px; opacity: 0; }\n.drop-icon { width: 36px; height: 36px; margin-bottom: 6px; color: var(--ui-accent); }\n.drop-title { font-weight: 600; color: var(--ui-text); }\n.drop-title u { color: var(--ui-accent); text-underline-offset: 3px; }\n.drop-hint { font-size: 13px; color: var(--ui-muted); }\n.drop-files:not(:empty) {\n  margin-top: 10px;\n  padding: 6px 12px;\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface-2);\n  border-radius: 999px;\n}"
+      }
+    ]
+  }
+}

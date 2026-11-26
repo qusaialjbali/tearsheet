@@ -1,0 +1,99 @@
+{
+  "id": "odometer",
+  "name": "Odometer counter",
+  "page": "p.79",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A mechanical counter whose digit wheels roll into place, each a beat after the last.",
+  "notes": "The real number lives in a live region for assistive tech. Leading zeros are dimmed, like an old meter.",
+  "usesJavaScript": true,
+  "sizeKb": 3.2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#odometer",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/odometer.json",
+  "version": "4d4bdac7",
+  "checked": "axe clean in light and dark; tightest text contrast 3.23:1 (needs 3:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 3.23,
+      "need": 3,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Sell 1\"",
+      "button \"Sell 250\""
+    ],
+    "tree": "- paragraph: Tickets sold\n- paragraph: 1,287 tickets sold\n- button \"Sell 1\"\n- button \"Sell 250\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html -->\n<div class=\"odo\">\n  <p class=\"odo-label\">Tickets sold</p>\n  <div class=\"odo-digits\" aria-hidden=\"true\"></div>\n  <p class=\"odo-sr\" aria-live=\"polite\"></p>\n  <div class=\"odo-actions\">\n    <button class=\"odo-btn\" type=\"button\" data-add=\"1\">Sell 1</button>\n    <button class=\"odo-btn\" type=\"button\" data-add=\"250\">Sell 250</button>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html */\n.odo { display: grid; justify-items: center; gap: 14px; }\n.odo-label { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ui-muted); }\n.odo-digits {\n  display: flex;\n  gap: 4px;\n  padding: 10px;\n  background: var(--ui-text);\n  border-radius: 12px;\n}\n.odo-digit {\n  height: 64px;\n  width: 44px;\n  overflow: hidden;\n  background: var(--ui-bg);\n  border-radius: 6px;\n  box-shadow: inset 0 8px 10px -6px rgb(0 0 0 / 0.35), inset 0 -8px 10px -6px rgb(0 0 0 / 0.35);\n}\n.odo-digit.is-lead { opacity: 0.35; }\n.odo-reel { display: grid; transition: transform 0.9s cubic-bezier(0.2, 0.85, 0.25, 1.05); }\n.odo-reel span {\n  display: grid;\n  place-items: center;\n  height: 64px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 38px;\n  font-weight: 700;\n  color: var(--ui-text);\n}\n.odo-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.odo-actions { display: flex; gap: 8px; }\n.odo-btn {\n  padding: 9px 16px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.odo-btn:hover { background: var(--ui-surface-2); }\n.odo-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .odo-reel { transition: none; } }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html */\nfunction setup(root) {\n  const digitsEl = root.querySelector('.odo-digits');\n  const sr = root.querySelector('.odo-sr');\n  const buttons = root.querySelectorAll('.odo-btn');\n  const PLACES = 6;\n  let value = 1287;\n\n  digitsEl.textContent = '';\n  const reels = Array.from({ length: PLACES }, (_, i) => {\n    const digit = document.createElement('div');\n    digit.className = 'odo-digit';\n    const reel = document.createElement('div');\n    reel.className = 'odo-reel';\n    reel.style.transitionDelay = (PLACES - i) * 70 + 'ms';\n    for (let n = 0; n < 10; n++) {\n      const s = document.createElement('span');\n      s.textContent = n;\n      reel.append(s);\n    }\n    digit.append(reel);\n    digitsEl.append(digit);\n    return reel;\n  });\n\n  const render = () => {\n    const text = String(value % 10 ** PLACES).padStart(PLACES, '0');\n    const firstSignificant = text.search(/[1-9]/);\n    reels.forEach((reel, i) => {\n      reel.style.transform = 'translateY(' + -Number(text[i]) * 64 + 'px)';\n      reel.parentElement.classList.toggle('is-lead', firstSignificant === -1 ? i < PLACES - 1 : i < firstSignificant);\n    });\n    sr.textContent = value.toLocaleString() + ' tickets sold';\n  };\n  const onAdd = (e) => {\n    value += Number(e.currentTarget.dataset.add);\n    render();\n  };\n\n  buttons.forEach((b) => b.addEventListener('click', onAdd));\n  render();\n  return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));\n}\n\ndocument.querySelectorAll(\".odo\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "Odometer.jsx",
+        "code": "/* tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html */\nimport { useEffect, useRef } from 'react';\nimport './Odometer.css';\n\nfunction setup(root) {\n  const digitsEl = root.querySelector('.odo-digits');\n  const sr = root.querySelector('.odo-sr');\n  const buttons = root.querySelectorAll('.odo-btn');\n  const PLACES = 6;\n  let value = 1287;\n\n  digitsEl.textContent = '';\n  const reels = Array.from({ length: PLACES }, (_, i) => {\n    const digit = document.createElement('div');\n    digit.className = 'odo-digit';\n    const reel = document.createElement('div');\n    reel.className = 'odo-reel';\n    reel.style.transitionDelay = (PLACES - i) * 70 + 'ms';\n    for (let n = 0; n < 10; n++) {\n      const s = document.createElement('span');\n      s.textContent = n;\n      reel.append(s);\n    }\n    digit.append(reel);\n    digitsEl.append(digit);\n    return reel;\n  });\n\n  const render = () => {\n    const text = String(value % 10 ** PLACES).padStart(PLACES, '0');\n    const firstSignificant = text.search(/[1-9]/);\n    reels.forEach((reel, i) => {\n      reel.style.transform = 'translateY(' + -Number(text[i]) * 64 + 'px)';\n      reel.parentElement.classList.toggle('is-lead', firstSignificant === -1 ? i < PLACES - 1 : i < firstSignificant);\n    });\n    sr.textContent = value.toLocaleString() + ' tickets sold';\n  };\n  const onAdd = (e) => {\n    value += Number(e.currentTarget.dataset.add);\n    render();\n  };\n\n  buttons.forEach((b) => b.addEventListener('click', onAdd));\n  render();\n  return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));\n}\n\nexport function Odometer() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"odo\">\n      <p className=\"odo-label\">Tickets sold</p>\n      <div className=\"odo-digits\" aria-hidden=\"true\"></div>\n      <p className=\"odo-sr\" aria-live=\"polite\"></p>\n      <div className=\"odo-actions\">\n        <button className=\"odo-btn\" type=\"button\" data-add=\"1\">Sell 1</button>\n        <button className=\"odo-btn\" type=\"button\" data-add=\"250\">Sell 250</button>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Odometer.css",
+        "code": "/* tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html */\n.odo { display: grid; justify-items: center; gap: 14px; }\n.odo-label { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ui-muted); }\n.odo-digits {\n  display: flex;\n  gap: 4px;\n  padding: 10px;\n  background: var(--ui-text);\n  border-radius: 12px;\n}\n.odo-digit {\n  height: 64px;\n  width: 44px;\n  overflow: hidden;\n  background: var(--ui-bg);\n  border-radius: 6px;\n  box-shadow: inset 0 8px 10px -6px rgb(0 0 0 / 0.35), inset 0 -8px 10px -6px rgb(0 0 0 / 0.35);\n}\n.odo-digit.is-lead { opacity: 0.35; }\n.odo-reel { display: grid; transition: transform 0.9s cubic-bezier(0.2, 0.85, 0.25, 1.05); }\n.odo-reel span {\n  display: grid;\n  place-items: center;\n  height: 64px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 38px;\n  font-weight: 700;\n  color: var(--ui-text);\n}\n.odo-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.odo-actions { display: flex; gap: 8px; }\n.odo-btn {\n  padding: 9px 16px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.odo-btn:hover { background: var(--ui-surface-2); }\n.odo-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .odo-reel { transition: none; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Odometer.vue",
+        "code": "<!-- tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const digitsEl = root.querySelector('.odo-digits');\n  const sr = root.querySelector('.odo-sr');\n  const buttons = root.querySelectorAll('.odo-btn');\n  const PLACES = 6;\n  let value = 1287;\n\n  digitsEl.textContent = '';\n  const reels = Array.from({ length: PLACES }, (_, i) => {\n    const digit = document.createElement('div');\n    digit.className = 'odo-digit';\n    const reel = document.createElement('div');\n    reel.className = 'odo-reel';\n    reel.style.transitionDelay = (PLACES - i) * 70 + 'ms';\n    for (let n = 0; n < 10; n++) {\n      const s = document.createElement('span');\n      s.textContent = n;\n      reel.append(s);\n    }\n    digit.append(reel);\n    digitsEl.append(digit);\n    return reel;\n  });\n\n  const render = () => {\n    const text = String(value % 10 ** PLACES).padStart(PLACES, '0');\n    const firstSignificant = text.search(/[1-9]/);\n    reels.forEach((reel, i) => {\n      reel.style.transform = 'translateY(' + -Number(text[i]) * 64 + 'px)';\n      reel.parentElement.classList.toggle('is-lead', firstSignificant === -1 ? i < PLACES - 1 : i < firstSignificant);\n    });\n    sr.textContent = value.toLocaleString() + ' tickets sold';\n  };\n  const onAdd = (e) => {\n    value += Number(e.currentTarget.dataset.add);\n    render();\n  };\n\n  buttons.forEach((b) => b.addEventListener('click', onAdd));\n  render();\n  return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"odo\">\n    <p class=\"odo-label\">Tickets sold</p>\n    <div class=\"odo-digits\" aria-hidden=\"true\"></div>\n    <p class=\"odo-sr\" aria-live=\"polite\"></p>\n    <div class=\"odo-actions\">\n      <button class=\"odo-btn\" type=\"button\" data-add=\"1\">Sell 1</button>\n      <button class=\"odo-btn\" type=\"button\" data-add=\"250\">Sell 250</button>\n    </div>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.odo { display: grid; justify-items: center; gap: 14px; }\n.odo-label { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ui-muted); }\n.odo-digits {\n  display: flex;\n  gap: 4px;\n  padding: 10px;\n  background: var(--ui-text);\n  border-radius: 12px;\n}\n.odo-digit {\n  height: 64px;\n  width: 44px;\n  overflow: hidden;\n  background: var(--ui-bg);\n  border-radius: 6px;\n  box-shadow: inset 0 8px 10px -6px rgb(0 0 0 / 0.35), inset 0 -8px 10px -6px rgb(0 0 0 / 0.35);\n}\n.odo-digit.is-lead { opacity: 0.35; }\n.odo-reel { display: grid; transition: transform 0.9s cubic-bezier(0.2, 0.85, 0.25, 1.05); }\n.odo-reel span {\n  display: grid;\n  place-items: center;\n  height: 64px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 38px;\n  font-weight: 700;\n  color: var(--ui-text);\n}\n.odo-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.odo-actions { display: flex; gap: 8px; }\n.odo-btn {\n  padding: 9px 16px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.odo-btn:hover { background: var(--ui-surface-2); }\n.odo-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .odo-reel { transition: none; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Odometer.svelte",
+        "code": "<!-- tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './Odometer.css';\n\n  let node;\n\n  function setup(root) {\n    const digitsEl = root.querySelector('.odo-digits');\n    const sr = root.querySelector('.odo-sr');\n    const buttons = root.querySelectorAll('.odo-btn');\n    const PLACES = 6;\n    let value = 1287;\n\n    digitsEl.textContent = '';\n    const reels = Array.from({ length: PLACES }, (_, i) => {\n      const digit = document.createElement('div');\n      digit.className = 'odo-digit';\n      const reel = document.createElement('div');\n      reel.className = 'odo-reel';\n      reel.style.transitionDelay = (PLACES - i) * 70 + 'ms';\n      for (let n = 0; n < 10; n++) {\n        const s = document.createElement('span');\n        s.textContent = n;\n        reel.append(s);\n      }\n      digit.append(reel);\n      digitsEl.append(digit);\n      return reel;\n    });\n\n    const render = () => {\n      const text = String(value % 10 ** PLACES).padStart(PLACES, '0');\n      const firstSignificant = text.search(/[1-9]/);\n      reels.forEach((reel, i) => {\n        reel.style.transform = 'translateY(' + -Number(text[i]) * 64 + 'px)';\n        reel.parentElement.classList.toggle('is-lead', firstSignificant === -1 ? i < PLACES - 1 : i < firstSignificant);\n      });\n      sr.textContent = value.toLocaleString() + ' tickets sold';\n    };\n    const onAdd = (e) => {\n      value += Number(e.currentTarget.dataset.add);\n      render();\n    };\n\n    buttons.forEach((b) => b.addEventListener('click', onAdd));\n    render();\n    return () => buttons.forEach((b) => b.removeEventListener('click', onAdd));\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"odo\">\n  <p class=\"odo-label\">Tickets sold</p>\n  <div class=\"odo-digits\" aria-hidden=\"true\"></div>\n  <p class=\"odo-sr\" aria-live=\"polite\"></p>\n  <div class=\"odo-actions\">\n    <button class=\"odo-btn\" type=\"button\" data-add=\"1\">Sell 1</button>\n    <button class=\"odo-btn\" type=\"button\" data-add=\"250\">Sell 250</button>\n  </div>\n</div>"
+      },
+      {
+        "name": "Odometer.css",
+        "code": "/* tearsheet odometer v4d4bdac7 · https://qusaialjbali.github.io/tearsheet/zine/parts/odometer.html */\n.odo { display: grid; justify-items: center; gap: 14px; }\n.odo-label { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ui-muted); }\n.odo-digits {\n  display: flex;\n  gap: 4px;\n  padding: 10px;\n  background: var(--ui-text);\n  border-radius: 12px;\n}\n.odo-digit {\n  height: 64px;\n  width: 44px;\n  overflow: hidden;\n  background: var(--ui-bg);\n  border-radius: 6px;\n  box-shadow: inset 0 8px 10px -6px rgb(0 0 0 / 0.35), inset 0 -8px 10px -6px rgb(0 0 0 / 0.35);\n}\n.odo-digit.is-lead { opacity: 0.35; }\n.odo-reel { display: grid; transition: transform 0.9s cubic-bezier(0.2, 0.85, 0.25, 1.05); }\n.odo-reel span {\n  display: grid;\n  place-items: center;\n  height: 64px;\n  font-family: ui-monospace, \"SF Mono\", Consolas, monospace;\n  font-size: 38px;\n  font-weight: 700;\n  color: var(--ui-text);\n}\n.odo-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n.odo-actions { display: flex; gap: 8px; }\n.odo-btn {\n  padding: 9px 16px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.odo-btn:hover { background: var(--ui-surface-2); }\n.odo-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .odo-reel { transition: none; } }"
+      }
+    ]
+  }
+}

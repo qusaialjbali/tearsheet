@@ -1,0 +1,90 @@
+{
+  "id": "description-list",
+  "name": "Details list",
+  "page": "p.44",
+  "collection": "Data",
+  "experimental": false,
+  "description": "Label-and-value pairs for an order or a profile, with one value you can edit in place.",
+  "notes": "Use a <dl> for key-value data so the pairs stay connected for screen readers. Right-align nothing here: these are words, not numbers.",
+  "usesJavaScript": false,
+  "sizeKb": 1.1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#description-list",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/description-list.json",
+  "version": "7760a1e8",
+  "checked": "axe clean in light and dark; tightest text contrast 4.79:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 10
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 10
+      }
+    },
+    "contrast": {
+      "ratio": 4.79,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "link \"Change\":"
+    ],
+    "tree": "- term: Order\n- definition: \"#20418\"\n- term: Placed\n- definition:\n  - time: 21 November 2026\n- term: Status\n- definition: Shipped\n- term: Delivery address\n- definition: 12 Harbour Street Leith, Edinburgh EH6 6QZ\n- term: Payment\n- definition:\n  - text: Card ending 4421\n  - link \"Change\":\n    - /url: \"#\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet description-list v7760a1e8 · https://qusaialjbali.github.io/tearsheet/zine/parts/description-list.html -->\n<dl class=\"dl\">\n  <div><dt>Order</dt><dd>#20418</dd></div>\n  <div><dt>Placed</dt><dd><time datetime=\"2026-11-21\">21 November 2026</time></dd></div>\n  <div><dt>Status</dt><dd><span class=\"dl-badge\">Shipped</span></dd></div>\n  <div><dt>Delivery address</dt><dd>12 Harbour Street<br>Leith, Edinburgh EH6 6QZ</dd></div>\n  <div><dt>Payment</dt><dd>Card ending 4421 <a href=\"#\" class=\"dl-edit\">Change</a></dd></div>\n</dl>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet description-list v7760a1e8 · https://qusaialjbali.github.io/tearsheet/zine/parts/description-list.html */\n.dl { width: 100%; max-width: 480px; margin: 0; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.dl div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 12px 18px; }\n.dl div + div { border-top: 1px solid var(--ui-border); }\n.dl dt { font-size: 14px; color: var(--ui-muted); }\n.dl dd { margin: 0; font-size: 14px; font-weight: 500; }\n.dl-badge { padding: 2px 10px; font-size: 12px; font-weight: 600; color: var(--ui-success); background: var(--ui-success-soft); border-radius: 999px; }\n.dl-edit { margin-left: 8px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n@media (max-width: 420px) { .dl div { grid-template-columns: 1fr; gap: 2px; } }"
+      }
+    ],
+    "react": [
+      {
+        "name": "DescriptionList.jsx",
+        "code": "/* tearsheet description-list v7760a1e8 · https://qusaialjbali.github.io/tearsheet/zine/parts/description-list.html */\nimport './DescriptionList.css';\n\nexport function DescriptionList() {\n  return (\n    <dl className=\"dl\">\n      <div><dt>Order</dt><dd>#20418</dd></div>\n      <div><dt>Placed</dt><dd><time dateTime=\"2026-11-21\">21 November 2026</time></dd></div>\n      <div><dt>Status</dt><dd><span className=\"dl-badge\">Shipped</span></dd></div>\n      <div><dt>Delivery address</dt><dd>12 Harbour Street<br />Leith, Edinburgh EH6 6QZ</dd></div>\n      <div><dt>Payment</dt><dd>Card ending 4421 <a href=\"#\" className=\"dl-edit\">Change</a></dd></div>\n    </dl>\n  );\n}"
+      },
+      {
+        "name": "DescriptionList.css",
+        "code": "/* tearsheet description-list v7760a1e8 · https://qusaialjbali.github.io/tearsheet/zine/parts/description-list.html */\n.dl { width: 100%; max-width: 480px; margin: 0; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.dl div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 12px 18px; }\n.dl div + div { border-top: 1px solid var(--ui-border); }\n.dl dt { font-size: 14px; color: var(--ui-muted); }\n.dl dd { margin: 0; font-size: 14px; font-weight: 500; }\n.dl-badge { padding: 2px 10px; font-size: 12px; font-weight: 600; color: var(--ui-success); background: var(--ui-success-soft); border-radius: 999px; }\n.dl-edit { margin-left: 8px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n@media (max-width: 420px) { .dl div { grid-template-columns: 1fr; gap: 2px; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "DescriptionList.vue",
+        "code": "<!-- tearsheet description-list v7760a1e8 · https://qusaialjbali.github.io/tearsheet/zine/parts/description-list.html -->\n<template>\n  <dl class=\"dl\">\n    <div><dt>Order</dt><dd>#20418</dd></div>\n    <div><dt>Placed</dt><dd><time datetime=\"2026-11-21\">21 November 2026</time></dd></div>\n    <div><dt>Status</dt><dd><span class=\"dl-badge\">Shipped</span></dd></div>\n    <div><dt>Delivery address</dt><dd>12 Harbour Street<br>Leith, Edinburgh EH6 6QZ</dd></div>\n    <div><dt>Payment</dt><dd>Card ending 4421 <a href=\"#\" class=\"dl-edit\">Change</a></dd></div>\n  </dl>\n</template>\n\n<style scoped>\n.dl { width: 100%; max-width: 480px; margin: 0; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.dl div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 12px 18px; }\n.dl div + div { border-top: 1px solid var(--ui-border); }\n.dl dt { font-size: 14px; color: var(--ui-muted); }\n.dl dd { margin: 0; font-size: 14px; font-weight: 500; }\n.dl-badge { padding: 2px 10px; font-size: 12px; font-weight: 600; color: var(--ui-success); background: var(--ui-success-soft); border-radius: 999px; }\n.dl-edit { margin-left: 8px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n@media (max-width: 420px) { .dl div { grid-template-columns: 1fr; gap: 2px; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "DescriptionList.svelte",
+        "code": "<!-- tearsheet description-list v7760a1e8 · https://qusaialjbali.github.io/tearsheet/zine/parts/description-list.html -->\n<dl class=\"dl\">\n  <div><dt>Order</dt><dd>#20418</dd></div>\n  <div><dt>Placed</dt><dd><time datetime=\"2026-11-21\">21 November 2026</time></dd></div>\n  <div><dt>Status</dt><dd><span class=\"dl-badge\">Shipped</span></dd></div>\n  <div><dt>Delivery address</dt><dd>12 Harbour Street<br>Leith, Edinburgh EH6 6QZ</dd></div>\n  <div><dt>Payment</dt><dd>Card ending 4421 <a href=\"#\" class=\"dl-edit\">Change</a></dd></div>\n</dl>\n\n<style>\n.dl { width: 100%; max-width: 480px; margin: 0; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.dl div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 12px 18px; }\n.dl div + div { border-top: 1px solid var(--ui-border); }\n.dl dt { font-size: 14px; color: var(--ui-muted); }\n.dl dd { margin: 0; font-size: 14px; font-weight: 500; }\n.dl-badge { padding: 2px 10px; font-size: 12px; font-weight: 600; color: var(--ui-success); background: var(--ui-success-soft); border-radius: 999px; }\n.dl-edit { margin-left: 8px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n@media (max-width: 420px) { .dl div { grid-template-columns: 1fr; gap: 2px; } }\n</style>"
+      }
+    ]
+  }
+}

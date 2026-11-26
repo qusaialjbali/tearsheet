@@ -1,0 +1,93 @@
+{
+  "id": "settings-list",
+  "name": "Settings list",
+  "page": "p.28",
+  "collection": "Content",
+  "experimental": false,
+  "description": "Rows of settings mixing toggles, links to sub-pages and a destructive action.",
+  "notes": "Toggles apply instantly; rows with a chevron open another page. Keep the destructive action last and in its own colour.",
+  "usesJavaScript": false,
+  "sizeKb": 3.1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#settings-list",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/settings-list.json",
+  "version": "8ec9dedd",
+  "checked": "axe clean in light and dark; tightest text contrast 5.73:1 (needs 4.5:1); 4 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 22
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 22
+      }
+    },
+    "contrast": {
+      "ratio": 5.73,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "switch \"Email notifications\" [checked]",
+      "link \"Two-factor sign-in Not set up\":",
+      "link \"Language English (UK)\":",
+      "link \"Delete account\":"
+    ],
+    "tree": "- list:\n  - listitem:\n    - paragraph: Email notifications\n    - paragraph: Weekly summary and security alerts\n    - switch \"Email notifications\" [checked]\n  - listitem:\n    - link \"Two-factor sign-in Not set up\":\n      - /url: \"#\"\n  - listitem:\n    - link \"Language English (UK)\":\n      - /url: \"#\"\n  - listitem:\n    - link \"Delete account\":\n      - /url: \"#\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet settings-list v8ec9dedd · https://qusaialjbali.github.io/tearsheet/zine/parts/settings-list.html -->\n<ul class=\"settings\">\n  <li class=\"setting\">\n    <div class=\"setting-text\">\n      <p class=\"setting-title\" id=\"set-email\">Email notifications</p>\n      <p class=\"setting-desc\">Weekly summary and security alerts</p>\n    </div>\n    <label class=\"set-switch\"><input type=\"checkbox\" role=\"switch\" checked aria-labelledby=\"set-email\"><span aria-hidden=\"true\"></span></label>\n  </li>\n  <li class=\"setting\">\n    <a class=\"setting-link\" href=\"#\">\n      <span class=\"setting-text\">\n        <span class=\"setting-title\">Two-factor sign-in</span>\n        <span class=\"setting-desc\">Not set up</span>\n      </span>\n      <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n  </li>\n  <li class=\"setting\">\n    <a class=\"setting-link\" href=\"#\">\n      <span class=\"setting-text\">\n        <span class=\"setting-title\">Language</span>\n        <span class=\"setting-desc\">English (UK)</span>\n      </span>\n      <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n  </li>\n  <li class=\"setting\">\n    <a class=\"setting-link setting-danger\" href=\"#\"><span class=\"setting-title\">Delete account</span></a>\n  </li>\n</ul>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet settings-list v8ec9dedd · https://qusaialjbali.github.io/tearsheet/zine/parts/settings-list.html */\n.settings {\n  width: 100%;\n  max-width: 460px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.setting { display: flex; align-items: center; gap: 16px; padding: 14px 18px; }\n.setting + .setting { border-top: 1px solid var(--ui-border); }\n.setting:has(.setting-link) { padding: 0; }\n.setting-text { display: grid; gap: 2px; flex: 1; }\n.setting-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.setting-desc { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.setting-link {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  padding: 14px 18px;\n  color: inherit;\n  text-decoration: none;\n}\n.setting-link svg { width: 18px; height: 18px; color: var(--ui-muted); }\n.setting-link:hover { background: var(--ui-surface-2); }\n.setting-link:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.setting-danger .setting-title { color: var(--ui-danger); }\n.set-switch { position: relative; display: inline-flex; cursor: pointer; }\n.set-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.set-switch span {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.set-switch span::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.set-switch input:checked + span { background: var(--ui-accent); }\n.set-switch input:checked + span::after { transform: translateX(18px); }\n.set-switch input:focus-visible + span { box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "SettingsList.jsx",
+        "code": "/* tearsheet settings-list v8ec9dedd · https://qusaialjbali.github.io/tearsheet/zine/parts/settings-list.html */\nimport './SettingsList.css';\n\nexport function SettingsList() {\n  return (\n    <ul className=\"settings\">\n      <li className=\"setting\">\n        <div className=\"setting-text\">\n          <p className=\"setting-title\" id=\"set-email\">Email notifications</p>\n          <p className=\"setting-desc\">Weekly summary and security alerts</p>\n        </div>\n        <label className=\"set-switch\"><input type=\"checkbox\" role=\"switch\" defaultChecked aria-labelledby=\"set-email\" /><span aria-hidden=\"true\"></span></label>\n      </li>\n      <li className=\"setting\">\n        <a className=\"setting-link\" href=\"#\">\n          <span className=\"setting-text\">\n            <span className=\"setting-title\">Two-factor sign-in</span>\n            <span className=\"setting-desc\">Not set up</span>\n          </span>\n          <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>\n        </a>\n      </li>\n      <li className=\"setting\">\n        <a className=\"setting-link\" href=\"#\">\n          <span className=\"setting-text\">\n            <span className=\"setting-title\">Language</span>\n            <span className=\"setting-desc\">English (UK)</span>\n          </span>\n          <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>\n        </a>\n      </li>\n      <li className=\"setting\">\n        <a className=\"setting-link setting-danger\" href=\"#\"><span className=\"setting-title\">Delete account</span></a>\n      </li>\n    </ul>\n  );\n}"
+      },
+      {
+        "name": "SettingsList.css",
+        "code": "/* tearsheet settings-list v8ec9dedd · https://qusaialjbali.github.io/tearsheet/zine/parts/settings-list.html */\n.settings {\n  width: 100%;\n  max-width: 460px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.setting { display: flex; align-items: center; gap: 16px; padding: 14px 18px; }\n.setting + .setting { border-top: 1px solid var(--ui-border); }\n.setting:has(.setting-link) { padding: 0; }\n.setting-text { display: grid; gap: 2px; flex: 1; }\n.setting-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.setting-desc { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.setting-link {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  padding: 14px 18px;\n  color: inherit;\n  text-decoration: none;\n}\n.setting-link svg { width: 18px; height: 18px; color: var(--ui-muted); }\n.setting-link:hover { background: var(--ui-surface-2); }\n.setting-link:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.setting-danger .setting-title { color: var(--ui-danger); }\n.set-switch { position: relative; display: inline-flex; cursor: pointer; }\n.set-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.set-switch span {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.set-switch span::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.set-switch input:checked + span { background: var(--ui-accent); }\n.set-switch input:checked + span::after { transform: translateX(18px); }\n.set-switch input:focus-visible + span { box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "SettingsList.vue",
+        "code": "<!-- tearsheet settings-list v8ec9dedd · https://qusaialjbali.github.io/tearsheet/zine/parts/settings-list.html -->\n<template>\n  <ul class=\"settings\">\n    <li class=\"setting\">\n      <div class=\"setting-text\">\n        <p class=\"setting-title\" id=\"set-email\">Email notifications</p>\n        <p class=\"setting-desc\">Weekly summary and security alerts</p>\n      </div>\n      <label class=\"set-switch\"><input type=\"checkbox\" role=\"switch\" checked aria-labelledby=\"set-email\"><span aria-hidden=\"true\"></span></label>\n    </li>\n    <li class=\"setting\">\n      <a class=\"setting-link\" href=\"#\">\n        <span class=\"setting-text\">\n          <span class=\"setting-title\">Two-factor sign-in</span>\n          <span class=\"setting-desc\">Not set up</span>\n        </span>\n        <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n      </a>\n    </li>\n    <li class=\"setting\">\n      <a class=\"setting-link\" href=\"#\">\n        <span class=\"setting-text\">\n          <span class=\"setting-title\">Language</span>\n          <span class=\"setting-desc\">English (UK)</span>\n        </span>\n        <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n      </a>\n    </li>\n    <li class=\"setting\">\n      <a class=\"setting-link setting-danger\" href=\"#\"><span class=\"setting-title\">Delete account</span></a>\n    </li>\n  </ul>\n</template>\n\n<style scoped>\n.settings {\n  width: 100%;\n  max-width: 460px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.setting { display: flex; align-items: center; gap: 16px; padding: 14px 18px; }\n.setting + .setting { border-top: 1px solid var(--ui-border); }\n.setting:has(.setting-link) { padding: 0; }\n.setting-text { display: grid; gap: 2px; flex: 1; }\n.setting-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.setting-desc { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.setting-link {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  padding: 14px 18px;\n  color: inherit;\n  text-decoration: none;\n}\n.setting-link svg { width: 18px; height: 18px; color: var(--ui-muted); }\n.setting-link:hover { background: var(--ui-surface-2); }\n.setting-link:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.setting-danger .setting-title { color: var(--ui-danger); }\n.set-switch { position: relative; display: inline-flex; cursor: pointer; }\n.set-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.set-switch span {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.set-switch span::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.set-switch input:checked + span { background: var(--ui-accent); }\n.set-switch input:checked + span::after { transform: translateX(18px); }\n.set-switch input:focus-visible + span { box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "SettingsList.svelte",
+        "code": "<!-- tearsheet settings-list v8ec9dedd · https://qusaialjbali.github.io/tearsheet/zine/parts/settings-list.html -->\n<ul class=\"settings\">\n  <li class=\"setting\">\n    <div class=\"setting-text\">\n      <p class=\"setting-title\" id=\"set-email\">Email notifications</p>\n      <p class=\"setting-desc\">Weekly summary and security alerts</p>\n    </div>\n    <label class=\"set-switch\"><input type=\"checkbox\" role=\"switch\" checked aria-labelledby=\"set-email\"><span aria-hidden=\"true\"></span></label>\n  </li>\n  <li class=\"setting\">\n    <a class=\"setting-link\" href=\"#\">\n      <span class=\"setting-text\">\n        <span class=\"setting-title\">Two-factor sign-in</span>\n        <span class=\"setting-desc\">Not set up</span>\n      </span>\n      <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n  </li>\n  <li class=\"setting\">\n    <a class=\"setting-link\" href=\"#\">\n      <span class=\"setting-text\">\n        <span class=\"setting-title\">Language</span>\n        <span class=\"setting-desc\">English (UK)</span>\n      </span>\n      <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m8 5 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n  </li>\n  <li class=\"setting\">\n    <a class=\"setting-link setting-danger\" href=\"#\"><span class=\"setting-title\">Delete account</span></a>\n  </li>\n</ul>\n\n<style>\n.settings {\n  width: 100%;\n  max-width: 460px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  overflow: hidden;\n}\n.setting { display: flex; align-items: center; gap: 16px; padding: 14px 18px; }\n.setting + .setting { border-top: 1px solid var(--ui-border); }\n.setting:has(.setting-link) { padding: 0; }\n.setting-text { display: grid; gap: 2px; flex: 1; }\n.setting-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--ui-text); }\n.setting-desc { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.setting-link {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  width: 100%;\n  padding: 14px 18px;\n  color: inherit;\n  text-decoration: none;\n}\n.setting-link svg { width: 18px; height: 18px; color: var(--ui-muted); }\n.setting-link:hover { background: var(--ui-surface-2); }\n.setting-link:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.setting-danger .setting-title { color: var(--ui-danger); }\n.set-switch { position: relative; display: inline-flex; cursor: pointer; }\n.set-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n.set-switch span {\n  position: relative;\n  width: 42px;\n  height: 24px;\n  border-radius: 999px;\n  background: var(--ui-border-strong);\n  transition: background-color 0.2s;\n}\n.set-switch span::after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background: #fff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);\n  transition: transform 0.2s;\n}\n.set-switch input:checked + span { background: var(--ui-accent); }\n.set-switch input:checked + span::after { transform: translateX(18px); }\n.set-switch input:focus-visible + span { box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ]
+  }
+}

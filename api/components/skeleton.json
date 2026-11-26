@@ -1,0 +1,84 @@
+{
+  "id": "skeleton",
+  "name": "Skeleton loader",
+  "page": "p.48",
+  "collection": "Feedback",
+  "experimental": false,
+  "description": "Shimmering placeholder that mirrors the shape of the content it stands in for.",
+  "notes": "Match the real layout so nothing jumps when content arrives. The shimmer stops for people who prefer reduced motion.",
+  "usesJavaScript": false,
+  "sizeKb": 1.2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#skeleton",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/skeleton.json",
+  "version": "5d6312b3",
+  "checked": "axe clean in light and dark; 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 13
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 13
+      }
+    },
+    "contrast": null,
+    "brand": true,
+    "keyboard": [],
+    "tree": "- status \"Loading post\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet skeleton v5d6312b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/skeleton.html -->\n<div class=\"skeleton-card\" role=\"status\" aria-busy=\"true\" aria-label=\"Loading post\">\n  <div class=\"skeleton skeleton-avatar\"></div>\n  <div class=\"skeleton-lines\">\n    <div class=\"skeleton skeleton-line skeleton-short\"></div>\n    <div class=\"skeleton skeleton-line\"></div>\n    <div class=\"skeleton skeleton-line skeleton-medium\"></div>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet skeleton v5d6312b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/skeleton.html */\n.skeleton-card {\n  display: flex;\n  gap: 16px;\n  width: 100%;\n  max-width: 420px;\n  padding: 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.skeleton {\n  background: linear-gradient(90deg, var(--ui-surface-2) 25%, var(--ui-border) 37%, var(--ui-surface-2) 63%);\n  background-size: 400% 100%;\n  animation: shimmer 1.4s ease infinite;\n  border-radius: 6px;\n}\n.skeleton-avatar { width: 44px; height: 44px; flex: none; border-radius: 50%; }\n.skeleton-lines { display: grid; gap: 10px; flex: 1; align-content: center; }\n.skeleton-line { height: 12px; }\n.skeleton-short { width: 40%; }\n.skeleton-medium { width: 70%; }\n\n@keyframes shimmer {\n  from { background-position: 100% 50%; }\n  to { background-position: 0 50%; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .skeleton { animation: none; }\n}"
+      }
+    ],
+    "react": [
+      {
+        "name": "Skeleton.jsx",
+        "code": "/* tearsheet skeleton v5d6312b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/skeleton.html */\nimport './Skeleton.css';\n\nexport function Skeleton() {\n  return (\n    <div className=\"skeleton-card\" role=\"status\" aria-busy=\"true\" aria-label=\"Loading post\">\n      <div className=\"skeleton skeleton-avatar\"></div>\n      <div className=\"skeleton-lines\">\n        <div className=\"skeleton skeleton-line skeleton-short\"></div>\n        <div className=\"skeleton skeleton-line\"></div>\n        <div className=\"skeleton skeleton-line skeleton-medium\"></div>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Skeleton.css",
+        "code": "/* tearsheet skeleton v5d6312b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/skeleton.html */\n.skeleton-card {\n  display: flex;\n  gap: 16px;\n  width: 100%;\n  max-width: 420px;\n  padding: 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.skeleton {\n  background: linear-gradient(90deg, var(--ui-surface-2) 25%, var(--ui-border) 37%, var(--ui-surface-2) 63%);\n  background-size: 400% 100%;\n  animation: shimmer 1.4s ease infinite;\n  border-radius: 6px;\n}\n.skeleton-avatar { width: 44px; height: 44px; flex: none; border-radius: 50%; }\n.skeleton-lines { display: grid; gap: 10px; flex: 1; align-content: center; }\n.skeleton-line { height: 12px; }\n.skeleton-short { width: 40%; }\n.skeleton-medium { width: 70%; }\n\n@keyframes shimmer {\n  from { background-position: 100% 50%; }\n  to { background-position: 0 50%; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .skeleton { animation: none; }\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Skeleton.vue",
+        "code": "<!-- tearsheet skeleton v5d6312b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/skeleton.html -->\n<template>\n  <div class=\"skeleton-card\" role=\"status\" aria-busy=\"true\" aria-label=\"Loading post\">\n    <div class=\"skeleton skeleton-avatar\"></div>\n    <div class=\"skeleton-lines\">\n      <div class=\"skeleton skeleton-line skeleton-short\"></div>\n      <div class=\"skeleton skeleton-line\"></div>\n      <div class=\"skeleton skeleton-line skeleton-medium\"></div>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.skeleton-card {\n  display: flex;\n  gap: 16px;\n  width: 100%;\n  max-width: 420px;\n  padding: 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.skeleton {\n  background: linear-gradient(90deg, var(--ui-surface-2) 25%, var(--ui-border) 37%, var(--ui-surface-2) 63%);\n  background-size: 400% 100%;\n  animation: shimmer 1.4s ease infinite;\n  border-radius: 6px;\n}\n.skeleton-avatar { width: 44px; height: 44px; flex: none; border-radius: 50%; }\n.skeleton-lines { display: grid; gap: 10px; flex: 1; align-content: center; }\n.skeleton-line { height: 12px; }\n.skeleton-short { width: 40%; }\n.skeleton-medium { width: 70%; }\n\n@keyframes shimmer {\n  from { background-position: 100% 50%; }\n  to { background-position: 0 50%; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .skeleton { animation: none; }\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Skeleton.svelte",
+        "code": "<!-- tearsheet skeleton v5d6312b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/skeleton.html -->\n<div class=\"skeleton-card\" role=\"status\" aria-busy=\"true\" aria-label=\"Loading post\">\n  <div class=\"skeleton skeleton-avatar\"></div>\n  <div class=\"skeleton-lines\">\n    <div class=\"skeleton skeleton-line skeleton-short\"></div>\n    <div class=\"skeleton skeleton-line\"></div>\n    <div class=\"skeleton skeleton-line skeleton-medium\"></div>\n  </div>\n</div>\n\n<style>\n.skeleton-card {\n  display: flex;\n  gap: 16px;\n  width: 100%;\n  max-width: 420px;\n  padding: 20px;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.skeleton {\n  background: linear-gradient(90deg, var(--ui-surface-2) 25%, var(--ui-border) 37%, var(--ui-surface-2) 63%);\n  background-size: 400% 100%;\n  animation: shimmer 1.4s ease infinite;\n  border-radius: 6px;\n}\n.skeleton-avatar { width: 44px; height: 44px; flex: none; border-radius: 50%; }\n.skeleton-lines { display: grid; gap: 10px; flex: 1; align-content: center; }\n.skeleton-line { height: 12px; }\n.skeleton-short { width: 40%; }\n.skeleton-medium { width: 70%; }\n\n@keyframes shimmer {\n  from { background-position: 100% 50%; }\n  to { background-position: 0 50%; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .skeleton { animation: none; }\n}\n</style>"
+      }
+    ]
+  }
+}

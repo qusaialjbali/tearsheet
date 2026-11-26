@@ -1,0 +1,98 @@
+{
+  "id": "glitch-text",
+  "name": "VHS glitch heading",
+  "page": "p.95",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "A heading that tears into red and cyan slices like a worn tape when you hover or press the button.",
+  "notes": "The slices are pseudo-elements copying the text from data-text, so the heading is read once. It never glitches on its own, and reduced motion keeps it still.",
+  "usesJavaScript": true,
+  "sizeKb": 2.1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#glitch-text",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/glitch-text.json",
+  "version": "6b5681ea",
+  "checked": "axe clean in light and dark; tightest text contrast 16.1:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 16.1,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Glitch it\""
+    ],
+    "tree": "- heading \"REWIND REWIND REWIND\" [level=2]\n- button \"Glitch it\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html -->\n<div class=\"glitch-demo\">\n  <h2 class=\"glitch\" data-text=\"REWIND\">REWIND</h2>\n  <button class=\"glitch-btn\" type=\"button\">Glitch it</button>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html */\n.glitch-demo { display: grid; justify-items: center; gap: 14px; }\n.glitch { position: relative; margin: 0; font-size: clamp(48px, 9vw, 84px); font-weight: 900; letter-spacing: 0.02em; color: var(--ui-text); }\n.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }\n.glitch::before { color: #ff2a6d; }\n.glitch::after { color: #05d9e8; }\n.glitch:hover::before, .glitch.is-on::before { opacity: 0.9; animation: glitch-a 0.6s steps(2) infinite; }\n.glitch:hover::after, .glitch.is-on::after { opacity: 0.9; animation: glitch-b 0.5s steps(2) infinite; }\n@keyframes glitch-a {\n  0% { clip-path: inset(10% 0 70% 0); transform: translate(-6px, -2px); }\n  33% { clip-path: inset(55% 0 20% 0); transform: translate(5px, 1px); }\n  66% { clip-path: inset(30% 0 45% 0); transform: translate(-3px, 2px); }\n  100% { clip-path: inset(80% 0 5% 0); transform: translate(4px, -1px); }\n}\n@keyframes glitch-b {\n  0% { clip-path: inset(65% 0 10% 0); transform: translate(6px, 2px); }\n  50% { clip-path: inset(15% 0 60% 0); transform: translate(-5px, -2px); }\n  100% { clip-path: inset(40% 0 35% 0); transform: translate(3px, 1px); }\n}\n.glitch-btn { padding: 8px 16px; font: inherit; font-size: 14px; font-weight: 700; color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: pointer; }\n.glitch-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .glitch::before, .glitch::after { animation: none !important; opacity: 0 !important; } }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html */\nfunction setup(root) {\n  const h = root.querySelector('.glitch');\n  const btn = root.querySelector('.glitch-btn');\n  let t;\n  const onClick = () => { h.classList.add('is-on'); clearTimeout(t); t = setTimeout(() => h.classList.remove('is-on'), 900); };\n  btn.addEventListener('click', onClick);\n  return () => { clearTimeout(t); btn.removeEventListener('click', onClick); };\n}\n\ndocument.querySelectorAll(\".glitch-demo\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "GlitchText.jsx",
+        "code": "/* tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html */\nimport { useEffect, useRef } from 'react';\nimport './GlitchText.css';\n\nfunction setup(root) {\n  const h = root.querySelector('.glitch');\n  const btn = root.querySelector('.glitch-btn');\n  let t;\n  const onClick = () => { h.classList.add('is-on'); clearTimeout(t); t = setTimeout(() => h.classList.remove('is-on'), 900); };\n  btn.addEventListener('click', onClick);\n  return () => { clearTimeout(t); btn.removeEventListener('click', onClick); };\n}\n\nexport function GlitchText() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"glitch-demo\">\n      <h2 className=\"glitch\" data-text=\"REWIND\">REWIND</h2>\n      <button className=\"glitch-btn\" type=\"button\">Glitch it</button>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "GlitchText.css",
+        "code": "/* tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html */\n.glitch-demo { display: grid; justify-items: center; gap: 14px; }\n.glitch { position: relative; margin: 0; font-size: clamp(48px, 9vw, 84px); font-weight: 900; letter-spacing: 0.02em; color: var(--ui-text); }\n.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }\n.glitch::before { color: #ff2a6d; }\n.glitch::after { color: #05d9e8; }\n.glitch:hover::before, .glitch.is-on::before { opacity: 0.9; animation: glitch-a 0.6s steps(2) infinite; }\n.glitch:hover::after, .glitch.is-on::after { opacity: 0.9; animation: glitch-b 0.5s steps(2) infinite; }\n@keyframes glitch-a {\n  0% { clip-path: inset(10% 0 70% 0); transform: translate(-6px, -2px); }\n  33% { clip-path: inset(55% 0 20% 0); transform: translate(5px, 1px); }\n  66% { clip-path: inset(30% 0 45% 0); transform: translate(-3px, 2px); }\n  100% { clip-path: inset(80% 0 5% 0); transform: translate(4px, -1px); }\n}\n@keyframes glitch-b {\n  0% { clip-path: inset(65% 0 10% 0); transform: translate(6px, 2px); }\n  50% { clip-path: inset(15% 0 60% 0); transform: translate(-5px, -2px); }\n  100% { clip-path: inset(40% 0 35% 0); transform: translate(3px, 1px); }\n}\n.glitch-btn { padding: 8px 16px; font: inherit; font-size: 14px; font-weight: 700; color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: pointer; }\n.glitch-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .glitch::before, .glitch::after { animation: none !important; opacity: 0 !important; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "GlitchText.vue",
+        "code": "<!-- tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const h = root.querySelector('.glitch');\n  const btn = root.querySelector('.glitch-btn');\n  let t;\n  const onClick = () => { h.classList.add('is-on'); clearTimeout(t); t = setTimeout(() => h.classList.remove('is-on'), 900); };\n  btn.addEventListener('click', onClick);\n  return () => { clearTimeout(t); btn.removeEventListener('click', onClick); };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"glitch-demo\">\n    <h2 class=\"glitch\" data-text=\"REWIND\">REWIND</h2>\n    <button class=\"glitch-btn\" type=\"button\">Glitch it</button>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.glitch-demo { display: grid; justify-items: center; gap: 14px; }\n.glitch { position: relative; margin: 0; font-size: clamp(48px, 9vw, 84px); font-weight: 900; letter-spacing: 0.02em; color: var(--ui-text); }\n.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }\n.glitch::before { color: #ff2a6d; }\n.glitch::after { color: #05d9e8; }\n.glitch:hover::before, .glitch.is-on::before { opacity: 0.9; animation: glitch-a 0.6s steps(2) infinite; }\n.glitch:hover::after, .glitch.is-on::after { opacity: 0.9; animation: glitch-b 0.5s steps(2) infinite; }\n@keyframes glitch-a {\n  0% { clip-path: inset(10% 0 70% 0); transform: translate(-6px, -2px); }\n  33% { clip-path: inset(55% 0 20% 0); transform: translate(5px, 1px); }\n  66% { clip-path: inset(30% 0 45% 0); transform: translate(-3px, 2px); }\n  100% { clip-path: inset(80% 0 5% 0); transform: translate(4px, -1px); }\n}\n@keyframes glitch-b {\n  0% { clip-path: inset(65% 0 10% 0); transform: translate(6px, 2px); }\n  50% { clip-path: inset(15% 0 60% 0); transform: translate(-5px, -2px); }\n  100% { clip-path: inset(40% 0 35% 0); transform: translate(3px, 1px); }\n}\n.glitch-btn { padding: 8px 16px; font: inherit; font-size: 14px; font-weight: 700; color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: pointer; }\n.glitch-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .glitch::before, .glitch::after { animation: none !important; opacity: 0 !important; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "GlitchText.svelte",
+        "code": "<!-- tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './GlitchText.css';\n\n  let node;\n\n  function setup(root) {\n    const h = root.querySelector('.glitch');\n    const btn = root.querySelector('.glitch-btn');\n    let t;\n    const onClick = () => { h.classList.add('is-on'); clearTimeout(t); t = setTimeout(() => h.classList.remove('is-on'), 900); };\n    btn.addEventListener('click', onClick);\n    return () => { clearTimeout(t); btn.removeEventListener('click', onClick); };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"glitch-demo\">\n  <h2 class=\"glitch\" data-text=\"REWIND\">REWIND</h2>\n  <button class=\"glitch-btn\" type=\"button\">Glitch it</button>\n</div>"
+      },
+      {
+        "name": "GlitchText.css",
+        "code": "/* tearsheet glitch-text v6b5681ea · https://qusaialjbali.github.io/tearsheet/zine/parts/glitch-text.html */\n.glitch-demo { display: grid; justify-items: center; gap: 14px; }\n.glitch { position: relative; margin: 0; font-size: clamp(48px, 9vw, 84px); font-weight: 900; letter-spacing: 0.02em; color: var(--ui-text); }\n.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }\n.glitch::before { color: #ff2a6d; }\n.glitch::after { color: #05d9e8; }\n.glitch:hover::before, .glitch.is-on::before { opacity: 0.9; animation: glitch-a 0.6s steps(2) infinite; }\n.glitch:hover::after, .glitch.is-on::after { opacity: 0.9; animation: glitch-b 0.5s steps(2) infinite; }\n@keyframes glitch-a {\n  0% { clip-path: inset(10% 0 70% 0); transform: translate(-6px, -2px); }\n  33% { clip-path: inset(55% 0 20% 0); transform: translate(5px, 1px); }\n  66% { clip-path: inset(30% 0 45% 0); transform: translate(-3px, 2px); }\n  100% { clip-path: inset(80% 0 5% 0); transform: translate(4px, -1px); }\n}\n@keyframes glitch-b {\n  0% { clip-path: inset(65% 0 10% 0); transform: translate(6px, 2px); }\n  50% { clip-path: inset(15% 0 60% 0); transform: translate(-5px, -2px); }\n  100% { clip-path: inset(40% 0 35% 0); transform: translate(3px, 1px); }\n}\n.glitch-btn { padding: 8px 16px; font: inherit; font-size: 14px; font-weight: 700; color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: pointer; }\n.glitch-btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n@media (prefers-reduced-motion: reduce) { .glitch::before, .glitch::after { animation: none !important; opacity: 0 !important; } }"
+      }
+    ]
+  }
+}

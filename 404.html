@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page torn out | Tearsheet</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/tearsheet/favicon.svg" type="image/svg+xml">
+  <link rel="author" href="/tearsheet/humans.txt" type="text/plain">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="/tearsheet/zine/part.css?v=5">
+  <style>
+    .lost { display: grid; gap: 14px; justify-items: start; }
+    .lost-code { position: relative; margin: 8px 0 0; font-size: clamp(120px, 30vw, 260px); font-weight: 800; line-height: 0.8; letter-spacing: -0.06em; }
+    .lost-code .a { position: relative; z-index: 1; color: var(--ink); mix-blend-mode: multiply; }
+    .lost-code .b { position: absolute; left: 0; top: 0; color: var(--pink); transform: translate(0.05em, 0.04em) rotate(-3deg); }
+    [data-theme="dark"] .lost-code .a { mix-blend-mode: normal; }
+    .lost-tear { width: 100%; height: 14px; margin: 6px 0; background: linear-gradient(-45deg, var(--stock) 7px, transparent 0) 0 0 / 14px 14px, linear-gradient(45deg, var(--stock) 7px, var(--rule) 0) 0 0 / 14px 14px; }
+    .lost h1 { margin: 0; font-size: clamp(30px, 6vw, 48px); letter-spacing: -0.03em; }
+    .lost-guess:empty { display: none; }
+    .lost-guess { margin: 0; padding: 10px 14px; font-size: 18px; font-weight: 700; background: var(--sheet); border: 2px dashed var(--rule); }
+    .lost-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 0; padding: 0; list-style: none; }
+    .lost-links a { display: inline-flex; min-height: 44px; align-items: center; padding: 0 18px; font-weight: 800; text-decoration: none; border: 2px solid var(--rule); border-radius: 999px; }
+    .lost-links li:first-child a { color: #1b1b20; background: var(--pink); border-color: var(--pink); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/tearsheet/zine/index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="/tearsheet/zine/parts/index.html">Every part</a><a href="/tearsheet/zine/guide.html">Guide</a><a href="/tearsheet/zine/fitter.html">Fitter</a></nav>
+  </header>
+  <main class="part lost">
+    <p class="lost-code" aria-hidden="true"><span class="a">404</span><span class="b">404</span></p>
+    <div class="lost-tear" aria-hidden="true"></div>
+    <h1>This page was torn out.</h1>
+    <p class="lede">Whatever was here is not in the zine any more, or the link has a typo. Everything is still free; it just lives somewhere else.</p>
+    <p class="lost-guess" id="guess" role="status"></p>
+    <ul class="lost-links">
+      <li><a href="/tearsheet/zine/index.html">Open the zine</a></li>
+      <li><a href="/tearsheet/zine/parts/index.html">Every part, one page each</a></li>
+      <li><a href="/tearsheet/zine/guide.html">The guide</a></li>
+      <li><a href="/tearsheet/zine/fitter.html">Brand fitter</a></li>
+    </ul>
+  </main>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+  <script>
+    /* A mistyped or old part link: suggest the closest part by name. */
+    (function () {
+      var parts = [["buttons","Buttons"],["button-group","Toggle button group"],["split-button","Split button"],["icon-buttons","Icon buttons"],["loading-button","Loading button"],["text-field","Text field"],["checkbox-switch","Checkbox & switch"],["select","Select"],["radio-cards","Radio cards"],["segmented-control","Segmented control"],["range-slider","Range slider"],["number-stepper","Number stepper"],["file-dropzone","File dropzone"],["star-rating","Star rating"],["otp-input","One-time code"],["copy-field","Copy field"],["combobox","Autocomplete"],["tag-input","Tag input"],["date-range","Date range"],["multi-step-form","Multi-step form"],["textarea-counter","Textarea with counter"],["card","Card"],["badges","Badges"],["accordion","Accordion"],["avatars","Avatar group"],["data-table","Data table"],["stat-group","Stat group"],["settings-list","Settings list"],["keyboard-shortcuts","Keyboard shortcuts"],["activity-timeline","Activity timeline"],["chat-thread","Chat thread"],["comment-thread","Comment thread"],["code-block","Code block"],["kanban-column","Kanban column"],["carousel","Carousel"],["lightbox","Lightbox gallery"],["sortable-table","Sortable table"],["bar-chart","Bar chart"],["line-chart","Line chart"],["donut-chart","Donut chart"],["sparkline-stats","Sparkline stats"],["calendar-month","Month calendar"],["file-tree","File tree"],["description-list","Details list"],["alerts","Alerts"],["toast","Toast notification"],["progress","Progress & spinner"],["skeleton","Skeleton loader"],["empty-state","Empty state"],["tabs","Tabs"],["navbar","Navigation bar"],["breadcrumb","Breadcrumb"],["pagination","Pagination"],["steps-indicator","Steps indicator"],["modal","Modal dialog"],["tooltip","Tooltip"],["dropdown-menu","Dropdown menu"],["drawer","Side drawer"],["popover","Popover"],["context-menu","Context menu"],["cookie-banner","Honest cookie banner"],["command-palette","Command palette"],["pricing-card","Pricing card"],["hero-centered","Hero, centred"],["hero-signup","Hero with signup"],["feature-grid","Feature grid"],["testimonial","Testimonial"],["logo-strip","Logo strip"],["faq-section","FAQ section"],["cta-band","Call-to-action band"],["newsletter","Newsletter signup"],["comparison-table","Plan comparison"],["changelog","Changelog"],["site-footer","Site footer"],["not-found","404 page"],["pricing-tiers","Pricing tiers"],["magnetic-button","Magnetic button"],["split-flap","Split-flap board"],["odometer","Odometer counter"],["holo-card","Holographic card"],["scramble-text","Decoder text"],["hold-to-confirm","Hold to confirm"],["string-slider","Elastic string slider"],["orbit-menu","Orbit menu"],["scratch-card","Scratch card"],["liquid-progress","Liquid progress"],["rotary-knob","Rotary knob"],["password-creature","Password creature"],["physics-tags","Throwable tags"],["gooey-toggle","Gooey switch"],["slot-machine","Idea slot machine"],["typewriter-terminal","Typewriter terminal"],["vinyl-player","Vinyl player"],["ink-bleed","Ink bleed menu"],["glitch-text","VHS glitch heading"],["ink-trail","Ink trail pad"],["jelly-button","Jelly button"],["cube-tabs","Cube tabs"]];
+      var word = decodeURIComponent(location.pathname.split('/').filter(Boolean).pop() || '').replace(/.html?$/, '').replace(/^#/, '').toLowerCase();
+      if (!word || word === 'tearsheet') return;
+      var dist = function (a, b) {
+        var row = []; for (var j = 0; j <= b.length; j++) row[j] = j;
+        for (var i = 1; i <= a.length; i++) { var prev = row[0]; row[0] = i;
+          for (var k = 1; k <= b.length; k++) { var t = row[k]; row[k] = Math.min(row[k] + 1, row[k - 1] + 1, prev + (a[i - 1] === b[k - 1] ? 0 : 1)); prev = t; } }
+        return row[b.length];
+      };
+      var best = null;
+      parts.forEach(function (p) {
+        var d = p[0].indexOf(word) >= 0 || word.indexOf(p[0]) >= 0 ? 0 : dist(word, p[0]);
+        if (!best || d < best.d) best = { d: d, p: p };
+      });
+      if (!best || best.d > Math.max(2, Math.floor(word.length / 3))) return;
+      var guess = document.getElementById('guess');
+      guess.append('Were you looking for ');
+      var a = document.createElement('a');
+      a.href = '/tearsheet/zine/parts/' + best.p[0] + '.html';
+      a.textContent = best.p[1];
+      guess.append(a, '?');
+    })();
+  </script>
+</body>
+</html>

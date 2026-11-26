@@ -1,0 +1,93 @@
+{
+  "id": "comment-thread",
+  "name": "Comment thread",
+  "page": "p.32",
+  "collection": "Content",
+  "experimental": false,
+  "description": "A discussion with one level of replies, author badges, relative times and quiet actions.",
+  "notes": "Nest replies only one level deep; deeper threads become unreadable on phones. The reply button says who you are replying to.",
+  "usesJavaScript": false,
+  "sizeKb": 2.3,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#comment-thread",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/comment-thread.json",
+  "version": "2d1de446",
+  "checked": "axe clean in light and dark; tightest text contrast 5.35:1 (needs 4.5:1); 4 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 5.35,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Reply to Rosa\"",
+      "button \"Like · 4\"",
+      "button \"Reply to Tomás\"",
+      "button \"Like · 9\""
+    ],
+    "tree": "- region \"Comments\":\n  - article:\n    - paragraph:\n      - text: Rosa K. Author\n      - time: 2 days ago\n    - paragraph: Should the toast stay on screen longer when it contains an Undo button?\n    - paragraph:\n      - button \"Reply to Rosa\"\n      - button \"Like · 4\"\n    - article:\n      - paragraph:\n        - text: Tomás M.\n        - time: 1 day ago\n      - paragraph: Yes. And pause the timer while it has focus or the pointer is over it, so nobody loses the undo.\n      - paragraph:\n        - button \"Reply to Tomás\"\n        - button \"Like · 9\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet comment-thread v2d1de446 · https://qusaialjbali.github.io/tearsheet/zine/parts/comment-thread.html -->\n<section class=\"comments\" aria-label=\"Comments\">\n  <article class=\"cmt\">\n    <span class=\"cmt-av\" aria-hidden=\"true\">RK</span>\n    <div class=\"cmt-body\">\n      <p class=\"cmt-meta\"><b>Rosa K.</b> <span class=\"cmt-badge\">Author</span> <time datetime=\"2026-11-25\">2 days ago</time></p>\n      <p>Should the toast stay on screen longer when it contains an Undo button?</p>\n      <p class=\"cmt-actions\"><button type=\"button\">Reply to Rosa</button><button type=\"button\" aria-pressed=\"false\">Like · 4</button></p>\n      <article class=\"cmt reply\">\n        <span class=\"cmt-av alt\" aria-hidden=\"true\">TM</span>\n        <div class=\"cmt-body\">\n          <p class=\"cmt-meta\"><b>Tomás M.</b> <time datetime=\"2026-11-26\">1 day ago</time></p>\n          <p>Yes. And pause the timer while it has focus or the pointer is over it, so nobody loses the undo.</p>\n          <p class=\"cmt-actions\"><button type=\"button\">Reply to Tomás</button><button type=\"button\" aria-pressed=\"false\">Like · 9</button></p>\n        </div>\n      </article>\n    </div>\n  </article>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet comment-thread v2d1de446 · https://qusaialjbali.github.io/tearsheet/zine/parts/comment-thread.html */\n.comments { width: 100%; max-width: 520px; }\n.cmt { display: grid; grid-template-columns: 36px 1fr; gap: 12px; }\n.cmt.reply { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--ui-border); }\n.cmt-av { display: grid; place-items: center; width: 36px; height: 36px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.cmt-av.alt { background: #0f766e; }\n.cmt-body > p { margin: 0 0 6px; font-size: 14px; line-height: 1.55; }\n.cmt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px !important; color: var(--ui-muted); }\n.cmt-meta b { color: var(--ui-text); }\n.cmt-badge { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px; }\n.cmt-actions { display: flex; gap: 4px; }\n.cmt-actions button { padding: 4px 8px; margin-left: -8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: 6px; cursor: pointer; }\n.cmt-actions button + button { margin-left: 0; }\n.cmt-actions button:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.cmt-actions button:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "CommentThread.jsx",
+        "code": "/* tearsheet comment-thread v2d1de446 · https://qusaialjbali.github.io/tearsheet/zine/parts/comment-thread.html */\nimport './CommentThread.css';\n\nexport function CommentThread() {\n  return (\n    <section className=\"comments\" aria-label=\"Comments\">\n      <article className=\"cmt\">\n        <span className=\"cmt-av\" aria-hidden=\"true\">RK</span>\n        <div className=\"cmt-body\">\n          <p className=\"cmt-meta\"><b>Rosa K.</b> <span className=\"cmt-badge\">Author</span> <time dateTime=\"2026-11-25\">2 days ago</time></p>\n          <p>Should the toast stay on screen longer when it contains an Undo button?</p>\n          <p className=\"cmt-actions\"><button type=\"button\">Reply to Rosa</button><button type=\"button\" aria-pressed=\"false\">Like · 4</button></p>\n          <article className=\"cmt reply\">\n            <span className=\"cmt-av alt\" aria-hidden=\"true\">TM</span>\n            <div className=\"cmt-body\">\n              <p className=\"cmt-meta\"><b>Tomás M.</b> <time dateTime=\"2026-11-26\">1 day ago</time></p>\n              <p>Yes. And pause the timer while it has focus or the pointer is over it, so nobody loses the undo.</p>\n              <p className=\"cmt-actions\"><button type=\"button\">Reply to Tomás</button><button type=\"button\" aria-pressed=\"false\">Like · 9</button></p>\n            </div>\n          </article>\n        </div>\n      </article>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "CommentThread.css",
+        "code": "/* tearsheet comment-thread v2d1de446 · https://qusaialjbali.github.io/tearsheet/zine/parts/comment-thread.html */\n.comments { width: 100%; max-width: 520px; }\n.cmt { display: grid; grid-template-columns: 36px 1fr; gap: 12px; }\n.cmt.reply { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--ui-border); }\n.cmt-av { display: grid; place-items: center; width: 36px; height: 36px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.cmt-av.alt { background: #0f766e; }\n.cmt-body > p { margin: 0 0 6px; font-size: 14px; line-height: 1.55; }\n.cmt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px !important; color: var(--ui-muted); }\n.cmt-meta b { color: var(--ui-text); }\n.cmt-badge { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px; }\n.cmt-actions { display: flex; gap: 4px; }\n.cmt-actions button { padding: 4px 8px; margin-left: -8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: 6px; cursor: pointer; }\n.cmt-actions button + button { margin-left: 0; }\n.cmt-actions button:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.cmt-actions button:focus-visible { outline: none; box-shadow: var(--ui-focus); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "CommentThread.vue",
+        "code": "<!-- tearsheet comment-thread v2d1de446 · https://qusaialjbali.github.io/tearsheet/zine/parts/comment-thread.html -->\n<template>\n  <section class=\"comments\" aria-label=\"Comments\">\n    <article class=\"cmt\">\n      <span class=\"cmt-av\" aria-hidden=\"true\">RK</span>\n      <div class=\"cmt-body\">\n        <p class=\"cmt-meta\"><b>Rosa K.</b> <span class=\"cmt-badge\">Author</span> <time datetime=\"2026-11-25\">2 days ago</time></p>\n        <p>Should the toast stay on screen longer when it contains an Undo button?</p>\n        <p class=\"cmt-actions\"><button type=\"button\">Reply to Rosa</button><button type=\"button\" aria-pressed=\"false\">Like · 4</button></p>\n        <article class=\"cmt reply\">\n          <span class=\"cmt-av alt\" aria-hidden=\"true\">TM</span>\n          <div class=\"cmt-body\">\n            <p class=\"cmt-meta\"><b>Tomás M.</b> <time datetime=\"2026-11-26\">1 day ago</time></p>\n            <p>Yes. And pause the timer while it has focus or the pointer is over it, so nobody loses the undo.</p>\n            <p class=\"cmt-actions\"><button type=\"button\">Reply to Tomás</button><button type=\"button\" aria-pressed=\"false\">Like · 9</button></p>\n          </div>\n        </article>\n      </div>\n    </article>\n  </section>\n</template>\n\n<style scoped>\n.comments { width: 100%; max-width: 520px; }\n.cmt { display: grid; grid-template-columns: 36px 1fr; gap: 12px; }\n.cmt.reply { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--ui-border); }\n.cmt-av { display: grid; place-items: center; width: 36px; height: 36px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.cmt-av.alt { background: #0f766e; }\n.cmt-body > p { margin: 0 0 6px; font-size: 14px; line-height: 1.55; }\n.cmt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px !important; color: var(--ui-muted); }\n.cmt-meta b { color: var(--ui-text); }\n.cmt-badge { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px; }\n.cmt-actions { display: flex; gap: 4px; }\n.cmt-actions button { padding: 4px 8px; margin-left: -8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: 6px; cursor: pointer; }\n.cmt-actions button + button { margin-left: 0; }\n.cmt-actions button:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.cmt-actions button:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "CommentThread.svelte",
+        "code": "<!-- tearsheet comment-thread v2d1de446 · https://qusaialjbali.github.io/tearsheet/zine/parts/comment-thread.html -->\n<section class=\"comments\" aria-label=\"Comments\">\n  <article class=\"cmt\">\n    <span class=\"cmt-av\" aria-hidden=\"true\">RK</span>\n    <div class=\"cmt-body\">\n      <p class=\"cmt-meta\"><b>Rosa K.</b> <span class=\"cmt-badge\">Author</span> <time datetime=\"2026-11-25\">2 days ago</time></p>\n      <p>Should the toast stay on screen longer when it contains an Undo button?</p>\n      <p class=\"cmt-actions\"><button type=\"button\">Reply to Rosa</button><button type=\"button\" aria-pressed=\"false\">Like · 4</button></p>\n      <article class=\"cmt reply\">\n        <span class=\"cmt-av alt\" aria-hidden=\"true\">TM</span>\n        <div class=\"cmt-body\">\n          <p class=\"cmt-meta\"><b>Tomás M.</b> <time datetime=\"2026-11-26\">1 day ago</time></p>\n          <p>Yes. And pause the timer while it has focus or the pointer is over it, so nobody loses the undo.</p>\n          <p class=\"cmt-actions\"><button type=\"button\">Reply to Tomás</button><button type=\"button\" aria-pressed=\"false\">Like · 9</button></p>\n        </div>\n      </article>\n    </div>\n  </article>\n</section>\n\n<style>\n.comments { width: 100%; max-width: 520px; }\n.cmt { display: grid; grid-template-columns: 36px 1fr; gap: 12px; }\n.cmt.reply { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--ui-border); }\n.cmt-av { display: grid; place-items: center; width: 36px; height: 36px; font-size: 12px; font-weight: 700; color: #fff; background: #4f46e5; border-radius: 50%; }\n.cmt-av.alt { background: #0f766e; }\n.cmt-body > p { margin: 0 0 6px; font-size: 14px; line-height: 1.55; }\n.cmt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px !important; color: var(--ui-muted); }\n.cmt-meta b { color: var(--ui-text); }\n.cmt-badge { padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px; }\n.cmt-actions { display: flex; gap: 4px; }\n.cmt-actions button { padding: 4px 8px; margin-left: -8px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ui-muted); background: none; border: 0; border-radius: 6px; cursor: pointer; }\n.cmt-actions button + button { margin-left: 0; }\n.cmt-actions button:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.cmt-actions button:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n</style>"
+      }
+    ]
+  }
+}

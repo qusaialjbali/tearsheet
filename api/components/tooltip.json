@@ -1,0 +1,86 @@
+{
+  "id": "tooltip",
+  "name": "Tooltip",
+  "page": "p.56",
+  "collection": "Overlays",
+  "experimental": false,
+  "description": "CSS-only tooltip that shows on hover and on keyboard focus.",
+  "notes": "Tooltips hold short, non-essential hints. Touch screens have no hover, so never hide required information in one.",
+  "usesJavaScript": false,
+  "sizeKb": 1.3,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#tooltip",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/tooltip.json",
+  "version": "0306f36e",
+  "checked": "axe clean in light and dark; 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 17
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 17
+      }
+    },
+    "contrast": null,
+    "brand": true,
+    "keyboard": [
+      "button \"Billing help\": \"?\""
+    ],
+    "tree": "- button \"Billing help\": \"?\"\n- tooltip \"You’re billed on the 1st of each month.\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet tooltip v0306f36e · https://qusaialjbali.github.io/tearsheet/zine/parts/tooltip.html -->\n<span class=\"tip\">\n  <button class=\"tip-trigger\" type=\"button\" aria-label=\"Billing help\" aria-describedby=\"tip-billing\">?</button>\n  <span class=\"tip-bubble\" role=\"tooltip\" id=\"tip-billing\">You’re billed on the 1st of each month.</span>\n</span>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet tooltip v0306f36e · https://qusaialjbali.github.io/tearsheet/zine/parts/tooltip.html */\n.tip { position: relative; display: inline-flex; }\n.tip-trigger {\n  display: grid;\n  place-items: center;\n  width: 32px;\n  height: 32px;\n  font: inherit;\n  font-weight: 700;\n  color: var(--ui-muted);\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border);\n  border-radius: 50%;\n  cursor: help;\n}\n.tip-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tip-bubble {\n  position: absolute;\n  bottom: calc(100% + 10px);\n  left: 50%;\n  width: max-content;\n  max-width: 240px;\n  padding: 8px 12px;\n  font-size: 13px;\n  line-height: 1.4;\n  color: var(--ui-bg);\n  background: var(--ui-text);\n  border-radius: 6px;\n  pointer-events: none;\n  opacity: 0;\n  transform: translate(-50%, 4px);\n  transition: opacity 0.15s, transform 0.15s;\n}\n.tip-bubble::after {\n  content: \"\";\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  border: 6px solid transparent;\n  border-top-color: var(--ui-text);\n  transform: translateX(-50%);\n}\n.tip:hover .tip-bubble,\n.tip:focus-within .tip-bubble { opacity: 1; transform: translate(-50%, 0); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "Tooltip.jsx",
+        "code": "/* tearsheet tooltip v0306f36e · https://qusaialjbali.github.io/tearsheet/zine/parts/tooltip.html */\nimport './Tooltip.css';\n\nexport function Tooltip() {\n  return (\n    <span className=\"tip\">\n      <button className=\"tip-trigger\" type=\"button\" aria-label=\"Billing help\" aria-describedby=\"tip-billing\">?</button>\n      <span className=\"tip-bubble\" role=\"tooltip\" id=\"tip-billing\">You’re billed on the 1st of each month.</span>\n    </span>\n  );\n}"
+      },
+      {
+        "name": "Tooltip.css",
+        "code": "/* tearsheet tooltip v0306f36e · https://qusaialjbali.github.io/tearsheet/zine/parts/tooltip.html */\n.tip { position: relative; display: inline-flex; }\n.tip-trigger {\n  display: grid;\n  place-items: center;\n  width: 32px;\n  height: 32px;\n  font: inherit;\n  font-weight: 700;\n  color: var(--ui-muted);\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border);\n  border-radius: 50%;\n  cursor: help;\n}\n.tip-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tip-bubble {\n  position: absolute;\n  bottom: calc(100% + 10px);\n  left: 50%;\n  width: max-content;\n  max-width: 240px;\n  padding: 8px 12px;\n  font-size: 13px;\n  line-height: 1.4;\n  color: var(--ui-bg);\n  background: var(--ui-text);\n  border-radius: 6px;\n  pointer-events: none;\n  opacity: 0;\n  transform: translate(-50%, 4px);\n  transition: opacity 0.15s, transform 0.15s;\n}\n.tip-bubble::after {\n  content: \"\";\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  border: 6px solid transparent;\n  border-top-color: var(--ui-text);\n  transform: translateX(-50%);\n}\n.tip:hover .tip-bubble,\n.tip:focus-within .tip-bubble { opacity: 1; transform: translate(-50%, 0); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Tooltip.vue",
+        "code": "<!-- tearsheet tooltip v0306f36e · https://qusaialjbali.github.io/tearsheet/zine/parts/tooltip.html -->\n<template>\n  <span class=\"tip\">\n    <button class=\"tip-trigger\" type=\"button\" aria-label=\"Billing help\" aria-describedby=\"tip-billing\">?</button>\n    <span class=\"tip-bubble\" role=\"tooltip\" id=\"tip-billing\">You’re billed on the 1st of each month.</span>\n  </span>\n</template>\n\n<style scoped>\n.tip { position: relative; display: inline-flex; }\n.tip-trigger {\n  display: grid;\n  place-items: center;\n  width: 32px;\n  height: 32px;\n  font: inherit;\n  font-weight: 700;\n  color: var(--ui-muted);\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border);\n  border-radius: 50%;\n  cursor: help;\n}\n.tip-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tip-bubble {\n  position: absolute;\n  bottom: calc(100% + 10px);\n  left: 50%;\n  width: max-content;\n  max-width: 240px;\n  padding: 8px 12px;\n  font-size: 13px;\n  line-height: 1.4;\n  color: var(--ui-bg);\n  background: var(--ui-text);\n  border-radius: 6px;\n  pointer-events: none;\n  opacity: 0;\n  transform: translate(-50%, 4px);\n  transition: opacity 0.15s, transform 0.15s;\n}\n.tip-bubble::after {\n  content: \"\";\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  border: 6px solid transparent;\n  border-top-color: var(--ui-text);\n  transform: translateX(-50%);\n}\n.tip:hover .tip-bubble,\n.tip:focus-within .tip-bubble { opacity: 1; transform: translate(-50%, 0); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Tooltip.svelte",
+        "code": "<!-- tearsheet tooltip v0306f36e · https://qusaialjbali.github.io/tearsheet/zine/parts/tooltip.html -->\n<span class=\"tip\">\n  <button class=\"tip-trigger\" type=\"button\" aria-label=\"Billing help\" aria-describedby=\"tip-billing\">?</button>\n  <span class=\"tip-bubble\" role=\"tooltip\" id=\"tip-billing\">You’re billed on the 1st of each month.</span>\n</span>\n\n<style>\n.tip { position: relative; display: inline-flex; }\n.tip-trigger {\n  display: grid;\n  place-items: center;\n  width: 32px;\n  height: 32px;\n  font: inherit;\n  font-weight: 700;\n  color: var(--ui-muted);\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border);\n  border-radius: 50%;\n  cursor: help;\n}\n.tip-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tip-bubble {\n  position: absolute;\n  bottom: calc(100% + 10px);\n  left: 50%;\n  width: max-content;\n  max-width: 240px;\n  padding: 8px 12px;\n  font-size: 13px;\n  line-height: 1.4;\n  color: var(--ui-bg);\n  background: var(--ui-text);\n  border-radius: 6px;\n  pointer-events: none;\n  opacity: 0;\n  transform: translate(-50%, 4px);\n  transition: opacity 0.15s, transform 0.15s;\n}\n.tip-bubble::after {\n  content: \"\";\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  border: 6px solid transparent;\n  border-top-color: var(--ui-text);\n  transform: translateX(-50%);\n}\n.tip:hover .tip-bubble,\n.tip:focus-within .tip-bubble { opacity: 1; transform: translate(-50%, 0); }\n</style>"
+      }
+    ]
+  }
+}

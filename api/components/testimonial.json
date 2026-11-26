@@ -1,0 +1,88 @@
+{
+  "id": "testimonial",
+  "name": "Testimonial",
+  "page": "p.67",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "One large, specific quote with the person’s name, role and a photo slot.",
+  "notes": "One real, specific quote beats a wall of vague ones. Only use quotes from real people who agreed to it; the one here is placeholder text for a fictional app.",
+  "usesJavaScript": false,
+  "sizeKb": 1.1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#testimonial",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/testimonial.json",
+  "version": "1a205836",
+  "checked": "axe clean in light and dark; tightest text contrast 6.7:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 7
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 7
+      }
+    },
+    "contrast": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- figure \"Your customer’s name Their role, their company\":\n  - blockquote:\n    - paragraph: “We used to settle our flat’s bills on a whiteboard. Pocketsplit sorted four months of mess in one evening.”\n  - text: Your customer’s name Their role, their company",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet testimonial v1a205836 · https://qusaialjbali.github.io/tearsheet/zine/parts/testimonial.html -->\n<section class=\"testi\">\n  <figure>\n    <blockquote><p>“We used to settle our flat’s bills on a whiteboard. Pocketsplit sorted four months of mess in one evening.”</p></blockquote>\n    <figcaption>\n      <span class=\"testi-photo\" aria-hidden=\"true\">NA</span>\n      <span><b>Your customer’s name</b><br>Their role, their company</span>\n    </figcaption>\n  </figure>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet testimonial v1a205836 · https://qusaialjbali.github.io/tearsheet/zine/parts/testimonial.html */\n.testi { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.testi figure { max-width: 760px; margin: 0 auto; }\n.testi blockquote { margin: 0; }\n.testi blockquote p { margin: 0; font-size: clamp(22px, 3.2vw, 34px); font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; text-wrap: balance; }\n.testi figcaption { display: flex; align-items: center; gap: 14px; margin-top: 24px; font-size: 15px; color: var(--ui-muted); }\n.testi figcaption b { color: var(--ui-text); }\n.testi-photo { display: grid; place-items: center; width: 52px; height: 52px; flex: none; font-weight: 700; color: #fff; background: linear-gradient(135deg, #f97316, #db2777); border-radius: 50%; }"
+      }
+    ],
+    "react": [
+      {
+        "name": "Testimonial.jsx",
+        "code": "/* tearsheet testimonial v1a205836 · https://qusaialjbali.github.io/tearsheet/zine/parts/testimonial.html */\nimport './Testimonial.css';\n\nexport function Testimonial() {\n  return (\n    <section className=\"testi\">\n      <figure>\n        <blockquote><p>“We used to settle our flat’s bills on a whiteboard. Pocketsplit sorted four months of mess in one evening.”</p></blockquote>\n        <figcaption>\n          <span className=\"testi-photo\" aria-hidden=\"true\">NA</span>\n          <span><b>Your customer’s name</b><br />Their role, their company</span>\n        </figcaption>\n      </figure>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "Testimonial.css",
+        "code": "/* tearsheet testimonial v1a205836 · https://qusaialjbali.github.io/tearsheet/zine/parts/testimonial.html */\n.testi { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.testi figure { max-width: 760px; margin: 0 auto; }\n.testi blockquote { margin: 0; }\n.testi blockquote p { margin: 0; font-size: clamp(22px, 3.2vw, 34px); font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; text-wrap: balance; }\n.testi figcaption { display: flex; align-items: center; gap: 14px; margin-top: 24px; font-size: 15px; color: var(--ui-muted); }\n.testi figcaption b { color: var(--ui-text); }\n.testi-photo { display: grid; place-items: center; width: 52px; height: 52px; flex: none; font-weight: 700; color: #fff; background: linear-gradient(135deg, #f97316, #db2777); border-radius: 50%; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Testimonial.vue",
+        "code": "<!-- tearsheet testimonial v1a205836 · https://qusaialjbali.github.io/tearsheet/zine/parts/testimonial.html -->\n<template>\n  <section class=\"testi\">\n    <figure>\n      <blockquote><p>“We used to settle our flat’s bills on a whiteboard. Pocketsplit sorted four months of mess in one evening.”</p></blockquote>\n      <figcaption>\n        <span class=\"testi-photo\" aria-hidden=\"true\">NA</span>\n        <span><b>Your customer’s name</b><br>Their role, their company</span>\n      </figcaption>\n    </figure>\n  </section>\n</template>\n\n<style scoped>\n.testi { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.testi figure { max-width: 760px; margin: 0 auto; }\n.testi blockquote { margin: 0; }\n.testi blockquote p { margin: 0; font-size: clamp(22px, 3.2vw, 34px); font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; text-wrap: balance; }\n.testi figcaption { display: flex; align-items: center; gap: 14px; margin-top: 24px; font-size: 15px; color: var(--ui-muted); }\n.testi figcaption b { color: var(--ui-text); }\n.testi-photo { display: grid; place-items: center; width: 52px; height: 52px; flex: none; font-weight: 700; color: #fff; background: linear-gradient(135deg, #f97316, #db2777); border-radius: 50%; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Testimonial.svelte",
+        "code": "<!-- tearsheet testimonial v1a205836 · https://qusaialjbali.github.io/tearsheet/zine/parts/testimonial.html -->\n<section class=\"testi\">\n  <figure>\n    <blockquote><p>“We used to settle our flat’s bills on a whiteboard. Pocketsplit sorted four months of mess in one evening.”</p></blockquote>\n    <figcaption>\n      <span class=\"testi-photo\" aria-hidden=\"true\">NA</span>\n      <span><b>Your customer’s name</b><br>Their role, their company</span>\n    </figcaption>\n  </figure>\n</section>\n\n<style>\n.testi { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.testi figure { max-width: 760px; margin: 0 auto; }\n.testi blockquote { margin: 0; }\n.testi blockquote p { margin: 0; font-size: clamp(22px, 3.2vw, 34px); font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; text-wrap: balance; }\n.testi figcaption { display: flex; align-items: center; gap: 14px; margin-top: 24px; font-size: 15px; color: var(--ui-muted); }\n.testi figcaption b { color: var(--ui-text); }\n.testi-photo { display: grid; place-items: center; width: 52px; height: 52px; flex: none; font-weight: 700; color: #fff; background: linear-gradient(135deg, #f97316, #db2777); border-radius: 50%; }\n</style>"
+      }
+    ]
+  }
+}

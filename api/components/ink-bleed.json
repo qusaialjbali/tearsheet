@@ -1,0 +1,97 @@
+{
+  "id": "ink-bleed",
+  "name": "Ink bleed menu",
+  "page": "p.94",
+  "collection": "Weird",
+  "experimental": true,
+  "description": "Menu items flood with ink from exactly where your pointer enters, like a drop on blotting paper.",
+  "notes": "The ink is a clip-path circle that grows from the pointer’s entry point; keyboard focus floods from the centre. The link text flips colour with it, so contrast holds the whole way.",
+  "usesJavaScript": true,
+  "sizeKb": 1.9,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#ink-bleed",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/ink-bleed.json",
+  "version": "ed54eb86",
+  "checked": "axe clean in light and dark; 4 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 11
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 11
+      }
+    },
+    "contrast": null,
+    "brand": true,
+    "keyboard": [
+      "link \"Work\":",
+      "link \"Studio\":",
+      "link \"Journal\":",
+      "link \"Contact\":"
+    ],
+    "tree": "- navigation \"Sections\":\n  - link \"Work\":\n    - /url: \"#\"\n  - link \"Studio\":\n    - /url: \"#\"\n  - link \"Journal\":\n    - /url: \"#\"\n  - link \"Contact\":\n    - /url: \"#\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html -->\n<nav class=\"bleed\" aria-label=\"Sections\">\n  <a href=\"#\"><span>Work</span></a>\n  <a href=\"#\"><span>Studio</span></a>\n  <a href=\"#\"><span>Journal</span></a>\n  <a href=\"#\"><span>Contact</span></a>\n</nav>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html */\n.bleed { display: grid; width: 100%; max-width: 380px; border-top: 2px solid var(--ui-text); }\n.bleed a {\n  --x: 50%; --y: 50%;\n  position: relative; display: block; overflow: hidden; padding: 16px 18px;\n  font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.02em; text-decoration: none;\n  color: var(--ui-text); border-bottom: 2px solid var(--ui-text);\n}\n.bleed a::before {\n  content: \"\"; position: absolute; inset: 0; background: var(--ui-text);\n  clip-path: circle(0% at var(--x) var(--y)); transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);\n}\n.bleed a span { position: relative; transition: color 0.25s; }\n.bleed a:hover::before, .bleed a:focus-visible::before { clip-path: circle(150% at var(--x) var(--y)); }\n.bleed a:hover span, .bleed a:focus-visible span { color: var(--ui-bg); }\n.bleed a:focus-visible { outline: none; }\n@media (prefers-reduced-motion: reduce) { .bleed a::before { transition: none; } }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html */\nfunction setup(root) {\n  const links = [...root.querySelectorAll('a')];\n  const onEnter = (e) => {\n    const r = e.currentTarget.getBoundingClientRect();\n    e.currentTarget.style.setProperty('--x', e.clientX - r.left + 'px');\n    e.currentTarget.style.setProperty('--y', e.clientY - r.top + 'px');\n  };\n  const onFocus = (e) => { e.currentTarget.style.setProperty('--x', '50%'); e.currentTarget.style.setProperty('--y', '50%'); };\n  links.forEach((a) => { a.addEventListener('pointerenter', onEnter); a.addEventListener('pointerleave', onEnter); a.addEventListener('focus', onFocus); });\n  return () => links.forEach((a) => { a.removeEventListener('pointerenter', onEnter); a.removeEventListener('pointerleave', onEnter); a.removeEventListener('focus', onFocus); });\n}\n\ndocument.querySelectorAll(\".bleed\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "InkBleed.jsx",
+        "code": "/* tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html */\nimport { useEffect, useRef } from 'react';\nimport './InkBleed.css';\n\nfunction setup(root) {\n  const links = [...root.querySelectorAll('a')];\n  const onEnter = (e) => {\n    const r = e.currentTarget.getBoundingClientRect();\n    e.currentTarget.style.setProperty('--x', e.clientX - r.left + 'px');\n    e.currentTarget.style.setProperty('--y', e.clientY - r.top + 'px');\n  };\n  const onFocus = (e) => { e.currentTarget.style.setProperty('--x', '50%'); e.currentTarget.style.setProperty('--y', '50%'); };\n  links.forEach((a) => { a.addEventListener('pointerenter', onEnter); a.addEventListener('pointerleave', onEnter); a.addEventListener('focus', onFocus); });\n  return () => links.forEach((a) => { a.removeEventListener('pointerenter', onEnter); a.removeEventListener('pointerleave', onEnter); a.removeEventListener('focus', onFocus); });\n}\n\nexport function InkBleed() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <nav ref={ref} className=\"bleed\" aria-label=\"Sections\">\n      <a href=\"#\"><span>Work</span></a>\n      <a href=\"#\"><span>Studio</span></a>\n      <a href=\"#\"><span>Journal</span></a>\n      <a href=\"#\"><span>Contact</span></a>\n    </nav>\n  );\n}"
+      },
+      {
+        "name": "InkBleed.css",
+        "code": "/* tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html */\n.bleed { display: grid; width: 100%; max-width: 380px; border-top: 2px solid var(--ui-text); }\n.bleed a {\n  --x: 50%; --y: 50%;\n  position: relative; display: block; overflow: hidden; padding: 16px 18px;\n  font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.02em; text-decoration: none;\n  color: var(--ui-text); border-bottom: 2px solid var(--ui-text);\n}\n.bleed a::before {\n  content: \"\"; position: absolute; inset: 0; background: var(--ui-text);\n  clip-path: circle(0% at var(--x) var(--y)); transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);\n}\n.bleed a span { position: relative; transition: color 0.25s; }\n.bleed a:hover::before, .bleed a:focus-visible::before { clip-path: circle(150% at var(--x) var(--y)); }\n.bleed a:hover span, .bleed a:focus-visible span { color: var(--ui-bg); }\n.bleed a:focus-visible { outline: none; }\n@media (prefers-reduced-motion: reduce) { .bleed a::before { transition: none; } }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "InkBleed.vue",
+        "code": "<!-- tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const links = [...root.querySelectorAll('a')];\n  const onEnter = (e) => {\n    const r = e.currentTarget.getBoundingClientRect();\n    e.currentTarget.style.setProperty('--x', e.clientX - r.left + 'px');\n    e.currentTarget.style.setProperty('--y', e.clientY - r.top + 'px');\n  };\n  const onFocus = (e) => { e.currentTarget.style.setProperty('--x', '50%'); e.currentTarget.style.setProperty('--y', '50%'); };\n  links.forEach((a) => { a.addEventListener('pointerenter', onEnter); a.addEventListener('pointerleave', onEnter); a.addEventListener('focus', onFocus); });\n  return () => links.forEach((a) => { a.removeEventListener('pointerenter', onEnter); a.removeEventListener('pointerleave', onEnter); a.removeEventListener('focus', onFocus); });\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <nav ref=\"el\" class=\"bleed\" aria-label=\"Sections\">\n    <a href=\"#\"><span>Work</span></a>\n    <a href=\"#\"><span>Studio</span></a>\n    <a href=\"#\"><span>Journal</span></a>\n    <a href=\"#\"><span>Contact</span></a>\n  </nav>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.bleed { display: grid; width: 100%; max-width: 380px; border-top: 2px solid var(--ui-text); }\n.bleed a {\n  --x: 50%; --y: 50%;\n  position: relative; display: block; overflow: hidden; padding: 16px 18px;\n  font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.02em; text-decoration: none;\n  color: var(--ui-text); border-bottom: 2px solid var(--ui-text);\n}\n.bleed a::before {\n  content: \"\"; position: absolute; inset: 0; background: var(--ui-text);\n  clip-path: circle(0% at var(--x) var(--y)); transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);\n}\n.bleed a span { position: relative; transition: color 0.25s; }\n.bleed a:hover::before, .bleed a:focus-visible::before { clip-path: circle(150% at var(--x) var(--y)); }\n.bleed a:hover span, .bleed a:focus-visible span { color: var(--ui-bg); }\n.bleed a:focus-visible { outline: none; }\n@media (prefers-reduced-motion: reduce) { .bleed a::before { transition: none; } }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "InkBleed.svelte",
+        "code": "<!-- tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './InkBleed.css';\n\n  let node;\n\n  function setup(root) {\n    const links = [...root.querySelectorAll('a')];\n    const onEnter = (e) => {\n      const r = e.currentTarget.getBoundingClientRect();\n      e.currentTarget.style.setProperty('--x', e.clientX - r.left + 'px');\n      e.currentTarget.style.setProperty('--y', e.clientY - r.top + 'px');\n    };\n    const onFocus = (e) => { e.currentTarget.style.setProperty('--x', '50%'); e.currentTarget.style.setProperty('--y', '50%'); };\n    links.forEach((a) => { a.addEventListener('pointerenter', onEnter); a.addEventListener('pointerleave', onEnter); a.addEventListener('focus', onFocus); });\n    return () => links.forEach((a) => { a.removeEventListener('pointerenter', onEnter); a.removeEventListener('pointerleave', onEnter); a.removeEventListener('focus', onFocus); });\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<nav bind:this={node} class=\"bleed\" aria-label=\"Sections\">\n  <a href=\"#\"><span>Work</span></a>\n  <a href=\"#\"><span>Studio</span></a>\n  <a href=\"#\"><span>Journal</span></a>\n  <a href=\"#\"><span>Contact</span></a>\n</nav>"
+      },
+      {
+        "name": "InkBleed.css",
+        "code": "/* tearsheet ink-bleed ved54eb86 · https://qusaialjbali.github.io/tearsheet/zine/parts/ink-bleed.html */\n.bleed { display: grid; width: 100%; max-width: 380px; border-top: 2px solid var(--ui-text); }\n.bleed a {\n  --x: 50%; --y: 50%;\n  position: relative; display: block; overflow: hidden; padding: 16px 18px;\n  font-size: clamp(22px, 4vw, 30px); font-weight: 800; letter-spacing: -0.02em; text-decoration: none;\n  color: var(--ui-text); border-bottom: 2px solid var(--ui-text);\n}\n.bleed a::before {\n  content: \"\"; position: absolute; inset: 0; background: var(--ui-text);\n  clip-path: circle(0% at var(--x) var(--y)); transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);\n}\n.bleed a span { position: relative; transition: color 0.25s; }\n.bleed a:hover::before, .bleed a:focus-visible::before { clip-path: circle(150% at var(--x) var(--y)); }\n.bleed a:hover span, .bleed a:focus-visible span { color: var(--ui-bg); }\n.bleed a:focus-visible { outline: none; }\n@media (prefers-reduced-motion: reduce) { .bleed a::before { transition: none; } }"
+      }
+    ]
+  }
+}

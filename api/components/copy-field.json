@@ -1,0 +1,99 @@
+{
+  "id": "copy-field",
+  "name": "Copy field",
+  "page": "p.16",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Read-only value with a copy button that confirms in place and announces it.",
+  "notes": "Confirm the copy right where people looked, and say it to screen readers through a live region. If the clipboard is blocked, the text gets selected instead.",
+  "usesJavaScript": true,
+  "sizeKb": 2.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#copy-field",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/copy-field.json",
+  "version": "0d7ef826",
+  "checked": "axe clean in light and dark; tightest text contrast 14.21:1 (needs 4.5:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 17
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 17
+      }
+    },
+    "contrast": {
+      "ratio": 14.21,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "textbox \"Invite link\": https://example.com/invite/7Hq2-kX9p",
+      "button \"Copy\""
+    ],
+    "tree": "- text: Invite link\n- textbox \"Invite link\": https://example.com/invite/7Hq2-kX9p\n- button \"Copy\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html -->\n<div class=\"copy-field\">\n  <label class=\"copy-label\" for=\"invite-link\">Invite link</label>\n  <div class=\"copy-row\">\n    <input class=\"copy-input\" id=\"invite-link\" type=\"text\" readonly value=\"https://example.com/invite/7Hq2-kX9p\">\n    <button class=\"copy-button\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M13 4H6a2 2 0 0 0-2 2v7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg><span class=\"copy-text\">Copy</span></button>\n  </div>\n  <span class=\"copy-status\" aria-live=\"polite\"></span>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html */\n.copy-field { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.copy-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.copy-row {\n  display: flex;\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.copy-input {\n  flex: 1;\n  min-width: 0;\n  padding: 10px 12px;\n  font: inherit;\n  font-size: 14px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  text-overflow: ellipsis;\n}\n.copy-input:focus { outline: none; }\n.copy-row:focus-within { box-shadow: var(--ui-focus); }\n.copy-button {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 0 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 0;\n  border-left: 1px solid var(--ui-border-strong);\n  border-radius: 0 var(--ui-radius-sm) var(--ui-radius-sm) 0;\n  cursor: pointer;\n}\n.copy-button svg { width: 16px; height: 16px; }\n.copy-button:hover { background: var(--ui-surface-2); }\n.copy-button:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--ui-accent); }\n.copy-field.is-copied .copy-button { color: var(--ui-success); }\n.copy-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html */\nfunction setup(root) {\n  const input = root.querySelector('.copy-input');\n  const button = root.querySelector('.copy-button');\n  const text = root.querySelector('.copy-text');\n  const status = root.querySelector('.copy-status');\n  let timer;\n\n  const onClick = async () => {\n    try {\n      await navigator.clipboard.writeText(input.value);\n      text.textContent = 'Copied';\n      status.textContent = 'Link copied to clipboard';\n      root.classList.add('is-copied');\n      clearTimeout(timer);\n      timer = setTimeout(() => {\n        text.textContent = 'Copy';\n        status.textContent = '';\n        root.classList.remove('is-copied');\n      }, 1800);\n    } catch (err) {\n      input.select();\n    }\n  };\n\n  button.addEventListener('click', onClick);\n  return () => {\n    clearTimeout(timer);\n    button.removeEventListener('click', onClick);\n  };\n}\n\ndocument.querySelectorAll(\".copy-field\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "CopyField.jsx",
+        "code": "/* tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html */\nimport { useEffect, useRef } from 'react';\nimport './CopyField.css';\n\nfunction setup(root) {\n  const input = root.querySelector('.copy-input');\n  const button = root.querySelector('.copy-button');\n  const text = root.querySelector('.copy-text');\n  const status = root.querySelector('.copy-status');\n  let timer;\n\n  const onClick = async () => {\n    try {\n      await navigator.clipboard.writeText(input.value);\n      text.textContent = 'Copied';\n      status.textContent = 'Link copied to clipboard';\n      root.classList.add('is-copied');\n      clearTimeout(timer);\n      timer = setTimeout(() => {\n        text.textContent = 'Copy';\n        status.textContent = '';\n        root.classList.remove('is-copied');\n      }, 1800);\n    } catch (err) {\n      input.select();\n    }\n  };\n\n  button.addEventListener('click', onClick);\n  return () => {\n    clearTimeout(timer);\n    button.removeEventListener('click', onClick);\n  };\n}\n\nexport function CopyField() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"copy-field\">\n      <label className=\"copy-label\" htmlFor=\"invite-link\">Invite link</label>\n      <div className=\"copy-row\">\n        <input className=\"copy-input\" id=\"invite-link\" type=\"text\" readOnly defaultValue=\"https://example.com/invite/7Hq2-kX9p\" />\n        <button className=\"copy-button\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.7\"/><path d=\"M13 4H6a2 2 0 0 0-2 2v7\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.7\" strokeLinecap=\"round\"/></svg><span className=\"copy-text\">Copy</span></button>\n      </div>\n      <span className=\"copy-status\" aria-live=\"polite\"></span>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "CopyField.css",
+        "code": "/* tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html */\n.copy-field { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.copy-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.copy-row {\n  display: flex;\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.copy-input {\n  flex: 1;\n  min-width: 0;\n  padding: 10px 12px;\n  font: inherit;\n  font-size: 14px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  text-overflow: ellipsis;\n}\n.copy-input:focus { outline: none; }\n.copy-row:focus-within { box-shadow: var(--ui-focus); }\n.copy-button {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 0 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 0;\n  border-left: 1px solid var(--ui-border-strong);\n  border-radius: 0 var(--ui-radius-sm) var(--ui-radius-sm) 0;\n  cursor: pointer;\n}\n.copy-button svg { width: 16px; height: 16px; }\n.copy-button:hover { background: var(--ui-surface-2); }\n.copy-button:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--ui-accent); }\n.copy-field.is-copied .copy-button { color: var(--ui-success); }\n.copy-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "CopyField.vue",
+        "code": "<!-- tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const input = root.querySelector('.copy-input');\n  const button = root.querySelector('.copy-button');\n  const text = root.querySelector('.copy-text');\n  const status = root.querySelector('.copy-status');\n  let timer;\n\n  const onClick = async () => {\n    try {\n      await navigator.clipboard.writeText(input.value);\n      text.textContent = 'Copied';\n      status.textContent = 'Link copied to clipboard';\n      root.classList.add('is-copied');\n      clearTimeout(timer);\n      timer = setTimeout(() => {\n        text.textContent = 'Copy';\n        status.textContent = '';\n        root.classList.remove('is-copied');\n      }, 1800);\n    } catch (err) {\n      input.select();\n    }\n  };\n\n  button.addEventListener('click', onClick);\n  return () => {\n    clearTimeout(timer);\n    button.removeEventListener('click', onClick);\n  };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"copy-field\">\n    <label class=\"copy-label\" for=\"invite-link\">Invite link</label>\n    <div class=\"copy-row\">\n      <input class=\"copy-input\" id=\"invite-link\" type=\"text\" readonly value=\"https://example.com/invite/7Hq2-kX9p\">\n      <button class=\"copy-button\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M13 4H6a2 2 0 0 0-2 2v7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg><span class=\"copy-text\">Copy</span></button>\n    </div>\n    <span class=\"copy-status\" aria-live=\"polite\"></span>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.copy-field { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.copy-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.copy-row {\n  display: flex;\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.copy-input {\n  flex: 1;\n  min-width: 0;\n  padding: 10px 12px;\n  font: inherit;\n  font-size: 14px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  text-overflow: ellipsis;\n}\n.copy-input:focus { outline: none; }\n.copy-row:focus-within { box-shadow: var(--ui-focus); }\n.copy-button {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 0 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 0;\n  border-left: 1px solid var(--ui-border-strong);\n  border-radius: 0 var(--ui-radius-sm) var(--ui-radius-sm) 0;\n  cursor: pointer;\n}\n.copy-button svg { width: 16px; height: 16px; }\n.copy-button:hover { background: var(--ui-surface-2); }\n.copy-button:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--ui-accent); }\n.copy-field.is-copied .copy-button { color: var(--ui-success); }\n.copy-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "CopyField.svelte",
+        "code": "<!-- tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './CopyField.css';\n\n  let node;\n\n  function setup(root) {\n    const input = root.querySelector('.copy-input');\n    const button = root.querySelector('.copy-button');\n    const text = root.querySelector('.copy-text');\n    const status = root.querySelector('.copy-status');\n    let timer;\n\n    const onClick = async () => {\n      try {\n        await navigator.clipboard.writeText(input.value);\n        text.textContent = 'Copied';\n        status.textContent = 'Link copied to clipboard';\n        root.classList.add('is-copied');\n        clearTimeout(timer);\n        timer = setTimeout(() => {\n          text.textContent = 'Copy';\n          status.textContent = '';\n          root.classList.remove('is-copied');\n        }, 1800);\n      } catch (err) {\n        input.select();\n      }\n    };\n\n    button.addEventListener('click', onClick);\n    return () => {\n      clearTimeout(timer);\n      button.removeEventListener('click', onClick);\n    };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"copy-field\">\n  <label class=\"copy-label\" for=\"invite-link\">Invite link</label>\n  <div class=\"copy-row\">\n    <input class=\"copy-input\" id=\"invite-link\" type=\"text\" readonly value=\"https://example.com/invite/7Hq2-kX9p\">\n    <button class=\"copy-button\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M13 4H6a2 2 0 0 0-2 2v7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/></svg><span class=\"copy-text\">Copy</span></button>\n  </div>\n  <span class=\"copy-status\" aria-live=\"polite\"></span>\n</div>"
+      },
+      {
+        "name": "CopyField.css",
+        "code": "/* tearsheet copy-field v0d7ef826 · https://qusaialjbali.github.io/tearsheet/zine/parts/copy-field.html */\n.copy-field { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.copy-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.copy-row {\n  display: flex;\n  background: var(--ui-surface-2);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n}\n.copy-input {\n  flex: 1;\n  min-width: 0;\n  padding: 10px 12px;\n  font: inherit;\n  font-size: 14px;\n  color: var(--ui-text);\n  background: none;\n  border: 0;\n  text-overflow: ellipsis;\n}\n.copy-input:focus { outline: none; }\n.copy-row:focus-within { box-shadow: var(--ui-focus); }\n.copy-button {\n  display: inline-flex;\n  align-items: center;\n  gap: 6px;\n  padding: 0 14px;\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 0;\n  border-left: 1px solid var(--ui-border-strong);\n  border-radius: 0 var(--ui-radius-sm) var(--ui-radius-sm) 0;\n  cursor: pointer;\n}\n.copy-button svg { width: 16px; height: 16px; }\n.copy-button:hover { background: var(--ui-surface-2); }\n.copy-button:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--ui-accent); }\n.copy-field.is-copied .copy-button { color: var(--ui-success); }\n.copy-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }"
+      }
+    ]
+  }
+}

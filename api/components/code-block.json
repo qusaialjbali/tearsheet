@@ -1,0 +1,99 @@
+{
+  "id": "code-block",
+  "name": "Code block",
+  "page": "p.33",
+  "collection": "Content",
+  "experimental": false,
+  "description": "A file-tabbed code snippet with line numbers, a highlighted line and a copy button.",
+  "notes": "Line numbers are CSS counters, so copying the code never copies the numbers. The block scrolls sideways instead of wrapping, and is focusable so keyboard users can scroll it.",
+  "usesJavaScript": true,
+  "sizeKb": 2.3,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#code-block",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/code-block.json",
+  "version": "83e808b3",
+  "checked": "axe clean in light and dark; tightest text contrast 7.02:1 (needs 4.5:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 7.02,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Copy\"",
+      "code: \":root { --ui-accent: #4f46e5; --ui-radius: 12px; --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4); }\""
+    ],
+    "tree": "- figure \"tokens.css Copy\":\n  - text: tokens.css\n  - button \"Copy\"\n  - code: \":root { --ui-accent: #4f46e5; --ui-radius: 12px; --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4); }\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html -->\n<figure class=\"codeblock\">\n  <figcaption><span>tokens.css</span><button class=\"cb-copy\" type=\"button\">Copy</button></figcaption>\n  <pre tabindex=\"0\"><code><span class=\"ln\">:root &#123;</span>\n<span class=\"ln\">  --ui-accent: #4f46e5;</span>\n<span class=\"ln is-hl\">  --ui-radius: 12px;</span>\n<span class=\"ln\">  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);</span>\n<span class=\"ln\">&#125;</span></code></pre>\n</figure>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html */\n.codeblock { width: 100%; max-width: 520px; margin: 0; overflow: hidden; background: #16161c; border-radius: var(--ui-radius); }\n.codeblock figcaption { display: flex; justify-content: space-between; align-items: center; padding: 8px 8px 8px 16px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a1a1aa; border-bottom: 1px solid #2a2a33; }\n.cb-copy { padding: 5px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e4e4e7; background: #2a2a33; border: 0; border-radius: 6px; cursor: pointer; }\n.cb-copy:hover { background: #3a3a45; }\n.cb-copy:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.codeblock pre { margin: 0; padding: 14px 0; overflow-x: auto; counter-reset: ln; font-family: ui-monospace, Consolas, monospace; font-size: 13px; line-height: 1.7; color: #e4e4e7; }\n.codeblock pre:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.ln { display: inline-block; min-width: 100%; padding-right: 16px; counter-increment: ln; }\n.ln::before { content: counter(ln); display: inline-block; width: 2.5em; margin-right: 1em; text-align: right; color: #52525b; user-select: none; }\n.ln.is-hl { background: rgb(129 140 248 / 0.16); box-shadow: inset 3px 0 0 #818cf8; }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html */\nfunction setup(root) {\n  const btn = root.querySelector('.cb-copy');\n  const code = root.querySelector('code');\n  let t;\n  const onCopy = async () => {\n    // join lines explicitly so line breaks survive in every framework\n    const text = [...code.querySelectorAll('.ln')].map((l) => l.textContent).join('\\n');\n    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }\n    catch (e) { btn.textContent = 'Press Ctrl+C'; }\n    clearTimeout(t);\n    t = setTimeout(() => (btn.textContent = 'Copy'), 1600);\n  };\n  btn.addEventListener('click', onCopy);\n  return () => { clearTimeout(t); btn.removeEventListener('click', onCopy); };\n}\n\ndocument.querySelectorAll(\".codeblock\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "CodeBlock.jsx",
+        "code": "/* tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html */\nimport { useEffect, useRef } from 'react';\nimport './CodeBlock.css';\n\nfunction setup(root) {\n  const btn = root.querySelector('.cb-copy');\n  const code = root.querySelector('code');\n  let t;\n  const onCopy = async () => {\n    // join lines explicitly so line breaks survive in every framework\n    const text = [...code.querySelectorAll('.ln')].map((l) => l.textContent).join('\\n');\n    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }\n    catch (e) { btn.textContent = 'Press Ctrl+C'; }\n    clearTimeout(t);\n    t = setTimeout(() => (btn.textContent = 'Copy'), 1600);\n  };\n  btn.addEventListener('click', onCopy);\n  return () => { clearTimeout(t); btn.removeEventListener('click', onCopy); };\n}\n\nexport function CodeBlock() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <figure ref={ref} className=\"codeblock\">\n      <figcaption><span>tokens.css</span><button className=\"cb-copy\" type=\"button\">Copy</button></figcaption>\n      <pre tabIndex={0}><code><span className=\"ln\">:root &#123;</span>\n    <span className=\"ln\">  --ui-accent: #4f46e5;</span>\n    <span className=\"ln is-hl\">  --ui-radius: 12px;</span>\n    <span className=\"ln\">  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);</span>\n    <span className=\"ln\">&#125;</span></code></pre>\n    </figure>\n  );\n}"
+      },
+      {
+        "name": "CodeBlock.css",
+        "code": "/* tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html */\n.codeblock { width: 100%; max-width: 520px; margin: 0; overflow: hidden; background: #16161c; border-radius: var(--ui-radius); }\n.codeblock figcaption { display: flex; justify-content: space-between; align-items: center; padding: 8px 8px 8px 16px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a1a1aa; border-bottom: 1px solid #2a2a33; }\n.cb-copy { padding: 5px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e4e4e7; background: #2a2a33; border: 0; border-radius: 6px; cursor: pointer; }\n.cb-copy:hover { background: #3a3a45; }\n.cb-copy:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.codeblock pre { margin: 0; padding: 14px 0; overflow-x: auto; counter-reset: ln; font-family: ui-monospace, Consolas, monospace; font-size: 13px; line-height: 1.7; color: #e4e4e7; }\n.codeblock pre:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.ln { display: inline-block; min-width: 100%; padding-right: 16px; counter-increment: ln; }\n.ln::before { content: counter(ln); display: inline-block; width: 2.5em; margin-right: 1em; text-align: right; color: #52525b; user-select: none; }\n.ln.is-hl { background: rgb(129 140 248 / 0.16); box-shadow: inset 3px 0 0 #818cf8; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "CodeBlock.vue",
+        "code": "<!-- tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const btn = root.querySelector('.cb-copy');\n  const code = root.querySelector('code');\n  let t;\n  const onCopy = async () => {\n    // join lines explicitly so line breaks survive in every framework\n    const text = [...code.querySelectorAll('.ln')].map((l) => l.textContent).join('\\n');\n    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }\n    catch (e) { btn.textContent = 'Press Ctrl+C'; }\n    clearTimeout(t);\n    t = setTimeout(() => (btn.textContent = 'Copy'), 1600);\n  };\n  btn.addEventListener('click', onCopy);\n  return () => { clearTimeout(t); btn.removeEventListener('click', onCopy); };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <figure ref=\"el\" class=\"codeblock\">\n    <figcaption><span>tokens.css</span><button class=\"cb-copy\" type=\"button\">Copy</button></figcaption>\n    <pre tabindex=\"0\"><code><span class=\"ln\">:root &#123;</span>\n  <span class=\"ln\">  --ui-accent: #4f46e5;</span>\n  <span class=\"ln is-hl\">  --ui-radius: 12px;</span>\n  <span class=\"ln\">  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);</span>\n  <span class=\"ln\">&#125;</span></code></pre>\n  </figure>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.codeblock { width: 100%; max-width: 520px; margin: 0; overflow: hidden; background: #16161c; border-radius: var(--ui-radius); }\n.codeblock figcaption { display: flex; justify-content: space-between; align-items: center; padding: 8px 8px 8px 16px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a1a1aa; border-bottom: 1px solid #2a2a33; }\n.cb-copy { padding: 5px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e4e4e7; background: #2a2a33; border: 0; border-radius: 6px; cursor: pointer; }\n.cb-copy:hover { background: #3a3a45; }\n.cb-copy:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.codeblock pre { margin: 0; padding: 14px 0; overflow-x: auto; counter-reset: ln; font-family: ui-monospace, Consolas, monospace; font-size: 13px; line-height: 1.7; color: #e4e4e7; }\n.codeblock pre:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.ln { display: inline-block; min-width: 100%; padding-right: 16px; counter-increment: ln; }\n.ln::before { content: counter(ln); display: inline-block; width: 2.5em; margin-right: 1em; text-align: right; color: #52525b; user-select: none; }\n.ln.is-hl { background: rgb(129 140 248 / 0.16); box-shadow: inset 3px 0 0 #818cf8; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "CodeBlock.svelte",
+        "code": "<!-- tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './CodeBlock.css';\n\n  let node;\n\n  function setup(root) {\n    const btn = root.querySelector('.cb-copy');\n    const code = root.querySelector('code');\n    let t;\n    const onCopy = async () => {\n      // join lines explicitly so line breaks survive in every framework\n      const text = [...code.querySelectorAll('.ln')].map((l) => l.textContent).join('\\n');\n      try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }\n      catch (e) { btn.textContent = 'Press Ctrl+C'; }\n      clearTimeout(t);\n      t = setTimeout(() => (btn.textContent = 'Copy'), 1600);\n    };\n    btn.addEventListener('click', onCopy);\n    return () => { clearTimeout(t); btn.removeEventListener('click', onCopy); };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<figure bind:this={node} class=\"codeblock\">\n  <figcaption><span>tokens.css</span><button class=\"cb-copy\" type=\"button\">Copy</button></figcaption>\n  <pre tabindex=\"0\"><code><span class=\"ln\">:root &#123;</span>\n<span class=\"ln\">  --ui-accent: #4f46e5;</span>\n<span class=\"ln is-hl\">  --ui-radius: 12px;</span>\n<span class=\"ln\">  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);</span>\n<span class=\"ln\">&#125;</span></code></pre>\n</figure>"
+      },
+      {
+        "name": "CodeBlock.css",
+        "code": "/* tearsheet code-block v83e808b3 · https://qusaialjbali.github.io/tearsheet/zine/parts/code-block.html */\n.codeblock { width: 100%; max-width: 520px; margin: 0; overflow: hidden; background: #16161c; border-radius: var(--ui-radius); }\n.codeblock figcaption { display: flex; justify-content: space-between; align-items: center; padding: 8px 8px 8px 16px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a1a1aa; border-bottom: 1px solid #2a2a33; }\n.cb-copy { padding: 5px 12px; font: inherit; font-size: 12px; font-weight: 700; color: #e4e4e7; background: #2a2a33; border: 0; border-radius: 6px; cursor: pointer; }\n.cb-copy:hover { background: #3a3a45; }\n.cb-copy:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.codeblock pre { margin: 0; padding: 14px 0; overflow-x: auto; counter-reset: ln; font-family: ui-monospace, Consolas, monospace; font-size: 13px; line-height: 1.7; color: #e4e4e7; }\n.codeblock pre:focus-visible { outline: none; box-shadow: inset var(--ui-focus); }\n.ln { display: inline-block; min-width: 100%; padding-right: 16px; counter-increment: ln; }\n.ln::before { content: counter(ln); display: inline-block; width: 2.5em; margin-right: 1em; text-align: right; color: #52525b; user-select: none; }\n.ln.is-hl { background: rgb(129 140 248 / 0.16); box-shadow: inset 3px 0 0 #818cf8; }"
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "feature-grid",
+  "name": "Feature grid",
+  "page": "p.66",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "Six features as short, scannable blocks, each leading with what it does for the reader.",
+  "notes": "Write the heading as the benefit (“Settle in one tap”), not the feature name. Six is a comfortable maximum; more and nobody reads them.",
+  "usesJavaScript": false,
+  "sizeKb": 2.9,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#feature-grid",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/feature-grid.json",
+  "version": "48219d2b",
+  "checked": "axe clean in light and dark; tightest text contrast 6.7:1 (needs 4.5:1); 0 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [],
+    "tree": "- heading \"Everything a shared budget needs\" [level=2]\n- list:\n  - listitem:\n    - heading \"Settle in one tap\" [level=3]\n    - paragraph: Pocketsplit finds the fewest payments to square everyone up.\n  - listitem:\n    - heading \"Split any way\" [level=3]\n    - paragraph: Evenly, by shares, by exact amounts or by percentage.\n  - listitem:\n    - heading \"Any currency\" [level=3]\n    - paragraph: Spend in yen, settle in euros, at the day’s real rate.\n  - listitem:\n    - heading \"Snap the receipt\" [level=3]\n    - paragraph: Photos are attached to the expense, so nobody argues later.\n  - listitem:\n    - heading \"Works offline\" [level=3]\n    - paragraph: Add expenses on the mountain; they sync when you are back.\n  - listitem:\n    - heading \"Private by default\" [level=3]\n    - paragraph: Only people in a group can see it. No ads, ever.",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html -->\n<section class=\"features\">\n  <h2>Everything a shared budget needs</h2>\n  <ul class=\"feat-grid\">\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Settle in one tap</h3><p>Pocketsplit finds the fewest payments to square everyone up.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h10M4 17h7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Split any way</h3><p>Evenly, by shares, by exact amounts or by percentage.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Any currency</h3><p>Spend in yen, settle in euros, at the day’s real rate.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3h9l3 3v15H6ZM9 12h6M9 16h4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Snap the receipt</h3><p>Photos are attached to the expense, so nobody argues later.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Works offline</h3><p>Add expenses on the mountain; they sync when you are back.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Private by default</h3><p>Only people in a group can see it. No ads, ever.</p></li>\n  </ul>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html */\n.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }\n.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }\n.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }\n.feat-icon svg { width: 22px; height: 22px; }\n.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }\n.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "FeatureGrid.jsx",
+        "code": "/* tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html */\nimport './FeatureGrid.css';\n\nexport function FeatureGrid() {\n  return (\n    <section className=\"features\">\n      <h2>Everything a shared budget needs</h2>\n      <ul className=\"feat-grid\">\n        <li><span className=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg></span><h3>Settle in one tap</h3><p>Pocketsplit finds the fewest payments to square everyone up.</p></li>\n        <li><span className=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h10M4 17h7\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg></span><h3>Split any way</h3><p>Evenly, by shares, by exact amounts or by percentage.</p></li>\n        <li><span className=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg></span><h3>Any currency</h3><p>Spend in yen, settle in euros, at the day’s real rate.</p></li>\n        <li><span className=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3h9l3 3v15H6ZM9 12h6M9 16h4\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg></span><h3>Snap the receipt</h3><p>Photos are attached to the expense, so nobody argues later.</p></li>\n        <li><span className=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg></span><h3>Works offline</h3><p>Add expenses on the mountain; they sync when you are back.</p></li>\n        <li><span className=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg></span><h3>Private by default</h3><p>Only people in a group can see it. No ads, ever.</p></li>\n      </ul>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "FeatureGrid.css",
+        "code": "/* tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html */\n.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }\n.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }\n.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }\n.feat-icon svg { width: 22px; height: 22px; }\n.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }\n.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "FeatureGrid.vue",
+        "code": "<!-- tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html -->\n<template>\n  <section class=\"features\">\n    <h2>Everything a shared budget needs</h2>\n    <ul class=\"feat-grid\">\n      <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Settle in one tap</h3><p>Pocketsplit finds the fewest payments to square everyone up.</p></li>\n      <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h10M4 17h7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Split any way</h3><p>Evenly, by shares, by exact amounts or by percentage.</p></li>\n      <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Any currency</h3><p>Spend in yen, settle in euros, at the day’s real rate.</p></li>\n      <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3h9l3 3v15H6ZM9 12h6M9 16h4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Snap the receipt</h3><p>Photos are attached to the expense, so nobody argues later.</p></li>\n      <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Works offline</h3><p>Add expenses on the mountain; they sync when you are back.</p></li>\n      <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Private by default</h3><p>Only people in a group can see it. No ads, ever.</p></li>\n    </ul>\n  </section>\n</template>\n\n<style scoped>\n.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }\n.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }\n.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }\n.feat-icon svg { width: 22px; height: 22px; }\n.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }\n.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "FeatureGrid.svelte",
+        "code": "<!-- tearsheet feature-grid v48219d2b · https://qusaialjbali.github.io/tearsheet/zine/parts/feature-grid.html -->\n<section class=\"features\">\n  <h2>Everything a shared budget needs</h2>\n  <ul class=\"feat-grid\">\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v18M7 8h7.5a3.5 3.5 0 0 1 0 7H8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Settle in one tap</h3><p>Pocketsplit finds the fewest payments to square everyone up.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h10M4 17h7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Split any way</h3><p>Evenly, by shares, by exact amounts or by percentage.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Any currency</h3><p>Spend in yen, settle in euros, at the day’s real rate.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3h9l3 3v15H6ZM9 12h6M9 16h4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Snap the receipt</h3><p>Photos are attached to the expense, so nobody argues later.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Works offline</h3><p>Add expenses on the mountain; they sync when you are back.</p></li>\n    <li><span class=\"feat-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 11V8a7 7 0 0 1 14 0v3M5 11h14v10H5Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><h3>Private by default</h3><p>Only people in a group can see it. No ads, ever.</p></li>\n  </ul>\n</section>\n\n<style>\n.features { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.features h2 { margin: 0 0 32px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }\n.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; margin: 0; padding: 0; list-style: none; }\n.feat-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 12px; }\n.feat-icon svg { width: 22px; height: 22px; }\n.feat-grid h3 { margin: 0 0 6px; font-size: 17px; }\n.feat-grid p { margin: 0; font-size: 15px; color: var(--ui-muted); }\n</style>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "breadcrumb",
+  "name": "Breadcrumb",
+  "page": "p.52",
+  "collection": "Navigation",
+  "experimental": false,
+  "description": "Shows where the page sits in the site hierarchy, using an ordered list.",
+  "notes": "Separators are drawn with CSS so screen readers don’t read them out. The last item is the current page.",
+  "usesJavaScript": false,
+  "sizeKb": 0.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#breadcrumb",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/breadcrumb.json",
+  "version": "b646e028",
+  "checked": "axe clean in light and dark; tightest text contrast 6.7:1 (needs 4.5:1); 3 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 14
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 14
+      }
+    },
+    "contrast": {
+      "ratio": 6.7,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "link \"Home\":",
+      "link \"Settings\":",
+      "link \"Notifications\":"
+    ],
+    "tree": "- navigation \"Breadcrumb\":\n  - list:\n    - listitem:\n      - link \"Home\":\n        - /url: \"#\"\n    - listitem:\n      - text: /\n      - link \"Settings\":\n        - /url: \"#\"\n    - listitem:\n      - text: /\n      - link \"Notifications\":\n        - /url: \"#\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet breadcrumb vb646e028 · https://qusaialjbali.github.io/tearsheet/zine/parts/breadcrumb.html -->\n<nav class=\"breadcrumb\" aria-label=\"Breadcrumb\">\n  <ol>\n    <li><a href=\"#\">Home</a></li>\n    <li><a href=\"#\">Settings</a></li>\n    <li><a href=\"#\" aria-current=\"page\">Notifications</a></li>\n  </ol>\n</nav>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet breadcrumb vb646e028 · https://qusaialjbali.github.io/tearsheet/zine/parts/breadcrumb.html */\n.breadcrumb ol {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  font-size: 14px;\n}\n.breadcrumb li + li::before {\n  content: \"/\";\n  margin: 0 10px;\n  color: var(--ui-border-strong);\n}\n.breadcrumb a {\n  color: var(--ui-muted);\n  text-decoration: none;\n  border-radius: 4px;\n}\n.breadcrumb a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.breadcrumb a:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.breadcrumb a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; pointer-events: none; }"
+      }
+    ],
+    "react": [
+      {
+        "name": "Breadcrumb.jsx",
+        "code": "/* tearsheet breadcrumb vb646e028 · https://qusaialjbali.github.io/tearsheet/zine/parts/breadcrumb.html */\nimport './Breadcrumb.css';\n\nexport function Breadcrumb() {\n  return (\n    <nav className=\"breadcrumb\" aria-label=\"Breadcrumb\">\n      <ol>\n        <li><a href=\"#\">Home</a></li>\n        <li><a href=\"#\">Settings</a></li>\n        <li><a href=\"#\" aria-current=\"page\">Notifications</a></li>\n      </ol>\n    </nav>\n  );\n}"
+      },
+      {
+        "name": "Breadcrumb.css",
+        "code": "/* tearsheet breadcrumb vb646e028 · https://qusaialjbali.github.io/tearsheet/zine/parts/breadcrumb.html */\n.breadcrumb ol {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  font-size: 14px;\n}\n.breadcrumb li + li::before {\n  content: \"/\";\n  margin: 0 10px;\n  color: var(--ui-border-strong);\n}\n.breadcrumb a {\n  color: var(--ui-muted);\n  text-decoration: none;\n  border-radius: 4px;\n}\n.breadcrumb a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.breadcrumb a:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.breadcrumb a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; pointer-events: none; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Breadcrumb.vue",
+        "code": "<!-- tearsheet breadcrumb vb646e028 · https://qusaialjbali.github.io/tearsheet/zine/parts/breadcrumb.html -->\n<template>\n  <nav class=\"breadcrumb\" aria-label=\"Breadcrumb\">\n    <ol>\n      <li><a href=\"#\">Home</a></li>\n      <li><a href=\"#\">Settings</a></li>\n      <li><a href=\"#\" aria-current=\"page\">Notifications</a></li>\n    </ol>\n  </nav>\n</template>\n\n<style scoped>\n.breadcrumb ol {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  font-size: 14px;\n}\n.breadcrumb li + li::before {\n  content: \"/\";\n  margin: 0 10px;\n  color: var(--ui-border-strong);\n}\n.breadcrumb a {\n  color: var(--ui-muted);\n  text-decoration: none;\n  border-radius: 4px;\n}\n.breadcrumb a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.breadcrumb a:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.breadcrumb a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; pointer-events: none; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Breadcrumb.svelte",
+        "code": "<!-- tearsheet breadcrumb vb646e028 · https://qusaialjbali.github.io/tearsheet/zine/parts/breadcrumb.html -->\n<nav class=\"breadcrumb\" aria-label=\"Breadcrumb\">\n  <ol>\n    <li><a href=\"#\">Home</a></li>\n    <li><a href=\"#\">Settings</a></li>\n    <li><a href=\"#\" aria-current=\"page\">Notifications</a></li>\n  </ol>\n</nav>\n\n<style>\n.breadcrumb ol {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  font-size: 14px;\n}\n.breadcrumb li + li::before {\n  content: \"/\";\n  margin: 0 10px;\n  color: var(--ui-border-strong);\n}\n.breadcrumb a {\n  color: var(--ui-muted);\n  text-decoration: none;\n  border-radius: 4px;\n}\n.breadcrumb a:hover { color: var(--ui-text); text-decoration: underline; text-underline-offset: 3px; }\n.breadcrumb a:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.breadcrumb a[aria-current=\"page\"] { color: var(--ui-text); font-weight: 600; pointer-events: none; }\n</style>"
+      }
+    ]
+  }
+}

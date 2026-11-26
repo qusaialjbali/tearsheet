@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="8TPCudYm2VUg4z6FnUJamwUz4YU12BrNfCQFmGc4KRc">
+  <title>Tearsheet · Issue 01 — free interface parts zine</title>
+  <meta name="description" content="A free zine of 98 interface components, printed in HTML, React, Vue and Svelte. Take as many as you like. MIT-0, no attribution.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/index.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Tearsheet · Issue 01: free interface parts">
+  <meta property="og:description" content="A free zine of 98 interface components, printed in HTML, React, Vue and Svelte. Take as many as you like. MIT-0, no attribution.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/index.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="preload" href="../shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="zine.css?v=16">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="mast">
+    <div class="wrap mast-inner">
+      <a class="mast-title" href="index.html">Tear<span>sheet</span></a>
+      <nav aria-label="Main">
+        <a href="index.html#parts" aria-current="page">Parts</a>
+        <a href="guide.html">Guide</a>
+        <a href="index.html#back-page">Tokens</a>
+        <a class="nav-fitter" href="fitter.html">Fitter</a>
+        <a class="nav-agents" href="index.html#agents">For agents</a>
+      </nav>
+      <span class="mast-issue">Issue 01 · free, take one</span>
+      <a class="chip-in" href="#" data-donate aria-label="Chip in: buy me a coffee (optional)"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8h10v4.5A3.5 3.5 0 0 1 10.5 16h-3A3.5 3.5 0 0 1 4 12.5ZM14 9h1.5a2 2 0 0 1 0 4H14M7 3.5c0 1 1 1 1 2M10 3.5c0 1 1 1 1 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Chip in</span></a>
+      <button class="stock-btn" type="button" data-theme-toggle aria-label="Print on black stock">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 3a7 7 0 0 0 0 14z" fill="currentColor"/></svg>
+        <span>Black stock</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="cover" aria-labelledby="cover-title">
+      <canvas class="screen screen-pink" aria-hidden="true"></canvas>
+      <canvas class="screen screen-blue" aria-hidden="true"></canvas>
+      <a class="next-sticker" href="#next-issue"><span>Next up</span><b>Issue 02</b><span>Animation · coming soon</span></a>
+      <div class="staples" aria-hidden="true"><span class="fold"></span><svg viewBox="0 0 12 70"><path d="M4 3v64M4 3h6M4 67h6"/></svg><svg viewBox="0 0 12 70"><path d="M4 3v64M4 3h6M4 67h6"/></svg></div>
+      <h1 class="cover-title wrap" id="cover-title" aria-label="Tearsheet">
+        <span class="ink2" aria-hidden="true"><span class="a">TEAR</span><span class="b">TEAR</span></span>
+        <span class="ui" aria-hidden="true">
+          <span class="ink2"><span class="a">SHEET</span><span class="b">SHEET</span></span>
+          <span class="tag">Free interface parts, printed in four formats.</span>
+        </span>
+      </h1>
+      <div class="wrap cover-foot">
+        <p class="cover-blurb"><b>Issue 01.</b> <span data-count>47</span> components you can tear out and keep: HTML, React, Vue or Svelte. No install, no sign-up, no credit needed. Every page tells you why it works.</p>
+        <ul class="contents" id="contents" aria-label="Contents"></ul>
+        <div class="printed">
+          <p class="printed-label" id="printed-label">Print my copy in</p>
+          <div class="inks" role="radiogroup" aria-labelledby="printed-label" data-formats></div>
+          <a class="open-issue" href="#parts">Open the issue
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="toolbar-band">
+      <div class="wrap toolbar">
+        <div class="toolbar-row">
+          <button class="find" type="button" data-open-index aria-haspopup="dialog">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Find any page</span>
+            <kbd data-shortcut>Ctrl K</kbd>
+          </button>
+          <label class="tokens-check"><input type="checkbox" id="with-tokens"> Include tokens.css</label>
+          <div class="inks" role="radiogroup" aria-label="Code format" data-formats></div>
+        </div>
+        <nav class="shelf" id="shelf" aria-label="Collections"></nav>
+      </div>
+    </div>
+
+    <div id="parts" class="wrap">
+      <div id="spreads"></div>
+    </div>
+
+    <section class="centerfold" id="centerfold" aria-labelledby="centerfold-title">
+      <canvas class="screen screen-fold" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div class="spread-head">
+          <h2 id="centerfold-title"><span class="ink2"><span class="a">The weird</span><span class="b" aria-hidden="true">The weird</span></span><br><span class="ink2"><span class="a">centerfold</span><span class="b" aria-hidden="true">centerfold</span></span></h2>
+          <p><span data-wild-count>Twenty-two</span> experiments nobody else prints: a departures board, a knob that goes to eleven, tags you can throw around, a creature that covers its eyes while you type your password. All keyboard-friendly, all calm for reduced motion.</p>
+        </div>
+        <div class="pages" id="centerfold-pages"></div>
+      </div>
+    </section>
+
+    <section class="wrap backpage" id="back-page" aria-labelledby="back-title">
+      <div>
+        <h2 id="back-title">Back page: the tokens</h2>
+        <p>Every component reads its ink from one sheet of CSS custom properties. Swap the colours once and the whole issue reprints itself.</p>
+        <ol>
+          <li>Load <code class="inline">tokens.css</code> once, before any component.</li>
+          <li>Tear out a component in your format.</li>
+          <li>Change <code class="inline">--ui-accent</code>, the radius and the font, or let the <a href="fitter.html">brand fitter</a> do it: one colour in, contrast-checked light and dark tokens out. Add <code class="inline">data-theme="dark"</code> to <code class="inline">&lt;html&gt;</code> for dark.</li>
+        </ol>
+      </div>
+      <div class="file">
+        <div class="file-head">
+          <span class="file-name">tokens.css</span>
+          <button class="copy" type="button" id="copy-tokens"><span data-label>Copy</span></button>
+        </div>
+        <pre class="code" tabindex="0"><code id="tokens-code"></code></pre>
+      </div>
+    </section>
+    <section class="wrap next-issue" id="next-issue" aria-labelledby="next-title">
+      <div class="next-head">
+        <h2 id="next-title" aria-label="Issue 02: Animation"><span class="ink2 next-num" aria-hidden="true"><span class="a">02</span><span class="b">02</span></span><span class="next-name" aria-hidden="true">Animation</span></h2>
+        <p class="next-stamp">Coming soon</p>
+      </div>
+      <p class="next-lede">The next issue is all about movement: transitions, micro-interactions, loaders and scroll effects you can tear out in HTML, React, Vue or Svelte, plus a guide to animating with purpose. Every piece will respect reduced motion.</p>
+      <p class="next-note">Same deal as Issue 01: free forever, no sign-up, no attribution. Check back here when it drops.</p>
+    </section>
+
+    <section class="wrap agents" id="agents" aria-labelledby="agents-title">
+      <h2 id="agents-title">Give it to your agent</h2>
+      <p class="agents-lede">Your AI coding assistant can use this issue too. Pick whichever your tools understand: all three hand over the same <span data-count>98</span> components, the tokens and the design rules.</p>
+      <div class="agents-grid">
+        <article class="agent-card">
+          <h3><span>1</span>Point it at a link</h3>
+          <p>Works with any agent that can read a web page. Paste the link into your prompt, for example: “Use Tearsheet from this link for the date picker.”</p>
+          <div class="file">
+            <div class="file-head"><span class="file-name">llms.txt</span><button class="copy" type="button" data-copy="agent-link"><span data-label>Copy</span></button></div>
+            <pre class="code" tabindex="0"><code id="agent-link">https://qusaialjbali.github.io/tearsheet/llms.txt</code></pre>
+          </div>
+          <p class="agent-more">Behind it: a <a href="../api/components.json">JSON index</a> and every component as <a href="../api/components/modal.md">Markdown</a> or JSON, in all four formats.</p>
+        </article>
+        <article class="agent-card">
+          <h3><span>2</span>Run the command</h3>
+          <p>Writes components straight into a project, in the framework it finds in package.json. Needs Node 18 or newer; nothing to install first.</p>
+          <div class="file">
+            <div class="file-head"><span class="file-name">terminal</span><button class="copy" type="button" data-copy="agent-cli"><span data-label>Copy</span></button></div>
+            <pre class="code" tabindex="0"><code id="agent-cli">npx tearsheet add modal</code></pre>
+          </div>
+          <p class="agent-more">Also <code class="inline">list</code>, <code class="inline">search date</code>, <code class="inline">show tabs --format vue</code>, <code class="inline">tokens --accent "#e11d48"</code>, <code class="inline">guide forms</code>, <code class="inline">audit src</code> to check your own UI against the guide, and <code class="inline">diff</code> to see what changed since you copied a part.</p>
+        </article>
+        <article class="agent-card">
+          <h3><span>3</span>Connect over MCP</h3>
+          <p>Add this to the MCP settings of your editor or agent app. It gets tools to search components, fetch their code, read the tokens and design rules, fit tokens to a brand colour, and review the UI code it writes.</p>
+          <div class="file">
+            <div class="file-head"><span class="file-name">mcp config</span><button class="copy" type="button" data-copy="agent-mcp"><span data-label>Copy</span></button></div>
+            <pre class="code" tabindex="0"><code id="agent-mcp">{
+  "mcpServers": {
+    "tearsheet": {
+      "command": "npx",
+      "args": ["-y", "tearsheet", "mcp"]
+    }
+  }
+}</code></pre>
+          </div>
+          <p class="agent-more">The top-level key differs between apps (some call it <code class="inline">servers</code>). On Windows, if npx is not found, use <code class="inline">"command": "cmd"</code> with <code class="inline">"/c", "npx"</code> at the start of args.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap free" id="free" aria-labelledby="free-title">
+      <h2 id="free-title">Free forever. Really.</h2>
+      <p>Every component, the guide and every future issue stay free: no account, no paywall, no “pro” tier, no attribution needed. That is not a trial; it is the whole idea.</p>
+      <p data-donate class="free-donate">If Tearsheet saved you an afternoon, you can buy the printer a coffee. Completely optional, and nothing changes either way. <a class="free-btn" href="#"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8h10v4.5A3.5 3.5 0 0 1 10.5 16h-3A3.5 3.5 0 0 1 4 12.5ZM14 9h1.5a2 2 0 0 1 0 4H14M7 3.5c0 1 1 1 1 2M10 3.5c0 1 1 1 1 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Buy me a coffee</span></a></p>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <div class="wrap colophon-inner">
+      <p>Tearsheet, Issue 01. Printed nowhere, given away everywhere. Every component is free to take, change and ship with no attribution (MIT-0).</p>
+      <nav aria-label="Footer">
+        <a href="guide.html">The guide</a>
+        <a href="parts/index.html">Every part, one page each</a>
+      </nav>
+    </div>
+  </footer>
+
+  <nav class="thumbs" id="thumbs" aria-label="Jump to a collection"></nav>
+
+  <button class="index-fab" type="button" data-open-index aria-haspopup="dialog">
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h12M4 15h8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    Index
+  </button>
+
+  <dialog class="jump" id="jump" aria-labelledby="jump-title">
+    <div class="jump-head">
+      <h2 id="jump-title">Index</h2>
+      <button class="jump-close" type="button" aria-label="Close the index">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <label class="jump-field">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="jump-input" type="text" role="combobox" aria-expanded="true" aria-controls="jump-list" aria-autocomplete="list" aria-label="Find a component or collection" placeholder="Type a component or collection" autocomplete="off" spellcheck="false">
+    </label>
+    <ul class="jump-list" id="jump-list" role="listbox" aria-label="Pages in this issue"></ul>
+    <p class="jump-hint" id="jump-hint">Arrow keys to move, Enter to open, Esc to close</p>
+  </dialog>
+
+  <script src="../shared/components.js?v=3"></script>
+  <script src="../shared/components-basics.js?v=3"></script>
+  <script src="../shared/components-wild.js?v=3"></script>
+  <script src="../shared/components-everyday.js?v=3"></script>
+  <script src="../shared/components-data.js?v=3"></script>
+  <script src="../shared/components-sections.js?v=3"></script>
+  <script src="../shared/components-wild-2.js?v=3"></script>
+  <script src="../shared/codegen.js?v=7"></script>
+  <script src="../shared/core.js?v=6"></script>
+  <script src="../shared/stress.js?v=1"></script>
+  <script src="zine.js?v=12"></script>
+  <script src="../shared/site-config.js?v=2"></script>
+</body>
+</html>

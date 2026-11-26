@@ -1,0 +1,90 @@
+{
+  "id": "pricing-card",
+  "name": "Pricing card",
+  "page": "p.63",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "Plan card with price, feature list and a single call to action.",
+  "notes": "Say what happens after the click (“Start free trial”) and answer the top worry right below it (“No card required”).",
+  "usesJavaScript": false,
+  "sizeKb": 2.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#pricing-card",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/pricing-card.json",
+  "version": "2ee6510b",
+  "checked": "axe clean in light and dark; tightest text contrast 5.35:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 5.35,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "link \"Start free trial\":"
+    ],
+    "tree": "- paragraph: Pro\n- text: Most popular\n- paragraph: $12 per user / month\n- paragraph: For small teams that ship fast.\n- list:\n  - listitem: Unlimited projects\n  - listitem: Version history for 1 year\n  - listitem: Custom domains\n  - listitem: Priority email support\n- link \"Start free trial\":\n  - /url: \"#\"\n- paragraph: 14 days free · No card required",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet pricing-card v2ee6510b · https://qusaialjbali.github.io/tearsheet/zine/parts/pricing-card.html -->\n<div class=\"pricing\">\n  <div class=\"pricing-head\">\n    <p class=\"pricing-plan\">Pro</p>\n    <span class=\"pricing-tag\">Most popular</span>\n  </div>\n  <p class=\"pricing-price\"><span class=\"pricing-amount\">$12</span><span class=\"pricing-period\">per user / month</span></p>\n  <p class=\"pricing-desc\">For small teams that ship fast.</p>\n  <ul class=\"pricing-features\">\n    <li>Unlimited projects</li>\n    <li>Version history for 1 year</li>\n    <li>Custom domains</li>\n    <li>Priority email support</li>\n  </ul>\n  <a class=\"pricing-cta\" href=\"#\">Start free trial</a>\n  <p class=\"pricing-note\">14 days free · No card required</p>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet pricing-card v2ee6510b · https://qusaialjbali.github.io/tearsheet/zine/parts/pricing-card.html */\n.pricing {\n  width: 100%;\n  max-width: 320px;\n  padding: 28px;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-accent);\n  border-radius: 16px;\n  box-shadow: var(--ui-shadow);\n}\n.pricing-head { display: flex; align-items: center; justify-content: space-between; }\n.pricing-plan { margin: 0; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.pricing-tag {\n  padding: 3px 10px;\n  font-size: 12px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 999px;\n}\n.pricing-price { display: flex; align-items: baseline; gap: 8px; margin: 16px 0 4px; }\n.pricing-amount { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; color: var(--ui-text); }\n.pricing-period { font-size: 14px; color: var(--ui-muted); }\n.pricing-desc { margin: 0 0 20px; font-size: 15px; color: var(--ui-muted); }\n.pricing-features { display: grid; gap: 10px; margin: 0 0 24px; padding: 0; list-style: none; }\n.pricing-features li { display: flex; gap: 10px; font-size: 15px; color: var(--ui-text); }\n.pricing-features li::before {\n  content: \"\";\n  width: 16px;\n  height: 16px;\n  flex: none;\n  margin-top: 3px;\n  background: var(--ui-success);\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}\n.pricing-cta {\n  display: block;\n  padding: 12px;\n  font-weight: 600;\n  text-align: center;\n  text-decoration: none;\n  color: var(--ui-accent-text);\n  background: var(--ui-accent);\n  border-radius: var(--ui-radius-sm);\n}\n.pricing-cta:hover { background: var(--ui-accent-hover); }\n.pricing-cta:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.pricing-note { margin: 10px 0 0; font-size: 13px; text-align: center; color: var(--ui-muted); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "PricingCard.jsx",
+        "code": "/* tearsheet pricing-card v2ee6510b · https://qusaialjbali.github.io/tearsheet/zine/parts/pricing-card.html */\nimport './PricingCard.css';\n\nexport function PricingCard() {\n  return (\n    <div className=\"pricing\">\n      <div className=\"pricing-head\">\n        <p className=\"pricing-plan\">Pro</p>\n        <span className=\"pricing-tag\">Most popular</span>\n      </div>\n      <p className=\"pricing-price\"><span className=\"pricing-amount\">$12</span><span className=\"pricing-period\">per user / month</span></p>\n      <p className=\"pricing-desc\">For small teams that ship fast.</p>\n      <ul className=\"pricing-features\">\n        <li>Unlimited projects</li>\n        <li>Version history for 1 year</li>\n        <li>Custom domains</li>\n        <li>Priority email support</li>\n      </ul>\n      <a className=\"pricing-cta\" href=\"#\">Start free trial</a>\n      <p className=\"pricing-note\">14 days free · No card required</p>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "PricingCard.css",
+        "code": "/* tearsheet pricing-card v2ee6510b · https://qusaialjbali.github.io/tearsheet/zine/parts/pricing-card.html */\n.pricing {\n  width: 100%;\n  max-width: 320px;\n  padding: 28px;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-accent);\n  border-radius: 16px;\n  box-shadow: var(--ui-shadow);\n}\n.pricing-head { display: flex; align-items: center; justify-content: space-between; }\n.pricing-plan { margin: 0; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.pricing-tag {\n  padding: 3px 10px;\n  font-size: 12px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 999px;\n}\n.pricing-price { display: flex; align-items: baseline; gap: 8px; margin: 16px 0 4px; }\n.pricing-amount { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; color: var(--ui-text); }\n.pricing-period { font-size: 14px; color: var(--ui-muted); }\n.pricing-desc { margin: 0 0 20px; font-size: 15px; color: var(--ui-muted); }\n.pricing-features { display: grid; gap: 10px; margin: 0 0 24px; padding: 0; list-style: none; }\n.pricing-features li { display: flex; gap: 10px; font-size: 15px; color: var(--ui-text); }\n.pricing-features li::before {\n  content: \"\";\n  width: 16px;\n  height: 16px;\n  flex: none;\n  margin-top: 3px;\n  background: var(--ui-success);\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}\n.pricing-cta {\n  display: block;\n  padding: 12px;\n  font-weight: 600;\n  text-align: center;\n  text-decoration: none;\n  color: var(--ui-accent-text);\n  background: var(--ui-accent);\n  border-radius: var(--ui-radius-sm);\n}\n.pricing-cta:hover { background: var(--ui-accent-hover); }\n.pricing-cta:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.pricing-note { margin: 10px 0 0; font-size: 13px; text-align: center; color: var(--ui-muted); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "PricingCard.vue",
+        "code": "<!-- tearsheet pricing-card v2ee6510b · https://qusaialjbali.github.io/tearsheet/zine/parts/pricing-card.html -->\n<template>\n  <div class=\"pricing\">\n    <div class=\"pricing-head\">\n      <p class=\"pricing-plan\">Pro</p>\n      <span class=\"pricing-tag\">Most popular</span>\n    </div>\n    <p class=\"pricing-price\"><span class=\"pricing-amount\">$12</span><span class=\"pricing-period\">per user / month</span></p>\n    <p class=\"pricing-desc\">For small teams that ship fast.</p>\n    <ul class=\"pricing-features\">\n      <li>Unlimited projects</li>\n      <li>Version history for 1 year</li>\n      <li>Custom domains</li>\n      <li>Priority email support</li>\n    </ul>\n    <a class=\"pricing-cta\" href=\"#\">Start free trial</a>\n    <p class=\"pricing-note\">14 days free · No card required</p>\n  </div>\n</template>\n\n<style scoped>\n.pricing {\n  width: 100%;\n  max-width: 320px;\n  padding: 28px;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-accent);\n  border-radius: 16px;\n  box-shadow: var(--ui-shadow);\n}\n.pricing-head { display: flex; align-items: center; justify-content: space-between; }\n.pricing-plan { margin: 0; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.pricing-tag {\n  padding: 3px 10px;\n  font-size: 12px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 999px;\n}\n.pricing-price { display: flex; align-items: baseline; gap: 8px; margin: 16px 0 4px; }\n.pricing-amount { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; color: var(--ui-text); }\n.pricing-period { font-size: 14px; color: var(--ui-muted); }\n.pricing-desc { margin: 0 0 20px; font-size: 15px; color: var(--ui-muted); }\n.pricing-features { display: grid; gap: 10px; margin: 0 0 24px; padding: 0; list-style: none; }\n.pricing-features li { display: flex; gap: 10px; font-size: 15px; color: var(--ui-text); }\n.pricing-features li::before {\n  content: \"\";\n  width: 16px;\n  height: 16px;\n  flex: none;\n  margin-top: 3px;\n  background: var(--ui-success);\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}\n.pricing-cta {\n  display: block;\n  padding: 12px;\n  font-weight: 600;\n  text-align: center;\n  text-decoration: none;\n  color: var(--ui-accent-text);\n  background: var(--ui-accent);\n  border-radius: var(--ui-radius-sm);\n}\n.pricing-cta:hover { background: var(--ui-accent-hover); }\n.pricing-cta:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.pricing-note { margin: 10px 0 0; font-size: 13px; text-align: center; color: var(--ui-muted); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "PricingCard.svelte",
+        "code": "<!-- tearsheet pricing-card v2ee6510b · https://qusaialjbali.github.io/tearsheet/zine/parts/pricing-card.html -->\n<div class=\"pricing\">\n  <div class=\"pricing-head\">\n    <p class=\"pricing-plan\">Pro</p>\n    <span class=\"pricing-tag\">Most popular</span>\n  </div>\n  <p class=\"pricing-price\"><span class=\"pricing-amount\">$12</span><span class=\"pricing-period\">per user / month</span></p>\n  <p class=\"pricing-desc\">For small teams that ship fast.</p>\n  <ul class=\"pricing-features\">\n    <li>Unlimited projects</li>\n    <li>Version history for 1 year</li>\n    <li>Custom domains</li>\n    <li>Priority email support</li>\n  </ul>\n  <a class=\"pricing-cta\" href=\"#\">Start free trial</a>\n  <p class=\"pricing-note\">14 days free · No card required</p>\n</div>\n\n<style>\n.pricing {\n  width: 100%;\n  max-width: 320px;\n  padding: 28px;\n  background: var(--ui-surface);\n  border: 2px solid var(--ui-accent);\n  border-radius: 16px;\n  box-shadow: var(--ui-shadow);\n}\n.pricing-head { display: flex; align-items: center; justify-content: space-between; }\n.pricing-plan { margin: 0; font-size: 16px; font-weight: 700; color: var(--ui-text); }\n.pricing-tag {\n  padding: 3px 10px;\n  font-size: 12px;\n  font-weight: 600;\n  color: var(--ui-accent);\n  background: var(--ui-accent-soft);\n  border-radius: 999px;\n}\n.pricing-price { display: flex; align-items: baseline; gap: 8px; margin: 16px 0 4px; }\n.pricing-amount { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; color: var(--ui-text); }\n.pricing-period { font-size: 14px; color: var(--ui-muted); }\n.pricing-desc { margin: 0 0 20px; font-size: 15px; color: var(--ui-muted); }\n.pricing-features { display: grid; gap: 10px; margin: 0 0 24px; padding: 0; list-style: none; }\n.pricing-features li { display: flex; gap: 10px; font-size: 15px; color: var(--ui-text); }\n.pricing-features li::before {\n  content: \"\";\n  width: 16px;\n  height: 16px;\n  flex: none;\n  margin-top: 3px;\n  background: var(--ui-success);\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27m4 10.5 4 4 8-9%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.6%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}\n.pricing-cta {\n  display: block;\n  padding: 12px;\n  font-weight: 600;\n  text-align: center;\n  text-decoration: none;\n  color: var(--ui-accent-text);\n  background: var(--ui-accent);\n  border-radius: var(--ui-radius-sm);\n}\n.pricing-cta:hover { background: var(--ui-accent-hover); }\n.pricing-cta:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.pricing-note { margin: 10px 0 0; font-size: 13px; text-align: center; color: var(--ui-muted); }\n</style>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "cookie-banner",
+  "name": "Honest cookie banner",
+  "page": "p.61",
+  "collection": "Overlays",
+  "experimental": false,
+  "description": "A consent banner where saying no is exactly as easy as saying yes.",
+  "notes": "Reject and Accept get equal size and weight, and nothing is pre-ticked. That is not just polite: GDPR guidance treats a buried “reject” as invalid consent. It never blocks the page.",
+  "usesJavaScript": true,
+  "sizeKb": 2.8,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#cookie-banner",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/cookie-banner.json",
+  "version": "6a7ef958",
+  "checked": "axe clean in light and dark; tightest text contrast 5.93:1 (needs 4.5:1); 3 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 16
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 16
+      }
+    },
+    "contrast": {
+      "ratio": 5.93,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Reject optional\"",
+      "button \"Accept all\"",
+      "link \"Choose what to allow\":"
+    ],
+    "tree": "- region \"Cookies, briefly\":\n  - heading \"Cookies, briefly\" [level=2]\n  - paragraph: We use essential cookies to keep you signed in. With your OK we would also like to measure which pages are useful. No ads, no selling data.\n  - button \"Reject optional\"\n  - button \"Accept all\"\n  - link \"Choose what to allow\":\n    - /url: \"#\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html -->\n<section class=\"consent\" aria-labelledby=\"consent-title\">\n  <div class=\"consent-text\">\n    <h2 id=\"consent-title\">Cookies, briefly</h2>\n    <p>We use essential cookies to keep you signed in. With your OK we would also like to measure which pages are useful. No ads, no selling data.</p>\n  </div>\n  <div class=\"consent-actions\">\n    <button class=\"btn btn-secondary\" type=\"button\" data-choice=\"reject\">Reject optional</button>\n    <button class=\"btn btn-secondary\" type=\"button\" data-choice=\"accept\">Accept all</button>\n    <a class=\"consent-link\" href=\"#\">Choose what to allow</a>\n  </div>\n  <p class=\"consent-done\" aria-live=\"polite\"></p>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html */\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 40px; padding: 0 16px;\n  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn svg { width: 18px; height: 18px; }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.consent {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;\n  max-width: 900px; margin: 0 auto; padding: 20px 24px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.consent-text { flex: 1 1 340px; }\n.consent-text h2 { margin: 0 0 4px; font-size: 17px; }\n.consent-text p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.consent-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }\n.consent-actions .btn { min-width: 140px; }\n.consent-link { font-size: 14px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n.consent-done { flex-basis: 100%; margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-success); }\n.consent-done:empty { display: none; }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html */\nfunction setup(root) {\n  const done = root.querySelector('.consent-done');\n  const buttons = root.querySelectorAll('[data-choice]');\n  const onChoice = (e) => {\n    const accepted = e.currentTarget.dataset.choice === 'accept';\n    // Store the choice, e.g. localStorage.setItem('consent', accepted ? 'all' : 'essential')\n    done.textContent = accepted ? 'Thanks. Optional cookies are on; change this any time in Settings.' : 'Done. Only essential cookies will be used.';\n  };\n  buttons.forEach((b) => b.addEventListener('click', onChoice));\n  return () => buttons.forEach((b) => b.removeEventListener('click', onChoice));\n}\n\ndocument.querySelectorAll(\".consent\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "CookieBanner.jsx",
+        "code": "/* tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html */\nimport { useEffect, useRef } from 'react';\nimport './CookieBanner.css';\n\nfunction setup(root) {\n  const done = root.querySelector('.consent-done');\n  const buttons = root.querySelectorAll('[data-choice]');\n  const onChoice = (e) => {\n    const accepted = e.currentTarget.dataset.choice === 'accept';\n    // Store the choice, e.g. localStorage.setItem('consent', accepted ? 'all' : 'essential')\n    done.textContent = accepted ? 'Thanks. Optional cookies are on; change this any time in Settings.' : 'Done. Only essential cookies will be used.';\n  };\n  buttons.forEach((b) => b.addEventListener('click', onChoice));\n  return () => buttons.forEach((b) => b.removeEventListener('click', onChoice));\n}\n\nexport function CookieBanner() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <section ref={ref} className=\"consent\" aria-labelledby=\"consent-title\">\n      <div className=\"consent-text\">\n        <h2 id=\"consent-title\">Cookies, briefly</h2>\n        <p>We use essential cookies to keep you signed in. With your OK we would also like to measure which pages are useful. No ads, no selling data.</p>\n      </div>\n      <div className=\"consent-actions\">\n        <button className=\"btn btn-secondary\" type=\"button\" data-choice=\"reject\">Reject optional</button>\n        <button className=\"btn btn-secondary\" type=\"button\" data-choice=\"accept\">Accept all</button>\n        <a className=\"consent-link\" href=\"#\">Choose what to allow</a>\n      </div>\n      <p className=\"consent-done\" aria-live=\"polite\"></p>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "CookieBanner.css",
+        "code": "/* tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html */\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 40px; padding: 0 16px;\n  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn svg { width: 18px; height: 18px; }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.consent {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;\n  max-width: 900px; margin: 0 auto; padding: 20px 24px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.consent-text { flex: 1 1 340px; }\n.consent-text h2 { margin: 0 0 4px; font-size: 17px; }\n.consent-text p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.consent-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }\n.consent-actions .btn { min-width: 140px; }\n.consent-link { font-size: 14px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n.consent-done { flex-basis: 100%; margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-success); }\n.consent-done:empty { display: none; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "CookieBanner.vue",
+        "code": "<!-- tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const done = root.querySelector('.consent-done');\n  const buttons = root.querySelectorAll('[data-choice]');\n  const onChoice = (e) => {\n    const accepted = e.currentTarget.dataset.choice === 'accept';\n    // Store the choice, e.g. localStorage.setItem('consent', accepted ? 'all' : 'essential')\n    done.textContent = accepted ? 'Thanks. Optional cookies are on; change this any time in Settings.' : 'Done. Only essential cookies will be used.';\n  };\n  buttons.forEach((b) => b.addEventListener('click', onChoice));\n  return () => buttons.forEach((b) => b.removeEventListener('click', onChoice));\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <section ref=\"el\" class=\"consent\" aria-labelledby=\"consent-title\">\n    <div class=\"consent-text\">\n      <h2 id=\"consent-title\">Cookies, briefly</h2>\n      <p>We use essential cookies to keep you signed in. With your OK we would also like to measure which pages are useful. No ads, no selling data.</p>\n    </div>\n    <div class=\"consent-actions\">\n      <button class=\"btn btn-secondary\" type=\"button\" data-choice=\"reject\">Reject optional</button>\n      <button class=\"btn btn-secondary\" type=\"button\" data-choice=\"accept\">Accept all</button>\n      <a class=\"consent-link\" href=\"#\">Choose what to allow</a>\n    </div>\n    <p class=\"consent-done\" aria-live=\"polite\"></p>\n  </section>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 40px; padding: 0 16px;\n  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn svg { width: 18px; height: 18px; }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.consent {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;\n  max-width: 900px; margin: 0 auto; padding: 20px 24px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.consent-text { flex: 1 1 340px; }\n.consent-text h2 { margin: 0 0 4px; font-size: 17px; }\n.consent-text p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.consent-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }\n.consent-actions .btn { min-width: 140px; }\n.consent-link { font-size: 14px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n.consent-done { flex-basis: 100%; margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-success); }\n.consent-done:empty { display: none; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "CookieBanner.svelte",
+        "code": "<!-- tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './CookieBanner.css';\n\n  let node;\n\n  function setup(root) {\n    const done = root.querySelector('.consent-done');\n    const buttons = root.querySelectorAll('[data-choice]');\n    const onChoice = (e) => {\n      const accepted = e.currentTarget.dataset.choice === 'accept';\n      // Store the choice, e.g. localStorage.setItem('consent', accepted ? 'all' : 'essential')\n      done.textContent = accepted ? 'Thanks. Optional cookies are on; change this any time in Settings.' : 'Done. Only essential cookies will be used.';\n    };\n    buttons.forEach((b) => b.addEventListener('click', onChoice));\n    return () => buttons.forEach((b) => b.removeEventListener('click', onChoice));\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<section bind:this={node} class=\"consent\" aria-labelledby=\"consent-title\">\n  <div class=\"consent-text\">\n    <h2 id=\"consent-title\">Cookies, briefly</h2>\n    <p>We use essential cookies to keep you signed in. With your OK we would also like to measure which pages are useful. No ads, no selling data.</p>\n  </div>\n  <div class=\"consent-actions\">\n    <button class=\"btn btn-secondary\" type=\"button\" data-choice=\"reject\">Reject optional</button>\n    <button class=\"btn btn-secondary\" type=\"button\" data-choice=\"accept\">Accept all</button>\n    <a class=\"consent-link\" href=\"#\">Choose what to allow</a>\n  </div>\n  <p class=\"consent-done\" aria-live=\"polite\"></p>\n</section>"
+      },
+      {
+        "name": "CookieBanner.css",
+        "code": "/* tearsheet cookie-banner v6a7ef958 · https://qusaialjbali.github.io/tearsheet/zine/parts/cookie-banner.html */\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 40px; padding: 0 16px;\n  font: inherit; font-size: 14px; font-weight: 600; line-height: 1;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn svg { width: 18px; height: 18px; }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.consent {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;\n  max-width: 900px; margin: 0 auto; padding: 20px 24px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);\n}\n.consent-text { flex: 1 1 340px; }\n.consent-text h2 { margin: 0 0 4px; font-size: 17px; }\n.consent-text p { margin: 0; font-size: 14px; color: var(--ui-muted); }\n.consent-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }\n.consent-actions .btn { min-width: 140px; }\n.consent-link { font-size: 14px; font-weight: 600; color: var(--ui-accent); text-underline-offset: 3px; }\n.consent-done { flex-basis: 100%; margin: 0; font-size: 14px; font-weight: 600; color: var(--ui-success); }\n.consent-done:empty { display: none; }"
+      }
+    ]
+  }
+}

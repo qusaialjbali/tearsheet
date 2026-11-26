@@ -1,0 +1,94 @@
+{
+  "id": "modal",
+  "name": "Modal dialog",
+  "page": "p.55",
+  "collection": "Overlays",
+  "experimental": false,
+  "description": "Confirmation dialog built on the native <dialog> element: focus trapping, Esc to close and a backdrop come built in.",
+  "notes": "Name the action in the confirm button (“Delete project”), not “OK”. Clicking the backdrop or pressing Esc cancels. Focus returns to the trigger on close.",
+  "usesJavaScript": true,
+  "sizeKb": 2.7,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#modal",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/modal.json",
+  "version": "d8d64a4f",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 9
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 9
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Delete project…\""
+    ],
+    "tree": "- button \"Delete project…\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": true
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet modal vd8d64a4f · https://qusaialjbali.github.io/tearsheet/zine/parts/modal.html -->\n<button class=\"btn btn-primary\" type=\"button\" data-open-modal=\"delete-dialog\">Delete project…</button>\n\n<dialog class=\"modal\" id=\"delete-dialog\" aria-labelledby=\"modal-title\">\n  <form method=\"dialog\" class=\"modal-body\">\n    <h2 class=\"modal-title\" id=\"modal-title\">Delete project?</h2>\n    <p class=\"modal-text\">This permanently removes “Website redesign” and all of its files. This can’t be undone.</p>\n    <div class=\"modal-actions\">\n      <button class=\"btn btn-secondary\" value=\"cancel\">Cancel</button>\n      <button class=\"btn btn-danger\" value=\"confirm\">Delete project</button>\n    </div>\n  </form>\n</dialog>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet modal vd8d64a4f · https://qusaialjbali.github.io/tearsheet/zine/parts/modal.html */\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.modal {\n  width: min(440px, calc(100vw - 32px));\n  padding: 0;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.modal::backdrop { background: rgb(0 0 0 / 0.45); backdrop-filter: blur(2px); }\n.modal[open] { animation: modal-in 0.18s ease-out; }\n.modal-body { padding: 24px; }\n.modal-title { margin: 0 0 8px; font-size: 19px; }\n.modal-text { margin: 0 0 24px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }\n\n@keyframes modal-in {\n  from { opacity: 0; transform: translateY(8px) scale(0.98); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .modal[open] { animation: none; }\n}"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet modal vd8d64a4f · https://qusaialjbali.github.io/tearsheet/zine/parts/modal.html */\ndocument.querySelectorAll('[data-open-modal]').forEach((trigger) => {\n  const dialog = document.getElementById(trigger.dataset.openModal);\n  trigger.addEventListener('click', () => dialog.showModal());\n  // Close when the backdrop (the dialog element itself) is clicked\n  dialog.addEventListener('click', (e) => {\n    if (e.target === dialog) dialog.close('cancel');\n  });\n  dialog.addEventListener('close', () => {\n    console.log('Dialog result:', dialog.returnValue);\n  });\n});"
+      }
+    ],
+    "react": [
+      {
+        "name": "Modal.jsx",
+        "code": "/* tearsheet modal vd8d64a4f · https://qusaialjbali.github.io/tearsheet/zine/parts/modal.html */\nimport { useRef } from 'react';\nimport './Modal.css';\n\nexport function Modal({ onConfirm }) {\n  const dialog = useRef(null);\n\n  const handleClose = () => {\n    if (dialog.current.returnValue === 'confirm') onConfirm?.();\n  };\n\n  return (\n    <>\n      <button className=\"btn btn-primary\" type=\"button\" onClick={() => dialog.current.showModal()}>\n        Delete project…\n      </button>\n\n      <dialog\n        ref={dialog}\n        className=\"modal\"\n        aria-labelledby=\"modal-title\"\n        onClose={handleClose}\n        onClick={(e) => e.target === dialog.current && dialog.current.close('cancel')}\n      >\n        <form method=\"dialog\" className=\"modal-body\">\n          <h2 className=\"modal-title\" id=\"modal-title\">Delete project?</h2>\n          <p className=\"modal-text\">\n            This permanently removes “Website redesign” and all of its files. This can’t be undone.\n          </p>\n          <div className=\"modal-actions\">\n            <button className=\"btn btn-secondary\" value=\"cancel\">Cancel</button>\n            <button className=\"btn btn-danger\" value=\"confirm\">Delete project</button>\n          </div>\n        </form>\n      </dialog>\n    </>\n  );\n}"
+      },
+      {
+        "name": "Modal.css",
+        "code": "/* tearsheet modal vd8d64a4f · https://qusaialjbali.github.io/tearsheet/zine/parts/modal.html */\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.modal {\n  width: min(440px, calc(100vw - 32px));\n  padding: 0;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.modal::backdrop { background: rgb(0 0 0 / 0.45); backdrop-filter: blur(2px); }\n.modal[open] { animation: modal-in 0.18s ease-out; }\n.modal-body { padding: 24px; }\n.modal-title { margin: 0 0 8px; font-size: 19px; }\n.modal-text { margin: 0 0 24px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }\n\n@keyframes modal-in {\n  from { opacity: 0; transform: translateY(8px) scale(0.98); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .modal[open] { animation: none; }\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Modal.vue",
+        "code": "<!-- tearsheet modal vd8d64a4f · https://qusaialjbali.github.io/tearsheet/zine/parts/modal.html -->\n<script setup>\nimport { ref } from 'vue';\n\nconst emit = defineEmits(['confirm']);\nconst dialog = ref(null);\n\nfunction onClose() {\n  if (dialog.value.returnValue === 'confirm') emit('confirm');\n}\nfunction onBackdrop(e) {\n  if (e.target === dialog.value) dialog.value.close('cancel');\n}\n</script>\n\n<template>\n  <button class=\"btn btn-primary\" type=\"button\" @click=\"dialog.showModal()\">Delete project…</button>\n\n  <dialog ref=\"dialog\" class=\"modal\" aria-labelledby=\"modal-title\" @close=\"onClose\" @click=\"onBackdrop\">\n    <form method=\"dialog\" class=\"modal-body\">\n      <h2 class=\"modal-title\" id=\"modal-title\">Delete project?</h2>\n      <p class=\"modal-text\">This permanently removes “Website redesign” and all of its files. This can’t be undone.</p>\n      <div class=\"modal-actions\">\n        <button class=\"btn btn-secondary\" value=\"cancel\">Cancel</button>\n        <button class=\"btn btn-danger\" value=\"confirm\">Delete project</button>\n      </div>\n    </form>\n  </dialog>\n</template>\n\n<style scoped>\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.modal {\n  width: min(440px, calc(100vw - 32px));\n  padding: 0;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.modal::backdrop { background: rgb(0 0 0 / 0.45); backdrop-filter: blur(2px); }\n.modal[open] { animation: modal-in 0.18s ease-out; }\n.modal-body { padding: 24px; }\n.modal-title { margin: 0 0 8px; font-size: 19px; }\n.modal-text { margin: 0 0 24px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }\n\n@keyframes modal-in {\n  from { opacity: 0; transform: translateY(8px) scale(0.98); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .modal[open] { animation: none; }\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Modal.svelte",
+        "code": "<!-- tearsheet modal vd8d64a4f · https://qusaialjbali.github.io/tearsheet/zine/parts/modal.html -->\n<script>\n  import { createEventDispatcher } from 'svelte';\n  const dispatch = createEventDispatcher();\n  let dialog;\n\n  function onClose() {\n    if (dialog.returnValue === 'confirm') dispatch('confirm');\n  }\n  function onBackdrop(e) {\n    if (e.target === dialog) dialog.close('cancel');\n  }\n</script>\n\n<button class=\"btn btn-primary\" type=\"button\" on:click={() => dialog.showModal()}>Delete project…</button>\n\n<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->\n<dialog bind:this={dialog} class=\"modal\" aria-labelledby=\"modal-title\" on:close={onClose} on:click={onBackdrop}>\n  <form method=\"dialog\" class=\"modal-body\">\n    <h2 class=\"modal-title\" id=\"modal-title\">Delete project?</h2>\n    <p class=\"modal-text\">This permanently removes “Website redesign” and all of its files. This can’t be undone.</p>\n    <div class=\"modal-actions\">\n      <button class=\"btn btn-secondary\" value=\"cancel\">Cancel</button>\n      <button class=\"btn btn-danger\" value=\"confirm\">Delete project</button>\n    </div>\n  </form>\n</dialog>\n\n<style>\n.btn {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  line-height: 1;\n  padding: 11px 18px;\n  min-height: 40px;\n  border-radius: var(--ui-radius-sm);\n  border: 1px solid transparent;\n  cursor: pointer;\n  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn:disabled { opacity: 0.5; cursor: not-allowed; }\n.btn-primary { background: var(--ui-accent); color: var(--ui-accent-text); }\n.btn-primary:hover:not(:disabled) { background: var(--ui-accent-hover); }\n.btn-secondary { background: var(--ui-surface); color: var(--ui-text); border-color: var(--ui-border); }\n.btn-secondary:hover:not(:disabled) { background: var(--ui-surface-2); }\n.btn-danger { background: var(--ui-danger); color: var(--ui-danger-text); }\n.btn-danger:hover:not(:disabled) { filter: brightness(0.92); }\n.modal {\n  width: min(440px, calc(100vw - 32px));\n  padding: 0;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n  box-shadow: var(--ui-shadow-lg);\n}\n.modal::backdrop { background: rgb(0 0 0 / 0.45); backdrop-filter: blur(2px); }\n.modal[open] { animation: modal-in 0.18s ease-out; }\n.modal-body { padding: 24px; }\n.modal-title { margin: 0 0 8px; font-size: 19px; }\n.modal-text { margin: 0 0 24px; font-size: 15px; line-height: 1.55; color: var(--ui-muted); }\n.modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }\n\n@keyframes modal-in {\n  from { opacity: 0; transform: translateY(8px) scale(0.98); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .modal[open] { animation: none; }\n}\n</style>"
+      }
+    ]
+  }
+}

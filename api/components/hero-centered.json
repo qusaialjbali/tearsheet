@@ -1,0 +1,91 @@
+{
+  "id": "hero-centered",
+  "name": "Hero, centred",
+  "page": "p.64",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "An opening section with one clear promise, a short explanation and one main action.",
+  "notes": "One primary button, one quiet secondary link. The line under the buttons answers the first worry (cost, card, commitment) before anyone has to ask.",
+  "usesJavaScript": false,
+  "sizeKb": 1.7,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#hero-centered",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/hero-centered.json",
+  "version": "77ecfe03",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "link \"Start a shared budget\":",
+      "link \"See how it works\":"
+    ],
+    "tree": "- heading \"Split costs without the awkward spreadsheet.\" [level=1]\n- paragraph: Pocketsplit keeps a running total for trips, flats and teams, and tells everyone exactly who owes what.\n- link \"Start a shared budget\":\n  - /url: \"#\"\n- link \"See how it works\":\n  - /url: \"#\"\n- paragraph: Free for up to 5 people · No card needed",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet hero-centered v77ecfe03 · https://qusaialjbali.github.io/tearsheet/zine/parts/hero-centered.html -->\n<section class=\"hero-c\">\n  <h1>Split costs without the awkward spreadsheet.</h1>\n  <p class=\"hero-c-lede\">Pocketsplit keeps a running total for trips, flats and teams, and tells everyone exactly who owes what.</p>\n  <div class=\"hero-c-actions\">\n    <a class=\"btn btn-primary\" href=\"#\">Start a shared budget</a>\n    <a class=\"btn btn-secondary\" href=\"#\">See how it works</a>\n  </div>\n  <p class=\"hero-c-note\">Free for up to 5 people · No card needed</p>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet hero-centered v77ecfe03 · https://qusaialjbali.github.io/tearsheet/zine/parts/hero-centered.html */\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 46px; padding: 0 22px; font: inherit; font-size: 15px; font-weight: 600; text-decoration: none;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.hero-c { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.hero-c { text-align: center; }\n.hero-c h1 { max-width: 16ch; margin: 0 auto 16px; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }\n.hero-c-lede { max-width: 52ch; margin: 0 auto 28px; font-size: clamp(16px, 2vw, 19px); color: var(--ui-muted); }\n.hero-c-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }\n.hero-c-note { margin: 16px 0 0; font-size: 14px; color: var(--ui-muted); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "HeroCentered.jsx",
+        "code": "/* tearsheet hero-centered v77ecfe03 · https://qusaialjbali.github.io/tearsheet/zine/parts/hero-centered.html */\nimport './HeroCentered.css';\n\nexport function HeroCentered() {\n  return (\n    <section className=\"hero-c\">\n      <h1>Split costs without the awkward spreadsheet.</h1>\n      <p className=\"hero-c-lede\">Pocketsplit keeps a running total for trips, flats and teams, and tells everyone exactly who owes what.</p>\n      <div className=\"hero-c-actions\">\n        <a className=\"btn btn-primary\" href=\"#\">Start a shared budget</a>\n        <a className=\"btn btn-secondary\" href=\"#\">See how it works</a>\n      </div>\n      <p className=\"hero-c-note\">Free for up to 5 people · No card needed</p>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "HeroCentered.css",
+        "code": "/* tearsheet hero-centered v77ecfe03 · https://qusaialjbali.github.io/tearsheet/zine/parts/hero-centered.html */\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 46px; padding: 0 22px; font: inherit; font-size: 15px; font-weight: 600; text-decoration: none;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.hero-c { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.hero-c { text-align: center; }\n.hero-c h1 { max-width: 16ch; margin: 0 auto 16px; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }\n.hero-c-lede { max-width: 52ch; margin: 0 auto 28px; font-size: clamp(16px, 2vw, 19px); color: var(--ui-muted); }\n.hero-c-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }\n.hero-c-note { margin: 16px 0 0; font-size: 14px; color: var(--ui-muted); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "HeroCentered.vue",
+        "code": "<!-- tearsheet hero-centered v77ecfe03 · https://qusaialjbali.github.io/tearsheet/zine/parts/hero-centered.html -->\n<template>\n  <section class=\"hero-c\">\n    <h1>Split costs without the awkward spreadsheet.</h1>\n    <p class=\"hero-c-lede\">Pocketsplit keeps a running total for trips, flats and teams, and tells everyone exactly who owes what.</p>\n    <div class=\"hero-c-actions\">\n      <a class=\"btn btn-primary\" href=\"#\">Start a shared budget</a>\n      <a class=\"btn btn-secondary\" href=\"#\">See how it works</a>\n    </div>\n    <p class=\"hero-c-note\">Free for up to 5 people · No card needed</p>\n  </section>\n</template>\n\n<style scoped>\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 46px; padding: 0 22px; font: inherit; font-size: 15px; font-weight: 600; text-decoration: none;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.hero-c { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.hero-c { text-align: center; }\n.hero-c h1 { max-width: 16ch; margin: 0 auto 16px; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }\n.hero-c-lede { max-width: 52ch; margin: 0 auto 28px; font-size: clamp(16px, 2vw, 19px); color: var(--ui-muted); }\n.hero-c-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }\n.hero-c-note { margin: 16px 0 0; font-size: 14px; color: var(--ui-muted); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "HeroCentered.svelte",
+        "code": "<!-- tearsheet hero-centered v77ecfe03 · https://qusaialjbali.github.io/tearsheet/zine/parts/hero-centered.html -->\n<section class=\"hero-c\">\n  <h1>Split costs without the awkward spreadsheet.</h1>\n  <p class=\"hero-c-lede\">Pocketsplit keeps a running total for trips, flats and teams, and tells everyone exactly who owes what.</p>\n  <div class=\"hero-c-actions\">\n    <a class=\"btn btn-primary\" href=\"#\">Start a shared budget</a>\n    <a class=\"btn btn-secondary\" href=\"#\">See how it works</a>\n  </div>\n  <p class=\"hero-c-note\">Free for up to 5 people · No card needed</p>\n</section>\n\n<style>\n.btn {\n  display: inline-flex; align-items: center; justify-content: center; gap: 8px;\n  min-height: 46px; padding: 0 22px; font: inherit; font-size: 15px; font-weight: 600; text-decoration: none;\n  border: 1px solid transparent; border-radius: var(--ui-radius-sm); cursor: pointer;\n}\n.btn:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.btn-primary { color: var(--ui-accent-text); background: var(--ui-accent); }\n.btn-primary:hover { background: var(--ui-accent-hover); }\n.btn-secondary { color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border-strong); }\n.btn-secondary:hover { background: var(--ui-surface-2); }\n.hero-c { width: 100%; padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 56px); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); }\n.hero-c { text-align: center; }\n.hero-c h1 { max-width: 16ch; margin: 0 auto 16px; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }\n.hero-c-lede { max-width: 52ch; margin: 0 auto 28px; font-size: clamp(16px, 2vw, 19px); color: var(--ui-muted); }\n.hero-c-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }\n.hero-c-note { margin: 16px 0 0; font-size: 14px; color: var(--ui-muted); }\n</style>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,3270 @@
+{
+  "about": "Evidence from the Tearsheet CI run: axe 4.14.1 in Chromium, WCAG 2.1 A and AA, light and dark, reduced motion on. Brand check uses tokens fitted to #facc15. RTL and long-text checks run at 390px wide.",
+  "parts": {
+    "buttons": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 5.73,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Save changes\"",
+        "button \"Cancel\"",
+        "button \"Learn more\"",
+        "button \"Delete\""
+      ],
+      "tree": "- button \"Save changes\"\n- button \"Cancel\"\n- button \"Learn more\"\n- button \"Delete\"\n- button \"Disabled\" [disabled]",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "button-group": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 16
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 16
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "button \"Bold\" [pressed]"
+      ],
+      "tree": "- toolbar \"Text formatting\":\n  - button \"Bold\" [pressed]\n  - button \"Italic\"\n  - button \"Underline\"\n  - button \"Bulleted list\"\n  - button \"Insert link\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "split-button": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Publish\"",
+        ""
+      ],
+      "tree": "- button \"Publish\"\n- group",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "icon-buttons": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 13
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 13
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "button \"Edit\"",
+        "button \"Share\"",
+        "button \"Add item\"",
+        "button \"Settings\"",
+        "button \"Add to favourites\""
+      ],
+      "tree": "- button \"Edit\"\n- button \"Share\"\n- button \"Add item\"\n- button \"Settings\"\n- button \"Add to favourites\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "loading-button": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Save changes\""
+      ],
+      "tree": "- button \"Save changes\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "text-field": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 5.73,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Email\":",
+        "textbox \"Password\" [invalid]"
+      ],
+      "tree": "- text: Email\n- textbox \"Email\":\n  - /placeholder: you@example.com\n- paragraph: We’ll never share your email.\n- text: Password\n- textbox \"Password\" [invalid]\n- paragraph: Use at least 8 characters.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "checkbox-switch": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 13
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 13
+        }
+      },
+      "contrast": {
+        "ratio": 17.41,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "checkbox \"Email me product updates\" [checked]",
+        "checkbox \"I agree to the terms\"",
+        "switch \"Notifications\" [checked]"
+      ],
+      "tree": "- checkbox \"Email me product updates\" [checked]\n- text: Email me product updates\n- checkbox \"I agree to the terms\"\n- text: I agree to the terms\n- switch \"Notifications\" [checked]\n- text: Notifications",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "select": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 12
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 12
+        }
+      },
+      "contrast": {
+        "ratio": 16.1,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "combobox \"Country\":"
+      ],
+      "tree": "- text: Country\n- combobox \"Country\":\n  - option \"Canada\" [selected]\n  - option \"Germany\"\n  - option \"Japan\"\n  - option \"Jordan\"\n  - option \"Mexico\"\n  - option \"United Kingdom\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "radio-cards": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 5.99,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "radio \"Pro Unlimited projects · email help $12/mo\" [checked]"
+      ],
+      "tree": "- group \"Choose a plan\":\n  - text: Choose a plan\n  - radio \"Hobby 1 project · community help Free\"\n  - text: Hobby 1 project · community help Free\n  - radio \"Pro Unlimited projects · email help $12/mo\" [checked]\n  - text: Pro Unlimited projects · email help $12/mo\n  - radio \"Team Shared workspace · priority help $29/mo\"\n  - text: Team Shared workspace · priority help $29/mo",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "segmented-control": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 6.09,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "radio \"List\" [checked]"
+      ],
+      "tree": "- group \"View\":\n  - text: View\n  - radio \"List\" [checked]\n  - text: List\n  - radio \"Board\"\n  - text: Board\n  - radio \"Calendar\"\n  - text: Calendar",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "range-slider": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 10
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 10
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "slider \"Volume\": \"40\""
+      ],
+      "tree": "- text: Volume\n- status: \"40\"\n- slider \"Volume\": \"40\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "number-stepper": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": {
+        "ratio": 16.1,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Fewer guests\"",
+        "spinbutton \"Guests\": \"2\"",
+        "button \"More guests\""
+      ],
+      "tree": "- text: Guests\n- button \"Fewer guests\"\n- spinbutton \"Guests\": \"2\"\n- button \"More guests\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "file-dropzone": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 5.93,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Drop files here or browse PNG, JPG or PDF, up to 10 MB each\""
+      ],
+      "tree": "- button \"Drop files here or browse PNG, JPG or PDF, up to 10 MB each\"\n- text: Drop files here or browse PNG, JPG or PDF, up to 10 MB each",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "star-rating": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 10
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 10
+        }
+      },
+      "contrast": {
+        "ratio": 17.41,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "radio \"4 stars\" [checked]"
+      ],
+      "tree": "- group \"Rate this component\":\n  - text: Rate this component\n  - radio \"5 stars\"\n  - text: 5 stars\n  - radio \"4 stars\" [checked]\n  - text: 4 stars\n  - radio \"3 stars\"\n  - text: 3 stars\n  - radio \"2 stars\"\n  - text: 2 stars\n  - radio \"1 star\"\n  - text: 1 star",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "otp-input": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 17.41,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Digit 1\"",
+        "textbox \"Digit 2\"",
+        "textbox \"Digit 3\"",
+        "textbox \"Digit 4\"",
+        "textbox \"Digit 5\"",
+        "textbox \"Digit 6\""
+      ],
+      "tree": "- paragraph: Enter the 6-digit code we sent you\n- group \"Enter the 6-digit code we sent you\":\n  - textbox \"Digit 1\"\n  - textbox \"Digit 2\"\n  - textbox \"Digit 3\"\n  - textbox \"Digit 4\"\n  - textbox \"Digit 5\"\n  - textbox \"Digit 6\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "copy-field": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": {
+        "ratio": 14.21,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Invite link\": https://example.com/invite/7Hq2-kX9p",
+        "button \"Copy\""
+      ],
+      "tree": "- text: Invite link\n- textbox \"Invite link\": https://example.com/invite/7Hq2-kX9p\n- button \"Copy\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "combobox": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 16.1,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "combobox \"City\""
+      ],
+      "tree": "- text: City\n- combobox \"City\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "tag-input": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 20
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 20
+        }
+      },
+      "contrast": {
+        "ratio": 5.35,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Remove design\"",
+        "button \"Remove accessibility\"",
+        "textbox \"Topics\":"
+      ],
+      "tree": "- text: Topics\n- list \"Added topics\":\n  - listitem:\n    - text: design\n    - button \"Remove design\"\n  - listitem:\n    - text: accessibility\n    - button \"Remove accessibility\"\n- textbox \"Topics\":\n  - /placeholder: Add a topic\n- paragraph: Press Enter or comma to add. Up to 6.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "date-range": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Check-in\": 2026-12-18",
+        "textbox \"Check-out\": 2026-12-22"
+      ],
+      "tree": "- group \"Trip dates\":\n  - text: Trip dates Check-in\n  - textbox \"Check-in\": 2026-12-18\n  - text: Check-out\n  - textbox \"Check-out\": 2026-12-22\n  - paragraph: 4 nights",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "multi-step-form": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 11
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 11
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Full name\"",
+        "textbox \"Email\"",
+        "button \"Continue\""
+      ],
+      "tree": "- paragraph: Step 1 of 3\n- group \"About you\":\n  - text: About you Full name\n  - textbox \"Full name\"\n  - text: Email\n  - textbox \"Email\"\n- button \"Continue\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "textarea-counter": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Short bio\": I design calm interfaces for busy people."
+      ],
+      "tree": "- text: Short bio\n- textbox \"Short bio\": I design calm interfaces for busy people.\n- paragraph: Shown on your public profile. 79 characters left",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "card": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 5.93,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Read article\":"
+      ],
+      "tree": "- article:\n  - paragraph: Guide · 6 min read\n  - heading \"Designing forms people finish\" [level=3]\n  - paragraph: Labels, errors and layout patterns that cut abandonment without adding friction.\n  - link \"Read article\":\n    - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "badges": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 7
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 7
+        }
+      },
+      "contrast": {
+        "ratio": 4.79,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- text: Draft New Active Pending Failed",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "accordion": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "text: Can I use these components commercially?",
+        "text: Do I need a build step?",
+        "text: How do I change the colors?"
+      ],
+      "tree": "- group:\n  - text: Can I use these components commercially?\n  - paragraph: Yes. Copy them into any project, paid or free, with no attribution required.\n- group: Do I need a build step?\n- group: How do I change the colors?",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "avatars": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 5.17,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- group \"Project members\": AL GH AT KJ +3",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "data-table": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": {
+        "ratio": 4.79,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "region \"Recent invoices\":"
+      ],
+      "tree": "- region \"Recent invoices\":\n  - table \"Recent invoices\":\n    - caption: Recent invoices\n    - rowgroup:\n      - row \"Invoice Customer Status Amount\":\n        - columnheader \"Invoice\"\n        - columnheader \"Customer\"\n        - columnheader \"Status\"\n        - columnheader \"Amount\"\n    - rowgroup:\n      - row \"#1042 Northwind Traders Paid $1,200.00\":\n        - cell \"#1042\"\n        - cell \"Northwind Traders\"\n        - cell \"Paid\"\n        - cell \"$1,200.00\"\n      - row \"#1041 Globex Corp Due $860.50\":\n        - cell \"#1041\"\n        - cell \"Globex Corp\"\n        - cell \"Due\"\n        - cell \"$860.50\"\n      - row \"#1040 Initech Overdue $3,075.00\":\n        - cell \"#1040\"\n        - cell \"Initech\"\n        - cell \"Overdue\"\n        - cell \"$3,075.00\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "stat-group": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 5.01,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- term: Visitors\n- definition: 48,210\n- definition: Up 12.4% on last week\n- term: Sign-ups\n- definition: 1,284\n- definition: Up 3.1% on last week\n- term: Average order\n- definition: $62.40\n- definition: Down 4.8% on last week",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "settings-list": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 22
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 22
+        }
+      },
+      "contrast": {
+        "ratio": 5.73,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "switch \"Email notifications\" [checked]",
+        "link \"Two-factor sign-in Not set up\":",
+        "link \"Language English (UK)\":",
+        "link \"Delete account\":"
+      ],
+      "tree": "- list:\n  - listitem:\n    - paragraph: Email notifications\n    - paragraph: Weekly summary and security alerts\n    - switch \"Email notifications\" [checked]\n  - listitem:\n    - link \"Two-factor sign-in Not set up\":\n      - /url: \"#\"\n  - listitem:\n    - link \"Language English (UK)\":\n      - /url: \"#\"\n  - listitem:\n    - link \"Delete account\":\n      - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "keyboard-shortcuts": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 16.1,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- term: Search everything\n- definition: Ctrl K\n- term: Copy component\n- definition: Ctrl Shift C\n- term: Switch theme\n- definition: Shift D\n- term: Close dialog\n- definition: Esc",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "activity-timeline": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- list:\n  - listitem:\n    - paragraph:\n      - strong: Maya\n      - text: published version 2.4\n    - time: Today, 9:12\n  - listitem:\n    - paragraph:\n      - strong: Leo\n      - text: merged “Fix focus ring in dark mode”\n    - time: Yesterday, 17:40\n  - listitem:\n    - paragraph:\n      - strong: Sam\n      - text: opened an issue about the tooltip on touch screens\n    - time: 21 Nov, 11:05\n  - listitem:\n    - paragraph: Project created\n    - time: 20 Nov, 08:00",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "chat-thread": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 23
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 23
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Message\":",
+        "button \"Send message\""
+      ],
+      "tree": "- region \"Chat with Lina\":\n  - log \"Messages\":\n    - list:\n      - listitem:\n        - paragraph: Hey! Did the new button styles land?\n        - time: 09:41\n      - listitem:\n        - paragraph: Yes, all four formats are in.\n      - listitem:\n        - paragraph: Want me to send the React one?\n        - time: 09:42\n      - listitem \"Lina is typing\"\n  - text: Message\n  - textbox \"Message\":\n    - /placeholder: Write a message\n  - button \"Send message\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "comment-thread": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 5.35,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Reply to Rosa\"",
+        "button \"Like · 4\"",
+        "button \"Reply to Tomás\"",
+        "button \"Like · 9\""
+      ],
+      "tree": "- region \"Comments\":\n  - article:\n    - paragraph:\n      - text: Rosa K. Author\n      - time: 2 days ago\n    - paragraph: Should the toast stay on screen longer when it contains an Undo button?\n    - paragraph:\n      - button \"Reply to Rosa\"\n      - button \"Like · 4\"\n    - article:\n      - paragraph:\n        - text: Tomás M.\n        - time: 1 day ago\n      - paragraph: Yes. And pause the timer while it has focus or the pointer is over it, so nobody loses the undo.\n      - paragraph:\n        - button \"Reply to Tomás\"\n        - button \"Like · 9\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "code-block": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 7.02,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Copy\"",
+        "code: \":root { --ui-accent: #4f46e5; --ui-radius: 12px; --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4); }\""
+      ],
+      "tree": "- figure \"tokens.css Copy\":\n  - text: tokens.css\n  - button \"Copy\"\n  - code: \":root { --ui-accent: #4f46e5; --ui-radius: 12px; --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4); }\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "kanban-column": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": {
+        "ratio": 5.02,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Add a card\""
+      ],
+      "tree": "- region \"In progress\":\n  - heading \"In progress\" [level=3]\n  - text: \"3\"\n  - list:\n    - listitem:\n      - paragraph: Design\n      - paragraph: Dark mode for the settings page\n      - paragraph:\n        - time: Due 2 Dec\n        - text: A\n    - listitem:\n      - paragraph: Bug Forms\n      - paragraph: Date picker loses focus after closing\n      - paragraph:\n        - time: Due tomorrow\n        - text: B\n    - listitem:\n      - paragraph: Docs\n      - paragraph: Write the toast usage notes\n      - paragraph: No due date C\n  - button \"Add a card\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "carousel": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 5.99,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "article \"1 of 4\":",
+        "button \"Previous slide\"",
+        "button \"Next slide\""
+      ],
+      "tree": "- region \"Three days in Lisbon\":\n  - article \"1 of 4\":\n    - paragraph: \"Day 1: ride tram 28 up to the castle before the crowds.\"\n    - paragraph: Alfama · morning\n  - article \"2 of 4\":\n    - paragraph: \"Day 2: custard tarts in Belém, then the river walk back.\"\n    - paragraph: Belém · all day\n  - article \"3 of 4\":\n    - paragraph: \"Day 3: a day trip to the palaces of Sintra.\"\n    - paragraph: Sintra · 40 min by train\n  - article \"4 of 4\":\n    - paragraph: \"Last night: fado in a tiny restaurant, booked ahead.\"\n    - paragraph: Bairro Alto · evening\n  - button \"Previous slide\"\n  - text: 1 / 4\n  - button \"Next slide\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "lightbox": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "'button \"Open: Dunes at dusk\"'",
+        "'button \"Open: Lake and pines\"'",
+        "'button \"Open: City at night\"'",
+        "'button \"Open: Meadow flowers\"'"
+      ],
+      "tree": "- list:\n  - listitem:\n    - 'button \"Open: Dunes at dusk\"'\n  - listitem:\n    - 'button \"Open: Lake and pines\"'\n  - listitem:\n    - 'button \"Open: City at night\"'\n  - listitem:\n    - 'button \"Open: Meadow flowers\"'",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "sortable-table": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "checkbox \"Select all members\"",
+        "button \"Name\"",
+        "button \"Role\"",
+        "button \"Open tasks\"",
+        "checkbox \"Select Amara\"",
+        "checkbox \"Select Bo\"",
+        "checkbox \"Select Chiara\"",
+        "checkbox \"Select Dev\""
+      ],
+      "tree": "- table \"Team members\":\n  - caption: Team members\n  - rowgroup:\n    - row \"Select all members Name Role Open tasks\":\n      - columnheader \"Select all members\":\n        - checkbox \"Select all members\"\n      - columnheader \"Name\":\n        - button \"Name\"\n      - columnheader \"Role\":\n        - button \"Role\"\n      - columnheader \"Open tasks\":\n        - button \"Open tasks\"\n  - rowgroup:\n    - row \"Select Amara Amara Designer 7\":\n      - cell \"Select Amara\":\n        - checkbox \"Select Amara\"\n      - cell \"Amara\"\n      - cell \"Designer\"\n      - cell \"7\"\n    - row \"Select Bo Bo Engineer 12\":\n      - cell \"Select Bo\":\n        - checkbox \"Select Bo\"\n      - cell \"Bo\"\n      - cell \"Engineer\"\n      - cell \"12\"\n    - row \"Select Chiara Chiara Product 3\":\n      - cell \"Select Chiara\":\n        - checkbox \"Select Chiara\"\n      - cell \"Chiara\"\n      - cell \"Product\"\n      - cell \"3\"\n    - row \"Select Dev Dev Engineer 9\":\n      - cell \"Select Dev\":\n        - checkbox \"Select Dev\"\n      - cell \"Dev\"\n      - cell \"Engineer\"\n      - cell \"9\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "bar-chart": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- figure \"Visits by source, last 30 days\":\n  - text: Visits by source, last 30 days\n  - list:\n    - listitem: Search 12,480\n    - listitem: Direct 7,990\n    - listitem: Newsletter 5,120\n    - listitem: Social 2,740\n    - listitem: Other 1,130",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "line-chart": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "text: Show data"
+      ],
+      "tree": "- figure \"Weekly sign-ups\":\n  - text: Weekly sign-ups\n  - img \"Weekly sign-ups, 8 weeks Sign-ups rose from 120 in week 1 to 310 in week 8, with a dip in week 5.\": 300 200 100 0 W1 W4 W8\n  - group: Show data",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "donut-chart": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 17.41,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- figure \"Photos 24 GB Video 14 GB Documents 6 GB Other 4 GB\":\n  - 'img \"Storage used: 48 of 100 gigabytes. Photos 24, Video 14, Documents 6, Other 4.\"': 48 of 100 GB\n  - list:\n    - listitem: Photos 24 GB\n    - listitem: Video 14 GB\n    - listitem: Documents 6 GB\n    - listitem: Other 4 GB",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "sparkline-stats": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 7
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 7
+        }
+      },
+      "contrast": {
+        "ratio": 5.01,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- article:\n  - paragraph: Revenue\n  - paragraph: $24.8k\n  - paragraph: Up 8% this month\n- article:\n  - paragraph: Churn\n  - paragraph: 2.1%\n  - paragraph: Down 0.4 points, good\n- article:\n  - paragraph: Response time\n  - paragraph: 340 ms\n  - paragraph: Up 60 ms, slower",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "calendar-month": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 20
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 20
+        }
+      },
+      "contrast": {
+        "ratio": 5.93,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Wednesday 9 December, today, 2 events\": \"9\""
+      ],
+      "tree": "- heading \"December 2026\" [level=3]\n- paragraph: Pick a day\n- grid \"December 2026\":\n  - rowgroup:\n    - row \"Mo Tu We Th Fr Sa Su\":\n      - columnheader \"Mo\"\n      - columnheader \"Tu\"\n      - columnheader \"We\"\n      - columnheader \"Th\"\n      - columnheader \"Fr\"\n      - columnheader \"Sa\"\n      - columnheader \"Su\"\n  - rowgroup:\n    - row \"Tuesday 1 December Wednesday 2 December Thursday 3 December, 1 event Friday 4 December Saturday 5 December Sunday 6 December\":\n      - gridcell\n      - gridcell \"Tuesday 1 December\":\n        - button \"Tuesday 1 December\": \"1\"\n      - gridcell \"Wednesday 2 December\":\n        - button \"Wednesday 2 December\": \"2\"\n      - gridcell \"Thursday 3 December, 1 event\":\n        - button \"Thursday 3 December, 1 event\": \"3\"\n      - gridcell \"Friday 4 December\":\n        - button \"Friday 4 December\": \"4\"\n      - gridcell \"Saturday 5 December\":\n        - button \"Saturday 5 December\": \"5\"\n      - gridcell \"Sunday 6 December\":\n        - button \"Sunday 6 December\": \"6\"\n    - row \"Monday 7 December Tuesday 8 December Wednesday 9 December, today, 2 events Thursday 10 December Friday 11 December Saturday 12 December Sunday 13 December\":\n      - gridcell \"Monday 7 December\":\n        - button \"Monday 7 December\": \"7\"\n      - gridcell \"Tuesday 8 December\":\n        - button \"Tuesday 8 December\": \"8\"\n      - gridcell \"Wednesday 9 December, today, 2 events\":\n        - button \"Wednesday 9 December, today, 2 events\": \"9\"\n      - gridcell \"Thursday 10 December\":\n        - button \"Thursday 10 December\": \"10\"\n      - gridcell \"Friday 11 December\":\n        - button \"Friday 11 December\": \"11\"\n      - gridcell \"Saturday 12 December\":\n        - button \"Saturday 12 December\": \"12\"\n- …",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "file-tree": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 16
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 16
+        }
+      },
+      "contrast": {
+        "ratio": 5.35,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "text: src",
+        "text: components",
+        "link \"Button.jsx\":",
+        "link \"Modal.jsx\":",
+        "link \"Tabs.jsx\":",
+        "text: styles",
+        "link \"main.js\":",
+        "link \"package.json\":",
+        "link \"README.md\":"
+      ],
+      "tree": "- navigation \"Project files\":\n  - list:\n    - listitem:\n      - group:\n        - text: src\n        - list:\n          - listitem:\n            - group:\n              - text: components\n              - list:\n                - listitem:\n                  - link \"Button.jsx\":\n                    - /url: \"#\"\n                - listitem:\n                  - link \"Modal.jsx\":\n                    - /url: \"#\"\n                - listitem:\n                  - link \"Tabs.jsx\":\n                    - /url: \"#\"\n          - listitem:\n            - group: styles\n          - listitem:\n            - link \"main.js\":\n              - /url: \"#\"\n    - listitem:\n      - link \"package.json\":\n        - /url: \"#\"\n    - listitem:\n      - link \"README.md\":\n        - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "description-list": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 10
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 10
+        }
+      },
+      "contrast": {
+        "ratio": 4.79,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Change\":"
+      ],
+      "tree": "- term: Order\n- definition: \"#20418\"\n- term: Placed\n- definition:\n  - time: 21 November 2026\n- term: Status\n- definition: Shipped\n- term: Delivery address\n- definition: 12 Harbour Street Leith, Edinburgh EH6 6QZ\n- term: Payment\n- definition:\n  - text: Card ending 4421\n  - link \"Change\":\n    - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "alerts": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 10
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 10
+        }
+      },
+      "contrast": {
+        "ratio": 5.81,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- status:\n  - paragraph: New version available\n  - paragraph: Refresh the page to get the latest features.\n- status:\n  - paragraph: Payment received\n  - paragraph: A receipt is on its way to your inbox.\n- status:\n  - paragraph: Storage almost full\n  - paragraph: You’ve used 92% of your plan. Free up space or upgrade.\n- alert:\n  - paragraph: Couldn’t save your changes\n  - paragraph: Check your connection and try again.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "toast": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 16
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 16
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Save changes\""
+      ],
+      "tree": "- button \"Save changes\"\n- region \"Notifications\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "progress": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- text: Uploading report.pdf 64%\n- progressbar \"Uploading report.pdf\"\n- status: Loading results…",
+      "motion": {
+        "loopingUnderReducedMotion": 1,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "skeleton": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 13
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 13
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [],
+      "tree": "- status \"Loading post\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "empty-state": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"New project\"",
+        "button \"Browse templates\""
+      ],
+      "tree": "- heading \"No projects yet\" [level=3]\n- paragraph: Projects you create will show up here. Start from a template or a blank canvas.\n- button \"New project\"\n- button \"Browse templates\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "tabs": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 19
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 19
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "tab \"Profile\" [selected]",
+        "tabpanel \"Profile\": Update your name, photo and bio."
+      ],
+      "tree": "- tablist \"Account settings\":\n  - tab \"Profile\" [selected]\n  - tab \"Security\"\n  - tab \"Billing\"\n- tabpanel \"Profile\": Update your name, photo and bio.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "navbar": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Acme\":",
+        "link \"Product\":",
+        "link \"Pricing\":",
+        "link \"Docs\":",
+        "link \"Blog\":",
+        "link \"Sign in\":",
+        "link \"Get started\":"
+      ],
+      "tree": "- banner:\n  - link \"Acme\":\n    - /url: \"#\"\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Product\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Pricing\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Docs\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Blog\":\n          - /url: \"#\"\n  - link \"Sign in\":\n    - /url: \"#\"\n  - link \"Get started\":\n    - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "breadcrumb": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Home\":",
+        "link \"Settings\":",
+        "link \"Notifications\":"
+      ],
+      "tree": "- navigation \"Breadcrumb\":\n  - list:\n    - listitem:\n      - link \"Home\":\n        - /url: \"#\"\n    - listitem:\n      - text: /\n      - link \"Settings\":\n        - /url: \"#\"\n    - listitem:\n      - text: /\n      - link \"Notifications\":\n        - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "pagination": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 13
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 13
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Previous page\":",
+        "link \"1\":",
+        "link \"2\":",
+        "link \"3\":",
+        "link \"12\":",
+        "link \"Next page\":"
+      ],
+      "tree": "- navigation \"Pagination\":\n  - link \"Previous page\":\n    - /url: \"#\"\n  - link \"1\":\n    - /url: \"#\"\n  - link \"2\":\n    - /url: \"#\"\n  - link \"3\":\n    - /url: \"#\"\n  - link \"12\":\n    - /url: \"#\"\n  - link \"Next page\":\n    - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "steps-indicator": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 17.41,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- list:\n  - listitem: Cart (completed)\n  - listitem: Shipping (completed)\n  - listitem: 3 Payment\n  - listitem: 4 Review",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "modal": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Delete project…\""
+      ],
+      "tree": "- button \"Delete project…\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "tooltip": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "button \"Billing help\": \"?\""
+      ],
+      "tree": "- button \"Billing help\": \"?\"\n- tooltip \"You’re billed on the 1st of each month.\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "dropdown-menu": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 16.1,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "text: Options"
+      ],
+      "tree": "- group: Options",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "drawer": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 10
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 10
+        }
+      },
+      "contrast": {
+        "ratio": 16.1,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Filters\""
+      ],
+      "tree": "- button \"Filters\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "popover": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Who can see this?\""
+      ],
+      "tree": "- button \"Who can see this?\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "context-menu": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 12
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 12
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "paragraph: Quarterly report.pdf"
+      ],
+      "tree": "- paragraph: Quarterly report.pdf\n- paragraph: Right-click, long-press, or press Shift+F10 for actions",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "cookie-banner": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 16
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 16
+        }
+      },
+      "contrast": {
+        "ratio": 5.93,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Reject optional\"",
+        "button \"Accept all\"",
+        "link \"Choose what to allow\":"
+      ],
+      "tree": "- region \"Cookies, briefly\":\n  - heading \"Cookies, briefly\" [level=2]\n  - paragraph: We use essential cookies to keep you signed in. With your OK we would also like to measure which pages are useful. No ads, no selling data.\n  - button \"Reject optional\"\n  - button \"Accept all\"\n  - link \"Choose what to allow\":\n    - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "command-palette": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Search commands Ctrl K\""
+      ],
+      "tree": "- button \"Search commands Ctrl K\"\n- paragraph",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "pricing-card": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 5.35,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Start free trial\":"
+      ],
+      "tree": "- paragraph: Pro\n- text: Most popular\n- paragraph: $12 per user / month\n- paragraph: For small teams that ship fast.\n- list:\n  - listitem: Unlimited projects\n  - listitem: Version history for 1 year\n  - listitem: Custom domains\n  - listitem: Priority email support\n- link \"Start free trial\":\n  - /url: \"#\"\n- paragraph: 14 days free · No card required",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "hero-centered": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Start a shared budget\":",
+        "link \"See how it works\":"
+      ],
+      "tree": "- heading \"Split costs without the awkward spreadsheet.\" [level=1]\n- paragraph: Pocketsplit keeps a running total for trips, flats and teams, and tells everyone exactly who owes what.\n- link \"Start a shared budget\":\n  - /url: \"#\"\n- link \"See how it works\":\n  - /url: \"#\"\n- paragraph: Free for up to 5 people · No card needed",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "hero-signup": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 23
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 23
+        }
+      },
+      "contrast": {
+        "ratio": 5.35,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Email\":",
+        "button \"Get started\""
+      ],
+      "tree": "- heading \"Know who owes what, instantly.\" [level=1]\n- paragraph: Add an expense in two taps. Pocketsplit does the maths and settles up in the fewest payments.\n- text: Email\n- textbox \"Email\":\n  - /placeholder: you@example.com\n- button \"Get started\"\n- paragraph: Free for groups up to 5. We never share your email.\n- 'img \"Example: Lisbon trip balance\"':\n  - paragraph: Lisbon trip 4 people\n  - list:\n    - listitem: Maya paid dinner €84.00\n    - listitem: Leo paid train €46.40\n    - listitem: Sam paid museum €32.00\n  - paragraph: Sam owes Maya €21.10",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "feature-grid": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- heading \"Everything a shared budget needs\" [level=2]\n- list:\n  - listitem:\n    - heading \"Settle in one tap\" [level=3]\n    - paragraph: Pocketsplit finds the fewest payments to square everyone up.\n  - listitem:\n    - heading \"Split any way\" [level=3]\n    - paragraph: Evenly, by shares, by exact amounts or by percentage.\n  - listitem:\n    - heading \"Any currency\" [level=3]\n    - paragraph: Spend in yen, settle in euros, at the day’s real rate.\n  - listitem:\n    - heading \"Snap the receipt\" [level=3]\n    - paragraph: Photos are attached to the expense, so nobody argues later.\n  - listitem:\n    - heading \"Works offline\" [level=3]\n    - paragraph: Add expenses on the mountain; they sync when you are back.\n  - listitem:\n    - heading \"Private by default\" [level=3]\n    - paragraph: Only people in a group can see it. No ads, ever.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "testimonial": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 7
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 7
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- figure \"Your customer’s name Their role, their company\":\n  - blockquote:\n    - paragraph: “We used to settle our flat’s bills on a whiteboard. Pocketsplit sorted four months of mess in one evening.”\n  - text: Your customer’s name Their role, their company",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "logo-strip": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 4.62,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- region \"Used by teams at (example names)\":\n  - paragraph: Used by teams at (example names)\n  - list:\n    - listitem: northwind\n    - listitem: GLOBEX\n    - listitem: Initech\n    - listitem: umbra&co\n    - listitem: HOOLI",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "faq-section": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 11
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 11
+        }
+      },
+      "contrast": {
+        "ratio": 5.93,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Ask us\":",
+        "text: Is it really free? +",
+        "text: Do my friends need an account? +",
+        "text: Can I export my data? +",
+        "text: Which currencies do you support? +"
+      ],
+      "tree": "- heading \"Questions, answered\" [level=2]\n- paragraph:\n  - text: Can’t find yours?\n  - link \"Ask us\":\n    - /url: \"#\"\n  - text: . A person replies within a day.\n- group:\n  - text: Is it really free? +\n  - paragraph: Yes, for groups of up to five people. Bigger groups pay $3 a month per group, not per person.\n- group: Do my friends need an account? +\n- group: Can I export my data? +\n- group: Which currencies do you support? +",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "cta-band": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 5.42,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Start a shared budget\":"
+      ],
+      "tree": "- heading \"Your next trip, already settled.\" [level=2]\n- paragraph: Set up a group in under a minute. Free for up to five people.\n- link \"Start a shared budget\":\n  - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "newsletter": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Email address\":",
+        "button \"Subscribe\""
+      ],
+      "tree": "- heading \"One useful email a month\" [level=2]\n- paragraph: New components, one design rule explained, nothing else. Unsubscribe in one click.\n- text: Email address\n- textbox \"Email address\":\n  - /placeholder: you@example.com\n- button \"Subscribe\"\n- paragraph: We only use your email for this newsletter.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "comparison-table": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 5.35,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- table \"Compare plans\":\n  - caption: Compare plans\n  - rowgroup:\n    - row \"Feature Free Group Recommended Team\":\n      - columnheader \"Feature\"\n      - columnheader \"Free\"\n      - columnheader \"Group Recommended\"\n      - columnheader \"Team\"\n  - rowgroup:\n    - row \"People per group 5 25 Unlimited\":\n      - rowheader \"People per group\"\n      - cell \"5\"\n      - cell \"25\"\n      - cell \"Unlimited\"\n    - row \"Receipt photos Included Included Included\":\n      - rowheader \"Receipt photos\"\n      - cell \"Included\"\n      - cell \"Included\"\n      - cell \"Included\"\n    - row \"Multi-currency Not included Included Included\":\n      - rowheader \"Multi-currency\"\n      - cell \"Not included\"\n      - cell \"Included\"\n      - cell \"Included\"\n    - row \"Export to CSV Included Included Included\":\n      - rowheader \"Export to CSV\"\n      - cell \"Included\"\n      - cell \"Included\"\n      - cell \"Included\"\n    - row \"Admin controls Not included Not included Included\":\n      - rowheader \"Admin controls\"\n      - cell \"Not included\"\n      - cell \"Not included\"\n      - cell \"Included\"\n    - row \"Price $0 $3 / month $12 / month\":\n      - rowheader \"Price\"\n      - cell \"$0\"\n      - cell \"$3 / month\"\n      - cell \"$12 / month\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "changelog": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 4.79,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- heading \"What’s new\" [level=2]\n- article:\n  - time: 20 Nov 2026\n  - heading \"Version 3.2\" [level=3]\n  - list:\n    - listitem: New Split by percentage, not just shares.\n    - listitem: Improved Receipts load twice as fast on slow connections.\n    - listitem: Fixed Totals no longer round the wrong way in yen.\n- article:\n  - time: 28 Oct 2026\n  - heading \"Version 3.1\" [level=3]\n  - list:\n    - listitem: New Dark mode follows your system setting.\n    - listitem: Fixed Guests can now attach photos.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "site-footer": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "link \"Features\":",
+        "link \"Pricing\":",
+        "link \"Changelog\":",
+        "link \"About\":",
+        "link \"Careers\":",
+        "link \"Press\":",
+        "link \"Support\":",
+        "link \"Status\":",
+        "link \"Contact\":",
+        "link \"Privacy\":",
+        "link \"Terms\":",
+        "link \"Cookies\":",
+        "combobox \"Language\":"
+      ],
+      "tree": "- contentinfo:\n  - paragraph: Pocketsplit\n  - paragraph: Shared budgets without the awkward maths.\n  - navigation \"Footer\":\n    - heading \"Product\" [level=3]\n    - list:\n      - listitem:\n        - link \"Features\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Pricing\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Changelog\":\n          - /url: \"#\"\n    - heading \"Company\" [level=3]\n    - list:\n      - listitem:\n        - link \"About\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Careers\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Press\":\n          - /url: \"#\"\n    - heading \"Help\" [level=3]\n    - list:\n      - listitem:\n        - link \"Support\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Status\":\n          - /url: \"#\"\n      - listitem:\n        - link \"Contact\":\n          - /url: \"#\"\n  - paragraph: © 2026 Pocketsplit Ltd.\n  - list:\n    - listitem:\n- …",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "not-found": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 19
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 19
+        }
+      },
+      "contrast": {
+        "ratio": 5.93,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "searchbox \"Search the site\"",
+        "button \"Search\"",
+        "link \"Home\":",
+        "link \"Help centre\":",
+        "link \"Contact support\":"
+      ],
+      "tree": "- heading \"That page has wandered off.\" [level=1]\n- paragraph: The link may be old, or we moved something. Try a search, or head somewhere useful.\n- search:\n  - text: Search the site\n  - searchbox \"Search the site\"\n  - button \"Search\"\n- list:\n  - listitem:\n    - link \"Home\":\n      - /url: \"#\"\n  - listitem:\n    - link \"Help centre\":\n      - /url: \"#\"\n  - listitem:\n    - link \"Contact support\":\n      - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "pricing-tiers": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 11
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 11
+        }
+      },
+      "contrast": {
+        "ratio": 4.56,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "radio \"Monthly\" [checked]",
+        "link \"Start free\":",
+        "link \"Try Group free\":",
+        "link \"Talk to us\":"
+      ],
+      "tree": "- heading \"Simple pricing\" [level=2]\n- group \"Billing period\":\n  - text: Billing period\n  - radio \"Monthly\" [checked]\n  - text: Monthly\n  - radio \"Yearly 2 months free\"\n  - text: Yearly\n  - emphasis: 2 months free\n- article:\n  - heading \"Free\" [level=3]\n  - paragraph: $0 forever\n  - paragraph: Up to 5 people\n  - link \"Start free\":\n    - /url: \"#\"\n- article:\n  - paragraph: Most groups pick this\n  - heading \"Group\" [level=3]\n  - paragraph: $3 per month\n  - paragraph: Up to 25 people · multi-currency\n  - link \"Try Group free\":\n    - /url: \"#\"\n- article:\n  - heading \"Team\" [level=3]\n  - paragraph: $12 per month\n  - paragraph: Unlimited people · admin controls\n  - link \"Talk to us\":\n    - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "magnetic-button": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Hover me\""
+      ],
+      "tree": "- button \"Hover me\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "split-flap": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 11.47,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Next message\""
+      ],
+      "tree": "- paragraph: FREE UI\n- button \"Next message\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "odometer": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 3.23,
+        "need": 3,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Sell 1\"",
+        "button \"Sell 250\""
+      ],
+      "tree": "- paragraph: Tickets sold\n- paragraph: 1,287 tickets sold\n- button \"Sell 1\"\n- button \"Sell 250\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "holo-card": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 16
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 16
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "img \"Holographic membership card for Ada Lovelace, member number 000417\""
+      ],
+      "tree": "- img \"Holographic membership card for Ada Lovelace, member number 000417\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "scramble-text": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 17.41,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Decode again\""
+      ],
+      "tree": "- paragraph: Design is how it works\n- button \"Decode again\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "hold-to-confirm": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 5.24,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Hold to delete\""
+      ],
+      "tree": "- button \"Hold to delete\"\n- paragraph: Press and hold for 1.5 seconds",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "string-slider": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 11
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 11
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "slider \"Tension\": \"50\""
+      ],
+      "tree": "- text: Tension\n- status: \"50\"\n- slider \"Tension\": \"50\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "orbit-menu": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "button \"Quick add\""
+      ],
+      "tree": "- list\n- button \"Quick add\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "scratch-card": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Reveal without scratching\""
+      ],
+      "tree": "- paragraph:\n  - text: Your discount code\n  - strong: TEAR-25\n- button \"Reveal without scratching\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "liquid-progress": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "button \"Remove 15 percent\"",
+        "button \"Add 15 percent\""
+      ],
+      "tree": "- progressbar \"Daily water goal\"\n- button \"Remove 15 percent\"\n- button \"Add 15 percent\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "rotary-knob": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 17
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 17
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "slider \"Volume\""
+      ],
+      "tree": "- slider \"Volume\"\n- paragraph: 5 / 11",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": false
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "password-creature": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 5.93,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "textbox \"Create a password\"",
+        "button \"Show\""
+      ],
+      "tree": "- text: Create a password\n- textbox \"Create a password\"\n- button \"Show\"\n- paragraph: Use 12 or more characters, with a mix of letters, numbers and symbols.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "physics-tags": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 15
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 15
+        }
+      },
+      "contrast": {
+        "ratio": 4.59,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Shake the box\""
+      ],
+      "tree": "- list \"Topics\":\n  - listitem: HTML\n  - listitem: CSS\n  - listitem: React\n  - listitem: Vue\n  - listitem: Svelte\n  - listitem: a11y\n  - listitem: tokens\n  - listitem: dark mode\n  - listitem: free\n  - listitem: zine\n- button \"Shake the box\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "gooey-toggle": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 13
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 13
+        }
+      },
+      "contrast": {
+        "ratio": 17.41,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "switch \"Airplane mode\" [checked]"
+      ],
+      "tree": "- switch \"Airplane mode\" [checked]\n- text: Airplane mode",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "slot-machine": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 14
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 14
+        }
+      },
+      "contrast": {
+        "ratio": 6.28,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Spin\""
+      ],
+      "tree": "- paragraph: Pull for a brief\n- button \"Spin\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": false,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "typewriter-terminal": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 9
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 9
+        }
+      },
+      "contrast": {
+        "ratio": 6.56,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Replay\""
+      ],
+      "tree": "- figure:\n  - text: $ npx tearsheet add modal Fetched modal (HTML, React, Vue, Svelte) $ open Modal.jsx Done. No install needed, honestly.\n  - button \"Replay\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "vinyl-player": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 18
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 18
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Play\""
+      ],
+      "tree": "- paragraph: Overprint\n- paragraph: The Two Inks\n- progressbar \"Track position\"\n- paragraph: 0:00 3:24\n- button \"Play\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "ink-bleed": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 11
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 11
+        }
+      },
+      "contrast": null,
+      "brand": true,
+      "keyboard": [
+        "link \"Work\":",
+        "link \"Studio\":",
+        "link \"Journal\":",
+        "link \"Contact\":"
+      ],
+      "tree": "- navigation \"Sections\":\n  - link \"Work\":\n    - /url: \"#\"\n  - link \"Studio\":\n    - /url: \"#\"\n  - link \"Journal\":\n    - /url: \"#\"\n  - link \"Contact\":\n    - /url: \"#\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "glitch-text": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 16.1,
+        "need": 4.5,
+        "theme": "dark"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Glitch it\""
+      ],
+      "tree": "- heading \"REWIND REWIND REWIND\" [level=2]\n- button \"Glitch it\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "ink-trail": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 7
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 7
+        }
+      },
+      "contrast": {
+        "ratio": 6.7,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [],
+      "tree": "- figure \"Draw with your pointer or finger\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "jelly-button": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 8
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 8
+        }
+      },
+      "contrast": {
+        "ratio": 11.37,
+        "need": 3,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "button \"Boing\""
+      ],
+      "tree": "- button \"Boing\"",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    },
+    "cube-tabs": {
+      "axe": {
+        "light": {
+          "violations": 0,
+          "rulesPassed": 19
+        },
+        "dark": {
+          "violations": 0,
+          "rulesPassed": 19
+        }
+      },
+      "contrast": {
+        "ratio": 6.09,
+        "need": 4.5,
+        "theme": "light"
+      },
+      "brand": true,
+      "keyboard": [
+        "tab \"What\" [selected]"
+      ],
+      "tree": "- tablist \"About the zine\":\n  - tab \"What\" [selected]\n  - tab \"Who\"\n  - tab \"How\"\n  - tab \"Why\"\n- tabpanel \"What\": What Free interface parts, printed in four formats.\n- tabpanel \"Who\": Who Designers and developers, equally.\n- tabpanel \"How\": How Pick a format, tear out the code, ship it.\n- tabpanel \"Why\": Why Because good defaults should be free.",
+      "motion": {
+        "loopingUnderReducedMotion": 0,
+        "moves": true,
+        "handled": true
+      },
+      "rtl": {
+        "overflows": false
+      },
+      "long": {
+        "overflows": false
+      }
+    }
+  }
+}

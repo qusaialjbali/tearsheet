@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Popover · Overlays component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A small anchored card for extra detail, using the native popover attribute: no JavaScript.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Popover · Overlays component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A small anchored card for extra detail, using the native popover attribute: no JavaScript.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Popover","description":"A small anchored card for extra detail, using the native popover attribute: no JavaScript.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#popover">Issue 01</a> · Overlays · p.59</p>
+    <h1><span class="a">Popover</span><span class="b" aria-hidden="true">Popover</span></h1>
+    <p class="lede">A small anchored card for extra detail, using the native popover attribute: no JavaScript.</p>
+    <p class="why"><b>Why it works:</b> The browser handles opening, light-dismiss (click outside) and Esc. Unlike a tooltip it can hold links and buttons, so it is fine on touch screens.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Popover preview" data-min="300" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.pop-demo { position: relative; }
+.pop-trigger {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);
+  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;
+}
+.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }
+.pop {
+  width: 280px; margin: auto; padding: 16px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);
+}
+.pop:popover-open { animation: pop-in 0.18s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }
+.pop-title { margin: 0 0 4px; font-weight: 700; }
+.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }
+.pop-close {
+  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;
+  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;
+}
+.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;pop-demo&quot;>
+  &lt;button class=&quot;pop-trigger&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot;>Who can see this?&lt;/button>
+  &lt;div class=&quot;pop&quot; id=&quot;pop-share&quot; popover>
+    &lt;p class=&quot;pop-title&quot;>Visible to your team&lt;/p>
+    &lt;p class=&quot;pop-text&quot;>Everyone in “Design” can view and comment. Only editors can make changes.&lt;/p>
+    &lt;button class=&quot;pop-close&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot; popovertargetaction=&quot;hide&quot;>Got it&lt;/button>
+  &lt;/div>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.28:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (8 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.28:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Movement stops or calms down with reduced motion on.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>button &quot;Who can see this?&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- button &quot;Who can see this?&quot;</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#popover">See it in the zine</a> <code>npx -y tearsheet add popover</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html -->
+&lt;div class=&quot;pop-demo&quot;>
+  &lt;button class=&quot;pop-trigger&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot;>Who can see this?&lt;/button>
+  &lt;div class=&quot;pop&quot; id=&quot;pop-share&quot; popover>
+    &lt;p class=&quot;pop-title&quot;>Visible to your team&lt;/p>
+    &lt;p class=&quot;pop-text&quot;>Everyone in “Design” can view and comment. Only editors can make changes.&lt;/p>
+    &lt;button class=&quot;pop-close&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot; popovertargetaction=&quot;hide&quot;>Got it&lt;/button>
+  &lt;/div>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html */
+.pop-demo { position: relative; }
+.pop-trigger {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);
+  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;
+}
+.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }
+.pop {
+  width: 280px; margin: auto; padding: 16px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);
+}
+.pop:popover-open { animation: pop-in 0.18s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }
+.pop-title { margin: 0 0 4px; font-weight: 700; }
+.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }
+.pop-close {
+  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;
+  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;
+}
+.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>Popover.jsx</span></div><pre tabindex="0"><code>/* tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html */
+import './Popover.css';
+
+export function Popover() {
+  return (
+    &lt;div className=&quot;pop-demo&quot;>
+      &lt;button className=&quot;pop-trigger&quot; type=&quot;button&quot; popoverTarget=&quot;pop-share&quot;>Who can see this?&lt;/button>
+      &lt;div className=&quot;pop&quot; id=&quot;pop-share&quot; popover>
+        &lt;p className=&quot;pop-title&quot;>Visible to your team&lt;/p>
+        &lt;p className=&quot;pop-text&quot;>Everyone in “Design” can view and comment. Only editors can make changes.&lt;/p>
+        &lt;button className=&quot;pop-close&quot; type=&quot;button&quot; popoverTarget=&quot;pop-share&quot; popoverTargetAction=&quot;hide&quot;>Got it&lt;/button>
+      &lt;/div>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>Popover.css</span></div><pre tabindex="0"><code>/* tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html */
+.pop-demo { position: relative; }
+.pop-trigger {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);
+  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;
+}
+.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }
+.pop {
+  width: 280px; margin: auto; padding: 16px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);
+}
+.pop:popover-open { animation: pop-in 0.18s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }
+.pop-title { margin: 0 0 4px; font-weight: 700; }
+.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }
+.pop-close {
+  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;
+  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;
+}
+.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>Popover.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html -->
+&lt;template>
+  &lt;div class=&quot;pop-demo&quot;>
+    &lt;button class=&quot;pop-trigger&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot;>Who can see this?&lt;/button>
+    &lt;div class=&quot;pop&quot; id=&quot;pop-share&quot; popover>
+      &lt;p class=&quot;pop-title&quot;>Visible to your team&lt;/p>
+      &lt;p class=&quot;pop-text&quot;>Everyone in “Design” can view and comment. Only editors can make changes.&lt;/p>
+      &lt;button class=&quot;pop-close&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot; popovertargetaction=&quot;hide&quot;>Got it&lt;/button>
+    &lt;/div>
+  &lt;/div>
+&lt;/template>
+
+&lt;style scoped>
+.pop-demo { position: relative; }
+.pop-trigger {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);
+  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;
+}
+.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }
+.pop {
+  width: 280px; margin: auto; padding: 16px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);
+}
+.pop:popover-open { animation: pop-in 0.18s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }
+.pop-title { margin: 0 0 4px; font-weight: 700; }
+.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }
+.pop-close {
+  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;
+  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;
+}
+.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>Popover.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet popover v73e97584 · https://qusaialjbali.github.io/tearsheet/zine/parts/popover.html -->
+&lt;div class=&quot;pop-demo&quot;>
+  &lt;button class=&quot;pop-trigger&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot;>Who can see this?&lt;/button>
+  &lt;div class=&quot;pop&quot; id=&quot;pop-share&quot; popover>
+    &lt;p class=&quot;pop-title&quot;>Visible to your team&lt;/p>
+    &lt;p class=&quot;pop-text&quot;>Everyone in “Design” can view and comment. Only editors can make changes.&lt;/p>
+    &lt;button class=&quot;pop-close&quot; type=&quot;button&quot; popovertarget=&quot;pop-share&quot; popovertargetaction=&quot;hide&quot;>Got it&lt;/button>
+  &lt;/div>
+&lt;/div>
+
+&lt;style>
+.pop-demo { position: relative; }
+.pop-trigger {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--ui-accent);
+  background: none; border: 0; padding: 6px 4px; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; cursor: pointer;
+}
+.pop-trigger:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 4px; }
+.pop {
+  width: 280px; margin: auto; padding: 16px;
+  color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow-lg);
+}
+.pop:popover-open { animation: pop-in 0.18s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop:popover-open { animation: none; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }
+.pop-title { margin: 0 0 4px; font-weight: 700; }
+.pop-text { margin: 0 0 12px; font-size: 14px; color: var(--ui-muted); }
+.pop-close {
+  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600;
+  color: var(--ui-text); background: var(--ui-surface-2); border: 0; border-radius: 6px; cursor: pointer;
+}
+.pop-close:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+&lt;/style></code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="drawer.html">← Side drawer</a>
+      <a rel="next" href="context-menu.html">Context menu →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>

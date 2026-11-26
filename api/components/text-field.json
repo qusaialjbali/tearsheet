@@ -1,0 +1,91 @@
+{
+  "id": "text-field",
+  "name": "Text field",
+  "page": "p.06",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Labelled input with helper text and an error state wired up with aria-describedby.",
+  "notes": "Always use a visible <label>; placeholders vanish while typing. Link hints and errors with aria-describedby and flag errors with aria-invalid.",
+  "usesJavaScript": false,
+  "sizeKb": 2.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#text-field",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/text-field.json",
+  "version": "7756d5d8",
+  "checked": "axe clean in light and dark; tightest text contrast 5.73:1 (needs 4.5:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 15
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 15
+      }
+    },
+    "contrast": {
+      "ratio": 5.73,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "textbox \"Email\":",
+      "textbox \"Password\" [invalid]"
+    ],
+    "tree": "- text: Email\n- textbox \"Email\":\n  - /placeholder: you@example.com\n- paragraph: We’ll never share your email.\n- text: Password\n- textbox \"Password\" [invalid]\n- paragraph: Use at least 8 characters.",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": true,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet text-field v7756d5d8 · https://qusaialjbali.github.io/tearsheet/zine/parts/text-field.html -->\n<div class=\"form-stack\">\n  <div class=\"field\">\n    <label class=\"field-label\" for=\"email\">Email</label>\n    <input class=\"field-input\" id=\"email\" type=\"email\" placeholder=\"you@example.com\" autocomplete=\"email\" aria-describedby=\"email-hint\">\n    <p class=\"field-hint\" id=\"email-hint\">We’ll never share your email.</p>\n  </div>\n  <div class=\"field\">\n    <label class=\"field-label\" for=\"password\">Password</label>\n    <input class=\"field-input\" id=\"password\" type=\"password\" autocomplete=\"new-password\" aria-invalid=\"true\" aria-describedby=\"password-error\">\n    <p class=\"field-error\" id=\"password-error\">Use at least 8 characters.</p>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet text-field v7756d5d8 · https://qusaialjbali.github.io/tearsheet/zine/parts/text-field.html */\n.form-stack {\n  display: grid;\n  gap: 20px;\n  width: 100%;\n  max-width: 360px;\n}\n.field { display: grid; gap: 6px; }\n.field-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.field-input {\n  font: inherit;\n  font-size: 15px;\n  padding: 10px 12px;\n  min-height: 42px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.field-input::placeholder { color: var(--ui-muted); opacity: 0.8; }\n.field-input:hover { border-color: var(--ui-text); }\n.field-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.field-input[aria-invalid=\"true\"] { border-color: var(--ui-danger); }\n.field-hint, .field-error { margin: 0; font-size: 13px; }\n.field-hint { color: var(--ui-muted); }\n.field-error { color: var(--ui-danger); font-weight: 500; }\n.field-error::before {\n  content: \"\";\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  margin-right: 6px;\n  vertical-align: -2px;\n  background: currentColor;\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}"
+      }
+    ],
+    "react": [
+      {
+        "name": "TextField.jsx",
+        "code": "/* tearsheet text-field v7756d5d8 · https://qusaialjbali.github.io/tearsheet/zine/parts/text-field.html */\nimport './TextField.css';\n\nexport function TextField() {\n  return (\n    <div className=\"form-stack\">\n      <div className=\"field\">\n        <label className=\"field-label\" htmlFor=\"email\">Email</label>\n        <input className=\"field-input\" id=\"email\" type=\"email\" placeholder=\"you@example.com\" autoComplete=\"email\" aria-describedby=\"email-hint\" />\n        <p className=\"field-hint\" id=\"email-hint\">We’ll never share your email.</p>\n      </div>\n      <div className=\"field\">\n        <label className=\"field-label\" htmlFor=\"password\">Password</label>\n        <input className=\"field-input\" id=\"password\" type=\"password\" autoComplete=\"new-password\" aria-invalid=\"true\" aria-describedby=\"password-error\" />\n        <p className=\"field-error\" id=\"password-error\">Use at least 8 characters.</p>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "TextField.css",
+        "code": "/* tearsheet text-field v7756d5d8 · https://qusaialjbali.github.io/tearsheet/zine/parts/text-field.html */\n.form-stack {\n  display: grid;\n  gap: 20px;\n  width: 100%;\n  max-width: 360px;\n}\n.field { display: grid; gap: 6px; }\n.field-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.field-input {\n  font: inherit;\n  font-size: 15px;\n  padding: 10px 12px;\n  min-height: 42px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.field-input::placeholder { color: var(--ui-muted); opacity: 0.8; }\n.field-input:hover { border-color: var(--ui-text); }\n.field-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.field-input[aria-invalid=\"true\"] { border-color: var(--ui-danger); }\n.field-hint, .field-error { margin: 0; font-size: 13px; }\n.field-hint { color: var(--ui-muted); }\n.field-error { color: var(--ui-danger); font-weight: 500; }\n.field-error::before {\n  content: \"\";\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  margin-right: 6px;\n  vertical-align: -2px;\n  background: currentColor;\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "TextField.vue",
+        "code": "<!-- tearsheet text-field v7756d5d8 · https://qusaialjbali.github.io/tearsheet/zine/parts/text-field.html -->\n<template>\n  <div class=\"form-stack\">\n    <div class=\"field\">\n      <label class=\"field-label\" for=\"email\">Email</label>\n      <input class=\"field-input\" id=\"email\" type=\"email\" placeholder=\"you@example.com\" autocomplete=\"email\" aria-describedby=\"email-hint\">\n      <p class=\"field-hint\" id=\"email-hint\">We’ll never share your email.</p>\n    </div>\n    <div class=\"field\">\n      <label class=\"field-label\" for=\"password\">Password</label>\n      <input class=\"field-input\" id=\"password\" type=\"password\" autocomplete=\"new-password\" aria-invalid=\"true\" aria-describedby=\"password-error\">\n      <p class=\"field-error\" id=\"password-error\">Use at least 8 characters.</p>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.form-stack {\n  display: grid;\n  gap: 20px;\n  width: 100%;\n  max-width: 360px;\n}\n.field { display: grid; gap: 6px; }\n.field-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.field-input {\n  font: inherit;\n  font-size: 15px;\n  padding: 10px 12px;\n  min-height: 42px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.field-input::placeholder { color: var(--ui-muted); opacity: 0.8; }\n.field-input:hover { border-color: var(--ui-text); }\n.field-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.field-input[aria-invalid=\"true\"] { border-color: var(--ui-danger); }\n.field-hint, .field-error { margin: 0; font-size: 13px; }\n.field-hint { color: var(--ui-muted); }\n.field-error { color: var(--ui-danger); font-weight: 500; }\n.field-error::before {\n  content: \"\";\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  margin-right: 6px;\n  vertical-align: -2px;\n  background: currentColor;\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "TextField.svelte",
+        "code": "<!-- tearsheet text-field v7756d5d8 · https://qusaialjbali.github.io/tearsheet/zine/parts/text-field.html -->\n<div class=\"form-stack\">\n  <div class=\"field\">\n    <label class=\"field-label\" for=\"email\">Email</label>\n    <input class=\"field-input\" id=\"email\" type=\"email\" placeholder=\"you@example.com\" autocomplete=\"email\" aria-describedby=\"email-hint\">\n    <p class=\"field-hint\" id=\"email-hint\">We’ll never share your email.</p>\n  </div>\n  <div class=\"field\">\n    <label class=\"field-label\" for=\"password\">Password</label>\n    <input class=\"field-input\" id=\"password\" type=\"password\" autocomplete=\"new-password\" aria-invalid=\"true\" aria-describedby=\"password-error\">\n    <p class=\"field-error\" id=\"password-error\">Use at least 8 characters.</p>\n  </div>\n</div>\n\n<style>\n.form-stack {\n  display: grid;\n  gap: 20px;\n  width: 100%;\n  max-width: 360px;\n}\n.field { display: grid; gap: 6px; }\n.field-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.field-input {\n  font: inherit;\n  font-size: 15px;\n  padding: 10px 12px;\n  min-height: 42px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  transition: border-color 0.15s, box-shadow 0.15s;\n}\n.field-input::placeholder { color: var(--ui-muted); opacity: 0.8; }\n.field-input:hover { border-color: var(--ui-text); }\n.field-input:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.field-input[aria-invalid=\"true\"] { border-color: var(--ui-danger); }\n.field-hint, .field-error { margin: 0; font-size: 13px; }\n.field-hint { color: var(--ui-muted); }\n.field-error { color: var(--ui-danger); font-weight: 500; }\n.field-error::before {\n  content: \"\";\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  margin-right: 6px;\n  vertical-align: -2px;\n  background: currentColor;\n  -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n  mask: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M10 2.8 18 17H2Z%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M10 8v4M10 14.5v.5%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E\") center / contain no-repeat;\n}\n</style>"
+      }
+    ]
+  }
+}

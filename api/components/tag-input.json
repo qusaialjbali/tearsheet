@@ -1,0 +1,100 @@
+{
+  "id": "tag-input",
+  "name": "Tag input",
+  "page": "p.18",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "Type a word and press Enter or comma to turn it into a removable tag.",
+  "notes": "Backspace in the empty field removes the last tag. Each tag’s remove button names the tag (“Remove design”), and changes are announced.",
+  "usesJavaScript": true,
+  "sizeKb": 3.6,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#tag-input",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/tag-input.json",
+  "version": "26650985",
+  "checked": "axe clean in light and dark; tightest text contrast 5.35:1 (needs 4.5:1); 3 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 20
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 20
+      }
+    },
+    "contrast": {
+      "ratio": 5.35,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "button \"Remove design\"",
+      "button \"Remove accessibility\"",
+      "textbox \"Topics\":"
+    ],
+    "tree": "- text: Topics\n- list \"Added topics\":\n  - listitem:\n    - text: design\n    - button \"Remove design\"\n  - listitem:\n    - text: accessibility\n    - button \"Remove accessibility\"\n- textbox \"Topics\":\n  - /placeholder: Add a topic\n- paragraph: Press Enter or comma to add. Up to 6.",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html -->\n<div class=\"tags\">\n  <label class=\"tags-label\" for=\"tags-new\">Topics</label>\n  <div class=\"tags-box\">\n    <ul class=\"tags-list\" aria-label=\"Added topics\"></ul>\n    <input class=\"tags-input\" id=\"tags-new\" type=\"text\" placeholder=\"Add a topic\" enterkeyhint=\"done\" autocomplete=\"off\">\n  </div>\n  <p class=\"tags-hint\">Press Enter or comma to add. Up to 6.</p>\n  <span class=\"tags-live\" aria-live=\"polite\"></span>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html */\n.tags { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.tags-label { font-size: 14px; font-weight: 600; }\n.tags-box {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 46px; padding: 6px 8px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: text;\n}\n.tags-box:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.tags-list { display: contents; margin: 0; padding: 0; list-style: none; }\n.tag {\n  display: inline-flex; align-items: center; gap: 4px; padding: 3px 4px 3px 10px;\n  font-size: 14px; font-weight: 600; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px;\n}\n.tag button {\n  display: grid; place-items: center; width: 22px; height: 22px; padding: 0;\n  color: inherit; background: none; border: 0; border-radius: 50%; cursor: pointer;\n}\n.tag button:hover { background: rgb(127 127 127 / 0.2); }\n.tag button:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tag svg { width: 14px; height: 14px; }\n.tags-input { flex: 1; min-width: 120px; padding: 6px 4px; font: inherit; font-size: 15px; color: var(--ui-text); background: none; border: 0; outline: none; }\n.tags-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.tags-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html */\nfunction setup(root) {\n  const list = root.querySelector('.tags-list');\n  const input = root.querySelector('.tags-input');\n  const live = root.querySelector('.tags-live');\n  const box = root.querySelector('.tags-box');\n  const MAX = 6;\n  const tags = ['design', 'accessibility'];\n\n  const render = () => {\n    list.replaceChildren(...tags.map((t) => {\n      const li = document.createElement('li');\n      li.className = 'tag';\n      li.textContent = t;\n      const x = document.createElement('button');\n      x.type = 'button';\n      x.setAttribute('aria-label', 'Remove ' + t);\n      x.innerHTML = '<svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m6 6 8 8M14 6l-8 8\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>';\n      x.addEventListener('click', () => remove(t));\n      li.append(x);\n      return li;\n    }));\n    input.disabled = tags.length >= MAX;\n    input.placeholder = tags.length >= MAX ? 'Limit reached' : 'Add a topic';\n  };\n  const add = (raw) => {\n    const t = raw.trim().toLowerCase();\n    if (!t || tags.includes(t) || tags.length >= MAX) return;\n    tags.push(t);\n    render();\n    live.textContent = 'Added ' + t;\n  };\n  const remove = (t) => {\n    tags.splice(tags.indexOf(t), 1);\n    render();\n    live.textContent = 'Removed ' + t;\n    input.focus();\n  };\n  const onKey = (e) => {\n    if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); add(input.value); input.value = ''; }\n    else if (e.key === 'Backspace' && !input.value && tags.length) remove(tags[tags.length - 1]);\n  };\n  const onBox = (e) => { if (e.target === box) input.focus(); };\n  input.addEventListener('keydown', onKey);\n  box.addEventListener('click', onBox);\n  render();\n  return () => { input.removeEventListener('keydown', onKey); box.removeEventListener('click', onBox); };\n}\n\ndocument.querySelectorAll(\".tags\").forEach(setup);"
+      }
+    ],
+    "react": [
+      {
+        "name": "TagInput.jsx",
+        "code": "/* tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html */\nimport { useEffect, useRef } from 'react';\nimport './TagInput.css';\n\nfunction setup(root) {\n  const list = root.querySelector('.tags-list');\n  const input = root.querySelector('.tags-input');\n  const live = root.querySelector('.tags-live');\n  const box = root.querySelector('.tags-box');\n  const MAX = 6;\n  const tags = ['design', 'accessibility'];\n\n  const render = () => {\n    list.replaceChildren(...tags.map((t) => {\n      const li = document.createElement('li');\n      li.className = 'tag';\n      li.textContent = t;\n      const x = document.createElement('button');\n      x.type = 'button';\n      x.setAttribute('aria-label', 'Remove ' + t);\n      x.innerHTML = '<svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m6 6 8 8M14 6l-8 8\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>';\n      x.addEventListener('click', () => remove(t));\n      li.append(x);\n      return li;\n    }));\n    input.disabled = tags.length >= MAX;\n    input.placeholder = tags.length >= MAX ? 'Limit reached' : 'Add a topic';\n  };\n  const add = (raw) => {\n    const t = raw.trim().toLowerCase();\n    if (!t || tags.includes(t) || tags.length >= MAX) return;\n    tags.push(t);\n    render();\n    live.textContent = 'Added ' + t;\n  };\n  const remove = (t) => {\n    tags.splice(tags.indexOf(t), 1);\n    render();\n    live.textContent = 'Removed ' + t;\n    input.focus();\n  };\n  const onKey = (e) => {\n    if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); add(input.value); input.value = ''; }\n    else if (e.key === 'Backspace' && !input.value && tags.length) remove(tags[tags.length - 1]);\n  };\n  const onBox = (e) => { if (e.target === box) input.focus(); };\n  input.addEventListener('keydown', onKey);\n  box.addEventListener('click', onBox);\n  render();\n  return () => { input.removeEventListener('keydown', onKey); box.removeEventListener('click', onBox); };\n}\n\nexport function TagInput() {\n  const ref = useRef(null);\n  useEffect(() => setup(ref.current), []);\n\n  return (\n    <div ref={ref} className=\"tags\">\n      <label className=\"tags-label\" htmlFor=\"tags-new\">Topics</label>\n      <div className=\"tags-box\">\n        <ul className=\"tags-list\" aria-label=\"Added topics\"></ul>\n        <input className=\"tags-input\" id=\"tags-new\" type=\"text\" placeholder=\"Add a topic\" enterKeyHint=\"done\" autoComplete=\"off\" />\n      </div>\n      <p className=\"tags-hint\">Press Enter or comma to add. Up to 6.</p>\n      <span className=\"tags-live\" aria-live=\"polite\"></span>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "TagInput.css",
+        "code": "/* tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html */\n.tags { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.tags-label { font-size: 14px; font-weight: 600; }\n.tags-box {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 46px; padding: 6px 8px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: text;\n}\n.tags-box:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.tags-list { display: contents; margin: 0; padding: 0; list-style: none; }\n.tag {\n  display: inline-flex; align-items: center; gap: 4px; padding: 3px 4px 3px 10px;\n  font-size: 14px; font-weight: 600; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px;\n}\n.tag button {\n  display: grid; place-items: center; width: 22px; height: 22px; padding: 0;\n  color: inherit; background: none; border: 0; border-radius: 50%; cursor: pointer;\n}\n.tag button:hover { background: rgb(127 127 127 / 0.2); }\n.tag button:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tag svg { width: 14px; height: 14px; }\n.tags-input { flex: 1; min-width: 120px; padding: 6px 4px; font: inherit; font-size: 15px; color: var(--ui-text); background: none; border: 0; outline: none; }\n.tags-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.tags-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "TagInput.vue",
+        "code": "<!-- tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html -->\n<script setup>\nimport { onBeforeUnmount, onMounted, ref } from 'vue';\n\nconst el = ref(null);\nlet cleanup;\n\nfunction setup(root) {\n  const list = root.querySelector('.tags-list');\n  const input = root.querySelector('.tags-input');\n  const live = root.querySelector('.tags-live');\n  const box = root.querySelector('.tags-box');\n  const MAX = 6;\n  const tags = ['design', 'accessibility'];\n\n  const render = () => {\n    list.replaceChildren(...tags.map((t) => {\n      const li = document.createElement('li');\n      li.className = 'tag';\n      li.textContent = t;\n      const x = document.createElement('button');\n      x.type = 'button';\n      x.setAttribute('aria-label', 'Remove ' + t);\n      x.innerHTML = '<svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m6 6 8 8M14 6l-8 8\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>';\n      x.addEventListener('click', () => remove(t));\n      li.append(x);\n      return li;\n    }));\n    input.disabled = tags.length >= MAX;\n    input.placeholder = tags.length >= MAX ? 'Limit reached' : 'Add a topic';\n  };\n  const add = (raw) => {\n    const t = raw.trim().toLowerCase();\n    if (!t || tags.includes(t) || tags.length >= MAX) return;\n    tags.push(t);\n    render();\n    live.textContent = 'Added ' + t;\n  };\n  const remove = (t) => {\n    tags.splice(tags.indexOf(t), 1);\n    render();\n    live.textContent = 'Removed ' + t;\n    input.focus();\n  };\n  const onKey = (e) => {\n    if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); add(input.value); input.value = ''; }\n    else if (e.key === 'Backspace' && !input.value && tags.length) remove(tags[tags.length - 1]);\n  };\n  const onBox = (e) => { if (e.target === box) input.focus(); };\n  input.addEventListener('keydown', onKey);\n  box.addEventListener('click', onBox);\n  render();\n  return () => { input.removeEventListener('keydown', onKey); box.removeEventListener('click', onBox); };\n}\n\nonMounted(() => {\n  cleanup = setup(el.value);\n});\nonBeforeUnmount(() => cleanup?.());\n</script>\n\n<template>\n  <div ref=\"el\" class=\"tags\">\n    <label class=\"tags-label\" for=\"tags-new\">Topics</label>\n    <div class=\"tags-box\">\n      <ul class=\"tags-list\" aria-label=\"Added topics\"></ul>\n      <input class=\"tags-input\" id=\"tags-new\" type=\"text\" placeholder=\"Add a topic\" enterkeyhint=\"done\" autocomplete=\"off\">\n    </div>\n    <p class=\"tags-hint\">Press Enter or comma to add. Up to 6.</p>\n    <span class=\"tags-live\" aria-live=\"polite\"></span>\n  </div>\n</template>\n\n<!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->\n<style>\n.tags { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.tags-label { font-size: 14px; font-weight: 600; }\n.tags-box {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 46px; padding: 6px 8px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: text;\n}\n.tags-box:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.tags-list { display: contents; margin: 0; padding: 0; list-style: none; }\n.tag {\n  display: inline-flex; align-items: center; gap: 4px; padding: 3px 4px 3px 10px;\n  font-size: 14px; font-weight: 600; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px;\n}\n.tag button {\n  display: grid; place-items: center; width: 22px; height: 22px; padding: 0;\n  color: inherit; background: none; border: 0; border-radius: 50%; cursor: pointer;\n}\n.tag button:hover { background: rgb(127 127 127 / 0.2); }\n.tag button:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tag svg { width: 14px; height: 14px; }\n.tags-input { flex: 1; min-width: 120px; padding: 6px 4px; font: inherit; font-size: 15px; color: var(--ui-text); background: none; border: 0; outline: none; }\n.tags-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.tags-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "TagInput.svelte",
+        "code": "<!-- tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html -->\n<script>\n  import { onMount } from 'svelte';\n  import './TagInput.css';\n\n  let node;\n\n  function setup(root) {\n    const list = root.querySelector('.tags-list');\n    const input = root.querySelector('.tags-input');\n    const live = root.querySelector('.tags-live');\n    const box = root.querySelector('.tags-box');\n    const MAX = 6;\n    const tags = ['design', 'accessibility'];\n\n    const render = () => {\n      list.replaceChildren(...tags.map((t) => {\n        const li = document.createElement('li');\n        li.className = 'tag';\n        li.textContent = t;\n        const x = document.createElement('button');\n        x.type = 'button';\n        x.setAttribute('aria-label', 'Remove ' + t);\n        x.innerHTML = '<svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m6 6 8 8M14 6l-8 8\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>';\n        x.addEventListener('click', () => remove(t));\n        li.append(x);\n        return li;\n      }));\n      input.disabled = tags.length >= MAX;\n      input.placeholder = tags.length >= MAX ? 'Limit reached' : 'Add a topic';\n    };\n    const add = (raw) => {\n      const t = raw.trim().toLowerCase();\n      if (!t || tags.includes(t) || tags.length >= MAX) return;\n      tags.push(t);\n      render();\n      live.textContent = 'Added ' + t;\n    };\n    const remove = (t) => {\n      tags.splice(tags.indexOf(t), 1);\n      render();\n      live.textContent = 'Removed ' + t;\n      input.focus();\n    };\n    const onKey = (e) => {\n      if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); add(input.value); input.value = ''; }\n      else if (e.key === 'Backspace' && !input.value && tags.length) remove(tags[tags.length - 1]);\n    };\n    const onBox = (e) => { if (e.target === box) input.focus(); };\n    input.addEventListener('keydown', onKey);\n    box.addEventListener('click', onBox);\n    render();\n    return () => { input.removeEventListener('keydown', onKey); box.removeEventListener('click', onBox); };\n  }\n\n  onMount(() => setup(node));\n</script>\n\n<div bind:this={node} class=\"tags\">\n  <label class=\"tags-label\" for=\"tags-new\">Topics</label>\n  <div class=\"tags-box\">\n    <ul class=\"tags-list\" aria-label=\"Added topics\"></ul>\n    <input class=\"tags-input\" id=\"tags-new\" type=\"text\" placeholder=\"Add a topic\" enterkeyhint=\"done\" autocomplete=\"off\">\n  </div>\n  <p class=\"tags-hint\">Press Enter or comma to add. Up to 6.</p>\n  <span class=\"tags-live\" aria-live=\"polite\"></span>\n</div>"
+      },
+      {
+        "name": "TagInput.css",
+        "code": "/* tearsheet tag-input v26650985 · https://qusaialjbali.github.io/tearsheet/zine/parts/tag-input.html */\n.tags { display: grid; gap: 6px; width: 100%; max-width: 420px; }\n.tags-label { font-size: 14px; font-weight: 600; }\n.tags-box {\n  display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 46px; padding: 6px 8px;\n  background: var(--ui-surface); border: 1px solid var(--ui-border-strong); border-radius: var(--ui-radius-sm); cursor: text;\n}\n.tags-box:focus-within { border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.tags-list { display: contents; margin: 0; padding: 0; list-style: none; }\n.tag {\n  display: inline-flex; align-items: center; gap: 4px; padding: 3px 4px 3px 10px;\n  font-size: 14px; font-weight: 600; color: var(--ui-accent); background: var(--ui-accent-soft); border-radius: 999px;\n}\n.tag button {\n  display: grid; place-items: center; width: 22px; height: 22px; padding: 0;\n  color: inherit; background: none; border: 0; border-radius: 50%; cursor: pointer;\n}\n.tag button:hover { background: rgb(127 127 127 / 0.2); }\n.tag button:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tag svg { width: 14px; height: 14px; }\n.tags-input { flex: 1; min-width: 120px; padding: 6px 4px; font: inherit; font-size: 15px; color: var(--ui-text); background: none; border: 0; outline: none; }\n.tags-hint { margin: 0; font-size: 13px; color: var(--ui-muted); }\n.tags-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }"
+      }
+    ]
+  }
+}

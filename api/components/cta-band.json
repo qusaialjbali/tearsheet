@@ -1,0 +1,90 @@
+{
+  "id": "cta-band",
+  "name": "Call-to-action band",
+  "page": "p.70",
+  "collection": "Sections",
+  "experimental": false,
+  "description": "A closing band in the accent colour that repeats the main action once more.",
+  "notes": "Use it at the end of a long page, once. Repeat the same action as the hero, not a new one, and keep the reassurance line.",
+  "usesJavaScript": false,
+  "sizeKb": 1,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#cta-band",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/cta-band.json",
+  "version": "1d7e969e",
+  "checked": "axe clean in light and dark; tightest text contrast 5.42:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 8
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 8
+      }
+    },
+    "contrast": {
+      "ratio": 5.42,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "link \"Start a shared budget\":"
+    ],
+    "tree": "- heading \"Your next trip, already settled.\" [level=2]\n- paragraph: Set up a group in under a minute. Free for up to five people.\n- link \"Start a shared budget\":\n  - /url: \"#\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet cta-band v1d7e969e · https://qusaialjbali.github.io/tearsheet/zine/parts/cta-band.html -->\n<section class=\"cta-band\">\n  <div>\n    <h2>Your next trip, already settled.</h2>\n    <p>Set up a group in under a minute. Free for up to five people.</p>\n  </div>\n  <a class=\"cta-band-btn\" href=\"#\">Start a shared budget</a>\n</section>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet cta-band v1d7e969e · https://qusaialjbali.github.io/tearsheet/zine/parts/cta-band.html */\n.cta-band {\n  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;\n  width: 100%; padding: clamp(28px, 5vw, 48px); color: var(--ui-accent-text); background: var(--ui-accent); border-radius: var(--ui-radius);\n}\n.cta-band h2 { margin: 0 0 6px; font-size: clamp(22px, 3vw, 32px); letter-spacing: -0.02em; }\n.cta-band p { margin: 0; opacity: 0.9; }\n.cta-band-btn {\n  display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; font-weight: 700; text-decoration: none;\n  color: var(--ui-accent); background: var(--ui-accent-text); border-radius: var(--ui-radius-sm);\n}\n.cta-band-btn:hover { opacity: 0.92; }\n.cta-band-btn:focus-visible { outline: 3px solid var(--ui-accent-text); outline-offset: 3px; }"
+      }
+    ],
+    "react": [
+      {
+        "name": "CtaBand.jsx",
+        "code": "/* tearsheet cta-band v1d7e969e · https://qusaialjbali.github.io/tearsheet/zine/parts/cta-band.html */\nimport './CtaBand.css';\n\nexport function CtaBand() {\n  return (\n    <section className=\"cta-band\">\n      <div>\n        <h2>Your next trip, already settled.</h2>\n        <p>Set up a group in under a minute. Free for up to five people.</p>\n      </div>\n      <a className=\"cta-band-btn\" href=\"#\">Start a shared budget</a>\n    </section>\n  );\n}"
+      },
+      {
+        "name": "CtaBand.css",
+        "code": "/* tearsheet cta-band v1d7e969e · https://qusaialjbali.github.io/tearsheet/zine/parts/cta-band.html */\n.cta-band {\n  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;\n  width: 100%; padding: clamp(28px, 5vw, 48px); color: var(--ui-accent-text); background: var(--ui-accent); border-radius: var(--ui-radius);\n}\n.cta-band h2 { margin: 0 0 6px; font-size: clamp(22px, 3vw, 32px); letter-spacing: -0.02em; }\n.cta-band p { margin: 0; opacity: 0.9; }\n.cta-band-btn {\n  display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; font-weight: 700; text-decoration: none;\n  color: var(--ui-accent); background: var(--ui-accent-text); border-radius: var(--ui-radius-sm);\n}\n.cta-band-btn:hover { opacity: 0.92; }\n.cta-band-btn:focus-visible { outline: 3px solid var(--ui-accent-text); outline-offset: 3px; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "CtaBand.vue",
+        "code": "<!-- tearsheet cta-band v1d7e969e · https://qusaialjbali.github.io/tearsheet/zine/parts/cta-band.html -->\n<template>\n  <section class=\"cta-band\">\n    <div>\n      <h2>Your next trip, already settled.</h2>\n      <p>Set up a group in under a minute. Free for up to five people.</p>\n    </div>\n    <a class=\"cta-band-btn\" href=\"#\">Start a shared budget</a>\n  </section>\n</template>\n\n<style scoped>\n.cta-band {\n  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;\n  width: 100%; padding: clamp(28px, 5vw, 48px); color: var(--ui-accent-text); background: var(--ui-accent); border-radius: var(--ui-radius);\n}\n.cta-band h2 { margin: 0 0 6px; font-size: clamp(22px, 3vw, 32px); letter-spacing: -0.02em; }\n.cta-band p { margin: 0; opacity: 0.9; }\n.cta-band-btn {\n  display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; font-weight: 700; text-decoration: none;\n  color: var(--ui-accent); background: var(--ui-accent-text); border-radius: var(--ui-radius-sm);\n}\n.cta-band-btn:hover { opacity: 0.92; }\n.cta-band-btn:focus-visible { outline: 3px solid var(--ui-accent-text); outline-offset: 3px; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "CtaBand.svelte",
+        "code": "<!-- tearsheet cta-band v1d7e969e · https://qusaialjbali.github.io/tearsheet/zine/parts/cta-band.html -->\n<section class=\"cta-band\">\n  <div>\n    <h2>Your next trip, already settled.</h2>\n    <p>Set up a group in under a minute. Free for up to five people.</p>\n  </div>\n  <a class=\"cta-band-btn\" href=\"#\">Start a shared budget</a>\n</section>\n\n<style>\n.cta-band {\n  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;\n  width: 100%; padding: clamp(28px, 5vw, 48px); color: var(--ui-accent-text); background: var(--ui-accent); border-radius: var(--ui-radius);\n}\n.cta-band h2 { margin: 0 0 6px; font-size: clamp(22px, 3vw, 32px); letter-spacing: -0.02em; }\n.cta-band p { margin: 0; opacity: 0.9; }\n.cta-band-btn {\n  display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; font-weight: 700; text-decoration: none;\n  color: var(--ui-accent); background: var(--ui-accent-text); border-radius: var(--ui-radius-sm);\n}\n.cta-band-btn:hover { opacity: 0.92; }\n.cta-band-btn:focus-visible { outline: 3px solid var(--ui-accent-text); outline-offset: 3px; }\n</style>"
+      }
+    ]
+  }
+}

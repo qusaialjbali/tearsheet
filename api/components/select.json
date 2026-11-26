@@ -1,0 +1,90 @@
+{
+  "id": "select",
+  "name": "Select",
+  "page": "p.08",
+  "collection": "Forms",
+  "experimental": false,
+  "description": "A native select restyled to match the text field, with a drawn chevron.",
+  "notes": "Keep the native <select>: it gets the right picker on every phone, works with autofill and needs no JavaScript. Use it for 5 to 15 options; fewer than 5 read better as radios.",
+  "usesJavaScript": false,
+  "sizeKb": 1.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#select",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/select.json",
+  "version": "634c7b93",
+  "checked": "axe clean in light and dark; tightest text contrast 16.1:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 12
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 12
+      }
+    },
+    "contrast": {
+      "ratio": 16.1,
+      "need": 4.5,
+      "theme": "dark"
+    },
+    "brand": true,
+    "keyboard": [
+      "combobox \"Country\":"
+    ],
+    "tree": "- text: Country\n- combobox \"Country\":\n  - option \"Canada\" [selected]\n  - option \"Germany\"\n  - option \"Japan\"\n  - option \"Jordan\"\n  - option \"Mexico\"\n  - option \"United Kingdom\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet select v634c7b93 · https://qusaialjbali.github.io/tearsheet/zine/parts/select.html -->\n<div class=\"select-field\">\n  <label class=\"select-label\" for=\"country\">Country</label>\n  <div class=\"select-wrap\">\n    <select class=\"select\" id=\"country\" autocomplete=\"country-name\">\n      <option>Canada</option>\n      <option>Germany</option>\n      <option>Japan</option>\n      <option>Jordan</option>\n      <option>Mexico</option>\n      <option>United Kingdom</option>\n    </select>\n    <svg class=\"select-chevron\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 8 5 5 5-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n  </div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet select v634c7b93 · https://qusaialjbali.github.io/tearsheet/zine/parts/select.html */\n.select-field { display: grid; gap: 6px; width: 100%; max-width: 320px; }\n.select-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.select-wrap { position: relative; }\n.select {\n  appearance: none;\n  width: 100%;\n  min-height: 42px;\n  padding: 10px 40px 10px 12px;\n  font: inherit;\n  font-size: 15px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.select:hover { border-color: var(--ui-text); }\n.select:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.select-chevron {\n  position: absolute;\n  right: 12px;\n  top: 50%;\n  width: 18px;\n  height: 18px;\n  color: var(--ui-muted);\n  transform: translateY(-50%);\n  pointer-events: none;\n}"
+      }
+    ],
+    "react": [
+      {
+        "name": "Select.jsx",
+        "code": "/* tearsheet select v634c7b93 · https://qusaialjbali.github.io/tearsheet/zine/parts/select.html */\nimport './Select.css';\n\nexport function Select() {\n  return (\n    <div className=\"select-field\">\n      <label className=\"select-label\" htmlFor=\"country\">Country</label>\n      <div className=\"select-wrap\">\n        <select className=\"select\" id=\"country\" autoComplete=\"country-name\">\n          <option>Canada</option>\n          <option>Germany</option>\n          <option>Japan</option>\n          <option>Jordan</option>\n          <option>Mexico</option>\n          <option>United Kingdom</option>\n        </select>\n        <svg className=\"select-chevron\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 8 5 5 5-5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Select.css",
+        "code": "/* tearsheet select v634c7b93 · https://qusaialjbali.github.io/tearsheet/zine/parts/select.html */\n.select-field { display: grid; gap: 6px; width: 100%; max-width: 320px; }\n.select-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.select-wrap { position: relative; }\n.select {\n  appearance: none;\n  width: 100%;\n  min-height: 42px;\n  padding: 10px 40px 10px 12px;\n  font: inherit;\n  font-size: 15px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.select:hover { border-color: var(--ui-text); }\n.select:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.select-chevron {\n  position: absolute;\n  right: 12px;\n  top: 50%;\n  width: 18px;\n  height: 18px;\n  color: var(--ui-muted);\n  transform: translateY(-50%);\n  pointer-events: none;\n}"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Select.vue",
+        "code": "<!-- tearsheet select v634c7b93 · https://qusaialjbali.github.io/tearsheet/zine/parts/select.html -->\n<template>\n  <div class=\"select-field\">\n    <label class=\"select-label\" for=\"country\">Country</label>\n    <div class=\"select-wrap\">\n      <select class=\"select\" id=\"country\" autocomplete=\"country-name\">\n        <option>Canada</option>\n        <option>Germany</option>\n        <option>Japan</option>\n        <option>Jordan</option>\n        <option>Mexico</option>\n        <option>United Kingdom</option>\n      </select>\n      <svg class=\"select-chevron\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 8 5 5 5-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.select-field { display: grid; gap: 6px; width: 100%; max-width: 320px; }\n.select-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.select-wrap { position: relative; }\n.select {\n  appearance: none;\n  width: 100%;\n  min-height: 42px;\n  padding: 10px 40px 10px 12px;\n  font: inherit;\n  font-size: 15px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.select:hover { border-color: var(--ui-text); }\n.select:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.select-chevron {\n  position: absolute;\n  right: 12px;\n  top: 50%;\n  width: 18px;\n  height: 18px;\n  color: var(--ui-muted);\n  transform: translateY(-50%);\n  pointer-events: none;\n}\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Select.svelte",
+        "code": "<!-- tearsheet select v634c7b93 · https://qusaialjbali.github.io/tearsheet/zine/parts/select.html -->\n<div class=\"select-field\">\n  <label class=\"select-label\" for=\"country\">Country</label>\n  <div class=\"select-wrap\">\n    <select class=\"select\" id=\"country\" autocomplete=\"country-name\">\n      <option>Canada</option>\n      <option>Germany</option>\n      <option>Japan</option>\n      <option>Jordan</option>\n      <option>Mexico</option>\n      <option>United Kingdom</option>\n    </select>\n    <svg class=\"select-chevron\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 8 5 5 5-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n  </div>\n</div>\n\n<style>\n.select-field { display: grid; gap: 6px; width: 100%; max-width: 320px; }\n.select-label { font-size: 14px; font-weight: 600; color: var(--ui-text); }\n.select-wrap { position: relative; }\n.select {\n  appearance: none;\n  width: 100%;\n  min-height: 42px;\n  padding: 10px 40px 10px 12px;\n  font: inherit;\n  font-size: 15px;\n  color: var(--ui-text);\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border-strong);\n  border-radius: var(--ui-radius-sm);\n  cursor: pointer;\n}\n.select:hover { border-color: var(--ui-text); }\n.select:focus { outline: none; border-color: var(--ui-accent); box-shadow: var(--ui-focus); }\n.select-chevron {\n  position: absolute;\n  right: 12px;\n  top: 50%;\n  width: 18px;\n  height: 18px;\n  color: var(--ui-muted);\n  transform: translateY(-50%);\n  pointer-events: none;\n}\n</style>"
+      }
+    ]
+  }
+}

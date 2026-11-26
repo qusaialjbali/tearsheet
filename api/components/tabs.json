@@ -1,0 +1,95 @@
+{
+  "id": "tabs",
+  "name": "Tabs",
+  "page": "p.50",
+  "collection": "Navigation",
+  "experimental": false,
+  "description": "Accessible tabs following the WAI-ARIA pattern, with arrow-key navigation and roving tabindex.",
+  "notes": "Tab key moves into the tab list then out to the panel; arrow keys move between tabs. Use tabs for peer views of the same thing, not for steps.",
+  "usesJavaScript": true,
+  "sizeKb": 2.4,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#tabs",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/tabs.json",
+  "version": "274d49f5",
+  "checked": "axe clean in light and dark; tightest text contrast 6.28:1 (needs 4.5:1); 2 tab stops; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 19
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 19
+      }
+    },
+    "contrast": {
+      "ratio": 6.28,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "tab \"Profile\" [selected]",
+      "tabpanel \"Profile\": Update your name, photo and bio."
+    ],
+    "tree": "- tablist \"Account settings\":\n  - tab \"Profile\" [selected]\n  - tab \"Security\"\n  - tab \"Billing\"\n- tabpanel \"Profile\": Update your name, photo and bio.",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet tabs v274d49f5 · https://qusaialjbali.github.io/tearsheet/zine/parts/tabs.html -->\n<div class=\"tabs\" data-tabs>\n  <div class=\"tab-list\" role=\"tablist\" aria-label=\"Account settings\">\n    <button class=\"tab\" role=\"tab\" id=\"tab-0\" aria-controls=\"panel-0\" aria-selected=\"true\">Profile</button>\n    <button class=\"tab\" role=\"tab\" id=\"tab-1\" aria-controls=\"panel-1\" aria-selected=\"false\" tabindex=\"-1\">Security</button>\n    <button class=\"tab\" role=\"tab\" id=\"tab-2\" aria-controls=\"panel-2\" aria-selected=\"false\" tabindex=\"-1\">Billing</button>\n  </div>\n  <div class=\"tab-panel\" role=\"tabpanel\" id=\"panel-0\" aria-labelledby=\"tab-0\" tabindex=\"0\">Update your name, photo and bio.</div>\n  <div class=\"tab-panel\" role=\"tabpanel\" id=\"panel-1\" aria-labelledby=\"tab-1\" tabindex=\"0\" hidden>Change your password and turn on two-factor sign-in.</div>\n  <div class=\"tab-panel\" role=\"tabpanel\" id=\"panel-2\" aria-labelledby=\"tab-2\" tabindex=\"0\" hidden>Manage your plan, payment method and invoices.</div>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet tabs v274d49f5 · https://qusaialjbali.github.io/tearsheet/zine/parts/tabs.html */\n.tabs { width: 100%; max-width: 480px; }\n.tab-list {\n  display: flex;\n  gap: 4px;\n  border-bottom: 1px solid var(--ui-border);\n}\n.tab {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px 14px;\n  margin-bottom: -1px;\n  color: var(--ui-muted);\n  background: none;\n  border: 0;\n  border-bottom: 2px solid transparent;\n  border-radius: 6px 6px 0 0;\n  cursor: pointer;\n}\n.tab:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tab[aria-selected=\"true\"] { color: var(--ui-accent); border-bottom-color: var(--ui-accent); }\n.tab:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tab-panel { padding: 18px 2px; font-size: 15px; color: var(--ui-text); }\n.tab-panel:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 6px; }"
+      },
+      {
+        "name": "script.js",
+        "code": "/* tearsheet tabs v274d49f5 · https://qusaialjbali.github.io/tearsheet/zine/parts/tabs.html */\ndocument.querySelectorAll('[data-tabs]').forEach((root) => {\n  const tabs = [...root.querySelectorAll('[role=\"tab\"]')];\n\n  const select = (tab) => {\n    tabs.forEach((t) => {\n      const on = t === tab;\n      t.setAttribute('aria-selected', on);\n      t.tabIndex = on ? 0 : -1;\n      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;\n    });\n    tab.focus();\n  };\n\n  tabs.forEach((tab, i) => {\n    tab.addEventListener('click', () => select(tab));\n    tab.addEventListener('keydown', (e) => {\n      const keys = { ArrowRight: 1, ArrowLeft: -1, Home: -i, End: tabs.length - 1 - i };\n      if (!(e.key in keys)) return;\n      e.preventDefault();\n      select(tabs[(i + keys[e.key] + tabs.length) % tabs.length]);\n    });\n  });\n});"
+      }
+    ],
+    "react": [
+      {
+        "name": "Tabs.jsx",
+        "code": "/* tearsheet tabs v274d49f5 · https://qusaialjbali.github.io/tearsheet/zine/parts/tabs.html */\nimport { useRef, useState } from 'react';\nimport './Tabs.css';\n\nconst TABS = [\n  { label: 'Profile', content: 'Update your name, photo and bio.' },\n  { label: 'Security', content: 'Change your password and turn on two-factor sign-in.' },\n  { label: 'Billing', content: 'Manage your plan, payment method and invoices.' },\n];\n\nexport function Tabs() {\n  const [active, setActive] = useState(0);\n  const buttons = useRef([]);\n\n  const select = (i) => {\n    setActive(i);\n    buttons.current[i]?.focus();\n  };\n\n  const onKeyDown = (e) => {\n    const keys = { ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: TABS.length - 1 };\n    if (!(e.key in keys)) return;\n    e.preventDefault();\n    select((keys[e.key] + TABS.length) % TABS.length);\n  };\n\n  return (\n    <div className=\"tabs\">\n      <div className=\"tab-list\" role=\"tablist\" aria-label=\"Account settings\" onKeyDown={onKeyDown}>\n        {TABS.map((t, i) => (\n          <button\n            key={t.label}\n            ref={(el) => (buttons.current[i] = el)}\n            className=\"tab\"\n            role=\"tab\"\n            id={'tab-' + i}\n            aria-controls={'panel-' + i}\n            aria-selected={active === i}\n            tabIndex={active === i ? 0 : -1}\n            onClick={() => select(i)}\n          >\n            {t.label}\n          </button>\n        ))}\n      </div>\n      {TABS.map((t, i) => (\n        <div\n          key={t.label}\n          className=\"tab-panel\"\n          role=\"tabpanel\"\n          id={'panel-' + i}\n          aria-labelledby={'tab-' + i}\n          tabIndex={0}\n          hidden={active !== i}\n        >\n          {t.content}\n        </div>\n      ))}\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Tabs.css",
+        "code": "/* tearsheet tabs v274d49f5 · https://qusaialjbali.github.io/tearsheet/zine/parts/tabs.html */\n.tabs { width: 100%; max-width: 480px; }\n.tab-list {\n  display: flex;\n  gap: 4px;\n  border-bottom: 1px solid var(--ui-border);\n}\n.tab {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px 14px;\n  margin-bottom: -1px;\n  color: var(--ui-muted);\n  background: none;\n  border: 0;\n  border-bottom: 2px solid transparent;\n  border-radius: 6px 6px 0 0;\n  cursor: pointer;\n}\n.tab:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tab[aria-selected=\"true\"] { color: var(--ui-accent); border-bottom-color: var(--ui-accent); }\n.tab:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tab-panel { padding: 18px 2px; font-size: 15px; color: var(--ui-text); }\n.tab-panel:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 6px; }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "Tabs.vue",
+        "code": "<!-- tearsheet tabs v274d49f5 · https://qusaialjbali.github.io/tearsheet/zine/parts/tabs.html -->\n<script setup>\nimport { ref } from 'vue';\n\nconst tabs = [\n  { label: 'Profile', content: 'Update your name, photo and bio.' },\n  { label: 'Security', content: 'Change your password and turn on two-factor sign-in.' },\n  { label: 'Billing', content: 'Manage your plan, payment method and invoices.' },\n];\nconst active = ref(0);\nconst buttons = ref([]);\n\nfunction select(i) {\n  active.value = i;\n  buttons.value[i]?.focus();\n}\n\nfunction onKeyDown(e) {\n  const keys = { ArrowRight: active.value + 1, ArrowLeft: active.value - 1, Home: 0, End: tabs.length - 1 };\n  if (!(e.key in keys)) return;\n  e.preventDefault();\n  select((keys[e.key] + tabs.length) % tabs.length);\n}\n</script>\n\n<template>\n  <div class=\"tabs\">\n    <div class=\"tab-list\" role=\"tablist\" aria-label=\"Account settings\" @keydown=\"onKeyDown\">\n      <button\n        v-for=\"(t, i) in tabs\"\n        :key=\"t.label\"\n        :ref=\"(el) => (buttons[i] = el)\"\n        class=\"tab\"\n        role=\"tab\"\n        :id=\"'tab-' + i\"\n        :aria-controls=\"'panel-' + i\"\n        :aria-selected=\"active === i\"\n        :tabindex=\"active === i ? 0 : -1\"\n        @click=\"select(i)\"\n      >\n        {{ t.label }}\n      </button>\n    </div>\n    <div\n      v-for=\"(t, i) in tabs\"\n      :key=\"t.label\"\n      v-show=\"active === i\"\n      class=\"tab-panel\"\n      role=\"tabpanel\"\n      :id=\"'panel-' + i\"\n      :aria-labelledby=\"'tab-' + i\"\n      tabindex=\"0\"\n    >\n      {{ t.content }}\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.tabs { width: 100%; max-width: 480px; }\n.tab-list {\n  display: flex;\n  gap: 4px;\n  border-bottom: 1px solid var(--ui-border);\n}\n.tab {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px 14px;\n  margin-bottom: -1px;\n  color: var(--ui-muted);\n  background: none;\n  border: 0;\n  border-bottom: 2px solid transparent;\n  border-radius: 6px 6px 0 0;\n  cursor: pointer;\n}\n.tab:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tab[aria-selected=\"true\"] { color: var(--ui-accent); border-bottom-color: var(--ui-accent); }\n.tab:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tab-panel { padding: 18px 2px; font-size: 15px; color: var(--ui-text); }\n.tab-panel:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 6px; }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "Tabs.svelte",
+        "code": "<!-- tearsheet tabs v274d49f5 · https://qusaialjbali.github.io/tearsheet/zine/parts/tabs.html -->\n<script>\n  const tabs = [\n    { label: 'Profile', content: 'Update your name, photo and bio.' },\n    { label: 'Security', content: 'Change your password and turn on two-factor sign-in.' },\n    { label: 'Billing', content: 'Manage your plan, payment method and invoices.' },\n  ];\n  let active = 0;\n  let buttons = [];\n\n  function select(i) {\n    active = i;\n    buttons[i]?.focus();\n  }\n\n  function onKeyDown(e) {\n    const keys = { ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: tabs.length - 1 };\n    if (!(e.key in keys)) return;\n    e.preventDefault();\n    select((keys[e.key] + tabs.length) % tabs.length);\n  }\n</script>\n\n<div class=\"tabs\">\n  <div class=\"tab-list\" role=\"tablist\" aria-label=\"Account settings\" on:keydown={onKeyDown}>\n    {#each tabs as t, i}\n      <button\n        bind:this={buttons[i]}\n        class=\"tab\"\n        role=\"tab\"\n        id={'tab-' + i}\n        aria-controls={'panel-' + i}\n        aria-selected={active === i}\n        tabindex={active === i ? 0 : -1}\n        on:click={() => select(i)}\n      >\n        {t.label}\n      </button>\n    {/each}\n  </div>\n  {#each tabs as t, i}\n    <div class=\"tab-panel\" role=\"tabpanel\" id={'panel-' + i} aria-labelledby={'tab-' + i} tabindex=\"0\" hidden={active !== i}>\n      {t.content}\n    </div>\n  {/each}\n</div>\n\n<style>\n.tabs { width: 100%; max-width: 480px; }\n.tab-list {\n  display: flex;\n  gap: 4px;\n  border-bottom: 1px solid var(--ui-border);\n}\n.tab {\n  font: inherit;\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px 14px;\n  margin-bottom: -1px;\n  color: var(--ui-muted);\n  background: none;\n  border: 0;\n  border-bottom: 2px solid transparent;\n  border-radius: 6px 6px 0 0;\n  cursor: pointer;\n}\n.tab:hover { color: var(--ui-text); background: var(--ui-surface-2); }\n.tab[aria-selected=\"true\"] { color: var(--ui-accent); border-bottom-color: var(--ui-accent); }\n.tab:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.tab-panel { padding: 18px 2px; font-size: 15px; color: var(--ui-text); }\n.tab-panel:focus-visible { outline: none; box-shadow: var(--ui-focus); border-radius: 6px; }\n</style>"
+      }
+    ]
+  }
+}

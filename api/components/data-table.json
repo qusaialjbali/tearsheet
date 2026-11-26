@@ -1,0 +1,90 @@
+{
+  "id": "data-table",
+  "name": "Data table",
+  "page": "p.26",
+  "collection": "Content",
+  "experimental": false,
+  "description": "Readable table with a caption, scoped headers, right-aligned numbers and status badges. Scrolls sideways on small screens.",
+  "notes": "Right-align numbers and use tabular figures so digits line up. A <caption> names the table for screen-reader users.",
+  "usesJavaScript": false,
+  "sizeKb": 2.2,
+  "formats": [
+    "html",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "url": "https://qusaialjbali.github.io/tearsheet/zine/index.html#data-table",
+  "api": "https://qusaialjbali.github.io/tearsheet/api/components/data-table.json",
+  "version": "6d5190be",
+  "checked": "axe clean in light and dark; tightest text contrast 4.79:1 (needs 4.5:1); 1 tab stop; fits a phone in RTL with Arabic: yes; with 40% longer text: yes; contrast holds with a fitted brand: yes",
+  "requires": "tokens.css (see tokens URL)",
+  "tokens": "https://qusaialjbali.github.io/tearsheet/api/tokens.css",
+  "receipt": {
+    "axe": {
+      "light": {
+        "violations": 0,
+        "rulesPassed": 17
+      },
+      "dark": {
+        "violations": 0,
+        "rulesPassed": 17
+      }
+    },
+    "contrast": {
+      "ratio": 4.79,
+      "need": 4.5,
+      "theme": "light"
+    },
+    "brand": true,
+    "keyboard": [
+      "region \"Recent invoices\":"
+    ],
+    "tree": "- region \"Recent invoices\":\n  - table \"Recent invoices\":\n    - caption: Recent invoices\n    - rowgroup:\n      - row \"Invoice Customer Status Amount\":\n        - columnheader \"Invoice\"\n        - columnheader \"Customer\"\n        - columnheader \"Status\"\n        - columnheader \"Amount\"\n    - rowgroup:\n      - row \"#1042 Northwind Traders Paid $1,200.00\":\n        - cell \"#1042\"\n        - cell \"Northwind Traders\"\n        - cell \"Paid\"\n        - cell \"$1,200.00\"\n      - row \"#1041 Globex Corp Due $860.50\":\n        - cell \"#1041\"\n        - cell \"Globex Corp\"\n        - cell \"Due\"\n        - cell \"$860.50\"\n      - row \"#1040 Initech Overdue $3,075.00\":\n        - cell \"#1040\"\n        - cell \"Initech\"\n        - cell \"Overdue\"\n        - cell \"$3,075.00\"",
+    "motion": {
+      "loopingUnderReducedMotion": 0,
+      "moves": false,
+      "handled": false
+    },
+    "rtl": {
+      "overflows": false
+    },
+    "long": {
+      "overflows": false
+    }
+  },
+  "files": {
+    "html": [
+      {
+        "name": "index.html",
+        "code": "<!-- tearsheet data-table v6d5190be · https://qusaialjbali.github.io/tearsheet/zine/parts/data-table.html -->\n<div class=\"table-wrap\" tabindex=\"0\" role=\"region\" aria-labelledby=\"invoices-caption\">\n  <table class=\"table\">\n    <caption id=\"invoices-caption\">Recent invoices</caption>\n    <thead>\n      <tr>\n        <th scope=\"col\">Invoice</th>\n        <th scope=\"col\">Customer</th>\n        <th scope=\"col\">Status</th>\n        <th scope=\"col\" class=\"num\">Amount</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>#1042</td>\n        <td>Northwind Traders</td>\n        <td><span class=\"status status-paid\">Paid</span></td>\n        <td class=\"num\">$1,200.00</td>\n      </tr>\n      <tr>\n        <td>#1041</td>\n        <td>Globex Corp</td>\n        <td><span class=\"status status-due\">Due</span></td>\n        <td class=\"num\">$860.50</td>\n      </tr>\n      <tr>\n        <td>#1040</td>\n        <td>Initech</td>\n        <td><span class=\"status status-late\">Overdue</span></td>\n        <td class=\"num\">$3,075.00</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+      },
+      {
+        "name": "styles.css",
+        "code": "/* tearsheet data-table v6d5190be · https://qusaialjbali.github.io/tearsheet/zine/parts/data-table.html */\n.table-wrap {\n  width: 100%;\n  overflow-x: auto;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.table-wrap:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 14px; }\n.table caption {\n  padding: 16px 20px 8px;\n  font-size: 16px;\n  font-weight: 700;\n  text-align: start;\n  color: var(--ui-text);\n}\n.table th, .table td { padding: 12px 16px; text-align: start; white-space: nowrap; }\n.table th {\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: var(--ui-muted);\n  border-bottom: 1px solid var(--ui-border);\n}\n.table td { color: var(--ui-text); border-bottom: 1px solid var(--ui-border); }\n.table tbody tr:last-child td { border-bottom: 0; }\n.table tbody tr:hover { background: var(--ui-surface-2); }\n.table .num { text-align: right; font-variant-numeric: tabular-nums; }\n.status { padding: 3px 10px; font-size: 12px; font-weight: 600; border-radius: 999px; }\n.status-paid { color: var(--ui-success); background: var(--ui-success-soft); }\n.status-due { color: var(--ui-warning); background: var(--ui-warning-soft); }\n.status-late { color: var(--ui-danger); background: var(--ui-danger-soft); }"
+      }
+    ],
+    "react": [
+      {
+        "name": "DataTable.jsx",
+        "code": "/* tearsheet data-table v6d5190be · https://qusaialjbali.github.io/tearsheet/zine/parts/data-table.html */\nimport './DataTable.css';\n\nexport function DataTable() {\n  return (\n    <div className=\"table-wrap\" tabIndex={0} role=\"region\" aria-labelledby=\"invoices-caption\">\n      <table className=\"table\">\n        <caption id=\"invoices-caption\">Recent invoices</caption>\n        <thead>\n          <tr>\n            <th scope=\"col\">Invoice</th>\n            <th scope=\"col\">Customer</th>\n            <th scope=\"col\">Status</th>\n            <th scope=\"col\" className=\"num\">Amount</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>#1042</td>\n            <td>Northwind Traders</td>\n            <td><span className=\"status status-paid\">Paid</span></td>\n            <td className=\"num\">$1,200.00</td>\n          </tr>\n          <tr>\n            <td>#1041</td>\n            <td>Globex Corp</td>\n            <td><span className=\"status status-due\">Due</span></td>\n            <td className=\"num\">$860.50</td>\n          </tr>\n          <tr>\n            <td>#1040</td>\n            <td>Initech</td>\n            <td><span className=\"status status-late\">Overdue</span></td>\n            <td className=\"num\">$3,075.00</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "DataTable.css",
+        "code": "/* tearsheet data-table v6d5190be · https://qusaialjbali.github.io/tearsheet/zine/parts/data-table.html */\n.table-wrap {\n  width: 100%;\n  overflow-x: auto;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.table-wrap:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 14px; }\n.table caption {\n  padding: 16px 20px 8px;\n  font-size: 16px;\n  font-weight: 700;\n  text-align: start;\n  color: var(--ui-text);\n}\n.table th, .table td { padding: 12px 16px; text-align: start; white-space: nowrap; }\n.table th {\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: var(--ui-muted);\n  border-bottom: 1px solid var(--ui-border);\n}\n.table td { color: var(--ui-text); border-bottom: 1px solid var(--ui-border); }\n.table tbody tr:last-child td { border-bottom: 0; }\n.table tbody tr:hover { background: var(--ui-surface-2); }\n.table .num { text-align: right; font-variant-numeric: tabular-nums; }\n.status { padding: 3px 10px; font-size: 12px; font-weight: 600; border-radius: 999px; }\n.status-paid { color: var(--ui-success); background: var(--ui-success-soft); }\n.status-due { color: var(--ui-warning); background: var(--ui-warning-soft); }\n.status-late { color: var(--ui-danger); background: var(--ui-danger-soft); }"
+      }
+    ],
+    "vue": [
+      {
+        "name": "DataTable.vue",
+        "code": "<!-- tearsheet data-table v6d5190be · https://qusaialjbali.github.io/tearsheet/zine/parts/data-table.html -->\n<template>\n  <div class=\"table-wrap\" tabindex=\"0\" role=\"region\" aria-labelledby=\"invoices-caption\">\n    <table class=\"table\">\n      <caption id=\"invoices-caption\">Recent invoices</caption>\n      <thead>\n        <tr>\n          <th scope=\"col\">Invoice</th>\n          <th scope=\"col\">Customer</th>\n          <th scope=\"col\">Status</th>\n          <th scope=\"col\" class=\"num\">Amount</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>#1042</td>\n          <td>Northwind Traders</td>\n          <td><span class=\"status status-paid\">Paid</span></td>\n          <td class=\"num\">$1,200.00</td>\n        </tr>\n        <tr>\n          <td>#1041</td>\n          <td>Globex Corp</td>\n          <td><span class=\"status status-due\">Due</span></td>\n          <td class=\"num\">$860.50</td>\n        </tr>\n        <tr>\n          <td>#1040</td>\n          <td>Initech</td>\n          <td><span class=\"status status-late\">Overdue</span></td>\n          <td class=\"num\">$3,075.00</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</template>\n\n<style scoped>\n.table-wrap {\n  width: 100%;\n  overflow-x: auto;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.table-wrap:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 14px; }\n.table caption {\n  padding: 16px 20px 8px;\n  font-size: 16px;\n  font-weight: 700;\n  text-align: start;\n  color: var(--ui-text);\n}\n.table th, .table td { padding: 12px 16px; text-align: start; white-space: nowrap; }\n.table th {\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: var(--ui-muted);\n  border-bottom: 1px solid var(--ui-border);\n}\n.table td { color: var(--ui-text); border-bottom: 1px solid var(--ui-border); }\n.table tbody tr:last-child td { border-bottom: 0; }\n.table tbody tr:hover { background: var(--ui-surface-2); }\n.table .num { text-align: right; font-variant-numeric: tabular-nums; }\n.status { padding: 3px 10px; font-size: 12px; font-weight: 600; border-radius: 999px; }\n.status-paid { color: var(--ui-success); background: var(--ui-success-soft); }\n.status-due { color: var(--ui-warning); background: var(--ui-warning-soft); }\n.status-late { color: var(--ui-danger); background: var(--ui-danger-soft); }\n</style>"
+      }
+    ],
+    "svelte": [
+      {
+        "name": "DataTable.svelte",
+        "code": "<!-- tearsheet data-table v6d5190be · https://qusaialjbali.github.io/tearsheet/zine/parts/data-table.html -->\n<div class=\"table-wrap\" tabindex=\"0\" role=\"region\" aria-labelledby=\"invoices-caption\">\n  <table class=\"table\">\n    <caption id=\"invoices-caption\">Recent invoices</caption>\n    <thead>\n      <tr>\n        <th scope=\"col\">Invoice</th>\n        <th scope=\"col\">Customer</th>\n        <th scope=\"col\">Status</th>\n        <th scope=\"col\" class=\"num\">Amount</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>#1042</td>\n        <td>Northwind Traders</td>\n        <td><span class=\"status status-paid\">Paid</span></td>\n        <td class=\"num\">$1,200.00</td>\n      </tr>\n      <tr>\n        <td>#1041</td>\n        <td>Globex Corp</td>\n        <td><span class=\"status status-due\">Due</span></td>\n        <td class=\"num\">$860.50</td>\n      </tr>\n      <tr>\n        <td>#1040</td>\n        <td>Initech</td>\n        <td><span class=\"status status-late\">Overdue</span></td>\n        <td class=\"num\">$3,075.00</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n<style>\n.table-wrap {\n  width: 100%;\n  overflow-x: auto;\n  background: var(--ui-surface);\n  border: 1px solid var(--ui-border);\n  border-radius: var(--ui-radius);\n}\n.table-wrap:focus-visible { outline: none; box-shadow: var(--ui-focus); }\n.table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 14px; }\n.table caption {\n  padding: 16px 20px 8px;\n  font-size: 16px;\n  font-weight: 700;\n  text-align: start;\n  color: var(--ui-text);\n}\n.table th, .table td { padding: 12px 16px; text-align: start; white-space: nowrap; }\n.table th {\n  font-size: 12px;\n  font-weight: 600;\n  letter-spacing: 0.04em;\n  text-transform: uppercase;\n  color: var(--ui-muted);\n  border-bottom: 1px solid var(--ui-border);\n}\n.table td { color: var(--ui-text); border-bottom: 1px solid var(--ui-border); }\n.table tbody tr:last-child td { border-bottom: 0; }\n.table tbody tr:hover { background: var(--ui-surface-2); }\n.table .num { text-align: right; font-variant-numeric: tabular-nums; }\n.status { padding: 3px 10px; font-size: 12px; font-weight: 600; border-radius: 999px; }\n.status-paid { color: var(--ui-success); background: var(--ui-success-soft); }\n.status-due { color: var(--ui-warning); background: var(--ui-warning-soft); }\n.status-late { color: var(--ui-danger); background: var(--ui-danger-soft); }\n</style>"
+      }
+    ]
+  }
+}

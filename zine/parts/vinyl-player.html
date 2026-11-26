@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vinyl player · Weird component in HTML, React, Vue and Svelte | Tearsheet</title>
+  <meta name="description" content="A record player UI: press play and the record spins, the tonearm drops and the track time runs.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="author" href="../../humans.txt" type="text/plain">
+  <link rel="canonical" href="https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tearsheet">
+  <meta property="og:title" content="Vinyl player · Weird component in HTML, React, Vue and Svelte | Tearsheet">
+  <meta property="og:description" content="A record player UI: press play and the record spins, the tonearm drops and the track time runs.">
+  <meta property="og:url" content="https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html">
+  <meta property="og:image" content="https://qusaialjbali.github.io/tearsheet/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tearsheet: interface parts you can tear out and keep, in HTML, React, Vue and Svelte.">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('cui-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+  <link rel="stylesheet" href="../part.css?v=5">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Vinyl player","description":"A record player UI: press play and the record spins, the tonearm drops and the track time runs.","codeRepository":"https://github.com/qusaialjbali/tearsheet","license":"https://spdx.org/licenses/MIT-0.html","programmingLanguage":["HTML","CSS","JavaScript","React","Vue","Svelte"],"url":"https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html"}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="../index.html">Tear<span>sheet</span></a>
+    <nav aria-label="Main"><a href="index.html">Every part</a><a href="../guide.html">Guide</a></nav>
+  </header>
+  <main class="part">
+    <p class="crumbs"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#vinyl-player">Issue 01</a> · Weird · p.93</p>
+    <h1><span class="a">Vinyl player</span><span class="b" aria-hidden="true">Vinyl player</span></h1>
+    <p class="lede">A record player UI: press play and the record spins, the tonearm drops and the track time runs.</p>
+    <p class="why"><b>Why it works:</b> The play button is a real toggle (aria-pressed) and the time is a progress bar. This demo simulates playback; connect it to an &lt;audio> element’s play(), pause() and timeupdate to make it real.</p>
+    <div class="stress" role="group" aria-label="Test this part under stress"><span class="stress-label">Try it:</span><button type="button" class="stress-btn" data-fn="arabic" aria-pressed="false">RTL + Arabic</button><button type="button" class="stress-btn" data-fn="longText" aria-pressed="false">Long text</button><span class="stress-status" role="status"></span></div>
+    <div class="preview"><iframe title="Vinyl player preview" data-min="0" srcdoc="&lt;!doctype html>&lt;html lang=&quot;en&quot; data-theme=&quot;light&quot;>&lt;head>&lt;meta charset=&quot;utf-8&quot;>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>&lt;style>/* Tearsheet design tokens — include once, globally.
+   Switch themes with &lt;html data-theme=&quot;dark&quot;>. */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ui-font: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --ui-bg: #ffffff;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f4f4f5;
+  --ui-text: #18181b;
+  --ui-muted: #5b5b66;
+  --ui-border: #e4e4e7;
+  --ui-border-strong: #8e8e99;
+  --ui-accent: #4f46e5;
+  --ui-accent-hover: #4338ca;
+  --ui-accent-soft: #eef2ff;
+  --ui-accent-text: #ffffff;
+  --ui-success: #15803d;
+  --ui-success-soft: #f0fdf4;
+  --ui-warning: #b45309;
+  --ui-warning-soft: #fffbeb;
+  --ui-danger: #c81e1e;
+  --ui-danger-soft: #fef2f2;
+  --ui-danger-text: #ffffff;
+  --ui-radius: 12px;
+  --ui-radius-sm: 8px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.06);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.18);
+  --ui-focus: 0 0 0 3px rgb(79 70 229 / 0.4);
+}
+
+[data-theme=&quot;dark&quot;] {
+  --ui-bg: #0f0f12;
+  --ui-surface: #18181c;
+  --ui-surface-2: #232329;
+  --ui-text: #f4f4f5;
+  --ui-muted: #a1a1aa;
+  --ui-border: #2e2e35;
+  --ui-border-strong: #6b6b76;
+  --ui-accent: #818cf8;
+  --ui-accent-hover: #a5b4fc;
+  --ui-accent-soft: #1e1b4b;
+  --ui-accent-text: #0f0f12;
+  --ui-success: #4ade80;
+  --ui-success-soft: #052e16;
+  --ui-warning: #fbbf24;
+  --ui-warning-soft: #2a1d05;
+  --ui-danger: #f87171;
+  --ui-danger-soft: #2d0f0f;
+  --ui-danger-text: #0f0f12;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.3);
+  --ui-shadow-lg: 0 12px 40px rgb(0 0 0 / 0.5);
+  --ui-focus: 0 0 0 3px rgb(129 140 248 / 0.5);
+}html, body { margin: 0; }body { font-family: var(--ui-font); font-size: 15px; line-height: 1.5; color: var(--ui-text); background: var(--ui-bg); -webkit-font-smoothing: antialiased; }.stage { padding: 40px 28px; display: flex; justify-content: center; align-items: center; }.stage.full { display: block; }.vinyl { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; padding: 20px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 18px; }
+.vinyl-deck { position: relative; width: 190px; height: 190px; }
+.vinyl-record {
+  display: grid; place-items: center; width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 30%, #111 31%), repeating-radial-gradient(circle, #1a1a1a 0 2px, #0b0b0b 2px 4px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.35);
+  animation: vinyl-spin 1.8s linear infinite; animation-play-state: paused;
+}
+.vinyl-label { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; color: #1b1b20; background: radial-gradient(circle, #1b1b20 0 3px, #ff48b0 4px); }
+.vinyl-arm { position: absolute; top: -6px; right: -6px; width: 10px; height: 120px; border-radius: 6px; background: linear-gradient(#cfd0d4, #8f9096); transform-origin: 50% 8px; transform: rotate(-8deg); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.vinyl-arm::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: -4px; width: 18px; height: 22px; border-radius: 4px; background: #3a3a40; }
+.vinyl.is-playing .vinyl-record { animation-play-state: running; }
+.vinyl.is-playing .vinyl-arm { transform: rotate(22deg); }
+@keyframes vinyl-spin { to { transform: rotate(360deg); } }
+.vinyl-info { width: 200px; }
+.vinyl-info p { margin: 0; }
+.vinyl-title { font-size: 20px; font-weight: 800; }
+.vinyl-artist { margin-bottom: 14px !important; color: var(--ui-muted); }
+.vinyl-bar { height: 6px; background: var(--ui-surface-2); border-radius: 999px; overflow: hidden; }
+.vinyl-bar span { display: block; height: 100%; width: 0; background: var(--ui-accent); }
+.vinyl-time { display: flex; justify-content: space-between; margin: 6px 0 12px !important; font-size: 12px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.vinyl-play { display: grid; place-items: center; width: 52px; height: 52px; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 50%; cursor: pointer; }
+.vinyl-play svg { width: 22px; height: 22px; fill: currentColor; }
+.vinyl-play .ic-pause, .vinyl-play[aria-pressed=&quot;true&quot;] .ic-play { display: none; }
+.vinyl-play[aria-pressed=&quot;true&quot;] .ic-pause { display: block; }
+.vinyl-play:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) { .vinyl-record { animation: none; } .vinyl-arm { transition: none; } }&lt;/style>&lt;/head>&lt;body>&lt;div class=&quot;stage&quot;>&lt;div class=&quot;vinyl&quot;>
+  &lt;div class=&quot;vinyl-deck&quot; aria-hidden=&quot;true&quot;>
+    &lt;div class=&quot;vinyl-record&quot;>&lt;div class=&quot;vinyl-label&quot;>SIDE A&lt;/div>&lt;/div>
+    &lt;div class=&quot;vinyl-arm&quot;>&lt;/div>
+  &lt;/div>
+  &lt;div class=&quot;vinyl-info&quot;>
+    &lt;p class=&quot;vinyl-title&quot;>Overprint&lt;/p>
+    &lt;p class=&quot;vinyl-artist&quot;>The Two Inks&lt;/p>
+    &lt;div class=&quot;vinyl-bar&quot; role=&quot;progressbar&quot; aria-label=&quot;Track position&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;204&quot; aria-valuenow=&quot;0&quot; aria-valuetext=&quot;0:00 of 3:24&quot;>&lt;span>&lt;/span>&lt;/div>
+    &lt;p class=&quot;vinyl-time&quot;>&lt;span class=&quot;vinyl-now&quot;>0:00&lt;/span>&lt;span>3:24&lt;/span>&lt;/p>
+    &lt;button class=&quot;vinyl-play&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot; aria-label=&quot;Play&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path class=&quot;ic-play&quot; d=&quot;M6 4v12l10-6Z&quot;/>&lt;path class=&quot;ic-pause&quot; d=&quot;M5 4h3.5v12H5ZM11.5 4H15v12h-3.5Z&quot;/>&lt;/svg>&lt;/button>
+  &lt;/div>
+&lt;/div>&lt;/div>&lt;script>document.addEventListener(&quot;click&quot;,function(e){var a=e.target.closest(&quot;a[href='#']&quot;);if(a)e.preventDefault();});&lt;/script>&lt;script>function setup(root) {
+  const play = root.querySelector('.vinyl-play');
+  const bar = root.querySelector('.vinyl-bar');
+  const fill = bar.querySelector('span');
+  const now = root.querySelector('.vinyl-now');
+  const LENGTH = 204;
+  let t = 0, timer;
+  const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  const render = () => {
+    fill.style.width = (t / LENGTH) * 100 + '%';
+    now.textContent = fmt(t);
+    bar.setAttribute('aria-valuenow', Math.floor(t));
+    bar.setAttribute('aria-valuetext', fmt(t) + ' of ' + fmt(LENGTH));
+  };
+  const toggle = () => {
+    const on = play.getAttribute('aria-pressed') !== 'true';
+    play.setAttribute('aria-pressed', String(on));
+    play.setAttribute('aria-label', on ? 'Pause' : 'Play');
+    root.classList.toggle('is-playing', on);
+    clearInterval(timer);
+    // swap this simulated clock for audio.play() / audio.pause() and the timeupdate event
+    if (on) timer = setInterval(() => { t = (t + 1) % LENGTH; render(); }, 1000);
+  };
+  play.addEventListener('click', toggle);
+  render();
+  return () => { clearInterval(timer); play.removeEventListener('click', toggle); };
+}
+
+document.querySelectorAll(&quot;.vinyl&quot;).forEach(setup);&lt;/script>&lt;/body>&lt;/html>"></iframe></div>
+    <details class="receipt">
+      <summary>Receipt: axe clean · contrast 6.7:1 · 1 tab stop · RTL ✓ · long text ✓</summary>
+      <ul class="r-lines">
+        <li><b class="r-ok">PASS</b> axe, WCAG 2.1 A and AA: no violations in light or dark (18 rules passed).</li>
+        <li><b class="r-ok">PASS</b> Tightest text contrast 6.7:1, where 4.5:1 is needed (light).</li>
+        <li><b class="r-ok">PASS</b> Still passes contrast with tokens fitted to a yellow brand colour.</li>
+        <li><b class="r-ok">PASS</b> Right-to-left with Arabic sample text fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Every string 40% longer still fits a 390px phone.</li>
+        <li><b class="r-ok">PASS</b> Movement stops or calms down with reduced motion on.</li>
+      </ul>
+      <p class="r-head">Tab order</p>
+      <ol class="r-keys"><li>button &quot;Play&quot;</li></ol>
+      <p class="r-head">What assistive tech is given</p>
+      <pre class="r-tree" tabindex="0" aria-label="Accessibility tree">- paragraph: Overprint
+- paragraph: The Two Inks
+- progressbar &quot;Track position&quot;
+- paragraph: 0:00 3:24
+- button &quot;Play&quot;</pre>
+      <p class="r-foot">Automated checks in CI (axe in Chromium, reduced motion on). They catch a lot, not everything: still try it with a screen reader.</p>
+    </details>
+    <p class="actions"><a href="https://qusaialjbali.github.io/tearsheet/zine/index.html#vinyl-player">See it in the zine</a> <code>npx -y tearsheet add vinyl-player</code></p>
+    <p class="needs">Needs the shared <a href="../../api/tokens.css">tokens.css</a> once per project.</p>
+    <details class="format" open>
+      <summary><h2>HTML + CSS</h2></summary>
+      <div class="file"><div class="file-head"><span>index.html</span></div><pre tabindex="0"><code>&lt;!-- tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html -->
+&lt;div class=&quot;vinyl&quot;>
+  &lt;div class=&quot;vinyl-deck&quot; aria-hidden=&quot;true&quot;>
+    &lt;div class=&quot;vinyl-record&quot;>&lt;div class=&quot;vinyl-label&quot;>SIDE A&lt;/div>&lt;/div>
+    &lt;div class=&quot;vinyl-arm&quot;>&lt;/div>
+  &lt;/div>
+  &lt;div class=&quot;vinyl-info&quot;>
+    &lt;p class=&quot;vinyl-title&quot;>Overprint&lt;/p>
+    &lt;p class=&quot;vinyl-artist&quot;>The Two Inks&lt;/p>
+    &lt;div class=&quot;vinyl-bar&quot; role=&quot;progressbar&quot; aria-label=&quot;Track position&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;204&quot; aria-valuenow=&quot;0&quot; aria-valuetext=&quot;0:00 of 3:24&quot;>&lt;span>&lt;/span>&lt;/div>
+    &lt;p class=&quot;vinyl-time&quot;>&lt;span class=&quot;vinyl-now&quot;>0:00&lt;/span>&lt;span>3:24&lt;/span>&lt;/p>
+    &lt;button class=&quot;vinyl-play&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot; aria-label=&quot;Play&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path class=&quot;ic-play&quot; d=&quot;M6 4v12l10-6Z&quot;/>&lt;path class=&quot;ic-pause&quot; d=&quot;M5 4h3.5v12H5ZM11.5 4H15v12h-3.5Z&quot;/>&lt;/svg>&lt;/button>
+  &lt;/div>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>styles.css</span></div><pre tabindex="0"><code>/* tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html */
+.vinyl { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; padding: 20px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 18px; }
+.vinyl-deck { position: relative; width: 190px; height: 190px; }
+.vinyl-record {
+  display: grid; place-items: center; width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 30%, #111 31%), repeating-radial-gradient(circle, #1a1a1a 0 2px, #0b0b0b 2px 4px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.35);
+  animation: vinyl-spin 1.8s linear infinite; animation-play-state: paused;
+}
+.vinyl-label { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; color: #1b1b20; background: radial-gradient(circle, #1b1b20 0 3px, #ff48b0 4px); }
+.vinyl-arm { position: absolute; top: -6px; right: -6px; width: 10px; height: 120px; border-radius: 6px; background: linear-gradient(#cfd0d4, #8f9096); transform-origin: 50% 8px; transform: rotate(-8deg); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.vinyl-arm::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: -4px; width: 18px; height: 22px; border-radius: 4px; background: #3a3a40; }
+.vinyl.is-playing .vinyl-record { animation-play-state: running; }
+.vinyl.is-playing .vinyl-arm { transform: rotate(22deg); }
+@keyframes vinyl-spin { to { transform: rotate(360deg); } }
+.vinyl-info { width: 200px; }
+.vinyl-info p { margin: 0; }
+.vinyl-title { font-size: 20px; font-weight: 800; }
+.vinyl-artist { margin-bottom: 14px !important; color: var(--ui-muted); }
+.vinyl-bar { height: 6px; background: var(--ui-surface-2); border-radius: 999px; overflow: hidden; }
+.vinyl-bar span { display: block; height: 100%; width: 0; background: var(--ui-accent); }
+.vinyl-time { display: flex; justify-content: space-between; margin: 6px 0 12px !important; font-size: 12px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.vinyl-play { display: grid; place-items: center; width: 52px; height: 52px; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 50%; cursor: pointer; }
+.vinyl-play svg { width: 22px; height: 22px; fill: currentColor; }
+.vinyl-play .ic-pause, .vinyl-play[aria-pressed=&quot;true&quot;] .ic-play { display: none; }
+.vinyl-play[aria-pressed=&quot;true&quot;] .ic-pause { display: block; }
+.vinyl-play:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) { .vinyl-record { animation: none; } .vinyl-arm { transition: none; } }</code></pre></div>
+      <div class="file"><div class="file-head"><span>script.js</span></div><pre tabindex="0"><code>/* tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html */
+function setup(root) {
+  const play = root.querySelector('.vinyl-play');
+  const bar = root.querySelector('.vinyl-bar');
+  const fill = bar.querySelector('span');
+  const now = root.querySelector('.vinyl-now');
+  const LENGTH = 204;
+  let t = 0, timer;
+  const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  const render = () => {
+    fill.style.width = (t / LENGTH) * 100 + '%';
+    now.textContent = fmt(t);
+    bar.setAttribute('aria-valuenow', Math.floor(t));
+    bar.setAttribute('aria-valuetext', fmt(t) + ' of ' + fmt(LENGTH));
+  };
+  const toggle = () => {
+    const on = play.getAttribute('aria-pressed') !== 'true';
+    play.setAttribute('aria-pressed', String(on));
+    play.setAttribute('aria-label', on ? 'Pause' : 'Play');
+    root.classList.toggle('is-playing', on);
+    clearInterval(timer);
+    // swap this simulated clock for audio.play() / audio.pause() and the timeupdate event
+    if (on) timer = setInterval(() => { t = (t + 1) % LENGTH; render(); }, 1000);
+  };
+  play.addEventListener('click', toggle);
+  render();
+  return () => { clearInterval(timer); play.removeEventListener('click', toggle); };
+}
+
+document.querySelectorAll(&quot;.vinyl&quot;).forEach(setup);</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>React</h2></summary>
+      <div class="file"><div class="file-head"><span>VinylPlayer.jsx</span></div><pre tabindex="0"><code>/* tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html */
+import { useEffect, useRef } from 'react';
+import './VinylPlayer.css';
+
+function setup(root) {
+  const play = root.querySelector('.vinyl-play');
+  const bar = root.querySelector('.vinyl-bar');
+  const fill = bar.querySelector('span');
+  const now = root.querySelector('.vinyl-now');
+  const LENGTH = 204;
+  let t = 0, timer;
+  const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  const render = () => {
+    fill.style.width = (t / LENGTH) * 100 + '%';
+    now.textContent = fmt(t);
+    bar.setAttribute('aria-valuenow', Math.floor(t));
+    bar.setAttribute('aria-valuetext', fmt(t) + ' of ' + fmt(LENGTH));
+  };
+  const toggle = () => {
+    const on = play.getAttribute('aria-pressed') !== 'true';
+    play.setAttribute('aria-pressed', String(on));
+    play.setAttribute('aria-label', on ? 'Pause' : 'Play');
+    root.classList.toggle('is-playing', on);
+    clearInterval(timer);
+    // swap this simulated clock for audio.play() / audio.pause() and the timeupdate event
+    if (on) timer = setInterval(() => { t = (t + 1) % LENGTH; render(); }, 1000);
+  };
+  play.addEventListener('click', toggle);
+  render();
+  return () => { clearInterval(timer); play.removeEventListener('click', toggle); };
+}
+
+export function VinylPlayer() {
+  const ref = useRef(null);
+  useEffect(() => setup(ref.current), []);
+
+  return (
+    &lt;div ref={ref} className=&quot;vinyl&quot;>
+      &lt;div className=&quot;vinyl-deck&quot; aria-hidden=&quot;true&quot;>
+        &lt;div className=&quot;vinyl-record&quot;>&lt;div className=&quot;vinyl-label&quot;>SIDE A&lt;/div>&lt;/div>
+        &lt;div className=&quot;vinyl-arm&quot;>&lt;/div>
+      &lt;/div>
+      &lt;div className=&quot;vinyl-info&quot;>
+        &lt;p className=&quot;vinyl-title&quot;>Overprint&lt;/p>
+        &lt;p className=&quot;vinyl-artist&quot;>The Two Inks&lt;/p>
+        &lt;div className=&quot;vinyl-bar&quot; role=&quot;progressbar&quot; aria-label=&quot;Track position&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;204&quot; aria-valuenow=&quot;0&quot; aria-valuetext=&quot;0:00 of 3:24&quot;>&lt;span>&lt;/span>&lt;/div>
+        &lt;p className=&quot;vinyl-time&quot;>&lt;span className=&quot;vinyl-now&quot;>0:00&lt;/span>&lt;span>3:24&lt;/span>&lt;/p>
+        &lt;button className=&quot;vinyl-play&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot; aria-label=&quot;Play&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path className=&quot;ic-play&quot; d=&quot;M6 4v12l10-6Z&quot;/>&lt;path className=&quot;ic-pause&quot; d=&quot;M5 4h3.5v12H5ZM11.5 4H15v12h-3.5Z&quot;/>&lt;/svg>&lt;/button>
+      &lt;/div>
+    &lt;/div>
+  );
+}</code></pre></div>
+      <div class="file"><div class="file-head"><span>VinylPlayer.css</span></div><pre tabindex="0"><code>/* tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html */
+.vinyl { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; padding: 20px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 18px; }
+.vinyl-deck { position: relative; width: 190px; height: 190px; }
+.vinyl-record {
+  display: grid; place-items: center; width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 30%, #111 31%), repeating-radial-gradient(circle, #1a1a1a 0 2px, #0b0b0b 2px 4px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.35);
+  animation: vinyl-spin 1.8s linear infinite; animation-play-state: paused;
+}
+.vinyl-label { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; color: #1b1b20; background: radial-gradient(circle, #1b1b20 0 3px, #ff48b0 4px); }
+.vinyl-arm { position: absolute; top: -6px; right: -6px; width: 10px; height: 120px; border-radius: 6px; background: linear-gradient(#cfd0d4, #8f9096); transform-origin: 50% 8px; transform: rotate(-8deg); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.vinyl-arm::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: -4px; width: 18px; height: 22px; border-radius: 4px; background: #3a3a40; }
+.vinyl.is-playing .vinyl-record { animation-play-state: running; }
+.vinyl.is-playing .vinyl-arm { transform: rotate(22deg); }
+@keyframes vinyl-spin { to { transform: rotate(360deg); } }
+.vinyl-info { width: 200px; }
+.vinyl-info p { margin: 0; }
+.vinyl-title { font-size: 20px; font-weight: 800; }
+.vinyl-artist { margin-bottom: 14px !important; color: var(--ui-muted); }
+.vinyl-bar { height: 6px; background: var(--ui-surface-2); border-radius: 999px; overflow: hidden; }
+.vinyl-bar span { display: block; height: 100%; width: 0; background: var(--ui-accent); }
+.vinyl-time { display: flex; justify-content: space-between; margin: 6px 0 12px !important; font-size: 12px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.vinyl-play { display: grid; place-items: center; width: 52px; height: 52px; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 50%; cursor: pointer; }
+.vinyl-play svg { width: 22px; height: 22px; fill: currentColor; }
+.vinyl-play .ic-pause, .vinyl-play[aria-pressed=&quot;true&quot;] .ic-play { display: none; }
+.vinyl-play[aria-pressed=&quot;true&quot;] .ic-pause { display: block; }
+.vinyl-play:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) { .vinyl-record { animation: none; } .vinyl-arm { transition: none; } }</code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Vue</h2></summary>
+      <div class="file"><div class="file-head"><span>VinylPlayer.vue</span></div><pre tabindex="0"><code>&lt;!-- tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html -->
+&lt;script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const el = ref(null);
+let cleanup;
+
+function setup(root) {
+  const play = root.querySelector('.vinyl-play');
+  const bar = root.querySelector('.vinyl-bar');
+  const fill = bar.querySelector('span');
+  const now = root.querySelector('.vinyl-now');
+  const LENGTH = 204;
+  let t = 0, timer;
+  const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  const render = () => {
+    fill.style.width = (t / LENGTH) * 100 + '%';
+    now.textContent = fmt(t);
+    bar.setAttribute('aria-valuenow', Math.floor(t));
+    bar.setAttribute('aria-valuetext', fmt(t) + ' of ' + fmt(LENGTH));
+  };
+  const toggle = () => {
+    const on = play.getAttribute('aria-pressed') !== 'true';
+    play.setAttribute('aria-pressed', String(on));
+    play.setAttribute('aria-label', on ? 'Pause' : 'Play');
+    root.classList.toggle('is-playing', on);
+    clearInterval(timer);
+    // swap this simulated clock for audio.play() / audio.pause() and the timeupdate event
+    if (on) timer = setInterval(() => { t = (t + 1) % LENGTH; render(); }, 1000);
+  };
+  play.addEventListener('click', toggle);
+  render();
+  return () => { clearInterval(timer); play.removeEventListener('click', toggle); };
+}
+
+onMounted(() => {
+  cleanup = setup(el.value);
+});
+onBeforeUnmount(() => cleanup?.());
+&lt;/script>
+
+&lt;template>
+  &lt;div ref=&quot;el&quot; class=&quot;vinyl&quot;>
+    &lt;div class=&quot;vinyl-deck&quot; aria-hidden=&quot;true&quot;>
+      &lt;div class=&quot;vinyl-record&quot;>&lt;div class=&quot;vinyl-label&quot;>SIDE A&lt;/div>&lt;/div>
+      &lt;div class=&quot;vinyl-arm&quot;>&lt;/div>
+    &lt;/div>
+    &lt;div class=&quot;vinyl-info&quot;>
+      &lt;p class=&quot;vinyl-title&quot;>Overprint&lt;/p>
+      &lt;p class=&quot;vinyl-artist&quot;>The Two Inks&lt;/p>
+      &lt;div class=&quot;vinyl-bar&quot; role=&quot;progressbar&quot; aria-label=&quot;Track position&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;204&quot; aria-valuenow=&quot;0&quot; aria-valuetext=&quot;0:00 of 3:24&quot;>&lt;span>&lt;/span>&lt;/div>
+      &lt;p class=&quot;vinyl-time&quot;>&lt;span class=&quot;vinyl-now&quot;>0:00&lt;/span>&lt;span>3:24&lt;/span>&lt;/p>
+      &lt;button class=&quot;vinyl-play&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot; aria-label=&quot;Play&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path class=&quot;ic-play&quot; d=&quot;M6 4v12l10-6Z&quot;/>&lt;path class=&quot;ic-pause&quot; d=&quot;M5 4h3.5v12H5ZM11.5 4H15v12h-3.5Z&quot;/>&lt;/svg>&lt;/button>
+    &lt;/div>
+  &lt;/div>
+&lt;/template>
+
+&lt;!-- Not scoped: setup() creates elements at runtime that scoped styles would miss. -->
+&lt;style>
+.vinyl { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; padding: 20px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 18px; }
+.vinyl-deck { position: relative; width: 190px; height: 190px; }
+.vinyl-record {
+  display: grid; place-items: center; width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 30%, #111 31%), repeating-radial-gradient(circle, #1a1a1a 0 2px, #0b0b0b 2px 4px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.35);
+  animation: vinyl-spin 1.8s linear infinite; animation-play-state: paused;
+}
+.vinyl-label { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; color: #1b1b20; background: radial-gradient(circle, #1b1b20 0 3px, #ff48b0 4px); }
+.vinyl-arm { position: absolute; top: -6px; right: -6px; width: 10px; height: 120px; border-radius: 6px; background: linear-gradient(#cfd0d4, #8f9096); transform-origin: 50% 8px; transform: rotate(-8deg); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.vinyl-arm::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: -4px; width: 18px; height: 22px; border-radius: 4px; background: #3a3a40; }
+.vinyl.is-playing .vinyl-record { animation-play-state: running; }
+.vinyl.is-playing .vinyl-arm { transform: rotate(22deg); }
+@keyframes vinyl-spin { to { transform: rotate(360deg); } }
+.vinyl-info { width: 200px; }
+.vinyl-info p { margin: 0; }
+.vinyl-title { font-size: 20px; font-weight: 800; }
+.vinyl-artist { margin-bottom: 14px !important; color: var(--ui-muted); }
+.vinyl-bar { height: 6px; background: var(--ui-surface-2); border-radius: 999px; overflow: hidden; }
+.vinyl-bar span { display: block; height: 100%; width: 0; background: var(--ui-accent); }
+.vinyl-time { display: flex; justify-content: space-between; margin: 6px 0 12px !important; font-size: 12px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.vinyl-play { display: grid; place-items: center; width: 52px; height: 52px; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 50%; cursor: pointer; }
+.vinyl-play svg { width: 22px; height: 22px; fill: currentColor; }
+.vinyl-play .ic-pause, .vinyl-play[aria-pressed=&quot;true&quot;] .ic-play { display: none; }
+.vinyl-play[aria-pressed=&quot;true&quot;] .ic-pause { display: block; }
+.vinyl-play:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) { .vinyl-record { animation: none; } .vinyl-arm { transition: none; } }
+&lt;/style></code></pre></div>
+    </details>
+    <details class="format">
+      <summary><h2>Svelte</h2></summary>
+      <div class="file"><div class="file-head"><span>VinylPlayer.svelte</span></div><pre tabindex="0"><code>&lt;!-- tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html -->
+&lt;script>
+  import { onMount } from 'svelte';
+  import './VinylPlayer.css';
+
+  let node;
+
+  function setup(root) {
+    const play = root.querySelector('.vinyl-play');
+    const bar = root.querySelector('.vinyl-bar');
+    const fill = bar.querySelector('span');
+    const now = root.querySelector('.vinyl-now');
+    const LENGTH = 204;
+    let t = 0, timer;
+    const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+    const render = () => {
+      fill.style.width = (t / LENGTH) * 100 + '%';
+      now.textContent = fmt(t);
+      bar.setAttribute('aria-valuenow', Math.floor(t));
+      bar.setAttribute('aria-valuetext', fmt(t) + ' of ' + fmt(LENGTH));
+    };
+    const toggle = () => {
+      const on = play.getAttribute('aria-pressed') !== 'true';
+      play.setAttribute('aria-pressed', String(on));
+      play.setAttribute('aria-label', on ? 'Pause' : 'Play');
+      root.classList.toggle('is-playing', on);
+      clearInterval(timer);
+      // swap this simulated clock for audio.play() / audio.pause() and the timeupdate event
+      if (on) timer = setInterval(() => { t = (t + 1) % LENGTH; render(); }, 1000);
+    };
+    play.addEventListener('click', toggle);
+    render();
+    return () => { clearInterval(timer); play.removeEventListener('click', toggle); };
+  }
+
+  onMount(() => setup(node));
+&lt;/script>
+
+&lt;div bind:this={node} class=&quot;vinyl&quot;>
+  &lt;div class=&quot;vinyl-deck&quot; aria-hidden=&quot;true&quot;>
+    &lt;div class=&quot;vinyl-record&quot;>&lt;div class=&quot;vinyl-label&quot;>SIDE A&lt;/div>&lt;/div>
+    &lt;div class=&quot;vinyl-arm&quot;>&lt;/div>
+  &lt;/div>
+  &lt;div class=&quot;vinyl-info&quot;>
+    &lt;p class=&quot;vinyl-title&quot;>Overprint&lt;/p>
+    &lt;p class=&quot;vinyl-artist&quot;>The Two Inks&lt;/p>
+    &lt;div class=&quot;vinyl-bar&quot; role=&quot;progressbar&quot; aria-label=&quot;Track position&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;204&quot; aria-valuenow=&quot;0&quot; aria-valuetext=&quot;0:00 of 3:24&quot;>&lt;span>&lt;/span>&lt;/div>
+    &lt;p class=&quot;vinyl-time&quot;>&lt;span class=&quot;vinyl-now&quot;>0:00&lt;/span>&lt;span>3:24&lt;/span>&lt;/p>
+    &lt;button class=&quot;vinyl-play&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot; aria-label=&quot;Play&quot;>&lt;svg viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;>&lt;path class=&quot;ic-play&quot; d=&quot;M6 4v12l10-6Z&quot;/>&lt;path class=&quot;ic-pause&quot; d=&quot;M5 4h3.5v12H5ZM11.5 4H15v12h-3.5Z&quot;/>&lt;/svg>&lt;/button>
+  &lt;/div>
+&lt;/div></code></pre></div>
+      <div class="file"><div class="file-head"><span>VinylPlayer.css</span></div><pre tabindex="0"><code>/* tearsheet vinyl-player v35972aae · https://qusaialjbali.github.io/tearsheet/zine/parts/vinyl-player.html */
+.vinyl { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; padding: 20px; background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 18px; }
+.vinyl-deck { position: relative; width: 190px; height: 190px; }
+.vinyl-record {
+  display: grid; place-items: center; width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 30%, #111 31%), repeating-radial-gradient(circle, #1a1a1a 0 2px, #0b0b0b 2px 4px);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.35);
+  animation: vinyl-spin 1.8s linear infinite; animation-play-state: paused;
+}
+.vinyl-label { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font-size: 12px; font-weight: 800; letter-spacing: 0.02em; color: #1b1b20; background: radial-gradient(circle, #1b1b20 0 3px, #ff48b0 4px); }
+.vinyl-arm { position: absolute; top: -6px; right: -6px; width: 10px; height: 120px; border-radius: 6px; background: linear-gradient(#cfd0d4, #8f9096); transform-origin: 50% 8px; transform: rotate(-8deg); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.vinyl-arm::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: -4px; width: 18px; height: 22px; border-radius: 4px; background: #3a3a40; }
+.vinyl.is-playing .vinyl-record { animation-play-state: running; }
+.vinyl.is-playing .vinyl-arm { transform: rotate(22deg); }
+@keyframes vinyl-spin { to { transform: rotate(360deg); } }
+.vinyl-info { width: 200px; }
+.vinyl-info p { margin: 0; }
+.vinyl-title { font-size: 20px; font-weight: 800; }
+.vinyl-artist { margin-bottom: 14px !important; color: var(--ui-muted); }
+.vinyl-bar { height: 6px; background: var(--ui-surface-2); border-radius: 999px; overflow: hidden; }
+.vinyl-bar span { display: block; height: 100%; width: 0; background: var(--ui-accent); }
+.vinyl-time { display: flex; justify-content: space-between; margin: 6px 0 12px !important; font-size: 12px; color: var(--ui-muted); font-variant-numeric: tabular-nums; }
+.vinyl-play { display: grid; place-items: center; width: 52px; height: 52px; color: var(--ui-accent-text); background: var(--ui-accent); border: 0; border-radius: 50%; cursor: pointer; }
+.vinyl-play svg { width: 22px; height: 22px; fill: currentColor; }
+.vinyl-play .ic-pause, .vinyl-play[aria-pressed=&quot;true&quot;] .ic-play { display: none; }
+.vinyl-play[aria-pressed=&quot;true&quot;] .ic-pause { display: block; }
+.vinyl-play:focus-visible { outline: none; box-shadow: var(--ui-focus); }
+@media (prefers-reduced-motion: reduce) { .vinyl-record { animation: none; } .vinyl-arm { transition: none; } }</code></pre></div>
+    </details>
+    <nav class="pager" aria-label="More parts">
+      <a rel="prev" href="typewriter-terminal.html">← Typewriter terminal</a>
+      <a rel="next" href="ink-bleed.html">Ink bleed menu →</a>
+    </nav>
+  </main>
+  <script src="../../shared/stress.js?v=1"></script>
+  <script>
+    /* Stress toggles: reload the preview, then rewrite it right-to-left in Arabic, or longer. */
+    const original = document.querySelector('.preview iframe').getAttribute('srcdoc');
+    document.querySelectorAll('.stress-btn').forEach((b, _, all) => b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      all.forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)));
+      const f = document.querySelector('.preview iframe');
+      f.addEventListener('load', () => {
+        if (on) window.TearsheetStress[b.dataset.fn](f.contentDocument);
+        document.querySelector('.stress-status').textContent = on ? (b.dataset.fn === 'arabic' ? 'Right-to-left with Arabic sample words (not a translation): the layout should mirror and nothing should spill out.' : 'A pretend translation: every string about 40% longer, with accents, as German or Finnish often are. Buttons and labels should wrap or grow, never clip or overflow.') : 'Back to normal.';
+      }, { once: true });
+      f.srcdoc = original + '<!--n' + Date.now() + '-->';
+    }));
+    /* Preview follows the site's light/dark choice; code blocks get copy buttons. */
+    const frame = document.querySelector('.preview iframe');
+    const fit = () => {
+      const d = frame.contentDocument;
+      if (!d) return;
+      d.documentElement.dataset.theme = document.documentElement.dataset.theme;
+      frame.style.height = Math.max(Number(frame.dataset.min || 0), d.documentElement.scrollHeight) + 'px';
+    };
+    frame.addEventListener('load', () => { fit(); new ResizeObserver(fit).observe(frame.contentDocument.body); });
+    document.querySelectorAll('.file').forEach((f) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'copy';
+      b.textContent = 'Copy';
+      b.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(f.querySelector('code').textContent); b.textContent = 'Copied'; }
+        catch { b.textContent = 'Select and copy'; }
+        setTimeout(() => (b.textContent = 'Copy'), 1600);
+      });
+      f.querySelector('.file-head').append(b);
+    });
+  </script>
+  <footer class="foot"><p>Tearsheet. Free to take, change and ship with no attribution (MIT-0).</p></footer>
+</body>
+</html>
